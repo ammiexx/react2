@@ -3,7 +3,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import './Search.css';
 import Hamburger from './Hamburger';
 const categories = ["Electronics", "Cars", "Houses", "Clothes","todays deals","customer services"];
-
 const Search = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();

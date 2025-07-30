@@ -102,9 +102,13 @@ const Wanted = () => {
       </h2>
 
      <div className="top-action-row">
-  <button className="register-buyer-btn" onClick={handleRegisterClick}>
-    Reach active buyers — share your item and where it's available.
-  </button>
+<input
+    type="text"
+    className="search-input"
+    placeholder="share what you want to sell.."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+  />
 
   <input
     type="text"

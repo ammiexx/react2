@@ -209,11 +209,16 @@ const ForSale = () => {
       </h2>
 
       <div className="top-action-row">
-        <Link to="/buyers-form">
-          <button className="submit-offer-btn">
-            Share your desired item and location
-          </button>
-        </Link>
+        
+         
+         <input
+          type="text"
+          className="comentinput-input"
+          placeholder="share what you want..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          aria-label="tell us what you want to buy...."
+        />
 
         <input
           type="text"

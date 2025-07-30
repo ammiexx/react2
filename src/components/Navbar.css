@@ -8,7 +8,6 @@
   width: 100%;
   font-family: Arial, sans-serif;
 }
-
 .navbar-container {
   max-width: 1200px;
   margin: auto;
@@ -24,7 +23,6 @@
   color:white;
   text-decoration: none;
 }
-
 .nav-links {
   display: flex;
   align-items: center;
