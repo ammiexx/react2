@@ -33,9 +33,6 @@ const Navbar = () => {
           <NavLink to="/aboutus" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
             AboutUs
           </NavLink>
-          <NavLink to="/home" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            Home
-          </NavLink>
           <NavLink to="/wanted" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
             Buyers
           </NavLink>
