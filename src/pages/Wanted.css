@@ -1,0 +1,153 @@
+.wanted-page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.wanted-title {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #555;
+  text-align: center;
+}
+
+/* Column layout for button + search */
+.top-action-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+/* Improved button style */
+.register-buyer-btn {
+  background-color: #1e40af;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-buyer-btn:hover {
+  background-color: #1e3a8a;
+}
+
+/* Search input style */
+.search-input {
+  width: 320px;
+  max-width: 90%;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: 1.5px solid #2563eb;
+  outline-color: #2563eb;
+  transition: border-color 0.3s ease;
+  font-family: Arial, sans-serif;
+}
+
+.search-input::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+.search-input:focus {
+  border-color: #1e40af;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+}
+
+/* Grid layout for wanted posts */
+.wanted-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.wanted-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 280px;
+}
+
+.wanted-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.wanted-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.wanted-details {
+  flex-grow: 1;
+}
+
+.wanted-content {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.wanted-date,
+.wanted-location,
+.wanted-deadline {
+  font-size: 14px;
+  color: #555;
+  margin: 3px 0;
+}
+
+.wanted-location strong,
+.wanted-deadline strong {
+  color: #2563eb;
+}
+
+.contact-button {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: #1e40af;
+}
+
+.wanted-contacts {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #333;
+  background-color: #f0f8ff;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #c3dafe;
+}
+
+.wanted-contacts a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.wanted-contacts a:hover {
+  text-decoration: underline;
+}

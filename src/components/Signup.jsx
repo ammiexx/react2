@@ -1,0 +1,57 @@
+// src/components/Signup.jsx
+import React from "react";
+import { auth, provider, signInWithPopup } from "../firebase";
+import "./Signup.css";
+
+const Signup = () => {
+  const handleSignup = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log("User signed up:", result.user);
+      })
+      .catch((error) => {
+        console.error("Signup error:", error);
+      });
+  };
+
+  return (
+    <div className="signup-page">
+      <div className="signup-card">
+        <div className="signup-header">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+            alt="Logo"
+            className="signup-logo"
+          />
+          <h2>Create your CBN account</h2>
+          <p>Join us to explore products and post your business offerings.</p>
+        </div>
+
+        <button className="auth-button google" onClick={handleSignup}>
+          <img
+            src="https://developers.google.com/identity/images/g-logo.png"
+            alt="Google logo"
+            className="google-icon"
+          />
+          Sign up with Google
+        </button>
+
+        <div className="divider">
+          <span>or</span>
+        </div>
+
+        <button className="auth-button secondary">Continue with Email</button>
+
+        <p className="terms">
+          By signing up, you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
+        </p>
+
+        <p className="signin-link">
+          Already have an account? <a href="/login">Sign in</a>
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Signup;

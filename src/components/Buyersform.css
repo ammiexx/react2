@@ -1,0 +1,99 @@
+.buyers-form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px 30px;
+  border-radius: 12px;
+  background: linear-gradient(to bottom right, #ffffff, #f3f4f6);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.buyers-form h2 {
+  text-align: center;
+  margin-bottom: 28px;
+  font-size: 28px;
+  color: #1a202c;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  position: relative;
+}
+
+.buyers-form h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #1abc9c;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.buyers-form label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.buyers-form input,
+.buyers-form textarea {
+  margin-top: 6px;
+  padding: 10px 14px;
+  font-size: 1rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+}
+
+.buyers-form input:focus,
+.buyers-form textarea:focus {
+  border-color: #1abc9c;
+  box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.2);
+  outline: none;
+}
+
+.buyers-form .error {
+  margin-top: 4px;
+  color: #e74c3c;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.buyers-form button {
+  width: 100%;
+  padding: 14px;
+  background-color: #1abc9c;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(26, 188, 156, 0.3);
+}
+
+.buyers-form button:hover {
+  background-color: #16a085;
+  transform: translateY(-1px);
+}
+
+.buyers-form button:active {
+  transform: translateY(1px);
+}
+
+/* Optional subtle fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
