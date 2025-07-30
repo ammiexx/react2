@@ -24,7 +24,7 @@ function App() {
       <Navbar />
       <Search />
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/wanted" element={<Wanted />} />
         <Route path="/forsale" element={<ForSale />} />
         <Route path="/login" element={<Login />} />

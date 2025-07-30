@@ -92,12 +92,12 @@ const Home = () => {
     <div className="home-container">
       <header className="home-header">
         <h1 className="typing-text">
-  <span className="typed-sentence">Buy what you want, sell what you offer — your opportunity starts here.</span>
+  <span className="typed-sentence">Purchase what you want, sell what you offer — your opportunity starts here.</span>
 </h1>
         <p>Your marketplace to buy and sell quality products</p>
         <div className="home-buttons">
-          <Link to="/forsale" className="btn btn-primary">Sallers</Link>
-          <Link to="/wanted" className="btn btn-secondary">buyers</Link>
+          <Link to="/forsale" className="btn btn-primary">Sellers</Link>
+          <Link to="/wanted" className="btn btn-secondary">Buyers</Link>
         </div>
       </header>
       <section className="featured-section">
