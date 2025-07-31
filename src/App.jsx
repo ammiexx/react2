@@ -36,8 +36,10 @@ import Orders from "./categories/Orders"
 import Whishlist from "./categories/Whishlist";
 import NewArrivals from "./categories/NewArrivals";
 import BestSellers from "./categories/BestSellers";
-import DealsAndOffers from "./categories/DealsandOffers";
+import DealsandOffers from "./categories/DealsandOffers";
 import Brands from "./categories/Brands";
+import CustomerServices from "./categories/CustomerServices";
+import TodaysDeals from "./categories/TodaysDeals";
 function App() {
   return (
     <Router>
@@ -66,8 +68,10 @@ function App() {
           <Route path="/whishlist" element={< Whishlist/>} />
           <Route path="/newarrivals" element={< NewArrivals/>} />
            <Route path="/best-sellers" element={< BestSellers/>} />
-           <Route path="/dealsandoffers" element={< DealsAndOffers/>} />
+           <Route path="/dealsandoffers" element={< DealsandOffers/>} />
            <Route path="/brands" element={< Brands/>} />
+           <Route path="/customerservices" element={< CustomerServices/>} />
+           <Route path="/todaysdeals" element={< TodaysDeals/>} />
 
         <Route
           path="/signup"
