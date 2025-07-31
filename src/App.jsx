@@ -68,7 +68,7 @@ function App() {
            <Route path="/best-sellers" element={< BestSellers/>} />
            <Route path="/dealsandoffers" element={< DealsAndOffers/>} />
            <Route path="/brands" element={< Brands/>} />
-           
+
         <Route
           path="/signup"
           element={
