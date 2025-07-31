@@ -1,0 +1,62 @@
+.brands-container {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+  text-align: center;
+}
+
+.brands-container h1 {
+  font-size: 2.25rem;
+  margin-bottom: 10px;
+  color: #2563eb; /* Blue accent */
+}
+
+.intro-text {
+  margin-bottom: 40px;
+  color: #4b5563;
+  font-size: 1.1rem;
+}
+
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 35px;
+}
+
+.brand-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: #1f2937;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brand-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.brand-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 20px;
+  object-fit: contain;
+}
+
+.brand-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+}
+
+.brand-card p {
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.4;
+}
