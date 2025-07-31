@@ -76,3 +76,16 @@
   height: 1px;
   background: #ddd;
 }
+.signup-link-button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+  padding-left: 4px;
+}
+
+.signup-link-button:hover {
+  text-decoration: none;
+}

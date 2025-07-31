@@ -1,19 +1,9 @@
 // src/components/Signup.jsx
 import React from "react";
-import { auth, provider, signInWithPopup } from "../firebase";
+import { SignUp } from "@clerk/clerk-react";
 import "./Signup.css";
 
 const Signup = () => {
-  const handleSignup = () => {
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        console.log("User signed up:", result.user);
-      })
-      .catch((error) => {
-        console.error("Signup error:", error);
-      });
-  };
-
   return (
     <div className="signup-page">
       <div className="signup-card">
@@ -27,20 +17,13 @@ const Signup = () => {
           <p>Join us to explore products and post your business offerings.</p>
         </div>
 
-        <button className="auth-button google" onClick={handleSignup}>
-          <img
-            src="https://developers.google.com/identity/images/g-logo.png"
-            alt="Google logo"
-            className="google-icon"
-          />
-          Sign up with Google
-        </button>
-
-        <div className="divider">
-          <span>or</span>
-        </div>
-
-        <button className="auth-button secondary">Continue with Email</button>
+        {/* Clerk's signup component */}
+        <SignUp
+          path="/signup"
+          routing="path"
+          signInUrl="/login"
+          // afterSignUpUrl="/"
+        />
 
         <p className="terms">
           By signing up, you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.

@@ -1,6 +1,7 @@
 // src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { SignUp } from "@clerk/clerk-react";
 import Navbar from "./components/Navbar";
 import Search from "./components/Search"
 import Back from "./components/Back";
@@ -24,11 +25,20 @@ function App() {
       <Navbar />
       <Search />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/wanted" element={<Wanted />} />
         <Route path="/forsale" element={<ForSale />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/signup"
+          element={
+            <SignUp
+              path="/signup"
+              routing="path"
+              afterSignUpUrl="/home"
+            />
+          }
+        />
         <Route path="/aboutus" element={<AboutUs/>} />
          <Route path="/electronics" element={<Electronics/>} />
          <Route path="/buyers-form" element={<BuyersForm />} />
