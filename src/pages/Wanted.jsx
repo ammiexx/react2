@@ -105,7 +105,7 @@ const Wanted = () => {
 <input
     type="text"
     className="search-input"
-    placeholder="share what you want to sell.."
+    placeholder="Tell us what you want to sell..."
     value={searchTerm}
     onChange={(e) => setSearchTerm(e.target.value)}
   />
@@ -113,7 +113,7 @@ const Wanted = () => {
   <input
     type="text"
     className="search-input"
-    placeholder="Browse a product wanted by a customer"
+    placeholder="search a customer...."
     value={searchTerm}
     onChange={(e) => setSearchTerm(e.target.value)}
   />

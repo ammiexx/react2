@@ -214,7 +214,7 @@ const ForSale = () => {
          <input
           type="text"
           className="comentinput-input"
-          placeholder="share what you want..."
+          placeholder="Tell us what you want to buy..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           aria-label="tell us what you want to buy...."
