@@ -1,90 +1,131 @@
-.fashion-page {
-  padding: 2rem;
+.fashion-section {
+  padding: 40px 20px;
   background-color: #fafafa;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
 }
 
-.fashion-title {
+.fashion-section h2 {
   text-align: center;
   font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #222;
+  margin-bottom: 30px;
 }
 
-.fashion-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
+.fashion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .fashion-card {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  width: 260px;
-  padding: 1.2rem;
-  text-align: center;
-  transition: transform 0.3s ease;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
 }
 
 .fashion-card:hover {
-  transform: scale(1.04);
+  transform: translateY(-4px);
 }
 
-.fashion-image {
+.owner-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.owner-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.location {
+  font-size: 0.85rem;
+  color: #777;
+  margin: 0;
+}
+
+.fashion-img {
   width: 100%;
-  height: 160px;
+  height: 180px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.fashion-card h3 {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 0.5rem;
-}
-
-.fashion-card p {
-  margin: 0.3rem 0;
-  color: #555;
-  font-size: 0.92rem;
+  margin: 15px 0;
 }
 
 .description {
-  margin-top: 0.6rem;
-  font-style: italic;
+  font-size: 0.95rem;
   color: #444;
+  margin-bottom: 10px;
+  flex-grow: 1;
 }
 
-.buttons {
+.meta {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-top: 1rem;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #2e7d32;
 }
 
-.buttons button {
-  background-color: #e91e63;
-  color: white;
-  padding: 0.5rem;
+.contact-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #3f51b5;
+  color: #fff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+  margin-top: 10px;
 }
 
-.buttons button:hover {
-  background-color: #ad1457;
+.contact-btn:hover {
+  background-color: #2c3a94;
 }
 
-.buttons a {
-  color: #e91e63;
-  font-weight: bold;
+.contact-info {
+  background-color: #f0f0f0;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.contact-info a {
+  color: #3f51b5;
   text-decoration: none;
 }
 
-.buttons a:hover {
+.contact-info a:hover {
   text-decoration: underline;
+}
+
+/* Responsive Layout */
+@media (max-width: 992px) {
+  .fashion-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .fashion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fashion-img {
+    height: 160px;
+  }
 }

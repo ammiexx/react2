@@ -3,94 +3,104 @@ import './Fashion.css';
 
 const fashionItems = [
   {
-    id: 1,
-    image: 'https://images.unsplash.com/photo-1521334884684-d80222895322',
-    category: "Men's Clothing",
-    description: 'Tailored suits, casual shirts, jackets, and premium denim wear from leading brands.',
-    popularBrands: 'Zara, H&M, Levi’s, Gucci',
-    rating: '4.7/5',
-    availability: 'Available Nationwide',
-    shopLink: 'https://www.zara.com',
+    company: 'Chic Avenue',
+    location: 'New York, NY',
+    ownerProfile: 'https://randomuser.me/api/portraits/women/48.jpg',
+    itemImg: 'https://images.unsplash.com/photo-1520970014086-2208d33bdc97?auto=format&fit=crop&w=400&q=60',
+    description: 'Elegant silk evening dress with a modern twist.',
+    price: '$120',
+    contact: {
+      phone: '+1 212-555-9088',
+      telegram: 'https://t.me/chicavenue',
+      website: 'https://chicavenue.com',
+      tiktok: 'https://www.tiktok.com/@chicavenue'
+    }
   },
   {
-    id: 2,
-    image: 'https://images.unsplash.com/photo-1542060748-10c28b62716f',
-    category: "Women's Clothing",
-    description: 'Elegant dresses, professional blazers, trendy tops, and everyday essentials.',
-    popularBrands: 'Mango, Prada, Forever 21, Dior',
-    rating: '4.9/5',
-    availability: 'Limited Edition Collections Available',
-    shopLink: 'https://www.mango.com',
+    company: 'Urban Threads',
+    location: 'Los Angeles, CA',
+    ownerProfile: 'https://randomuser.me/api/portraits/men/43.jpg',
+    itemImg: 'https://images.unsplash.com/photo-1612423284934-b3f9f407e2ea?auto=format&fit=crop&w=400&q=60',
+    description: 'Casual streetwear hoodie with minimalist design.',
+    price: '$65',
+    contact: {
+      phone: '+1 310-555-4221',
+      telegram: 'https://t.me/urbanthreads',
+      website: 'https://urbanthreads.com',
+      tiktok: 'https://www.tiktok.com/@urbanthreads'
+    }
   },
   {
-    id: 3,
-    image: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9c',
-    category: "Children's Clothing",
-    description: 'Durable, cute, and comfortable outfits for infants, toddlers, and teens.',
-    popularBrands: 'Carter’s, Gap Kids, OshKosh B’gosh',
-    rating: '4.6/5',
-    availability: 'Seasonal Sales Ongoing',
-    shopLink: 'https://www.carters.com',
+    company: 'Vogue Lane',
+    location: 'Chicago, IL',
+    ownerProfile: 'https://randomuser.me/api/portraits/women/65.jpg',
+    itemImg: 'https://images.unsplash.com/photo-1520975922077-897d0c877f36?auto=format&fit=crop&w=400&q=60',
+    description: 'Designer blazer tailored for professional settings.',
+    price: '$150',
+    contact: {
+      phone: '+1 773-555-6677',
+      telegram: 'https://t.me/voguelane',
+      website: 'https://voguelane.com',
+      tiktok: 'https://www.tiktok.com/@voguelane'
+    }
   },
   {
-    id: 4,
-    image: 'https://images.unsplash.com/photo-1562158070-57f8e2168b3e',
-    category: 'Footwear',
-    description: 'Sneakers, formal shoes, boots, and sandals for all ages and styles.',
-    popularBrands: 'Nike, Adidas, Clarks, Puma',
-    rating: '4.8/5',
-    availability: 'Free Shipping on Orders Above $50',
-    shopLink: 'https://www.nike.com',
-  },
-  {
-    id: 5,
-    image: 'https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3',
-    category: 'Accessories',
-    description: 'Luxury handbags, elegant jewelry, belts, sunglasses, and stylish watches.',
-    popularBrands: 'Michael Kors, Coach, Swarovski, Fossil',
-    rating: '4.9/5',
-    availability: 'New Arrivals Weekly',
-    shopLink: 'https://www.michaelkors.com',
-  },
+    company: 'Cozy Couture',
+    location: 'Austin, TX',
+    ownerProfile: 'https://randomuser.me/api/portraits/men/52.jpg',
+    itemImg: 'https://images.unsplash.com/photo-1602810317994-d20ca9c04c27?auto=format&fit=crop&w=400&q=60',
+    description: 'Warm knit sweater with eco-friendly materials.',
+    price: '$80',
+    contact: {
+      phone: '+1 512-555-1234',
+      telegram: 'https://t.me/cozycouture',
+      website: 'https://cozycouture.com',
+      tiktok: 'https://www.tiktok.com/@cozycouture'
+    }
+  }
 ];
 
-const Fashion = () => {
-  const [expanded, setExpanded] = useState({});
+const Fashions = () => {
+  const [openContactIndex, setOpenContactIndex] = useState(null);
 
-  const toggleExpand = (id) => {
-    setExpanded((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+  const toggleContact = (index) => {
+    setOpenContactIndex(openContactIndex === index ? null : index);
   };
 
   return (
-    <div className="fashion-page">
-      <h2 className="fashion-title">👗 Explore Trending Fashion Categories</h2>
-      <div className="fashion-list">
-        {fashionItems.map((item) => (
-          <div className="fashion-card" key={item.id}>
-            <img src={item.image} alt={item.category} className="fashion-image" />
-            <h3>{item.category}</h3>
-            <p><strong>Brands:</strong> {item.popularBrands}</p>
-            <p><strong>Availability:</strong> {item.availability}</p>
-            <p><strong>Rating:</strong> {item.rating}</p>
-
-            {expanded[item.id] && <p className="description">📝 {item.description}</p>}
-
-            <div className="buttons">
-              <button onClick={() => toggleExpand(item.id)}>
-                {expanded[item.id] ? 'Hide Info' : 'View More'}
-              </button>
-              <a href={item.shopLink} target="_blank" rel="noopener noreferrer">
-                Shop Now
-              </a>
+    <section className="fashion-section">
+      <h2>👗 Featured Fashion Deals</h2>
+      <div className="fashion-grid">
+        {fashionItems.map((item, index) => (
+          <div className="fashion-card" key={index}>
+            <div className="owner-info">
+              <img src={item.ownerProfile} alt="Owner" className="owner-avatar" />
+              <div>
+                <h3>{item.company}</h3>
+                <p className="location">{item.location}</p>
+              </div>
             </div>
+            <img src={item.itemImg} alt="Fashion Item" className="fashion-img" />
+            <p className="description">{item.description}</p>
+            <div className="meta">
+              <span className="price">{item.price}</span>
+            </div>
+            <button onClick={() => toggleContact(index)} className="contact-btn">
+              {openContactIndex === index ? 'Hide Contact' : 'Contact Us'}
+            </button>
+            {openContactIndex === index && (
+              <div className="contact-info">
+                <p><strong>Phone:</strong> {item.contact.phone}</p>
+                <p><strong>Telegram:</strong> <a href={item.contact.telegram} target="_blank" rel="noopener noreferrer">Chat</a></p>
+                <p><strong>Website:</strong> <a href={item.contact.website} target="_blank" rel="noopener noreferrer">{item.contact.website}</a></p>
+                <p><strong>TikTok:</strong> <a href={item.contact.tiktok} target="_blank" rel="noopener noreferrer">@{item.company.replace(/\s+/g, '').toLowerCase()}</a></p>
+              </div>
+            )}
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Fashion;
+export default Fashions;

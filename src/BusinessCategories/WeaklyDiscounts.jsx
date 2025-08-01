@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './WeaklyDiscounts.css';
 
 const weeklyDeals = [
+  {
+    company: 'Elegant Home Co.',
+    location: 'Seattle, WA',
+    profileImg: 'https://randomuser.me/api/portraits/women/33.jpg',
+    itemImg: 'https://images.unsplash.com/photo-1615874959474-d6a78a246efb?auto=format&fit=crop&w=400&q=60',
+    description: 'Luxury velvet armchair with gold-plated legs and premium cushions.',
+    postedDate: '2025-07-27',
+    price: '$240',
+    contact: {
+      phone: '+1 206-555-1122',
+      telegram: 'https://t.me/ElegantHomeCo',
+      website: 'https://eleganthomeco.com',
+      tiktok: 'https://www.tiktok.com/@eleganthomeco'
+    }
+  },
+  {
+    company: 'Gear Up Garage',
+    location: 'Las Vegas, NV',
+    profileImg: 'https://randomuser.me/api/portraits/men/38.jpg',
+    itemImg: 'https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=400&q=60',
+    description: 'Complete car care kit with wax, polish, and microfiber cloths.',
+    postedDate: '2025-07-26',
+    price: '$45',
+    contact: {
+      phone: '+1 702-555-7788',
+      telegram: 'https://t.me/GearUpGarage',
+      website: 'https://gearupgarage.com',
+      tiktok: 'https://www.tiktok.com/@gearupgarage'
+    }
+  },
   {
     company: 'Elegant Home Co.',
     location: 'Seattle, WA',
@@ -59,6 +89,12 @@ const weeklyDeals = [
 ];
 
 const WeeklyDiscounts = () => {
+  const [activeContactIndex, setActiveContactIndex] = useState(null);
+
+  const toggleContact = (index) => {
+    setActiveContactIndex(activeContactIndex === index ? null : index);
+  };
+
   return (
     <section className="weekly-discounts-section">
       <h2>🔥 Weekly Hot Deals</h2>
@@ -73,12 +109,27 @@ const WeeklyDiscounts = () => {
                 <span className="location">{deal.location}</span>
               </div>
             </div>
+
             <img src={deal.itemImg} alt="Item" className="item-photo" />
             <p className="item-description">{deal.description}</p>
+
             <div className="bottom-meta">
               <span className="posted-date">Posted: {deal.postedDate}</span>
               <span className="item-price">{deal.price}</span>
             </div>
+
+            <button className="contact-btn" onClick={() => toggleContact(index)}>
+              {activeContactIndex === index ? 'Hide Contact' : 'Contact Us'}
+            </button>
+
+            {activeContactIndex === index && (
+              <div className="contact-info">
+                <p><strong>📞 Phone:</strong> {deal.contact.phone}</p>
+                <p><strong>📲 Telegram:</strong> <a href={deal.contact.telegram} target="_blank" rel="noopener noreferrer">Chat</a></p>
+                <p><strong>🌐 Website:</strong> <a href={deal.contact.website} target="_blank" rel="noopener noreferrer">{deal.contact.website}</a></p>
+                <p><strong>🎵 TikTok:</strong> <a href={deal.contact.tiktok} target="_blank" rel="noopener noreferrer">@{deal.company.replace(/\s+/g, '').toLowerCase()}</a></p>
+              </div>
+            )}
           </div>
         ))}
       </div>

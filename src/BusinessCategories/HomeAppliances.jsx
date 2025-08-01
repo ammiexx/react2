@@ -4,61 +4,59 @@ import './HomeAppliances.css';
 const homeItems = [
   {
     id: 1,
+    company: 'Kitchen Pro Supply',
+    location: 'Houston, TX',
+    profile: 'https://randomuser.me/api/portraits/women/20.jpg',
     image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90',
     category: 'Kitchen Appliances',
-    description: 'Refrigerators, ovens, blenders, and cookware from trusted brands.',
-    brands: 'KitchenAid, Bosch, Samsung, Tefal',
-    delivery: 'Home delivery + installation',
-    rating: '4.7/5',
-    link: 'https://www.kitchenaid.com',
+    description: 'Refrigerators, ovens, blenders and cookware from top brands.',
+    price: '$150 - $3,000',
+    contacts: {
+      phone: '+1 (713) 555‑2100',
+      telegram: 'https://t.me/kitchenpro',
+      website: 'https://kitchenpro.com',
+      tiktok: 'https://tiktok.com/@kitchenpro'
+    }
   },
   {
     id: 2,
+    company: 'HomeStyle Furnishings',
+    location: 'San Francisco, CA',
+    profile: 'https://randomuser.me/api/portraits/men/32.jpg',
     image: 'https://images.unsplash.com/photo-1586023492122-0b9f31a134e9',
     category: 'Furniture',
-    description: 'Sofas, beds, tables, and storage units in modern and classic styles.',
-    brands: 'Ikea, West Elm, Ashley, Herman Miller',
-    delivery: 'Assembly & delivery service',
-    rating: '4.6/5',
-    link: 'https://www.ikea.com',
+    description: 'Sofas, beds, tables, and storage units in modern & classic styles.',
+    price: '$250 - $5,500',
+    contacts: {
+      phone: '+1 (415) 555‑5600',
+      telegram: 'https://t.me/homestylefs',
+      website: 'https://homestylefs.com',
+      tiktok: 'https://tiktok.com/@homestylefs'
+    }
   },
   {
     id: 3,
+    company: 'Decor & Beyond',
+    location: 'Miami, FL',
+    profile: 'https://randomuser.me/api/portraits/women/44.jpg',
     image: 'https://images.unsplash.com/photo-1505692794400-9a0b2b2933a4',
     category: 'Home Decor',
-    description: 'Artworks, rugs, cushions, vases, wall décor to accentuate your style.',
-    brands: 'Pottery Barn, Crate & Barrel, Anthropologie',
-    delivery: 'Same-day pickup & shipping',
-    rating: '4.8/5',
-    link: 'https://www.potterybarn.com',
-  },
-  {
-    id: 4,
-    image: 'https://images.unsplash.com/photo-1581579187053-ace89adb171f',
-    category: 'Cleaning Supplies',
-    description: 'Eco‑friendly detergents, vacuum cleaners, microfiber cloths, and more.',
-    brands: 'Method, Dyson, Clorox, Seventh Generation',
-    delivery: 'Scheduled delivery available',
-    rating: '4.7/5',
-    link: 'https://www.dyson.com',
-  },
-  {
-    id: 5,
-    image: 'https://images.unsplash.com/photo-1582719478187-0e6d7c8a0e90',
-    category: 'Lighting & Electricals',
-    description: 'LED bulbs, smart switches, fans, and ambient lighting fixtures.',
-    brands: 'Philips Hue, GE, Lutron, Xiaomi',
-    delivery: 'Free installation option in select areas',
-    rating: '4.9/5',
-    link: 'https://www.philips-hue.com',
-  },
+    description: 'Artworks, rugs, cushions, and vases to accentuate your style.',
+    price: '$35 - $800',
+    contacts: {
+      phone: '+1 (305) 555‑7788',
+      telegram: 'https://t.me/decorandbeyond',
+      website: 'https://decorandbeyond.com',
+      tiktok: 'https://tiktok.com/@decorandbeyond'
+    }
+  }
 ];
 
 const HomeAppliances = () => {
-  const [showDetail, setShowDetail] = useState({});
+  const [visible, setVisible] = useState({});
 
-  const toggleDetail = (id) => {
-    setShowDetail((prev) => ({
+  const toggleContact = (id) => {
+    setVisible((prev) => ({
       ...prev,
       [id]: !prev[id],
     }));
@@ -66,32 +64,36 @@ const HomeAppliances = () => {
 
   return (
     <div className="homeappliances-page">
-      <h2 className="homeappliances-title">🧰 Home & Appliances Essentials</h2>
-      <div className="homeappliances-list">
+      <h2 className="homeappliances-title">🧰 Home & Appliance Highlights</h2>
+      <div className="homeappliances-grid">
         {homeItems.map((item) => (
           <div className="homeappliances-card" key={item.id}>
-            <img
-              src={item.image}
-              alt={item.category}
-              className="homeappliances-image"
-            />
-            <h3>{item.category}</h3>
-            <p><strong>Brands:</strong> {item.brands}</p>
-            <p><strong>Delivery:</strong> {item.delivery}</p>
-            <p><strong>Rating:</strong> {item.rating}</p>
+            <img src={item.image} alt={item.category} className="card-image" />
 
-            {showDetail[item.id] && (
-              <p className="description">📝 {item.description}</p>
-            )}
-
-            <div className="buttons">
-              <button onClick={() => toggleDetail(item.id)}>
-                {showDetail[item.id] ? 'Hide Details' : 'View Details'}
-              </button>
-              <a href={item.link} target="_blank" rel="noopener noreferrer">
-                Explore Products
-              </a>
+            <div className="company-header">
+              <img src={item.profile} alt={item.company} className="profile-img" />
+              <div>
+                <h3>{item.company}</h3>
+                <p className="location">📍 {item.location}</p>
+              </div>
             </div>
+
+            <p className="category"><strong>Category:</strong> {item.category}</p>
+            <p className="price"><strong>Price:</strong> {item.price}</p>
+            <p className="description">{item.description}</p>
+
+            <button className="contact-btn" onClick={() => toggleContact(item.id)}>
+              {visible[item.id] ? 'Hide Contacts' : 'Contact Us'}
+            </button>
+
+            {visible[item.id] && (
+              <div className="contact-info">
+                <p>📞 {item.contacts.phone}</p>
+                <p>🌐 <a href={item.contacts.website} target="_blank" rel="noopener noreferrer">{item.contacts.website}</a></p>
+                <p>💬 <a href={item.contacts.telegram} target="_blank" rel="noopener noreferrer">Telegram</a></p>
+                <p>🎵 <a href={item.contacts.tiktok} target="_blank" rel="noopener noreferrer">@{item.company.replace(/\s+/g, '').toLowerCase()}</a></p>
+              </div>
+            )}
           </div>
         ))}
       </div>

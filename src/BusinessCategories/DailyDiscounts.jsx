@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './DailyDiscounts.css';
 
 const discountItems = [
+  {
+    companyName: 'Urban Electronics',
+    location: 'New York, NY',
+    profile: 'https://randomuser.me/api/portraits/men/32.jpg',
+    itemImage: 'https://images.unsplash.com/photo-1580910051070-c3531ef9b1f9?auto=format&fit=crop&w=400&q=60',
+    description: 'Wireless noise-canceling headphones with 40-hour battery life.',
+    datePosted: '2025-07-30',
+    price: '$99',
+    contact: {
+      phone: '+1 212-555-1020',
+      telegram: 'https://t.me/UrbanElectronics',
+      website: 'https://urbanelectronics.com',
+      tiktok: 'https://www.tiktok.com/@urbanelectronics',
+    }
+  },
+  {
+    companyName: 'Green Market Grocers',
+    location: 'Austin, TX',
+    profile: 'https://randomuser.me/api/portraits/women/45.jpg',
+    itemImage: 'https://images.unsplash.com/photo-1604908177526-cb4b7e2e7a42?auto=format&fit=crop&w=400&q=60',
+    description: 'Organic fruit basket - apples, bananas, and seasonal fruits.',
+    datePosted: '2025-07-29',
+    price: '$25',
+    contact: {
+      phone: '+1 512-555-3498',
+      telegram: 'https://t.me/GreenMarketTX',
+      website: 'https://greenmarketgrocers.com',
+      tiktok: 'https://www.tiktok.com/@greenmarket',
+    }
+  },
   {
     companyName: 'Urban Electronics',
     location: 'New York, NY',
@@ -95,6 +125,12 @@ const discountItems = [
 ];
 
 const DailyDiscounts = () => {
+  const [openContactIndex, setOpenContactIndex] = useState(null);
+
+  const toggleContact = (index) => {
+    setOpenContactIndex(openContactIndex === index ? null : index);
+  };
+
   return (
     <div className="discounts-container">
       <h2>🛍️ Today's Discounts</h2>
@@ -108,12 +144,27 @@ const DailyDiscounts = () => {
                 <p className="location">{item.location}</p>
               </div>
             </div>
+
             <img src={item.itemImage} alt="Item" className="item-img" />
             <p className="description">{item.description}</p>
+
             <div className="bottom-info">
               <span className="date">Posted: {item.datePosted}</span>
               <span className="price">{item.price}</span>
             </div>
+
+            <button className="contact-btn" onClick={() => toggleContact(index)}>
+              {openContactIndex === index ? 'Hide Contacts' : 'Contact Us'}
+            </button>
+
+            {openContactIndex === index && (
+              <div className="contact-section">
+                <p><strong>📞 Phone:</strong> {item.contact.phone}</p>
+                <p><strong>📲 Telegram:</strong> <a href={item.contact.telegram} target="_blank" rel="noreferrer">Chat</a></p>
+                <p><strong>🌐 Website:</strong> <a href={item.contact.website} target="_blank" rel="noreferrer">{item.contact.website}</a></p>
+                <p><strong>🎵 TikTok:</strong> <a href={item.contact.tiktok} target="_blank" rel="noreferrer">@{item.companyName.split(' ')[0].toLowerCase()}</a></p>
+              </div>
+            )}
           </div>
         ))}
       </div>

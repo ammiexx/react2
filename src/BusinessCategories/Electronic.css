@@ -1,89 +1,93 @@
 .electronics-page {
-  padding: 2rem;
-  background-color: #f2f2f2;
+  padding: 30px;
+  background-color: #f9f9f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .electronics-title {
   text-align: center;
   font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #1a1a1a;
+  margin-bottom: 25px;
 }
 
-.electronics-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  justify-content: center;
+.electronics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
 }
 
 .electronics-card {
   background: white;
   border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  width: 280px;
-  padding: 1.3rem;
-  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
   transition: transform 0.3s ease;
 }
 
 .electronics-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
 }
 
-.electronics-image {
+.company-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.category-img {
   width: 100%;
-  height: 160px;
+  height: 180px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 1rem;
+  margin: 15px 0;
 }
 
-.electronics-card h3 {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 0.4rem;
-}
-
-.electronics-card p {
-  margin: 0.3rem 0;
-  font-size: 0.92rem;
-  color: #555;
+.location {
+  color: #777;
+  font-size: 0.9rem;
 }
 
 .description {
-  margin-top: 0.5rem;
-  font-style: italic;
-  color: #444;
+  margin: 10px 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-.buttons {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.buttons button {
-  background-color: #2196f3;
-  color: white;
-  padding: 0.5rem;
+.contact-btn {
+  background-color: #3f51b5;
+  color: #fff;
   border: none;
-  border-radius: 6px;
+  padding: 10px 18px;
+  margin-top: 10px;
   cursor: pointer;
-  font-weight: 600;
+  border-radius: 5px;
+  transition: background 0.3s ease;
 }
 
-.buttons button:hover {
-  background-color: #1769aa;
+.contact-btn:hover {
+  background-color: #303f9f;
 }
 
-.buttons a {
-  color: #2196f3;
+.contact-info {
+  margin-top: 10px;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.contact-info a {
+  color: #3f51b5;
   text-decoration: none;
-  font-weight: bold;
 }
 
-.buttons a:hover {
+.contact-info a:hover {
   text-decoration: underline;
 }

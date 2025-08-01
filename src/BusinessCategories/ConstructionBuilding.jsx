@@ -4,61 +4,59 @@ import './ConstructionBuilding.css';
 const materials = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1600880291648-5d59f7d8f668', // cement, bricks
+    profilePhoto: 'https://via.placeholder.com/50',
+    companyName: 'BuildStrong Supplies',
+    companyLocation: 'Delhi, India',
+    image: 'https://images.unsplash.com/photo-1600880291648-5d59f7d8f668',
     category: 'Cement, Sand, Bricks',
     description: 'High quality cement, natural sand, and durable bricks for all your building needs.',
+    price: '₹250 - ₹450 per unit',
     suppliers: 'UltraTech, ACC, Birla, Local Quarries',
     delivery: 'Bulk orders delivery available',
-    rating: '4.7/5',
-    link: 'https://www.ultratechcement.com/',
+    phone: '+91 98765 43210',
+    tiktok: 'https://www.tiktok.com/@buildstrong',
+    telegram: 'https://t.me/buildstrongsupplies',
+    website: 'https://www.ultratechcement.com/',
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1560185127-6d2fc5ee92e9', // roofing, flooring
+    profilePhoto: 'https://via.placeholder.com/50',
+    companyName: 'RoofPro Solutions',
+    companyLocation: 'Mumbai, India',
+    image: 'https://images.unsplash.com/photo-1560185127-6d2fc5ee92e9',
     category: 'Roofing & Flooring',
     description: 'Tiles, shingles, hardwood, and laminate flooring options with installation support.',
+    price: '₹100 - ₹700 per sq.ft',
     suppliers: 'Mohawk, Armstrong, GAF, Local Suppliers',
     delivery: 'Installation services available',
-    rating: '4.6/5',
-    link: 'https://www.armstrongflooring.com/',
+    phone: '+91 98700 12345',
+    tiktok: 'https://www.tiktok.com/@roofpro',
+    telegram: 'https://t.me/roofproservices',
+    website: 'https://www.armstrongflooring.com/',
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb', // electrical & plumbing
+    profilePhoto: 'https://via.placeholder.com/50',
+    companyName: 'ElectroFlow Traders',
+    companyLocation: 'Bangalore, India',
+    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
     category: 'Electrical & Plumbing Materials',
     description: 'Wiring, pipes, fixtures, and fittings sourced from trusted brands.',
+    price: '₹50 - ₹1200 per item',
     suppliers: 'Schneider Electric, Kohler, Grohe, Local Dealers',
     delivery: 'Express delivery on small orders',
-    rating: '4.8/5',
-    link: 'https://www.schneider-electric.com/',
-  },
-  {
-    id: 4,
-    image: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45', // construction equipment
-    category: 'Construction Equipment',
-    description: 'Heavy machinery and hand tools for your construction projects.',
-    suppliers: 'Caterpillar, John Deere, Bosch, Local Renters',
-    delivery: 'Equipment rental & purchase options',
-    rating: '4.7/5',
-    link: 'https://www.cat.com/',
-  },
-  {
-    id: 5,
-    image: 'https://images.unsplash.com/photo-1590080877777-47971e1e9af7', // building & contractor services
-    category: 'Building & Contractor Services',
-    description: 'Licensed contractors, project management, legal & architectural consultation.',
-    suppliers: 'Local Certified Contractors',
-    delivery: 'Consultation and onsite support',
-    rating: '4.9/5',
-    link: 'https://www.homeadvisor.com/',
+    phone: '+91 98123 45678',
+    tiktok: 'https://www.tiktok.com/@electroflow',
+    telegram: 'https://t.me/electroflow',
+    website: 'https://www.schneider-electric.com/',
   },
 ];
 
 const ConstructionBuilding = () => {
-  const [openDetail, setOpenDetail] = useState({});
+  const [openContactIds, setOpenContactIds] = useState({});
 
-  const toggleDetail = (id) => {
-    setOpenDetail((prev) => ({
+  const toggleContact = (id) => {
+    setOpenContactIds((prev) => ({
       ...prev,
       [id]: !prev[id],
     }));
@@ -67,27 +65,42 @@ const ConstructionBuilding = () => {
   return (
     <div className="construction-page">
       <h2 className="construction-title">🏗 Construction & Building Materials</h2>
-      <div className="construction-list">
+      <div className="construction-grid">
         {materials.map((item) => (
           <div className="construction-card" key={item.id}>
+            <div className="company-header">
+              <img src={item.profilePhoto} alt={item.companyName} className="company-logo" />
+              <div>
+                <h4 className="company-name">{item.companyName}</h4>
+                <p className="company-location">{item.companyLocation}</p>
+              </div>
+            </div>
+
             <img src={item.image + '?auto=format&fit=crop&w=400&q=80'} alt={item.category} className="construction-image" />
+
             <h3>{item.category}</h3>
+            <p className="description">{item.description}</p>
             <p><strong>Suppliers:</strong> {item.suppliers}</p>
             <p><strong>Delivery:</strong> {item.delivery}</p>
-            <p><strong>Rating:</strong> {item.rating}</p>
+            <p><strong>Price:</strong> {item.price}</p>
 
-            {openDetail[item.id] && (
-              <p className="description">📝 {item.description}</p>
+            <button 
+              className="btn contact-toggle-btn" 
+              onClick={() => toggleContact(item.id)}
+              aria-expanded={!!openContactIds[item.id]}
+              aria-controls={`contact-info-${item.id}`}
+            >
+              {openContactIds[item.id] ? 'Hide Contact Info' : 'Contact Us'}
+            </button>
+
+            {openContactIds[item.id] && (
+              <div className="contact-buttons" id={`contact-info-${item.id}`}>
+                <a href={`tel:${item.phone}`} className="btn contact-btn">📞 Call</a>
+                <a href={item.tiktok} target="_blank" rel="noreferrer" className="btn contact-btn">🎵 TikTok</a>
+                <a href={item.telegram} target="_blank" rel="noreferrer" className="btn contact-btn">💬 Telegram</a>
+                <a href={item.website} target="_blank" rel="noreferrer" className="btn contact-btn">🌐 Website</a>
+              </div>
             )}
-
-            <div className="buttons">
-              <button onClick={() => toggleDetail(item.id)}>
-                {openDetail[item.id] ? 'Hide Info' : 'More Info'}
-              </button>
-              <a href={item.link} target="_blank" rel="noopener noreferrer">
-                Learn More
-              </a>
-            </div>
           </div>
         ))}
       </div>
