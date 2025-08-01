@@ -40,6 +40,22 @@ import DealsandOffers from "./categories/DealsandOffers";
 import Brands from "./categories/Brands";
 import CustomerServices from "./categories/CustomerServices";
 import TodaysDeals from "./categories/TodaysDeals";
+import CarBrands from "./BusinessCategories/CarBrands";
+import Fashion from "./BusinessCategories/Fashion";
+import RealEstate from "./BusinessCategories/RealEstate";
+import Electronic from "./BusinessCategories/Electronic";
+import FoodDrinks from "./BusinessCategories/FoodDrinks";
+import HomeAppliances from "./BusinessCategories/HomeAppliances";
+import HealthBeauty from "./BusinessCategories/HealthBeauty";
+import ConstructionBuilding from "./BusinessCategories/ConstructionBuilding";
+import EducationServices from "./BusinessCategories/EducationServices";
+import IndustrialEquipment from "./BusinessCategories/IndustrialEquipment";
+import AgricultureLivestock from "./BusinessCategories/AgricultureLivestock";
+import RepairMaintenance from "./BusinessCategories/RepairMaintenance";
+import EventsWeddings from "./BusinessCategories/EventsWedding";
+import ServicesFreelance from "./BusinessCategories/ServicesFreelance";
+import DailyDiscounts from "./BusinessCategories/DailyDiscounts";
+import WeeklyDiscounts from "./BusinessCategories/WeaklyDiscounts";
 function App() {
   return (
     <Router>
@@ -72,6 +88,29 @@ function App() {
            <Route path="/brands" element={< Brands/>} />
            <Route path="/customerservices" element={< CustomerServices/>} />
            <Route path="/todaysdeals" element={< TodaysDeals/>} />
+
+
+
+
+           <Route path="/car brands" element={< CarBrands/>} />
+            <Route path="/fashions" element={< Fashion/>} />
+            <Route path="/Real Estates" element={< RealEstate/>} />
+            <Route path="/Computer & Electronics" element={< Electronic/>} />
+            <Route path="/Food & Drinks" element={< FoodDrinks/>} />
+            <Route path="/Home & Appliances" element={< HomeAppliances/>} />
+            <Route path="/Health & Beauty" element={< HealthBeauty/>} />
+             <Route path="/construction & building materials" element={<ConstructionBuilding />} />
+             <Route path="/Education and Services" element={< EducationServices/>} />
+              <Route path="/industrial equipment" element={< IndustrialEquipment/>} />
+              <Route path="/Agricultural & Livestock" element={< AgricultureLivestock/>} />
+              <Route path="/Repair & Maintainance" element={< RepairMaintenance/>} />
+              <Route path="/Event & Wedding" element={< EventsWeddings/>} />
+              <Route path="/Services and Freelance" element={< ServicesFreelance/>} />
+              <Route path="/daily discounts" element={< DailyDiscounts/>} />
+              <Route path="/weekly discounts" element={< WeeklyDiscounts/>} />
+            
+
+
 
         <Route
           path="/signup"

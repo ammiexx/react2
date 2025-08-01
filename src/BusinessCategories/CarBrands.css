@@ -1,0 +1,86 @@
+.car-brands-page {
+  padding: 2rem;
+  background: #f8f9fa;
+}
+
+.brands-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+.brands-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.brand-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  width: 280px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.brand-card:hover {
+  transform: scale(1.03);
+}
+
+.brand-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 1rem;
+  object-fit: contain;
+}
+
+.brand-card h3 {
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.brand-card p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.buttons {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.buttons button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.buttons button:hover {
+  background-color: #0056b3;
+}
+
+.buttons a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.buttons a:hover {
+  text-decoration: underline;
+}

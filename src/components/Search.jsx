@@ -3,7 +3,25 @@ import { useNavigate, Link } from 'react-router-dom';
 import {NavLink } from 'react-router-dom';
 import './Search.css';
 import Hamburger from './Hamburger';
-const categories = ["Electronics", "Cars", "Houses", "Clothes","todaysdeals","customerservices"];
+const categories = [
+  "Daily Discounts",
+  "Weekly Discounts",
+  "Car Brands",
+  "Fashions",
+  "Real Estates",
+  "Computer & Electronics",
+  "Food & Drinks",
+  "Home & Appliances",
+  "Health & Beauty",
+  "Construction & Building Materials",
+  "Education and Services",
+  "Industrial Equipment",
+  "Agricultural & LiveStock",
+  "Repair & Maintainance",
+  "Event & Wedding",
+  "Services and Freelance"
+];
+
 const Search = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();

@@ -7,58 +7,91 @@
   padding: 12px 20px;
   gap: 20px;
   font-family: Arial, sans-serif;
-  flex-wrap: nowrap; /* no wrapping, keep on one line */
-  justify-content: flex-start; /* align left */
+  flex-wrap: nowrap; /* keep on one line */
+  justify-content: flex-start;
   width: 100%;
+  overflow-x: hidden; /* prevent outer horizontal scroll */
 }
 
-/* Add this to fix hamburger size and margin */
+/* Hamburger container */
 .hamburger-container {
-  flex-shrink: 0; /* don’t shrink */
-  margin-right: 16px; /* space after hamburger */
+  flex-shrink: 0;
+  margin-right: 16px;
   display: flex;
   align-items: center;
 }
 
-/* Make categories fill remaining space */
+/* Categories container - horizontal scroll */
 .categories {
   display: flex;
   flex-wrap: nowrap;
-  gap: 12px;
-  flex-grow: 1; /* grow to fill space */
-  justify-content: flex-start; /* left align */
-  overflow-x: auto; /* allow horizontal scroll on small screens */
-  scrollbar-width: thin; /* thinner scrollbar on Firefox */
+  gap: 10px;
+  flex-grow: 1;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.5) transparent;
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
 }
 
-/* Keep category buttons styling, but prevent shrinking */
+/* Webkit scrollbar styles for Chrome, Safari, Edge */
+.categories::-webkit-scrollbar {
+  height: 6px;
+}
+.categories::-webkit-scrollbar-track {
+  background: transparent;
+}
+.categories::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 3px;
+}
+
+/* Category buttons */
 .category-btn {
-  flex-shrink: 0; /* don't shrink */
-  padding: 8px 14px;
+  flex-shrink: 0;
+  padding: 6px 12px; /* slightly smaller padding */
   background-color: transparent;
   color: white;
   border: none;
-  border-radius: 25px;
-  font-size: 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.25s ease;
   text-decoration: none;
   display: inline-block;
   border: 1px solid transparent;
+  white-space: nowrap; /* prevent button text wrap */
 }
 
-.category-btn:hover {
+.category-btn:hover,
+.category-btn:focus {
   background-color: white;
   color: dimgrey;
   border: 1px solid white;
+  outline: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .category-btn {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
 }
 
 @media (max-width: 600px) {
   .navigation2 {
     flex-wrap: nowrap;
+    padding: 10px 12px;
   }
 
   .categories {
     overflow-x: auto;
+    gap: 8px;
+  }
+
+  .category-btn {
+    font-size: 0.75rem;
+    padding: 5px 8px;
   }
 }

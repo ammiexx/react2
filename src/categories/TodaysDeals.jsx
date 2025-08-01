@@ -1,6 +1,5 @@
 import React from 'react';
 import './TodaysDeals.css';
-
 const TodaysDeals = () => {
   return (
     <div className="todays-deals-container">

@@ -1,0 +1,89 @@
+.electronics-page {
+  padding: 2rem;
+  background-color: #f2f2f2;
+}
+
+.electronics-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #1a1a1a;
+}
+
+.electronics-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.electronics-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  padding: 1.3rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.electronics-card:hover {
+  transform: translateY(-6px);
+}
+
+.electronics-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.electronics-card h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0.4rem;
+}
+
+.electronics-card p {
+  margin: 0.3rem 0;
+  font-size: 0.92rem;
+  color: #555;
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #444;
+}
+
+.buttons {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.buttons button {
+  background-color: #2196f3;
+  color: white;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.buttons button:hover {
+  background-color: #1769aa;
+}
+
+.buttons a {
+  color: #2196f3;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.buttons a:hover {
+  text-decoration: underline;
+}
