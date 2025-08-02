@@ -74,7 +74,6 @@ const Search = () => {
       {menuOpen && (
         <div className="detailed-menu" ref={menuRef}>
           <div className="menu-section">
-            <div className="section-title">— Account —</div>
             <ul>
               <li><Link to="/profile" onClick={closeMenu}>My Profile</Link></li>
               <li><Link to="/profile" onClick={closeMenu}>Favorites</Link></li>
@@ -92,7 +91,6 @@ const Search = () => {
           </div>
 
           <div className="menu-section">
-            <div className="section-title">— Shop —</div>
             <ul>
               <li>
                 Categories
@@ -101,7 +99,7 @@ const Search = () => {
                   <li><Link to="/blog" onClick={closeMenu}>Did you know</Link></li>
                 </ul>
               </li>
-              <li><Link to="/newarrivals" onClick={closeMenu}>New Arrivals</Link></li>
+              <li><Link to="/newarrivals" onClick={closeMenu}>New products</Link></li>
               <li><Link to="/best-sellers" onClick={closeMenu}>Best Sellers</Link></li>
               <li><Link to="/dealsandoffers" onClick={closeMenu}>Deals & Offers</Link></li>
               <li><Link to="/brands" onClick={closeMenu}>Brands</Link></li>
@@ -109,18 +107,15 @@ const Search = () => {
           </div>
 
           <div className="menu-section">
-            <div className="section-title">— Support —</div>
             <ul>
               <li><Link to="/helpcenter" onClick={closeMenu}>Help Center</Link></li>
               <li><Link to="/contactus" onClick={closeMenu}>Contact Us</Link></li>
-              <li><Link to="/returns-refunds" onClick={closeMenu}>Returns & Refunds</Link></li>
+              {/* <li><Link to="/returns-refunds" onClick={closeMenu}>Returns & Refunds</Link></li>
               <li><Link to="/shippinginfo" onClick={closeMenu}>Shipping Info</Link></li>
-              <li><Link to="/trackorder" onClick={closeMenu}>Track Order</Link></li>
+              <li><Link to="/trackorder" onClick={closeMenu}>Track Order</Link></li> */}
             </ul>
           </div>
-
           <div className="menu-section">
-            <div className="section-title">— Info —</div>
             <ul>
               <li><Link to="/terms" onClick={closeMenu}>Terms & Conditions</Link></li>
               <li><Link to="/privacy" onClick={closeMenu}>Privacy Policy</Link></li>
@@ -128,7 +123,6 @@ const Search = () => {
           </div>
 
           <div className="menu-section">
-            <div className="section-title">— Settings —</div>
             <ul>
               <li><Link to="/language" onClick={closeMenu}>Language</Link></li>
             </ul>
