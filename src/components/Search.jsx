@@ -6,6 +6,7 @@ import Hamburger from './Hamburger';
 const categories = [
   "Daily Discounts",
   "Weekly Discounts",
+  "Entertainments",
   "Car Brands",
   "Fashions",
   "Real Estates",
@@ -58,12 +59,14 @@ const Search = () => {
             <div className="section-title">— Account —</div>
             <ul>
               <li><Link to="/profile">My Profile</Link></li>
+               <li><Link to="/profile">favorites</Link></li>
+              <li><Link to="/aboutus">About Us </Link></li>
+              <li><Link to="/logout">Log out</Link></li>
               <li><Link to="/orders">Orders</Link></li>
               <li><Link to="/whishlist">Wishlist</Link></li>
               <li><Link to="/addresses">Addresses</Link></li>
               <li><Link to="/paymentmethods">Payment Methods</Link></li>
-              <li><Link to="/logout">Logout</Link></li>
-              <li><Link to="/aboutus">Aboutus</Link></li>
+
             </ul>
           </div>
           {/* SHOP */}

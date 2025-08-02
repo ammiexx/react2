@@ -13,6 +13,7 @@ import Wanted from "./pages/Wanted";
 import ForSale from "./pages/ForSale";
 import Checkout from "./components/Checkout";
 import AboutUs from "./pages/Aboutus";
+import Questions from "./pages/Chat";
 import Electronics from "./components/Electronics";
 import Houses from "./components/Houses";
 import Clothes from "./components/Clothes";
@@ -56,6 +57,7 @@ import EventsWeddings from "./BusinessCategories/EventsWedding";
 import ServicesFreelance from "./BusinessCategories/ServicesFreelance";
 import DailyDiscounts from "./BusinessCategories/DailyDiscounts";
 import WeeklyDiscounts from "./BusinessCategories/WeaklyDiscounts";
+import Entertainments from "./BusinessCategories/Entertainments";
 function App() {
   return (
     <Router>
@@ -89,7 +91,9 @@ function App() {
            <Route path="/customerservices" element={< CustomerServices/>} />
            <Route path="/todaysdeals" element={< TodaysDeals/>} />
 
-
+            
+            <Route path="/chat" element={< Questions/>} />
+             <Route path="/entertainments" element={< Entertainments/>} />
 
 
            <Route path="/car brands" element={< CarBrands/>} />

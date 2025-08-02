@@ -98,17 +98,10 @@ const Wanted = () => {
   return (
     <div className="wanted-page">
       <h2 className="wanted-title">
-        We’re here to buy — show us what your business has to offer!
+        We’re here to buy — tell us what makes your offer special!
       </h2>
 
      <div className="top-action-row">
-<input
-    type="text"
-    className="search-input"
-    placeholder="Tell us what you want to sell..."
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-  />
 
   <input
     type="text"

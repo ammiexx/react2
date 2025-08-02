@@ -205,21 +205,9 @@ const ForSale = () => {
   return (
     <div className="forsale-page">
       <h2 className="forsale-title">
-        Access local discounts and offers from nearby sellers — just for you
+        Browse our offers — delivered at the right time and place!
       </h2>
-
       <div className="top-action-row">
-        
-         
-         <input
-          type="text"
-          className="comentinput-input"
-          placeholder="Tell us what you want to buy..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          aria-label="tell us what you want to buy...."
-        />
-
         <input
           type="text"
           className="search-input"

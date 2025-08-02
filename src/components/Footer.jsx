@@ -49,7 +49,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-about">
-          <h3>Customer Business Network</h3>
+          <h3>CBN</h3>
           <p>
             Empowering local businesses and service providers by connecting them with customers across regions.
             Whether you're selling products, offering services, or looking for talent — we've got you covered.

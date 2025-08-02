@@ -28,8 +28,11 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="nav-links">
-          <NavLink to="/aboutus" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            AboutUs
+          <NavLink to="/chat" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
+            Chat
+          </NavLink>
+          <NavLink to="/home" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
+            home
           </NavLink>
           <NavLink to="/wanted" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
             Buyers

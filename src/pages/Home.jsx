@@ -94,7 +94,7 @@ const Home = () => {
         <h1 className="typing-text">
   <span className="typed-sentence">Purchase what you want, sell what you offer — your opportunity starts here.</span>
 </h1>
-        <p>Your marketplace to buy and sell quality products</p>
+        <p>Make your business grow and buy quality products</p>
         <div className="home-buttons">
           <Link to="/forsale" className="btn btn-primary">Sellers</Link>
           <Link to="/wanted" className="btn btn-secondary">Buyers</Link>

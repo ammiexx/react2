@@ -54,10 +54,9 @@ const AboutUs = () => {
       </section>
 
       <footer className="about-footer">
-        <p>&copy; {new Date().getFullYear()} YourMarketplace. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} CBN. All rights reserved.</p>
       </footer>
     </div>
   );
 };
-
 export default AboutUs;
