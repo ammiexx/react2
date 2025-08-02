@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './CarBrands.css';
-
 const carBrandsData = [
   {
     company: 'AutoLux Motors',

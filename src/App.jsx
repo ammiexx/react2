@@ -17,7 +17,6 @@ import Questions from "./pages/Chat";
 import Electronics from "./components/Electronics";
 import Houses from "./components/Houses";
 import Clothes from "./components/Clothes";
-import Cars from "./components/Cars";
 import BuyersForm from "./components/BuyersForm";
 import SellersForm from "./pages/SellersForm";
 import Logout from "./components/Logout";
@@ -102,10 +101,7 @@ function App() {
              <Route path="/purchasehistory" element={< PurchaseHistory/>} />
              <Route path="/technologymethods" element={< TechnologyMethods/>} />
              <Route path="/announcements" element={< Announcements/>} />
-            
-
-
-           <Route path="/car brands" element={< CarBrands/>} />
+             <Route path="/Car Brands" element={< CarBrands/>} />
             <Route path="/fashions" element={< Fashion/>} />
             <Route path="/Real Estates" element={< RealEstate/>} />
             <Route path="/Computer & Electronics" element={< Electronic/>} />
@@ -141,7 +137,7 @@ function App() {
          <Route path="/sellers-form" element={<SellersForm />} />
           <Route path="/houses" element={<Houses/>} />
            <Route path="/clothes" element={<Clothes/>} />
-            <Route path="/cars" element={<Cars/>} />
+           
         <Route path="/checkout" element={<Checkout />} /> {/* 👈 add this route */}
       </Routes>
       <Back/>
