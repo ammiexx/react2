@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Chat.css';
-
 const buyers = [
   {
     id: 1,
@@ -45,6 +44,7 @@ const sellers = [
     telegram: 'https://t.me/tadessew',
     tiktok: 'https://www.tiktok.com/@tadessew'
   },
+
   {
     id: 3,
     name: 'Hanna Berhanu',
@@ -76,82 +76,86 @@ const Questions = () => {
   const isFavorited = (id, type) => favorites.has(`${type}-${id}`);
 
   return (
-    <div className="questions-container">
-      <div className="column buyer-column">
-        <h2>Buyers</h2>
-        <div className="top-action-row">
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Tell us what you want to sell..."
-            value={buyerSearchTerm}
-            onChange={(e) => setBuyerSearchTerm(e.target.value)}
-          />
-        </div>
+    <>
+      {/* ✅ Page title */}
+      <h1 className="main-title">"🔥Share us what you need — you'll find your ideal buyer/seller🔥"</h1>
+      <div className="questions-container">
+        <div className="column buyer-column">
+          <h2>Buyers</h2>
+          <div className="top-action-row">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="share us what you want to sell..."
+              value={buyerSearchTerm}
+              onChange={(e) => setBuyerSearchTerm(e.target.value)}
+            />
+          </div>
 
-        {buyers.map(buyer => (
-          <div key={buyer.id} className="card">
-            <img src={buyer.profilePhoto} alt="Profile" className="profile-photo" />
-            <div className="info">
-              <h4>{buyer.name}</h4>
-              <p>{buyer.message}</p>
-              <div className="button-row">
-                <a href={buyer.telegram} target="_blank" rel="noopener noreferrer" className="inbox-button">
-                  Talk me inbox
-                </a>
-                <a href={buyer.tiktok} target="_blank" rel="noopener noreferrer" className="follow-button">
-                  Follow
-                </a>
-                <button
-                  className={`favorite-button ${isFavorited(buyer.id, 'buyer') ? 'favorited' : ''}`}
-                  onClick={() => toggleFavorite(buyer.id, 'buyer')}
-                >
-                 add to ★
-                </button>
+          {buyers.map(buyer => (
+            <div key={buyer.id} className="card">
+              <img src={buyer.profilePhoto} alt="Profile" className="profile-photo" />
+              <div className="info">
+                <h4>{buyer.name}</h4>
+                <p>{buyer.message}</p>
+                <div className="button-row">
+                  <a href={buyer.telegram} target="_blank" rel="noopener noreferrer" className="inbox-button">
+                    Talk me inbox
+                  </a>
+                  <a href={buyer.tiktok} target="_blank" rel="noopener noreferrer" className="follow-button">
+                    Follow
+                  </a>
+                  <button
+                    className={`favorite-button ${isFavorited(buyer.id, 'buyer') ? 'favorited' : ''}`}
+                    onClick={() => toggleFavorite(buyer.id, 'buyer')}
+                  >
+                    add to ★
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="column seller-column">
-        <h2>Sellers</h2>
-        <div className="top-action-row">
-          <input
-            type="text"
-            className="comentinput-input"
-            placeholder="Tell us what you want to buy..."
-            value={sellerSearchTerm}
-            onChange={(e) => setSellerSearchTerm(e.target.value)}
-            aria-label="tell us what you want to buy...."
-          />
+          ))}
         </div>
 
-        {sellers.map(seller => (
-          <div key={seller.id} className="card">
-            <img src={seller.profilePhoto} alt="Profile" className="profile-photo" />
-            <div className="info">
-              <h4>{seller.name}</h4>
-              <p>{seller.message}</p>
-              <div className="button-row">
-                <a href={seller.telegram} target="_blank" rel="noopener noreferrer" className="inbox-button">
-                  Talk me inbox
-                </a>
-                <a href={seller.tiktok} target="_blank" rel="noopener noreferrer" className="follow-button">
-                  Follow
-                </a>
-                <button
-                  className={`favorite-button ${isFavorited(seller.id, 'seller') ? 'favorited' : ''}`}
-                  onClick={() => toggleFavorite(seller.id, 'seller')}
-                >
-                 add to ★ 
-                </button>
+        <div className="column seller-column">
+          <h2>Sellers</h2>
+          <div className="top-action-row">
+            <input
+              type="text"
+              className="comentinput-input"
+              placeholder="Tell us what you want to buy..."
+              value={sellerSearchTerm}
+              onChange={(e) => setSellerSearchTerm(e.target.value)}
+              aria-label="tell us what you want to buy ...."
+            />
+          </div>
+
+          {sellers.map(seller => (
+            <div key={seller.id} className="card">
+              <img src={seller.profilePhoto} alt="Profile" className="profile-photo" />
+              <div className="info">
+                <h4>{seller.name}</h4>
+                <p>{seller.message}</p>
+                <div className="button-row">
+                  <a href={seller.telegram} target="_blank" rel="noopener noreferrer" className="inbox-button">
+                    Talk me inbox
+                  </a>
+                  <a href={seller.tiktok} target="_blank" rel="noopener noreferrer" className="follow-button">
+                    Follow
+                  </a>
+                  <button
+                    className={`favorite-button ${isFavorited(seller.id, 'seller') ? 'favorited' : ''}`}
+                    onClick={() => toggleFavorite(seller.id, 'seller')}
+                  >
+                    add to ★
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,0 +1,64 @@
+.purchase-history-container {
+  padding: 30px;
+  background-color: #fefefe;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  max-width: 1000px;
+  margin: auto;
+}
+
+.section-title {
+  font-size: 24px;
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.rewards-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.rewards-table th,
+.rewards-table td {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.rewards-table th {
+  background-color: #f4f4f4;
+  color: #444;
+}
+
+.tier {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.tier.gold {
+  color: #d4af37;
+}
+
+.tier.silver {
+  color: #999;
+}
+
+.tier.platinum {
+  color: #3b3b98;
+}
+
+.note {
+  margin-top: 20px;
+  font-style: italic;
+  text-align: center;
+  color: #555;
+}

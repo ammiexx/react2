@@ -28,6 +28,9 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="nav-links">
+          <NavLink to="/announcements" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
+            Announcements
+          </NavLink>
           <NavLink to="/chat" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
             Chat
           </NavLink>

@@ -1,6 +1,6 @@
 // TechnologyMethods.jsx
 import React from 'react';
-import './HelpCenter.css';
+import './TechnologyMethods.css';
 
 const TechnologyMethods = () => {
   return (

@@ -58,6 +58,11 @@ import ServicesFreelance from "./BusinessCategories/ServicesFreelance";
 import DailyDiscounts from "./BusinessCategories/DailyDiscounts";
 import WeeklyDiscounts from "./BusinessCategories/WeaklyDiscounts";
 import Entertainments from "./BusinessCategories/Entertainments";
+
+import PurchaseHistory from "./BusinessCategories/PurchaseHistory";
+import TechnologyMethods from "./BusinessCategories/TechnologyMethods";
+import Announcements from "./BusinessCategories/Announcements";
+
 function App() {
   return (
     <Router>
@@ -94,6 +99,10 @@ function App() {
             
             <Route path="/chat" element={< Questions/>} />
              <Route path="/entertainments" element={< Entertainments/>} />
+             <Route path="/purchasehistory" element={< PurchaseHistory/>} />
+             <Route path="/technologymethods" element={< TechnologyMethods/>} />
+             <Route path="/announcements" element={< Announcements/>} />
+            
 
 
            <Route path="/car brands" element={< CarBrands/>} />

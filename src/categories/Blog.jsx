@@ -1,47 +1,56 @@
+// DidYouKnow.jsx
 import React from 'react';
 import './Blog.css';
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "How to Choose the Right Electronics for You",
-    summary: "Learn the key features to look for when buying new electronics to make a smart purchase.",
-    date: "July 25, 2025",
-  },
-  {
-    id: 2,
-    title: "Top 10 Cars of 2025",
-    summary: "Explore the latest models that combine performance, safety, and style in 2025.",
-    date: "July 15, 2025",
-  },
-  {
-    id: 3,
-    title: "Home Decor Trends You Can’t Miss",
-    summary: "Discover modern design trends to refresh your living space and make it cozy.",
-    date: "June 30, 2025",
-  },
-];
-
-const Blog = () => {
+const DidYouKnow = () => {
   return (
-    <div className="blog-container">
-      <h2>Our Blog</h2>
-      <p className="blog-intro">Stay updated with the latest tips, news, and trends from our experts.</p>
+    <section className="did-you-know">
+      <h2 className="dyk-title">🧠 Did You Know?</h2>
+      <p className="dyk-intro">
+        Welcome to our buyer blog — a space to help you become smarter, more informed, and confident in your purchasing decisions.
+      </p>
 
-      <div className="blog-list">
-        {blogPosts.map(({ id, title, summary, date }) => (
-          <article key={id} className="blog-post">
-            <h3 className="post-title">{title}</h3>
-            <p className="post-date">{date}</p>
-            <p className="post-summary">{summary}</p>
-            <button className="read-more-btn" onClick={() => alert('Read more functionality coming soon!')}>
-              Read More
-            </button>
-          </article>
-        ))}
+      <div className="dyk-blogs">
+
+        <article className="dyk-item">
+          <h3>🔎 Quality Over Quantity</h3>
+          <p>
+            Did you know that buying from verified sellers with higher product ratings often leads to longer-lasting value and fewer replacements?
+            Always check product reviews and business badges.
+          </p>
+        </article>
+
+        <article className="dyk-item">
+          <h3>💡 Early Buyers Get Better Deals</h3>
+          <p>
+            Businesses often reward early buyers with discounts or bonuses. Keep an eye out for early bird offers and product pre-releases.
+          </p>
+        </article>
+
+        <article className="dyk-item">
+          <h3>📦 Stock Doesn't Last Forever</h3>
+          <p>
+            Products with high demand can go out of stock quickly. Adding items to your wishlist or subscribing to alerts can help you stay ahead.
+          </p>
+        </article>
+
+        <article className="dyk-item">
+          <h3>📊 Your Data Makes You Powerful</h3>
+          <p>
+            Tracking your past purchases can help you identify trends, avoid overspending, and negotiate better deals with sellers. Use dashboards wisely!
+          </p>
+        </article>
+
+        <article className="dyk-item">
+          <h3>🤝 Communication Builds Trust</h3>
+          <p>
+            Reaching out to sellers to ask about delivery, customization, or product use often leads to better service and relationships. Don't hesitate to message them.
+          </p>
+        </article>
+
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Blog;
+export default DidYouKnow;

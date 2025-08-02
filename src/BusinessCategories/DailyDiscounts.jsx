@@ -133,7 +133,7 @@ const DailyDiscounts = () => {
 
   return (
     <div className="discounts-container">
-      <h2>🛍️ Today's Discounts</h2>
+      <h2>🛍️ Today's Discounts at a lowest cost</h2>
       <div className="discounts-grid">
         {discountItems.slice(0, 6).map((item, index) => (
           <div className="discount-card" key={index}>

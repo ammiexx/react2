@@ -97,7 +97,7 @@ const WeeklyDiscounts = () => {
 
   return (
     <section className="weekly-discounts-section">
-      <h2>🔥 Weekly Hot Deals</h2>
+      <h2>🔥 Your Weekly discounts for the holiday🔥</h2>
       <p className="subtext">Get the best weekly discounts from top-rated sellers</p>
       <div className="weekly-grid">
         {weeklyDeals.map((deal, index) => (

@@ -98,7 +98,7 @@ const Wanted = () => {
   return (
     <div className="wanted-page">
       <h2 className="wanted-title">
-        We’re here to buy — tell us what makes your offer special!
+       🔥 We’re here to buy — tell us what makes your offer special🔥!
       </h2>
 
      <div className="top-action-row">

@@ -158,3 +158,6 @@ h2 {
   background-color: #ffd700;
   color: #000;
 }
+.multiline-placeholder::placeholder {
+  white-space: pre-wrap; /* Enables line breaks in placeholder */
+}

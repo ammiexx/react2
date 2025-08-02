@@ -205,7 +205,7 @@ const ForSale = () => {
   return (
     <div className="forsale-page">
       <h2 className="forsale-title">
-        Browse our offers — delivered at the right time and place!
+        🔥Browse our offers — delivered at the right time and place!🔥
       </h2>
       <div className="top-action-row">
         <input

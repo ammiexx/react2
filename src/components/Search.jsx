@@ -35,10 +35,7 @@ const Search = () => {
 
   return (
     <nav className="navigation2">
-      {/* Hamburger button */}
       <Hamburger isOpen={menuOpen} toggle={toggleMenu} />
-
-      {/* Category buttons */}
       <div className="categories">
         {categories.map((cat, index) => (
           <button
@@ -50,17 +47,18 @@ const Search = () => {
           </button>
         ))}
       </div>
-
-      {/* Detailed menu toggled by hamburger */}
       {menuOpen && (
         <div className="detailed-menu">
-          {/* ACCOUNT */}
           <div className="menu-section">
             <div className="section-title">— Account —</div>
             <ul>
               <li><Link to="/profile">My Profile</Link></li>
                <li><Link to="/profile">favorites</Link></li>
               <li><Link to="/aboutus">About Us </Link></li>
+              <li><Link to="/announcements">Announcements </Link></li>
+              <li><Link to="/chat">want new buyers/sellers? </Link></li>
+              <li><Link to="/weekly discounts">Want discounts? </Link></li>
+              <li><Link to="/purchasehistory">history </Link></li>
               <li><Link to="/logout">Log out</Link></li>
               <li><Link to="/orders">Orders</Link></li>
               <li><Link to="/whishlist">Wishlist</Link></li>
@@ -69,17 +67,15 @@ const Search = () => {
 
             </ul>
           </div>
-          {/* SHOP */}
           <div className="menu-section">
             <div className="section-title">— Shop —</div>
             <ul>
               <li>
                 Categories
                 <ul className="nested">
-                  <li><Link to="/electronics">Electronics</Link></li>
-                  <li><Link to="/clothes">Clothes</Link></li>
-                  <li><Link to="/cars">Cars</Link></li>
                   
+                  <li><Link to="/technologymethods">technology methods</Link></li>
+                  <li><Link to="/blog">Did you know?</Link></li>
                 </ul>
               </li>
               <li><Link to="/newarrivals">New Arrivals</Link></li>
@@ -88,7 +84,7 @@ const Search = () => {
               <li><Link to="/brands">Brands</Link></li>
             </ul>
           </div>
-          {/* SUPPORT */}
+          
           <div className="menu-section">
             <div className="section-title">— Support —</div>
             <ul>
@@ -99,17 +95,14 @@ const Search = () => {
               <li><Link to="/trackorder">Track Order</Link></li>
             </ul>
           </div>
-          {/* INFO */}
           <div className="menu-section">
             <div className="section-title">— Info —</div>
             <ul>
               <li><Link to="/terms">Terms & Conditions</Link></li>
               <li><Link to="/privacy">Privacy Policy</Link></li>
-              <li><Link to="/blog">Blog</Link></li>
+              
             </ul>
           </div>
-
-          {/* SETTINGS */}
           <div className="menu-section">
             <div className="section-title">— Settings —</div>
             <ul>
