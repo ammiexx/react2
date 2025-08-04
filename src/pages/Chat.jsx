@@ -129,7 +129,6 @@ const Questions = () => {
               aria-label="tell us what you want to buy ...."
             />
           </div>
-
           {sellers.map(seller => (
             <div key={seller.id} className="card">
               <img src={seller.profilePhoto} alt="Profile" className="profile-photo" />
@@ -158,5 +157,4 @@ const Questions = () => {
     </>
   );
 };
-
 export default Questions;

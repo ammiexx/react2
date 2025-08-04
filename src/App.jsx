@@ -101,20 +101,20 @@ function App() {
              <Route path="/purchasehistory" element={< PurchaseHistory/>} />
              <Route path="/technologymethods" element={< TechnologyMethods/>} />
              <Route path="/announcements" element={< Announcements/>} />
-             <Route path="/Car Brands" element={< CarBrands/>} />
-            <Route path="/fashions" element={< Fashion/>} />
-            <Route path="/Real Estates" element={< RealEstate/>} />
-            <Route path="/Computer & Electronics" element={< Electronic/>} />
-            <Route path="/Food & Drinks" element={< FoodDrinks/>} />
-            <Route path="/Home & Appliances" element={< HomeAppliances/>} />
-            <Route path="/Health & Beauty" element={< HealthBeauty/>} />
-             <Route path="/construction & building materials" element={<ConstructionBuilding />} />
-             <Route path="/Education and Services" element={< EducationServices/>} />
-              <Route path="/industrial equipment" element={< IndustrialEquipment/>} />
-              <Route path="/Agricultural & Livestock" element={< AgricultureLivestock/>} />
-              <Route path="/Repair & Maintainance" element={< RepairMaintenance/>} />
-              <Route path="/Event & Wedding" element={< EventsWeddings/>} />
-              <Route path="/Services and Freelance" element={< ServicesFreelance/>} />
+             <Route path="/Piyasa" element={< CarBrands/>} />
+            <Route path="/Dubi" element={< Fashion/>} />
+            <Route path="/Bahir Dar" element={< RealEstate/>} />
+            <Route path="/Bole" element={< Electronic/>} />
+            <Route path="/Adama" element={< FoodDrinks/>} />
+            <Route path="/Hawassa" element={< HomeAppliances/>} />
+            <Route path="/Mexico" element={< HealthBeauty/>} />
+             <Route path="/seatle" element={<ConstructionBuilding />} />
+             <Route path="/Addis Gebeya" element={< EducationServices/>} />
+              <Route path="/Mekelie" element={< IndustrialEquipment/>} />
+              <Route path="/Jima" element={< AgricultureLivestock/>} />
+              <Route path="/berlin" element={< RepairMaintenance/>} />
+              <Route path="/paris" element={< EventsWeddings/>} />
+              <Route path="/kanada" element={< ServicesFreelance/>} />
               <Route path="/daily discounts" element={< DailyDiscounts/>} />
               <Route path="/weekly discounts" element={< WeeklyDiscounts/>} />
             
