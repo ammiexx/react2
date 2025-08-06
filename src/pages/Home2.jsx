@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <header className="home-header">
+      {/* <header className="home-header">
         <h1 className="typing-text">
           <span className="typed-sentence">
             Purchase what you want, sell what you offer — your opportunity starts here.
@@ -25,10 +25,10 @@ const Home = () => {
           <Link to="/forsale" className="btn btn-primary">Sellers</Link>
           <Link to="/wanted" className="btn btn-secondary">Buyers</Link>
         </div>
-      </header>
+      </header> */}
 
       <section className="featured-section">
-        <h2>Featured Products for Sale</h2>
+        <h2>Browse your favorite product</h2>
         <div className="featured-grid">
           {products.map(item => (
             <div className="featured-item-row" key={item.id}>

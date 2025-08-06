@@ -62,6 +62,7 @@ const Category1 = () => {
 
   return (
     <div className="category-container">
+      
       <form className="search-form" onSubmit={e => e.preventDefault()}>
         <input
           type="text"
