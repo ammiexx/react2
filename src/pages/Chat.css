@@ -161,3 +161,17 @@ h2 {
 .multiline-placeholder::placeholder {
   white-space: pre-wrap; /* Enables line breaks in placeholder */
 }
+.favorite-button {
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.favorite-button.favorited {
+  background-color: gold;
+  color: black;
+}

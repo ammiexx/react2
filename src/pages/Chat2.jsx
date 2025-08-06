@@ -1,85 +1,95 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Chat.css';
-const buyers = [
-  {
-    id: 1,
-    name: 'animut alemneh',
-    message: 'I want to purchase a computer not old enough and my address is Addis Ababa.',
-    profilePhoto: 'https://via.placeholder.com/50',
-    telegram: 'https://t.me/@ammiexx',
-    tiktok: 'https://www.tiktok.com/@ammiexx'
-  },
-  {
-    id: 2,
-    name: 'Mekdes Alemu',
-    message: 'Looking for a used but high-performance laptop.',
-    profilePhoto: 'https://via.placeholder.com/50',
-    telegram: 'https://t.me/mekdesalem',
-    tiktok: 'https://www.tiktok.com/@mekdesalem'
-  },
-  {
-    id: 3,
-    name: 'Binyam Tesfaye',
-    message: 'Need a desktop PC for graphic design, not too old.',
-    profilePhoto: 'https://via.placeholder.com/50',
-    telegram: 'https://t.me/binyam_t',
-    tiktok: 'https://www.tiktok.com/@binyam_t'
-  }
-];
-
-const sellers = [
-  {
-    id: 1,
-    name: 'Alice Smith',
-    message: 'I need a customer who can buy an old item that is most durable.',
-    profilePhoto: 'https://via.placeholder.com/50',
-    telegram: 'https://t.me/alicesmith',
-    tiktok: 'https://www.tiktok.com/@alicesmith'
-  },
-  {
-    id: 2,
-    name: 'Tadesse Worku',
-    message: 'Selling a durable and slightly old computer monitor.',
-    profilePhoto: 'https://via.placeholder.com/50',
-    telegram: 'https://t.me/tadessew',
-    tiktok: 'https://www.tiktok.com/@tadessew'
-  },
-
-  {
-    id: 3,
-    name: 'Hanna Berhanu',
-    message: 'Old printer in good condition for sale.',
-    profilePhoto: 'https://via.placeholder.com/50',
-    telegram: 'https://t.me/hannaberhanu',
-    tiktok: 'https://www.tiktok.com/@hannaberhanu'
-  }
-];
 
 const Questions = () => {
+  const [buyers, setBuyers] = useState([]);
+  const [sellers, setSellers] = useState([]);
   const [buyerSearchTerm, setBuyerSearchTerm] = useState('');
   const [sellerSearchTerm, setSellerSearchTerm] = useState('');
   const [favorites, setFavorites] = useState(new Set());
 
-  const toggleFavorite = (id, type) => {
-    const key = `${type}-${id}`;
-    setFavorites(prev => {
-      const updated = new Set(prev);
-      if (updated.has(key)) {
-        updated.delete(key);
-      } else {
-        updated.add(key);
+  // ✅ Fetch buyers, sellers, and favorites
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/buyers/')
+      .then(response => response.json())
+      .then(data => setBuyers(data))
+      .catch(error => console.error('Error fetching buyers:', error));
+
+    fetch('http://localhost:8000/api/sellers/')
+      .then(response => response.json())
+      .then(data => setSellers(data))
+      .catch(error => console.error('Error fetching sellers:', error));
+
+    fetch('http://127.0.0.1:8000/api/favorites/', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
       }
-      return updated;
-    });
-  };
+    })
+      .then(res => res.json())
+      .then(data => {
+        const favSet = new Set(data.map(item => `${item.target_type}-${item.target_id}`));
+        setFavorites(favSet);
+      })
+      .catch(err => console.error('Error fetching favorites:', err));
+  }, []);
+
+  // ✅ Toggle favorite status via backend
+  const toggleFavorite = (id, type) => {
+  fetch('http://127.0.0.1:8000/api/favorites/toggle/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    },
+    body: JSON.stringify({ target_id: id, target_type: type })
+  })
+    .then(res => res.json())
+    .then(data => {
+      const key = `${type}-${id}`;
+      const name = type === 'buyer' 
+        ? buyers.find(b => b.id === id)?.name 
+        : sellers.find(s => s.id === id)?.name;
+
+      setFavorites(prev => {
+        const updated = new Set(prev);
+        if (data.message.includes('added')) {
+          updated.add(key);
+          setNotification(`${type === 'buyer' ? 'Buyer' : 'Seller'} "${name}" added to favorites!`);
+        } else if (data.message.includes('removed')) {
+          updated.delete(key);
+        }
+        {notification && (
+  <div className="notification-popup">
+    {notification}
+  </div>
+)}
+
+        return updated;
+      });
+
+      // Clear the notification after 2 seconds
+      setTimeout(() => setNotification(''), 2000);
+    })
+    .catch(err => console.error('Error toggling favorite:', err));
+};
+
 
   const isFavorited = (id, type) => favorites.has(`${type}-${id}`);
 
+  const filteredBuyers = buyers.filter(buyer =>
+    buyer.message.toLowerCase().includes(buyerSearchTerm.toLowerCase())
+  );
+
+  const filteredSellers = sellers.filter(seller =>
+    seller.message.toLowerCase().includes(sellerSearchTerm.toLowerCase())
+  );
+
   return (
     <>
-      {/* ✅ Page title */}
       <h1 className="main-title">"🔥Share us what you need — you'll find your ideal buyer/seller🔥"</h1>
       <div className="questions-container">
+
+        {/* 👤 Buyers Section */}
         <div className="column buyer-column">
           <h2>Buyers</h2>
           <div className="top-action-row">
@@ -92,9 +102,9 @@ const Questions = () => {
             />
           </div>
 
-          {buyers.map(buyer => (
+          {filteredBuyers.map(buyer => (
             <div key={buyer.id} className="card">
-              <img src={buyer.profilePhoto} alt="Profile" className="profile-photo" />
+              <img src={buyer.profile_photo} alt="Profile" className="profile-photo" />
               <div className="info">
                 <h4>{buyer.name}</h4>
                 <p>{buyer.message}</p>
@@ -109,7 +119,7 @@ const Questions = () => {
                     className={`favorite-button ${isFavorited(buyer.id, 'buyer') ? 'favorited' : ''}`}
                     onClick={() => toggleFavorite(buyer.id, 'buyer')}
                   >
-                    add to ★
+                    {isFavorited(buyer.id, 'buyer') ? '★ Favorited' : 'Add to ★'}
                   </button>
                 </div>
               </div>
@@ -117,6 +127,7 @@ const Questions = () => {
           ))}
         </div>
 
+        {/* 💼 Sellers Section */}
         <div className="column seller-column">
           <h2>Sellers</h2>
           <div className="top-action-row">
@@ -126,12 +137,13 @@ const Questions = () => {
               placeholder="Tell us what you want to sell..."
               value={sellerSearchTerm}
               onChange={(e) => setSellerSearchTerm(e.target.value)}
-              aria-label="tell us what you want to buy ...."
+              aria-label="tell us what you want to sell"
             />
           </div>
-          {sellers.map(seller => (
+
+          {filteredSellers.map(seller => (
             <div key={seller.id} className="card">
-              <img src={seller.profilePhoto} alt="Profile" className="profile-photo" />
+              <img src={seller.profile_photo} alt="Profile" className="profile-photo" />
               <div className="info">
                 <h4>{seller.name}</h4>
                 <p>{seller.message}</p>
@@ -146,7 +158,7 @@ const Questions = () => {
                     className={`favorite-button ${isFavorited(seller.id, 'seller') ? 'favorited' : ''}`}
                     onClick={() => toggleFavorite(seller.id, 'seller')}
                   >
-                    add to ★
+                    {isFavorited(seller.id, 'seller') ? '★ Favorited' : 'Add to ★'}
                   </button>
                 </div>
               </div>
@@ -157,4 +169,5 @@ const Questions = () => {
     </>
   );
 };
+
 export default Questions;

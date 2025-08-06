@@ -8,12 +8,12 @@ import Back from "./components/Back";
 import Footer from "./components/Footer";
 import Signup from "./components/Signup"
 import Login from "./components/Login";
-import Home from "./pages/Home";
+import Home from "./pages/Home2";
 import Wanted from "./pages/Wanted";
 import ForSale from "./pages/ForSale";
 import Checkout from "./components/Checkout";
 import AboutUs from "./pages/Aboutus";
-import Questions from "./pages/Chat";
+import Questions from "./pages/Chat2";
 import Electronics from "./components/Electronics";
 import Houses from "./components/Houses";
 import Clothes from "./components/Clothes";

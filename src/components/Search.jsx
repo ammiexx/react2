@@ -331,7 +331,7 @@ const Search = () => {
               <li><Link to="/chat" onClick={closeMenu}>Want new buyers/sellers?</Link></li>
               <li><Link to="/weekly-discounts" onClick={closeMenu}>Want discounts?</Link></li>
               <li><Link to="/purchasehistory" onClick={closeMenu}>History</Link></li>
-              <li><Link to="/logout" onClick={closeMenu}>Log out</Link></li>
+              <li><Link to="/logout" onClick={closeMenu}>sign out</Link></li>
               <li><Link to="/orders" onClick={closeMenu}>Orders</Link></li>
               <li><Link to="/whishlist" onClick={closeMenu}>Wishlist</Link></li>
               <li><Link to="/addresses" onClick={closeMenu}>Addresses</Link></li>
