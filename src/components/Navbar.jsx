@@ -34,7 +34,7 @@ const Navbar = () => {
           <NavLink to="/chat" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
             Chat
           </NavLink>
-          <NavLink to="/home" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
+          <NavLink to="/category" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
             home
           </NavLink>
           <NavLink to="/wanted" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>

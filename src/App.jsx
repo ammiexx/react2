@@ -14,6 +14,7 @@ import ForSale from "./pages/ForSale";
 import Checkout from "./components/Checkout";
 import AboutUs from "./pages/Aboutus";
 import Questions from "./pages/Chat2";
+import Category1 from "./pages/Category1";
 import Electronics from "./components/Electronics";
 import Houses from "./components/Houses";
 import Clothes from "./components/Clothes";
@@ -62,6 +63,8 @@ import PurchaseHistory from "./BusinessCategories/PurchaseHistory";
 import TechnologyMethods from "./BusinessCategories/TechnologyMethods";
 import Announcements from "./BusinessCategories/Announcements";
 
+import Fashions from "./BusinessCategories/Fashion";
+
 function App() {
   return (
     <Router>
@@ -69,7 +72,8 @@ function App() {
       <Search />
       <Routes>
         <Route path="/" element={<Signup />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/category" element={<Category1 />} />
+        <Route path="/Home" element={<Home />} />
         <Route path="/wanted" element={<Wanted />} />
         <Route path="/forsale" element={<ForSale />} />
         <Route path="/login" element={<Login />} />
@@ -103,6 +107,7 @@ function App() {
              <Route path="/announcements" element={< Announcements/>} />
              <Route path="/Piyasa" element={< CarBrands/>} />
             <Route path="/Dubi" element={< Fashion/>} />
+            <Route path="/fashion" element={< Fashion/>} />
             <Route path="/Bahir Dar" element={< RealEstate/>} />
             <Route path="/Bole" element={< Electronic/>} />
             <Route path="/Adama" element={< FoodDrinks/>} />
