@@ -18,7 +18,7 @@ const Navbar = () => {
       alt="CBN Logo"
       className="logo-img"
     />
-    <span className="logo-text">Customer-business-network</span>
+    <span className="logo-text">seller-buyer-network</span>
   </Link>
 </div>
 
@@ -28,26 +28,23 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="nav-links">
+             <NavLink to="/Daily Discounts" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
+            daily discounts
+          </NavLink>
+          <NavLink to="/Weekly discounts" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
+            weekly discounts
+          </NavLink>
           <NavLink to="/announcements" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
             Announcements
           </NavLink>
           <NavLink to="/chat" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            Chat
-          </NavLink>
-          <NavLink to="/category" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            home
-          </NavLink>
-          <NavLink to="/wanted" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            Buyers
-          </NavLink>
-          <NavLink to="/forsale" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            Sellers
+            S&B
           </NavLink>
           <NavLink to="/login" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            Sign In
+            sign in
           </NavLink>
           <NavLink to="/signup" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            Sign Up
+            sign up
           </NavLink>
         </div>
 

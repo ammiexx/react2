@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Category1.css';
+import './Categoryseatle.css';
 
-const Category1 = () => {
+const Categoryseatle= () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -43,12 +43,12 @@ const Category1 = () => {
       path: '/health-beauty',
     },
     {
-      name: 'Events & Weddings',
+      name: 'Event & Weddings',
       image_url: 'https://images.unsplash.com/photo-1754149155224-24d7042ec22e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3Mnx8fGVufDB8fHx8fA%3D%3D',
       path: '/event-weddings',
     },
     {
-      name: 'Entertainments',
+      name: 'Entertainment',
       image_url: 'https://images.unsplash.com/photo-1754244774117-a27304d47959?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3NXx8fGVufDB8fHx8fA%3D%3D',
       path: '/entertainments',
     },
@@ -94,4 +94,4 @@ const Category1 = () => {
   );
 };
 
-export default Category1;
+export default Categoryseatle;

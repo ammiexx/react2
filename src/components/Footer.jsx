@@ -60,7 +60,7 @@ const Footer = () => {
             <p>📞 Phone: +1 (800) 555-2025</p>
           </div>
         </div>
-      </div>
+      </div> 
 
       <div className="footer-bottom">
         <nav className="footer-nav">
@@ -72,7 +72,7 @@ const Footer = () => {
           <a href="/login">Login</a>
           <a href="/signup">Sign Up</a>
         </nav>
-        <p className="footer-copy">© 2025 Customer Business Network. All rights reserved.</p>
+        <p className="footer-copy">© 2025 seller-buyer-network. All rights reserved.</p>
       </div>
     </footer>
   );

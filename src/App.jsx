@@ -65,15 +65,49 @@ import Announcements from "./BusinessCategories/Announcements";
 
 import Fashions from "./BusinessCategories/Fashion";
 
+
+import Categorypiyasa from "./pages/Categorypiyasa";
+import CategoryDubi from "./pages/CategoryDubi";
+import Categorybole from "./pages/Categorybole";
+import Categorybd from "./pages/Categorybd";
+import Categoryadama from "./pages/Categoryadama";
+import Categoryhawassa from "./pages/Categoryhawassa";
+import Categorymexico from "./pages/Categorymexico";
+import Categoryseatle from "./pages/Categoryseatle";
+import Categoryag from "./pages/Categoryag";
+import Categorymekelie from "./pages/Categorymekelie";
+import Categoryjima from "./pages/Categoryjima";
+import Categoryberlin from "./pages/Categoryberlin";
+import Categoryparis from "./pages/Categoryparis";
+import Categorycanada from "./pages/Categorycanada";
+
 function App() {
   return (
     <Router>
       <Navbar />
       <Search />
       <Routes>
-        <Route path="/" element={<Signup />} />
-        <Route path="/category" element={<Category1 />} />
-        <Route path="/Home" element={<Home />} />
+
+        
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<Category1 />} />
+        <Route path="/piyasa" element={<Categorypiyasa />} />
+        <Route path="/Dubi" element={<CategoryDubi />} />
+         <Route path="/Bahir Dar" element={<Categorybd />} />
+         <Route path="/Bole" element={<Categorybole />} />
+         <Route path="/Adama" element={<Categoryadama />} />
+          <Route path="/Hawassa" element={<Categoryhawassa />} />
+          <Route path="/Mexico" element={<Categorymexico />} />
+          <Route path="/seatle" element={<Categoryseatle />} />
+          <Route path="/addis gebeya" element={<Categoryag />} />
+          <Route path="/Mekelie" element={<Categorymekelie />} />
+          <Route path="/jima " element={<Categoryjima />} />
+          <Route path="/berlin " element={<Categoryberlin/>} />
+          <Route path="/paris " element={<Categoryparis/>} />
+          <Route path="/canada" element={<Categorycanada/>} />
+
+
+
         <Route path="/wanted" element={<Wanted />} />
         <Route path="/forsale" element={<ForSale />} />
         <Route path="/login" element={<Login />} />
@@ -89,10 +123,10 @@ function App() {
          <Route path="/language" element={< Language/>} />
          <Route path="/returns-refunds" element={< ReturnsRefunds/>} />
          <Route path="/trackorder" element={< TrackOrder/>} />
-          <Route path="/paymentmethods" element={< PaymentMethods/>} />
-          <Route path="/orders" element={< Orders/>} />
-          <Route path="/whishlist" element={< Whishlist/>} />
-          <Route path="/newarrivals" element={< NewArrivals/>} />
+         <Route path="/paymentmethods" element={< PaymentMethods/>} />
+         <Route path="/orders" element={< Orders/>} />
+         <Route path="/whishlist" element={< Whishlist/>} />
+         <Route path="/newarrivals" element={< NewArrivals/>} />
            <Route path="/best-sellers" element={< BestSellers/>} />
            <Route path="/dealsandoffers" element={< DealsandOffers/>} />
            <Route path="/brands" element={< Brands/>} />
@@ -105,21 +139,20 @@ function App() {
              <Route path="/purchasehistory" element={< PurchaseHistory/>} />
              <Route path="/technologymethods" element={< TechnologyMethods/>} />
              <Route path="/announcements" element={< Announcements/>} />
-             <Route path="/Piyasa" element={< CarBrands/>} />
-            <Route path="/Dubi" element={< Fashion/>} />
-            <Route path="/fashion" element={< Fashion/>} />
-            <Route path="/Bahir Dar" element={< RealEstate/>} />
-            <Route path="/Bole" element={< Electronic/>} />
-            <Route path="/Adama" element={< FoodDrinks/>} />
-            <Route path="/Hawassa" element={< HomeAppliances/>} />
-            <Route path="/Mexico" element={< HealthBeauty/>} />
-             <Route path="/seatle" element={<ConstructionBuilding />} />
-             <Route path="/Addis Gebeya" element={< EducationServices/>} />
-              <Route path="/Mekelie" element={< IndustrialEquipment/>} />
-              <Route path="/Jima" element={< AgricultureLivestock/>} />
-              <Route path="/berlin" element={< RepairMaintenance/>} />
-              <Route path="/paris" element={< EventsWeddings/>} />
-              <Route path="/kanada" element={< ServicesFreelance/>} />
+             <Route path="/car-brands" element={< CarBrands/>} />
+            <Route path="/fashions" element={< Fashion/>} />
+            <Route path="/real-estates" element={< RealEstate/>} />
+            <Route path="/electronics" element={< Electronic/>} />
+            <Route path="/food-drinks" element={< FoodDrinks/>} />
+            <Route path="/home-appliances" element={< HomeAppliances/>} />
+            <Route path="/health-beauty" element={< HealthBeauty/>} />
+             <Route path="/construction-building" element={<ConstructionBuilding />} />
+             <Route path="/education-services" element={< EducationServices/>} />
+              <Route path="/industrial-equipments" element={< IndustrialEquipment/>} />
+              <Route path="/agriculture-livestock" element={< AgricultureLivestock/>} />
+              <Route path="/repair-maintenance" element={< RepairMaintenance/>} />
+              <Route path="/event-weddings" element={< EventsWeddings/>} />
+              <Route path="/freelance-services" element={< ServicesFreelance/>} />
               <Route path="/daily discounts" element={< DailyDiscounts/>} />
               <Route path="/weekly discounts" element={< WeeklyDiscounts/>} />
             
