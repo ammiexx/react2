@@ -54,7 +54,7 @@ const Footer = () => {
             Whether you're selling products, offering services, or looking for talent — we've got you covered.
           </p>
           <div className="contact-info">
-            <p>📧 Email: animutalemeneh6322gmail.com</p>
+            <p>📧 Email: animutalemeneh632gmail.com</p>
             <p>📍 Location: Worldwide Access</p>
             <p>📞 Phone: +251943453172</p>
           </div>
