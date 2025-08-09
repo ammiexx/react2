@@ -48,7 +48,6 @@ const Home = () => {
             const allImages = [item.product_photo, ...(item.images || []).map(img => img.image)];
             const firstFourImages = allImages.slice(0, 4);
             const remainingImages = allImages.slice(4);
-
             return (
               <div className="featured-item-row" key={item.id}>
                 {/* Poster Info */}
@@ -61,8 +60,8 @@ const Home = () => {
                     />
                     <p className="poster-name">{item.first_name} {item.last_name}</p>
                   </div>
-                  <p className="poster-location">📍 {item.location}</p>
-                  <p className="posted-date">🗓️ {new Date(item.date_posted).toLocaleDateString()}</p>
+                  <p className="poster-location">📍location: {item.location}</p>
+                  <p className="posted-date">🗓️ date: {new Date(item.date_posted).toLocaleDateString()}</p>
                 </div>
 
                 {/* Product Images Grid (Main + 3 Extra) */}
