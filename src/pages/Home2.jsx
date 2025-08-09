@@ -4,6 +4,8 @@ import './Home.css';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const [expandedProductId, setExpandedProductId] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/products/')
@@ -12,51 +14,100 @@ const Home = () => {
       .catch(error => console.error('Error fetching products:', error));
   }, []);
 
+  const toggleExpand = (productId) => {
+    setExpandedProductId(expandedProductId === productId ? null : productId);
+  };
+
+  // Filter products by search input (company name or product name)
+  const filteredProducts = products.filter(product =>
+    product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="home-container">
-      {/* <header className="home-header">
-        <h1 className="typing-text">
-          <span className="typed-sentence">
-            Purchase what you want, sell what you offer — your opportunity starts here.
-          </span>
-        </h1>
-        <p>Make your business grow and buy quality products</p>
-        <div className="home-buttons">
-          <Link to="/forsale" className="btn btn-primary">Sellers</Link>
-          <Link to="/wanted" className="btn btn-secondary">Buyers</Link>
-        </div>
-      </header> */}
-
       <section className="featured-section">
-        <h2>Browse your favorite product</h2>
+        {/* 🔍 Search Input */}
+        <div className="search-bar">
+          <label htmlFor="search">
+  <span role="img" aria-label="offer">🎯</span> 
+  <span role="img" aria-label="shop">🛍️</span> 
+  <strong>We are here to offer our products:</strong> 
+  <span role="img" aria-label="eye">👀</span> 
+  <span role="img" aria-label="bulb">💡</span>
+</label>
+
+          <input
+            type="text"
+            id="search"
+            placeholder="Search what you want to buy..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
         <div className="featured-grid">
-          {products.map(item => (
-            <div className="featured-item-row" key={item.id}>
+          {filteredProducts.map(item => {
+            const allImages = [item.product_photo, ...(item.images || []).map(img => img.image)];
+            const firstFourImages = allImages.slice(0, 4);
+            const remainingImages = allImages.slice(4);
 
-              {/* Poster info at top */}
-              <div className="poster-info-top">
-                <div className="poster-meta">
-                  <img
-                    src={item.profile_photo || 'https://via.placeholder.com/60'}
-                    alt={`${item.first_name} ${item.last_name}`}
-                    className="profile-photo"
-                  />
-                  <p className="poster-name">{item.first_name} {item.last_name}</p>
-                </div>
-                <p className="poster-location">📍 {item.location}</p>
-                <p className="posted-date">🗓️ {new Date(item.date_posted).toLocaleDateString()}</p>
-              </div>
-
-              {/* Product image and details in row */}
-              <div className="product-row">
-                <div className="product-image">
-                  <img src={item.product_photo} alt={item.product_name} />
+            return (
+              <div className="featured-item-row" key={item.id}>
+                {/* Poster Info */}
+                <div className="poster-info-top">
+                  <div className="poster-meta">
+                    <img
+                      src={item.profile_photo || 'https://via.placeholder.com/60'}
+                      alt={`${item.first_name} ${item.last_name}`}
+                      className="profile-photo"
+                    />
+                    <p className="poster-name">{item.first_name} {item.last_name}</p>
+                  </div>
+                  <p className="poster-location">📍 {item.location}</p>
+                  <p className="posted-date">🗓️ {new Date(item.date_posted).toLocaleDateString()}</p>
                 </div>
 
+                {/* Product Images Grid (Main + 3 Extra) */}
+                <div className="extra-images">
+                  {firstFourImages.map((src, idx) => (
+                    <img
+                      key={idx}
+                      src={src}
+                      alt={`Image ${idx}`}
+                      className="extra-image"
+                    />
+                  ))}
+                </div>
+
+                {/* View More Button */}
+                {remainingImages.length > 0 && (
+                  <button
+                    className="view-more-btn"
+                    onClick={() => toggleExpand(item.id)}
+                  >
+                    {expandedProductId === item.id ? 'Hide' : 'View More'}
+                  </button>
+                )}
+
+                {/* Expanded Extra Images */}
+                {expandedProductId === item.id && (
+                  <div className="extra-images">
+                    {remainingImages.map((src, idx) => (
+                      <img
+                        key={idx}
+                        src={src}
+                        alt={`More ${idx}`}
+                        className="extra-image"
+                      />
+                    ))}
+                  </div>
+                )}
+
+                {/* Product Details */}
                 <div className="product-details">
                   <h3>{item.product_name}</h3>
                   <p>🏢 <strong>Company Name:</strong> {item.company_name}</p>
-                  <p>💵 <strong>Price:</strong> ${item.price}</p>
                   <p>🏷️ <strong>Category:</strong> {item.category}</p>
                   <p>🆕 <strong>Condition:</strong> {item.condition}</p>
                   <p>📝 <strong>Description:</strong> {item.description}</p>
@@ -72,9 +123,8 @@ const Home = () => {
                   </p>
                 </div>
               </div>
-
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
     </div>
