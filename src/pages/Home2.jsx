@@ -6,6 +6,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [zoomedImage, setZoomedImage] = useState(null); // 🔍 NEW STATE
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/products/')
@@ -18,7 +19,7 @@ const Home = () => {
     setExpandedProductId(expandedProductId === productId ? null : productId);
   };
 
-  // Filter products by search input (company name or product name)
+  // 🔎 Filter products by company or product name
   const filteredProducts = products.filter(product =>
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -27,16 +28,12 @@ const Home = () => {
   return (
     <div className="home-container">
       <section className="featured-section">
+
         {/* 🔍 Search Input */}
         <div className="search-bar">
           <label htmlFor="search">
-  <span role="img" aria-label="offer">🎯</span> 
-  <span role="img" aria-label="shop">🛍️</span> 
-  <strong>We are here to offer our products:</strong> 
-  <span role="img" aria-label="eye">👀</span> 
-  <span role="img" aria-label="bulb">💡</span>
-</label>
-
+            🎯 🛍️ <strong>We are here to offer our products:</strong> 👀 💡
+          </label>
           <input
             type="text"
             id="search"
@@ -76,6 +73,7 @@ const Home = () => {
                       src={src}
                       alt={`Image ${idx}`}
                       className="extra-image"
+                      onClick={() => setZoomedImage(src)} // 👈 Click to zoom
                     />
                   ))}
                 </div>
@@ -99,6 +97,7 @@ const Home = () => {
                         src={src}
                         alt={`More ${idx}`}
                         className="extra-image"
+                        onClick={() => setZoomedImage(src)} // 👈 Click to zoom
                       />
                     ))}
                   </div>
@@ -127,6 +126,13 @@ const Home = () => {
           })}
         </div>
       </section>
+
+      {/* 🖼️ Zoomed Image Modal */}
+      {zoomedImage && (
+        <div className="image-modal" onClick={() => setZoomedImage(null)}>
+          <img src={zoomedImage} alt="Zoomed" />
+        </div>
+      )}
     </div>
   );
 };
