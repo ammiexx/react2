@@ -1,23 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useUser, SignOutButton } from '@clerk/clerk-react';
 import './Profile.css';
 
 const Profile = () => {
   const { user } = useUser();
   const [open, setOpen] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const profileRef = useRef(null);
 
   if (!user) return null;
 
   const firstName = user.firstName || '';
   const lastName = user.lastName || '';
   const email = user.emailAddresses[0]?.emailAddress || '';
-  const firstInitial = firstName.charAt(0).toUpperCase();
+
+  // Close dropdown if click outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setOpen(false);
+        setShowLogoutConfirm(false); // also close logout confirm if open
+      }
+    }
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [open]);
 
   return (
-    <div className="profile-wrapper" onClick={() => setOpen(!open)}>
-      {/* Human icon or placeholder with first initial */}
-      <div className="profile-icon" title="Profile">
-        {/* Using SVG human icon */}
+    <div className="profile-wrapper" ref={profileRef}>
+      {/* Profile icon toggles dropdown */}
+      <div
+        className="profile-icon"
+        title="Profile"
+        onClick={() => setOpen((prev) => !prev)}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="human-icon"
@@ -35,12 +57,11 @@ const Profile = () => {
         </svg>
       </div>
 
-      {/* Dropdown on click */}
+      {/* Dropdown */}
       {open && (
         <div className="profile-dropdown">
           <div className="profile-info">
             <div className="profile-large-icon">
-              {/* Larger human icon */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="human-icon-large"
@@ -63,16 +84,38 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Show first name and last name above logout */}
           <div className="profile-name">
             <span>{firstName}</span> <span>{lastName}</span>
           </div>
 
           <div className="profile-actions">
-            <SignOutButton>
-              <button className="logout-btn">Log out</button>
-            </SignOutButton>
+            <button
+              className="logout-btn"
+              onClick={() => setShowLogoutConfirm(true)}
+            >
+              Log out
+            </button>
           </div>
+
+          {/* Confirmation Modal */}
+          {showLogoutConfirm && (
+            <div className="confirm-modal">
+              <div className="confirm-modal-content">
+                <p>Are you sure you want to log out?</p>
+                <div className="confirm-buttons">
+                  <button
+                    onClick={() => setShowLogoutConfirm(false)}
+                    className="cancel-btn"
+                  >
+                    Cancel
+                  </button>
+                  <SignOutButton>
+                    <button className="confirm-btn">Confirm</button>
+                  </SignOutButton>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

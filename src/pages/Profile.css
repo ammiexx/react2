@@ -133,3 +133,64 @@
   border-radius: 50%;
   color: #666;
 }
+
+.confirm-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.confirm-modal-content {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 10px;
+  max-width: 320px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.25);
+}
+
+.confirm-modal-content p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.confirm-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cancel-btn,
+.confirm-btn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #b3b3b3;
+}
+
+.confirm-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.confirm-btn:hover {
+  background-color: #c0392b;
+}
