@@ -87,10 +87,9 @@ function App() {
       <Navbar />
       <Search />
       <Routes>
-
-        
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Category1 />} />
+        <Route path="/home2" element={<Home/>} />
         <Route path="/piyasa" element={<Categorypiyasa />} />
         <Route path="/Dubi" element={<CategoryDubi />} />
          <Route path="/Bahir Dar" element={<Categorybd />} />
@@ -156,9 +155,6 @@ function App() {
               <Route path="/daily discounts" element={< DailyDiscounts/>} />
               <Route path="/weekly discounts" element={< WeeklyDiscounts/>} />
             
-
-
-
         <Route
           path="/signup"
           element={

@@ -10,7 +10,7 @@ const Category1 = () => {
     {
       name: 'fashions',
       image_url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7',
-      path: '/fashions',
+      path: '/home2',
     },
     {
       name: 'Computers & Electronics',

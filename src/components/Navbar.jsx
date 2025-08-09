@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import Profile from '../pages/Profile';
 import './Navbar.css';
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -47,6 +48,9 @@ const Navbar = () => {
             sign up
           </NavLink>
         </div>
+         <div className="nav-profile">
+        <Profile />
+      </div>
 
         {/* Hamburger Menu */}
         {menuOpen && (
