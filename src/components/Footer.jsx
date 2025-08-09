@@ -1,6 +1,5 @@
-import React from 'react';
-import './Footer.css';
 
+import './Footer.css';
 const businessCategories = [
   {
     title: "Retail Stores",
@@ -55,9 +54,9 @@ const Footer = () => {
             Whether you're selling products, offering services, or looking for talent — we've got you covered.
           </p>
           <div className="contact-info">
-            <p>📧 Email: support@cbnetwork.com</p>
+            <p>📧 Email: animutalemeneh6322gmail.com</p>
             <p>📍 Location: Worldwide Access</p>
-            <p>📞 Phone: +1 (800) 555-2025</p>
+            <p>📞 Phone: +251943453172</p>
           </div>
         </div>
       </div> 
@@ -72,7 +71,7 @@ const Footer = () => {
           <a href="/login">Login</a>
           <a href="/signup">Sign Up</a>
         </nav>
-        <p className="footer-copy">© 2025 seller-buyer-network. All rights reserved.</p>
+        <p className="footer-copy">© 2025 customer-business-network. All rights reserved.</p>
       </div>
     </footer>
   );

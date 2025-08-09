@@ -19,7 +19,7 @@ const Navbar = () => {
       alt="CBN Logo"
       className="logo-img"
     />
-    <span className="logo-text">seller-buyer-network</span>
+    <span className="logo-text">customer-business-network</span>
   </Link>
 </div>
 
