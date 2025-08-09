@@ -32,7 +32,7 @@ const Home = () => {
         {/* 🔍 Search Input */}
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 🛍️ <strong>We are here to offer our products:</strong> 👀 💡
+            🎯 <strong>Well come to Piyasa 🛍️  We are here to offer our products:</strong> 👀 💡
           </label>
           <input
             type="text"
