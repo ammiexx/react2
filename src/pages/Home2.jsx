@@ -83,7 +83,7 @@ const Home = () => {
                     className="view-more-btn"
                     onClick={() => toggleExpand(item.id)}
                   >
-                    {expandedProductId === item.id ? 'Hide' : 'View More'}
+                    {expandedProductId === item.id ? 'hide' : 'see more items'}
                   </button>
                 )}
 
