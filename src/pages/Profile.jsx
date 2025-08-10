@@ -8,18 +8,12 @@ const Profile = () => {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const profileRef = useRef(null);
 
-  if (!user) return null;
-
-  const firstName = user.firstName || '';
-  const lastName = user.lastName || '';
-  const email = user.emailAddresses[0]?.emailAddress || '';
-
   // Close dropdown if click outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setOpen(false);
-        setShowLogoutConfirm(false); // also close logout confirm if open
+        setShowLogoutConfirm(false);
       }
     }
     if (open) {
@@ -31,6 +25,35 @@ const Profile = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [open]);
+
+  // Fallback UI if no user loaded yet
+  if (!user) {
+    return (
+      <div className="profile-wrapper" title="Not logged in">
+        <div className="profile-icon" onClick={() => {}}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="human-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+            />
+          </svg>
+        </div>
+      </div>
+    );
+  }
+
+  const firstName = user.firstName || '';
+  const lastName = user.lastName || '';
+  const email = user.emailAddresses[0]?.emailAddress || '';
 
   return (
     <div className="profile-wrapper" ref={profileRef}>
@@ -79,7 +102,7 @@ const Profile = () => {
               </svg>
             </div>
             <div className="profile-details">
-              <strong>{user.fullName}</strong>
+              <strong>{user.fullName || firstName + ' ' + lastName}</strong>
               <div className="profile-email">{email}</div>
             </div>
           </div>

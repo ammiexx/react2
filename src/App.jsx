@@ -93,8 +93,8 @@ function App() {
         <Route path="/piyasa" element={<Categorypiyasa />} />
         <Route path="/Dubi" element={<CategoryDubi />} />
          <Route path="/Bahir Dar" element={<Categorybd />} />
-         <Route path="/Bole" element={<Categorybole />} />
          <Route path="/Adama" element={<Categoryadama />} />
+         <Route path="/Bole" element={<Categorybole/>} />
           <Route path="/Hawassa" element={<Categoryhawassa />} />
           <Route path="/Mexico" element={<Categorymexico />} />
           <Route path="/seatle" element={<Categoryseatle />} />
