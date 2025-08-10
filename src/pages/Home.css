@@ -118,45 +118,53 @@
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 15px;
-  padding-bottom: 10px;
+  gap: 6px; /* Decreased from 10px */
+  margin-bottom: 10px; /* Slightly less vertical spacing */
+  padding: 6px 10px; /* Reduced padding */
   border-bottom: 1px solid #eee;
   background-color: #f8f8f8;
-  padding: 10px;
   border-radius: 6px;
 }
 
 .poster-meta {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px; /* Smaller space between image and name */
 }
 
 .profile-photo {
-  width: 40px;  /* smaller */
-  height: 40px;
+  width: 36px;  
+  height: 36px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
 }
 
 .poster-name {
   font-weight: 600;
   color: #2c3e50;
-  font-size: 0.9rem; /* smaller */
+  font-size: 0.85rem;  /* Slightly smaller */
+  margin: 0; /* Remove extra space */
 }
 
-.poster-location {
-  font-size: 0.75rem; /* smaller */
-  color: #555;
-  font-weight: 700; /* keeps location bold */
-}
-
+.poster-location,
 .posted-date {
-  font-size: 0.75rem; /* smaller */
-  color: #888;
+  font-size: 0.75rem;
+  color: #555;
+  margin: 0; /* Remove default spacing */
+  line-height: 1.2; /* Tighter line spacing */
 }
+.product-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+
 
 /* Product Row */
 .product-row {
