@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css';
+import './BeautyHome.css';
 
-const Home = () => {
+const BeautyHome = () => {
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/products/')
+    fetch('http://127.0.0.1:8000/beauty/beauties/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -30,7 +30,7 @@ const Home = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>Well come to Piyasa 🛍️  We are here to offer our products:</strong> 👀 💡
+            🎯 <strong>Well come to Piyasa 🛍️  We are here to offer our beauty products:</strong> 👀 💡
           </label>
           <input
             type="text"
@@ -148,4 +148,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default BeautyHome;

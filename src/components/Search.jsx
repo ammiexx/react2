@@ -4,7 +4,7 @@ import './Search.css';
 import Hamburger from './Hamburger';
 const categories = [
   "Entertainments",
-  "Piyasa",
+  "Piassa",
   "Dubi",
   "Bahir Dar",
   "Bole",

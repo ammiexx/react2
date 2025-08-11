@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css';
+import './FoodHome.css';
 
-const Home = () => {
+const FoodHome = () => {
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/products/')
+    fetch('http://127.0.0.1:8000/backend/foods/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -148,4 +148,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default FoodHome;

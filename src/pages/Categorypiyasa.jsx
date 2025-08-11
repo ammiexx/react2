@@ -2,55 +2,62 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Categorypiyasa.css';
 
-const Categorypiyasa= () => {
+const Categorypiyasa = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
 
   const categories = [
     {
       name: 'fashions',
-      image_url: 'https://www.bing.com/th/id/OIP.E-vHzjnOSMbAxQYQrKleOwHaLG?w=160&h=211&c=8&rs=1&qlt=90&o=6&cb=thwsc4&dpr=1.8&pid=3.1&rm=2',
-      path: '/fashions',
+      image_url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7',
+      path: '/home2',
     },
     {
       name: 'Computers & Electronics',
       image_url: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
-      path: '/electronics',
+      path: '/electronicmaterial',
     },
     {
-      name: 'Real Estates',
-      image_url: 'https://tse4.mm.bing.net/th/id/OIP.Fun3wrXk25N4JxXl5Kl2LgHaFD?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-      path: '/real-estates',
+      name: 'Homes',
+      image_url: 'https://images.unsplash.com/photo-1752407828488-1c6fafa47c50?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw0Mnx8fGVufDB8fHx8fA%3D%3D',
+      path: '/realhome',
     },
     {
       name: 'Car Brands',
-      image_url: 'https://tse1.mm.bing.net/th/id/OIP.B89JFviebUWHqx55l28wEQHaE7?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-      path: '/car-brands',
+      image_url: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70',
+      //path: '/car-brands',
+       path: '/carhome',
     },
     {
-      name: 'Food & Drinks',
-      image_url: 'https://www.myenglishlanguage.com/wp-content/uploads/2018/06/cheese-wine.jpg',
-      path: '/food-drinks',
+      name: 'Food & bevereges',
+      image_url: 'https://images.unsplash.com/photo-1498579809087-ef1e558fd1da',
+      path: '/foodhome',
     },
     {
       name: 'Home and appliances',
-      image_url: 'https://plus.unsplash.com/premium_photo-1689609950112-d66095626efb?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      path: '/home-appliances',
+      image_url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7',
+      path: '/appliancehome',
     },
     {
       name: 'Health & Beauty',
-      image_url: 'https://images.unsplash.com/photo-1620905969379-74c206d60543?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aGVhbHRoJTIwYW5kJTIwYmVhdXR5fGVufDB8fDB8fHww',
-      path: '/health-beauty',
+      image_url: 'https://images.unsplash.com/photo-1742201949674-a5084b01418c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D',
+      path: '/beautyhome',
     },
     {
-      name: 'Event & Weddings',
+      name: 'Events & Weddings',
       image_url: 'https://images.unsplash.com/photo-1754149155224-24d7042ec22e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3Mnx8fGVufDB8fHx8fA%3D%3D',
-      path: '/event-weddings',
+      path: '/weddinghome',
     },
     {
-      name: 'Entertainment',
-      image_url: 'https://plus.unsplash.com/premium_photo-1702249257777-927e3857a56b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZW50ZXJ0YWltZW50c3xlbnwwfHwwfHx8MA%3D%3D',
-      path: '/entertainments',
+      name: 'entertainments',
+      image_url: 'https://images.unsplash.com/photo-1754244774117-a27304d47959?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3NXx8fGVufDB8fHx8fA%3D%3D',
+      path: '/entertainment',
+    },
+
+     {
+      name: 'travels',
+      image_url: 'https://images.unsplash.com/photo-1754244774117-a27304d47959?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw3NXx8fGVufDB8fHx8fA%3D%3D',
+      path: '/travel',
     },
     // Add more categories as needed
   ];

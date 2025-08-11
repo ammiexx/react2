@@ -281,7 +281,7 @@
 .view-more-btn {
   margin-top: 12px;
   padding: 8px 16px;
-  background: linear-gradient(135deg,white,white);
+  background: linear-gradient(135deg,gray,gray);
   color: #fff;
   border: none;
   border-radius: 25px;

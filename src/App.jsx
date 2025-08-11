@@ -81,6 +81,17 @@ import Categoryberlin from "./pages/Categoryberlin";
 import Categoryparis from "./pages/Categoryparis";
 import Categorycanada from "./pages/Categorycanada";
 
+
+import RealHome from "./pages/realhome";
+import Electronicmaterial from "./pages/Electronicmaterials";
+import CarHome from "./pages/CarHome";
+import FoodHome from "./pages/FoodHome";
+import ApplianceHome from "./pages/AppliaceHome";
+import BeautyHome from "./pages/BeautyHome";
+import WeddingHome from "./pages/WeddingHome";
+import EntertainmentHome from "./pages/EntertainmentHome";
+import TravelHome from "./pages/TravelHome";
+
 function App() {
   return (
     <Router>
@@ -90,7 +101,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Category1 />} />
         <Route path="/home2" element={<Home/>} />
-        <Route path="/piyasa" element={<Categorypiyasa />} />
+        <Route path="/piassa" element={<Categorypiyasa />} />
         <Route path="/Dubi" element={<CategoryDubi />} />
          <Route path="/Bahir Dar" element={<Categorybd />} />
          <Route path="/Adama" element={<Categoryadama />} />
@@ -105,7 +116,15 @@ function App() {
           <Route path="/paris " element={<Categoryparis/>} />
           <Route path="/canada" element={<Categorycanada/>} />
 
-
+          <Route path="/realhome" element={<RealHome/>} />
+          <Route path="/electronicmaterial" element={<Electronicmaterial/>} />
+          <Route path="/carhome" element={<CarHome/>} />
+          <Route path="/foodhome" element={<FoodHome/>} />
+          <Route path="/appliancehome" element={<ApplianceHome/>} />
+          <Route path="/beautyhome" element={<BeautyHome/>} />
+          <Route path="/weddinghome" element={<WeddingHome/>} />
+          <Route path="/entertainment" element={<EntertainmentHome/>} />
+          <Route path="/travel" element={<TravelHome/>} />
 
         <Route path="/wanted" element={<Wanted />} />
         <Route path="/forsale" element={<ForSale />} />

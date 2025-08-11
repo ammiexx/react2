@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './Home.css';
+import './Weddinghome.css';
 
-const Home = () => {
+const WeddingHome = () => {
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/products/')
+    fetch('http://127.0.0.1:8000/wedding/weddings/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -30,7 +30,7 @@ const Home = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>Well come to Piyasa 🛍️  We are here to offer our products:</strong> 👀 💡
+            🎯 <strong>Well come to Piyasa 🛍️  We are here to offer our beauty and event products:</strong> 👀 💡
           </label>
           <input
             type="text"
@@ -114,17 +114,15 @@ const Home = () => {
                 {/* Product Details shown only when expanded */}
                 {expandedProductId === item.id && (
                   <div className="product-details">
+                    <p className="poster-name">{item.first_name} {item.last_name}</p>
+                    <p>🏷️ <strong>Category:</strong> {item.category}</p>
+                    <p>🆕 <strong>Condition:</strong> {item.condition}</p>
                     <p>📝 <strong>Description:</strong> {item.description}</p>
                     <p className="posted-date"><strong>posted-date:</strong> {new Date(item.date_posted).toLocaleDateString()}</p>
                     <p className="contact">
                       {item.contact_telegram && (
                         <a href={item.contact_telegram} target="_blank" rel="noopener noreferrer">
                           📲 Telegram
-                        </a>
-                      )}
-                       {item.contact_tick && (
-                        <a href={item.contact_tick} target="_blank" rel="noopener noreferrer">
-                          📲 Ticktalk
                         </a>
                       )}
                       
@@ -148,4 +146,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default WeddingHome;
