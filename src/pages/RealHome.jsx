@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './realhome.css';
+import './RealHome.css';
 
 const RealHome = () => {
   const [products, setProducts] = useState([]);
