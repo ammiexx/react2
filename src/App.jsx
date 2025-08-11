@@ -82,7 +82,7 @@ import Categoryparis from "./pages/Categoryparis";
 import Categorycanada from "./pages/Categorycanada";
 
 
-import RealHome from "./pages/Realhome";
+import RealHome from "./pages/RealHome";
 import Electronicmaterial from "./pages/Electronicmaterials";
 import CarHome from "./pages/CarHome";
 import FoodHome from "./pages/FoodHome";
