@@ -3,14 +3,10 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SignUp,SignIn } from "@clerk/clerk-react";
 import Navbar from "./components/Navbar";
-import Search from "./components/Search"
+ import Search from "./components/Search"
 import Back from "./components/Back";
 import Footer from "./components/Footer";
 import Signup from "./components/Signup"
-import Login from "./components/Login";
-import Home from "./pages/Home2";
-import Wanted from "./pages/Wanted";
-import ForSale from "./pages/ForSale";
 import Checkout from "./components/Checkout";
 import AboutUs from "./pages/Aboutus";
 import Questions from "./pages/Chat2";
@@ -82,6 +78,7 @@ import Categoryparis from "./pages/Categoryparis";
 import Categorycanada from "./pages/Categorycanada";
 
 
+
 import RealHome from "./pages/RealHome";
 import Electronicmaterial from "./pages/Electronicmaterials";
 import CarHome from "./pages/CarHome";
@@ -91,6 +88,12 @@ import BeautyHome from "./pages/BeautyHome";
 import WeddingHome from "./pages/WeddingHome";
 import EntertainmentHome from "./pages/EntertainmentHome";
 import TravelHome from "./pages/TravelHome";
+import Home from "./pages/Home2";
+
+import Wanted from "./pages/Wanted";
+import ForSale from "./pages/ForSale";
+import Login from "./components/Login";
+
 
 function App() {
   return (
@@ -98,7 +101,7 @@ function App() {
       <Navbar />
       <Search />
       <Routes>
-        <Route path="/signup" element={<Signup />} />
+        {/* <Route path="/signup" element={<Signup />} /> */}
         <Route path="/" element={<Category1 />} />
         <Route path="/home2" element={<Home/>} />
         <Route path="/piassa" element={<Categorypiyasa />} />
