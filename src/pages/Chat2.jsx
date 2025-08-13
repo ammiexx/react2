@@ -63,7 +63,7 @@ const Chat2 = () => {
   return (
     <div className="talk-container">
       <div className="talk-box">
-        <h1 className="talk-title">💬 Share Your Thoughts</h1>
+        <h1 className="talk-title">💬 share want you want and need</h1>
         <p className="talk-subtitle">This is a space where your voice matters. Say anything you want!</p>
 
         {submitted && <div className="talk-success">✅ Your message has been submitted!</div>}
