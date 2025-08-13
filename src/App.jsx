@@ -13,7 +13,7 @@ import Wanted from "./pages/Wanted";
 import ForSale from "./pages/ForSale";
 import Checkout from "./components/Checkout";
 import AboutUs from "./pages/Aboutus";
-import Questions from "./pages/Chat2";
+import Chat2 from "./pages/Chat2";
 import Category1 from "./pages/Category1";
 import Electronics from "./components/Electronics";
 import Houses from "./components/Houses";
@@ -128,7 +128,7 @@ function App() {
            <Route path="/todaysdeals" element={< TodaysDeals/>} />
 
             
-            <Route path="/what u want?" element={< Questions/>} />
+            <Route path="/what u want?" element={< Chat2/>} />
              <Route path="/entertainments" element={< Entertainments/>} />
              <Route path="/purchasehistory" element={< PurchaseHistory/>} />
              <Route path="/technologymethods" element={< TechnologyMethods/>} />

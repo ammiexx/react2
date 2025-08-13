@@ -1,215 +1,109 @@
 import React, { useState, useEffect } from 'react';
 import './Chat.css';
 
-const Questions = () => {
-    const [buyerMessage, setBuyerMessage] = useState('');
-const [sellerMessage, setSellerMessage] = useState('');
-const handleSendBuyer = () => {
-  if (!buyerMessage.trim()) return;
+const BACKEND_URL = 'http://127.0.0.1:8000/api/cat'; // update as needed
 
-  fetch('http://127.0.0.1:8000/api/buyers/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-    body: JSON.stringify({ message: buyerMessage }),
-  })
-    .then(res => res.json())
-    .then(data => {
-      setBuyers(prev => [...prev, data]);  // Add new buyer to list
-      setBuyerMessage(''); // Clear input
-    })
-    .catch(err => console.error('Error sending buyer message:', err));
-};
+const Chat2 = () => {
+  const [name, setName] = useState('');
+  const [message, setMessage] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [messages, setMessages] = useState([]);
 
-const handleSendSeller = () => {
-  if (!sellerMessage.trim()) return;
+  // Fetch messages from backend
+  const fetchMessages = async () => {
+    try {
+      const response = await fetch(BACKEND_URL);
+      if (!response.ok) throw new Error('Failed to fetch messages');
+      const data = await response.json();
+      setMessages(data);
+      setError('');
+    } catch (err) {
+      console.error(err);
+      setError('Failed to load messages');
+    }
+  };
 
-  fetch('http://127.0.0.1:8000/api/sellers/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    },
-    body: JSON.stringify({ message: sellerMessage }),
-  })
-    .then(res => res.json())
-    .then(data => {
-      setSellers(prev => [...prev, data]);  // Add new seller to list
-      setSellerMessage(''); // Clear input
-    })
-    .catch(err => console.error('Error sending seller message:', err));
-};
-
-  const [buyers, setBuyers] = useState([]);
-  const [sellers, setSellers] = useState([]);
-  const [buyerSearchTerm, setBuyerSearchTerm] = useState('');
-  const [sellerSearchTerm, setSellerSearchTerm] = useState('');
-  const [favorites, setFavorites] = useState(new Set());
-
-  // ✅ Fetch buyers, sellers, and favorites
+  // On mount, load messages
   useEffect(() => {
-    fetch('https://djanagobackend-5.onrender.com/api/buyers/')
-      .then(response => response.json())
-      .then(data => setBuyers(data))
-      .catch(error => console.error('Error fetching buyers:', error));
-
-    fetch('https://djanagobackend-5.onrender.com/api/sellers/')
-      .then(response => response.json())
-      .then(data => setSellers(data))
-      .catch(error => console.error('Error fetching sellers:', error));
-
-    fetch('https://djanagobackend-5.onrender.com/api/favorites/', {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-      }
-    })
-      .then(res => res.json())
-      .then(data => {
-        const favSet = new Set(data.map(item => `${item.target_type}-${item.target_id}`));
-        setFavorites(favSet);
-      })
-      .catch(err => console.error('Error fetching favorites:', err));
+    fetchMessages();
   }, []);
 
-  // ✅ Toggle favorite status via backend
-  const toggleFavorite = (id, type) => {
-  fetch('https://djanagobackend-5.onrender.com/api/favorites/toggle/', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-    },
-    body: JSON.stringify({ target_id: id, target_type: type })
-  })
-    .then(res => res.json())
-    .then(data => {
-      const key = `${type}-${id}`;
-      const name = type === 'buyer' 
-        ? buyers.find(b => b.id === id)?.name 
-        : sellers.find(s => s.id === id)?.name;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-      setFavorites(prev => {
-        const updated = new Set(prev);
-        if (data.message.includes('added')) {
-          updated.add(key);
-          setNotification(`${type === 'buyer' ? 'Buyer' : 'Seller'} "${name}" added to favorites!`);
-        } else if (data.message.includes('removed')) {
-          updated.delete(key);
-        }
-        {notification && (
-  <div className="notification-popup">
-    {notification}
-  </div>
-)}
+    if (!message.trim()) {
+      alert("Please enter a message.");
+      return;
+    }
 
-        return updated;
+    try {
+      const response = await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, message }),
       });
 
-      // Clear the notification after 2 seconds
-      setTimeout(() => setNotification(''), 2000);
-    })
-    .catch(err => console.error('Error toggling favorite:', err));
-};
+      if (!response.ok) throw new Error('Failed to submit message');
 
+      setSubmitted(true);
+      setMessage('');
+      setName('');
+      setError('');
 
-  const isFavorited = (id, type) => favorites.has(`${type}-${id}`);
-
-  const filteredBuyers = buyers.filter(buyer =>
-    buyer.message.toLowerCase().includes(buyerSearchTerm.toLowerCase())
-  );
-
-  const filteredSellers = sellers.filter(seller =>
-    seller.message.toLowerCase().includes(sellerSearchTerm.toLowerCase())
-  );
+      // Wait for updated messages before continuing
+      await fetchMessages();
+    } catch (err) {
+      console.error(err);
+      setError('There was a problem submitting your message. Please try again.');
+      setSubmitted(false);
+    }
+  };
 
   return (
-    <>
-      <h1 className="main-title">"🔥Share us what you need — you'll find your ideal buyer/seller🔥"</h1>
-      <div className="questions-container">
+    <div className="talk-container">
+      <div className="talk-box">
+        <h1 className="talk-title">💬 Share Your Thoughts</h1>
+        <p className="talk-subtitle">This is a space where your voice matters. Say anything you want!</p>
 
-        {/* 👤 Buyers Section */}
-        <div className="column buyer-column">
-          <h2>Buyers</h2>
-         <div className="top-action-row">
-  <input
-    type="text"
-    className="search-input"
-    placeholder="share us what you want to buy..."
-    value={buyerMessage}
-    onChange={(e) => setBuyerMessage(e.target.value)}
-  />
-  <button onClick={handleSendBuyer} className="send-button">Send</button>
-</div>
+        {submitted && <div className="talk-success">✅ Your message has been submitted!</div>}
+        {error && <div className="talk-error" style={{ color: 'red' }}>{error}</div>}
 
-          {filteredBuyers.map(buyer => (
-            <div key={buyer.id} className="card">
-              <img src={buyer.profile_photo} alt="Profile" className="profile-photo" />
-              <div className="info">
-                <h4>{buyer.name}</h4>
-                <p>{buyer.message}</p>
-                <div className="button-row">
-                  <a href={buyer.telegram} target="_blank" rel="noopener noreferrer" className="inbox-button">
-                    Talk me inbox
-                  </a>
-                  <a href={buyer.tiktok} target="_blank" rel="noopener noreferrer" className="follow-button">
-                    Follow
-                  </a>
-                  <button
-                    className={`favorite-button ${isFavorited(buyer.id, 'buyer') ? 'favorited' : ''}`}
-                    onClick={() => toggleFavorite(buyer.id, 'buyer')}
-                  >
-                    {isFavorited(buyer.id, 'buyer') ? '★ Favorited' : 'Add to ★'}
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <form className="talk-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Your Name (optional)"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="talk-input"
+          />
+          <textarea
+            placeholder="Write your message here..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="talk-textarea"
+            rows={5}
+          />
+          <button type="submit" className="talk-submit-btn">Send Message</button>
+        </form>
 
-        {/* 💼 Sellers Section */}
-        <div className="column seller-column">
-          <h2>Sellers</h2>
-         <div className="top-action-row">
-  <input
-    type="text"
-    className="comentinput-input"
-    placeholder="Tell us what you want to sell..."
-    value={sellerMessage}
-    onChange={(e) => setSellerMessage(e.target.value)}
-    aria-label="tell us what you want to sell"
-  />
-  <button onClick={handleSendSeller} className="send-button">Send</button>
-</div>
-
-          {filteredSellers.map(seller => (
-            <div key={seller.id} className="card">
-              <img src={seller.profile_photo} alt="Profile" className="profile-photo" />
-              <div className="info">
-                <h4>{seller.name}</h4>
-                <p>{seller.message}</p>
-                <div className="button-row">
-                  <a href={seller.telegram} target="_blank" rel="noopener noreferrer" className="inbox-button">
-                    Talk me inbox
-                  </a>
-                  <a href={seller.tiktok} target="_blank" rel="noopener noreferrer" className="follow-button">
-                    Follow
-                  </a>
-                  <button
-                    className={`favorite-button ${isFavorited(seller.id, 'seller') ? 'favorited' : ''}`}
-                    onClick={() => toggleFavorite(seller.id, 'seller')}
-                  >
-                    {isFavorited(seller.id, 'seller') ? '★ Favorited' : 'Add to ★'}
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="talk-messages">
+          <h2>Previous Messages:</h2>
+          {messages.length === 0 ? (
+            <p>No messages yet.</p>
+          ) : (
+            <ul>
+              {messages.map((msg, idx) => (
+                <li key={idx} className="talk-message-item">
+                  <strong>{msg.name ? msg.name : 'Anonymous'}:</strong> {msg.message}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default Questions;
+export default Chat2;

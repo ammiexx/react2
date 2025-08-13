@@ -1,191 +1,78 @@
-.questions-container {
+.talk-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #f8f9fa, #e0f7fa);
   padding: 20px;
-  gap: 20px;
 }
 
-.column {
-  flex: 1;
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  overflow-y: auto;
-  max-height: 80vh;
-}
-
-.buyer-column {
-  background-color: #e8f0fe;
-}
-
-.seller-column {
-  background-color: #fcefe3;
-}
-
-h2 {
+.talk-box {
+  background-color: white;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 30px;
   text-align: center;
-  margin-bottom: 20px;
 }
 
-.card {
+.talk-title {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.talk-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 25px;
+}
+
+.talk-form {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   gap: 15px;
-  border-bottom: 1px solid #ddd;
-  padding: 15px 0;
 }
 
-.profile-photo {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-.info {
-  flex-grow: 1;
-}
-
-.info h4 {
-  margin: 0 0 5px;
-}
-
-.info p {
-  margin: 0 0 10px;
-}
-
-.inbox-button {
-  padding: 8px 12px;
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  display: inline-block;
-}
-
-.inbox-button:hover {
-  background-color: #0056b3;
-}
-.top-action-row {
-  margin: 10px 0 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.search-input,
-.comentinput-input {
-  width: 90%;
-  max-width: 500px;
-  padding: 10px 14px;
-  font-size: 16px;
+.talk-input,
+.talk-textarea {
+  padding: 12px 15px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.talk-input:focus,
+.talk-textarea:focus {
+  border-color: #2980b9;
   outline: none;
-  transition: border-color 0.3s;
 }
 
-.search-input:focus,
-.comentinput-input:focus {
-  border-color: #007bff;
-}
-.top-action-row {
-  margin: 10px 0 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.search-input,
-.comentinput-input {
-  width: 90%;
-  max-width: 500px;
-  padding: 10px 14px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.3s;
-}
-
-.search-input:focus,
-.comentinput-input:focus {
-  border-color: #007bff;
-}
-
-.button-row {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.inbox-button,
-.follow-button,
-.favorite-button {
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-size: 14px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background 0.2s;
-  border: none;
-}
-
-.inbox-button {
-  background-color: #007bff;
+.talk-submit-btn {
+  padding: 12px;
+  background-color: #2980b9;
   color: white;
-}
-
-.inbox-button:hover {
-  background-color: #0056b3;
-}
-
-.follow-button {
-  background-color: #f1502f;
-  color: white;
-}
-
-.follow-button:hover {
-  background-color: #d14026;
-}
-
-.favorite-button {
-  background-color: #f0f0f0;
-  color: #333;
-  border: 1px solid #ccc;
-}
-
-.favorite-button.favorited {
-  background-color: #ffd700;
-  color: #000;
-}
-.multiline-placeholder::placeholder {
-  white-space: pre-wrap; /* Enables line breaks in placeholder */
-}
-.favorite-button {
-  background-color: #e0e0e0;
-  color: #333;
+  font-size: 1rem;
   border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.favorite-button.favorited {
-  background-color: gold;
-  color: black;
-}
-.send-button {
-  margin-left: 10px;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.send-button:hover {
-  background-color: #0056b3;
+.talk-submit-btn:hover {
+  background-color: #1c5d8f;
+}
+
+.talk-success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border: 1px solid #c3e6cb;
+  font-weight: bold;
 }

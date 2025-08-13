@@ -9,7 +9,7 @@ const WeddingHome = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/wedding/weddings/')
+    fetch('https://djanagobackend-5.onrender.com/wedding/weddings/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -30,7 +30,7 @@ const WeddingHome = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>We are here to offer our beauty and event products:</strong> 👀 💡
+            🎯 <strong>We are here to offer our wedding and event products:</strong> 👀 💡
           </label>
           <input
             type="text"
