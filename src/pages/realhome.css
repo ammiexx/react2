@@ -56,6 +56,37 @@
 .featured-section {
   margin-top: 50px;
 }
+.featured-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.featured-column {
+  flex: 1 1 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 300px;
+  max-width: 100%;
+}
+@media (max-width: 1024px) {
+  .featured-column {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-column {
+    flex: 1 1 100%;
+  }
+
+  .search-bar input {
+    width: 90%;
+  }
+}
 
 .featured-section h2 {
   font-size: 2rem;
@@ -67,12 +98,15 @@
 /* Updated to 4 columns */
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns */
-  gap: 15px; /* space between posts */
-  background-color: #2980b9; /* noticeable color between posts */
-  padding: 15px; /* optional padding around grid */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* responsive 3-per-row */
+  gap: 20px;
+  padding: 30px;
   border-radius: 12px;
+
+  /* New background */
+  background: linear-gradient(to bottom right, #f9f9f9, #e9ecef);
 }
+
 
 .featured-item-row:nth-child(4n+1) {
   background-color: #e8f4fd;
