@@ -52,7 +52,7 @@ const Navbar = () => {
               <div className="section-title">— Account —</div>
               <ul>
                 <li><Link to="/profile">My Profile</Link></li>
-                <li><Link to="/orders">Orders</Link></li>
+                
                 <li><Link to="/wishlist">Wishlist</Link></li>
                 <li><Link to="/addresses">Addresses</Link></li>
                 <li><Link to="/payment-methods">Payment Methods</Link></li>
