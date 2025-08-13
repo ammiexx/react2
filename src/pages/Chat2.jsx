@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Chat.css';
 
-const BACKEND_URL = 'http://127.0.0.1:8000/api/cat'; // update as needed
+const BACKEND_URL = 'http://djanagobackend-5.onrender.com/api/cat'; // update as needed
 
 const Chat2 = () => {
   const [name, setName] = useState('');
