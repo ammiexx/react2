@@ -9,7 +9,7 @@ const TravelHome = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/travel/travels/')
+    fetch('https://djanagobackend-5.onrender.com/travel/travels/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));

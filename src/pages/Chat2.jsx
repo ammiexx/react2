@@ -50,17 +50,17 @@ const handleSendSeller = () => {
 
   // ✅ Fetch buyers, sellers, and favorites
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/buyers/')
+    fetch('https://djanagobackend-5.onrender.com/api/buyers/')
       .then(response => response.json())
       .then(data => setBuyers(data))
       .catch(error => console.error('Error fetching buyers:', error));
 
-    fetch('http://localhost:8000/api/sellers/')
+    fetch('https://djanagobackend-5.onrender.com/api/sellers/')
       .then(response => response.json())
       .then(data => setSellers(data))
       .catch(error => console.error('Error fetching sellers:', error));
 
-    fetch('http://127.0.0.1:8000/api/favorites/', {
+    fetch('https://djanagobackend-5.onrender.com/api/favorites/', {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
       }
@@ -75,7 +75,7 @@ const handleSendSeller = () => {
 
   // ✅ Toggle favorite status via backend
   const toggleFavorite = (id, type) => {
-  fetch('http://127.0.0.1:8000/api/favorites/toggle/', {
+  fetch('https://djanagobackend-5.onrender.com/api/favorites/toggle/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

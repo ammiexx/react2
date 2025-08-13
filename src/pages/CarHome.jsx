@@ -9,7 +9,7 @@ const CarHome = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/backend/cars/')
+    fetch('https://djanagobackend-5.onrender.com/backend/cars/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -30,7 +30,7 @@ const CarHome = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>Well come to Piyasa 🛍️  We are here to offer our car brands:</strong> 👀 💡
+            🎯 <strong>We are here to offer our car brands:</strong> 👀 💡
           </label>
           <input
             type="text"

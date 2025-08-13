@@ -9,7 +9,7 @@ const RealHome = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/RealEstates/')
+    fetch('https://djanagobackend-5.onrender.com/api/RealEstates/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -30,7 +30,7 @@ const RealHome = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>Well come to Piyasa 🛍️  We are here to offer our products:</strong> 👀 💡
+            🎯 <strong>We are here to offer our home products:</strong> 👀 💡
           </label>
           <input
             type="text"

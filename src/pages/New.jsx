@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './FoodHome.css';
+import './New.css';
 
-const FoodHome = () => {
+const Newp = () => {
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('https://djanagobackend-5.onrender.com/backend/foods/')
+    fetch('https://djanagobackend-5.onrender.com/new/newproducts/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -30,12 +30,12 @@ const FoodHome = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>We are here to offer our products:</strong> 👀 💡
+            🎯 <strong>We are here to offer newly realeased products and services:</strong> 👀 💡
           </label>
           <input
             type="text"
             id="search"
-            placeholder="Search what you want to buy..."
+            placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -148,4 +148,4 @@ const FoodHome = () => {
   );
 };
 
-export default FoodHome;
+export default Newp;

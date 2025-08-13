@@ -9,7 +9,7 @@ const ApplianceHome = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/appliance/appliances/')
+    fetch('https://djanagobackend-5.onrender.com/appliance/appliances/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -30,7 +30,7 @@ const ApplianceHome = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>Well come to Piyasa 🛍️  We are here to offer our home and appliance products:</strong> 👀 💡
+            🎯 <strong> We are here to offer our home and appliance products:</strong> 👀 💡
           </label>
           <input
             type="text"

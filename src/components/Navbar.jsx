@@ -29,17 +29,8 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="nav-links">
-             <NavLink to="/Daily Discounts" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            daily discounts
-          </NavLink>
-          <NavLink to="/Weekly discounts" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            weekly discounts
-          </NavLink>
-          <NavLink to="/announcements" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            Announcements
-          </NavLink>
-          <NavLink to="/chat" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            S&B
+          <NavLink to="/" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
+            your offers
           </NavLink>
           <NavLink to="/login" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
             sign in
@@ -47,10 +38,11 @@ const Navbar = () => {
           <NavLink to="/signup" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
             sign up
           </NavLink>
-        </div>
-         <div className="nav-profile">
+           <div className="nav-profile">
         <Profile />
       </div>
+        </div>
+        
 
         {/* Hamburger Menu */}
         {menuOpen && (

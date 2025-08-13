@@ -10,7 +10,7 @@ const Electronicmaterial = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/backend/electronic/')
+    fetch('https://djanagobackend-5.onrender.com/backend/electronic/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -31,7 +31,7 @@ const Electronicmaterial = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>Well come to Piyasa 🛍️  We are here to offer our products:</strong> 👀 💡
+            🎯 <strong>We are here to offer our products:</strong> 👀 💡
           </label>
           <input
             type="text"

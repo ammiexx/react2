@@ -3,10 +3,14 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SignUp,SignIn } from "@clerk/clerk-react";
 import Navbar from "./components/Navbar";
- import Search from "./components/Search"
+import Search from "./components/Search"
 import Back from "./components/Back";
 import Footer from "./components/Footer";
 import Signup from "./components/Signup"
+import Login from "./components/Login";
+import Home from "./pages/Home2";
+import Wanted from "./pages/Wanted";
+import ForSale from "./pages/ForSale";
 import Checkout from "./components/Checkout";
 import AboutUs from "./pages/Aboutus";
 import Questions from "./pages/Chat2";
@@ -57,28 +61,8 @@ import Entertainments from "./BusinessCategories/Entertainments";
 
 import PurchaseHistory from "./BusinessCategories/PurchaseHistory";
 import TechnologyMethods from "./BusinessCategories/TechnologyMethods";
+
 import Announcements from "./BusinessCategories/Announcements";
-
-import Fashions from "./BusinessCategories/Fashion";
-
-
-import Categorypiyasa from "./pages/Categorypiyasa";
-import CategoryDubi from "./pages/CategoryDubi";
-import Categorybole from "./pages/Categorybole";
-import Categorybd from "./pages/Categorybd";
-import Categoryadama from "./pages/Categoryadama";
-import Categoryhawassa from "./pages/Categoryhawassa";
-import Categorymexico from "./pages/Categorymexico";
-import Categoryseatle from "./pages/Categoryseatle";
-import Categoryag from "./pages/Categoryag";
-import Categorymekelie from "./pages/Categorymekelie";
-import Categoryjima from "./pages/Categoryjima";
-import Categoryberlin from "./pages/Categoryberlin";
-import Categoryparis from "./pages/Categoryparis";
-import Categorycanada from "./pages/Categorycanada";
-
-
-
 import RealHome from "./pages/RealHome";
 import Electronicmaterial from "./pages/Electronicmaterials";
 import CarHome from "./pages/CarHome";
@@ -88,11 +72,11 @@ import BeautyHome from "./pages/BeautyHome";
 import WeddingHome from "./pages/WeddingHome";
 import EntertainmentHome from "./pages/EntertainmentHome";
 import TravelHome from "./pages/TravelHome";
-import Home from "./pages/Home2";
+import Daily from "./pages/DailyDiscounts";
+import Week from "./pages/WeeklyDiscounts";
+import Newp from "./pages/New";
+import Upcomming from "./pages/Upcomming";
 
-import Wanted from "./pages/Wanted";
-import ForSale from "./pages/ForSale";
-import Login from "./components/Login";
 
 
 function App() {
@@ -101,24 +85,9 @@ function App() {
       <Navbar />
       <Search />
       <Routes>
-        {/* <Route path="/signup" element={<Signup />} /> */}
+        <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Category1 />} />
         <Route path="/home2" element={<Home/>} />
-        <Route path="/piassa" element={<Categorypiyasa />} />
-        <Route path="/Dubi" element={<CategoryDubi />} />
-         <Route path="/Bahir Dar" element={<Categorybd />} />
-         <Route path="/Adama" element={<Categoryadama />} />
-         <Route path="/Bole" element={<Categorybole/>} />
-          <Route path="/Hawassa" element={<Categoryhawassa />} />
-          <Route path="/Mexico" element={<Categorymexico />} />
-          <Route path="/seatle" element={<Categoryseatle />} />
-          <Route path="/addis gebeya" element={<Categoryag />} />
-          <Route path="/Mekelie" element={<Categorymekelie />} />
-          <Route path="/jima " element={<Categoryjima />} />
-          <Route path="/berlin " element={<Categoryberlin/>} />
-          <Route path="/paris " element={<Categoryparis/>} />
-          <Route path="/canada" element={<Categorycanada/>} />
-
           <Route path="/realhome" element={<RealHome/>} />
           <Route path="/electronicmaterial" element={<Electronicmaterial/>} />
           <Route path="/carhome" element={<CarHome/>} />
@@ -128,6 +97,10 @@ function App() {
           <Route path="/weddinghome" element={<WeddingHome/>} />
           <Route path="/entertainment" element={<EntertainmentHome/>} />
           <Route path="/travel" element={<TravelHome/>} />
+          <Route path="/daily discounts" element={<Daily/>} />
+          <Route path="/weekly discounts" element={<Week/>} />
+          <Route path="/new offers" element={<Newp/>} />
+          <Route path="/upcomming services" element={<Upcomming/>} />
 
         <Route path="/wanted" element={<Wanted />} />
         <Route path="/forsale" element={<ForSale />} />
@@ -147,7 +120,7 @@ function App() {
          <Route path="/paymentmethods" element={< PaymentMethods/>} />
          <Route path="/orders" element={< Orders/>} />
          <Route path="/whishlist" element={< Whishlist/>} />
-         <Route path="/newarrivals" element={< NewArrivals/>} />
+         <Route path="/new offers" element={< NewArrivals/>} />
            <Route path="/best-sellers" element={< BestSellers/>} />
            <Route path="/dealsandoffers" element={< DealsandOffers/>} />
            <Route path="/brands" element={< Brands/>} />
@@ -155,11 +128,11 @@ function App() {
            <Route path="/todaysdeals" element={< TodaysDeals/>} />
 
             
-            <Route path="/chat" element={< Questions/>} />
+            <Route path="/what u want?" element={< Questions/>} />
              <Route path="/entertainments" element={< Entertainments/>} />
              <Route path="/purchasehistory" element={< PurchaseHistory/>} />
              <Route path="/technologymethods" element={< TechnologyMethods/>} />
-             <Route path="/announcements" element={< Announcements/>} />
+             <Route path="/new advantages" element={< Announcements/>} />
              <Route path="/car-brands" element={< CarBrands/>} />
             <Route path="/fashions" element={< Fashion/>} />
             <Route path="/real-estates" element={< RealEstate/>} />
@@ -173,10 +146,7 @@ function App() {
               <Route path="/agriculture-livestock" element={< AgricultureLivestock/>} />
               <Route path="/repair-maintenance" element={< RepairMaintenance/>} />
               <Route path="/event-weddings" element={< EventsWeddings/>} />
-              <Route path="/freelance-services" element={< ServicesFreelance/>} />
-              <Route path="/daily discounts" element={< DailyDiscounts/>} />
-              <Route path="/weekly discounts" element={< WeeklyDiscounts/>} />
-            
+              <Route path="/freelance-services" element={< ServicesFreelance/>} />  
         <Route
           path="/signup"
           element={
@@ -193,7 +163,6 @@ function App() {
          <Route path="/sellers-form" element={<SellersForm />} />
           <Route path="/houses" element={<Houses/>} />
            <Route path="/clothes" element={<Clothes/>} />
-           
         <Route path="/checkout" element={<Checkout />} /> {/* 👈 add this route */}
       </Routes>
       <Back/>

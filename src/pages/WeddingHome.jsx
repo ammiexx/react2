@@ -30,7 +30,7 @@ const WeddingHome = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>Well come to Piyasa 🛍️  We are here to offer our beauty and event products:</strong> 👀 💡
+            🎯 <strong>We are here to offer our beauty and event products:</strong> 👀 💡
           </label>
           <input
             type="text"

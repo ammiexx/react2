@@ -9,7 +9,7 @@ const EntertainmentHome = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/enter/enters/')
+    fetch('https://djanagobackend-5.onrender.com/enter/enters/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -30,7 +30,7 @@ const EntertainmentHome = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>Well come to Piyasa 🛍️  to our entertaiment centers:</strong> 👀 💡
+            🎯 <strong>Well are here to announce our entertaiment centers:</strong> 👀 💡
           </label>
           <input
             type="text"
