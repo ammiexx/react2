@@ -63,7 +63,7 @@ const Search = () => {
               
               <li><Link to="/aboutus" onClick={closeMenu}>About Us</Link></li>
               <li><Link to="/new advantages" onClick={closeMenu}>Announcements</Link></li>
-              <li><Link to="/what u want?" onClick={closeMenu}>what u want?</Link></li>
+              <li><Link to="/" onClick={closeMenu}>what u want?</Link></li>
               <li><Link to="/weekly discounts" onClick={closeMenu}>Want discounts?</Link></li>
               <li><Link to="/logout" onClick={closeMenu}>sign out</Link></li>
               <li><Link to="/orders" onClick={closeMenu}>Orders</Link></li>

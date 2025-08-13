@@ -29,7 +29,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="nav-links">
-          <NavLink to="/" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
+          <NavLink to="/your-offers" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
             your offers
           </NavLink>
           <NavLink to="/login" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>

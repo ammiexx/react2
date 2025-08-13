@@ -90,67 +90,64 @@
   font-weight: bold;
 }
 /* Container for all messages */
+/* Container for all messages */
 .talk-messages ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 300px; /* scroll if too long */
+  max-height: 300px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 2-column responsive grid */
   gap: 12px;
 }
 
 /* Each message item container */
 .talk-message-item {
-  max-width: 75%;
-  padding: 12px 18px;
-  border-radius: 18px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
-  font-size: 1rem;
+  background-color: #f8f9fa;
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  font-size: 0.95rem;
   line-height: 1.4;
-  position: relative;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
 }
 
-/* Different background colors for sender vs anonymous */
-.talk-message-anonymous {
-  background-color: #f1f1f1;
-  color: #444;
-  align-self: flex-start;
-  border-top-left-radius: 4px;
-}
-
+/* User or anonymous message styling */
 .talk-message-user {
   background-color: #2980b9;
   color: white;
-  align-self: flex-end;
-  border-top-right-radius: 4px;
 }
 
-/* Name label above message in smaller font */
+.talk-message-anonymous {
+  background-color: #e4e4e4;
+  color: #333;
+}
+
+/* Name label */
 .talk-message-name {
   font-weight: 600;
   font-size: 0.85rem;
-  margin-bottom: 4px;
   opacity: 0.75;
 }
 
-/* Timestamp below message in smaller font and lighter color */
+/* Timestamp */
 .talk-message-time {
   font-size: 0.75rem;
-  color: #aaa;
-  margin-top: 6px;
+  color: #999;
   text-align: right;
+  margin-top: auto;
 }
 
-/* Scrollbar styling for messages */
+/* Scrollbar styling */
 .talk-messages ul::-webkit-scrollbar {
   width: 6px;
 }
-
 .talk-messages ul::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 3px;
 }

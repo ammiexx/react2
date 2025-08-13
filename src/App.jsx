@@ -86,7 +86,7 @@ function App() {
       <Search />
       <Routes>
         <Route path="/signup" element={<Signup />} />
-        <Route path="/" element={<Category1 />} />
+        <Route path="/your-offers" element={<Category1 />} />
         <Route path="/home2" element={<Home/>} />
           <Route path="/realhome" element={<RealHome/>} />
           <Route path="/electronicmaterial" element={<Electronicmaterial/>} />
