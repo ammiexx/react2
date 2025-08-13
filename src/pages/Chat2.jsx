@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Chat.css';
 
-const BACKEND_URL = 'http://djanagobackend-5.onrender.com/api/cat'; // update as needed
+const BACKEND_URL = 'https://djanagobackend-5.onrender.com/api/cat'; // Use HTTPS if backend supports it
 
 const Chat2 = () => {
   const [name, setName] = useState('');
@@ -9,6 +9,7 @@ const Chat2 = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // Fetch messages from backend
   const fetchMessages = async () => {
@@ -16,7 +17,7 @@ const Chat2 = () => {
       const response = await fetch(BACKEND_URL);
       if (!response.ok) throw new Error('Failed to fetch messages');
       const data = await response.json();
-      setMessages(data);
+      setMessages(data.reverse()); // newest on top
       setError('');
     } catch (err) {
       console.error(err);
@@ -38,35 +39,42 @@ const Chat2 = () => {
     }
 
     try {
+      setLoading(true);
       const response = await fetch(BACKEND_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, message }),
       });
 
-      if (!response.ok) throw new Error('Failed to submit message');
+      if (!response.ok) {
+        const text = await response.text();
+        console.error('Server error:', text);
+        throw new Error('Failed to submit message');
+      }
 
       setSubmitted(true);
       setMessage('');
       setName('');
       setError('');
 
-      // Wait for updated messages before continuing
+      // Refresh messages
       await fetchMessages();
     } catch (err) {
       console.error(err);
       setError('There was a problem submitting your message. Please try again.');
       setSubmitted(false);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="talk-container">
       <div className="talk-box">
-        <h1 className="talk-title">💬 share want you want and need</h1>
-        <p className="talk-subtitle">This is a space where your voice matters. Say anything you want!</p>
+        <h1 className="talk-title">💬 Share What You Want and Need</h1>
+        <p className="talk-subtitle">Your voice matters. Say anything you want!</p>
 
-        {submitted && <div className="talk-success">✅ Your message has been submitted!</div>}
+        {submitted && <div className="talk-success">✅ Message submitted!</div>}
         {error && <div className="talk-error" style={{ color: 'red' }}>{error}</div>}
 
         <form className="talk-form" onSubmit={handleSubmit}>
@@ -82,9 +90,11 @@ const Chat2 = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             className="talk-textarea"
-            rows={5}
+            rows={4}
           />
-          <button type="submit" className="talk-submit-btn">Send Message</button>
+          <button type="submit" className="talk-submit-btn" disabled={loading}>
+            {loading ? 'Sending...' : 'Send Message'}
+          </button>
         </form>
 
         <div className="talk-messages">
@@ -95,7 +105,15 @@ const Chat2 = () => {
             <ul>
               {messages.map((msg, idx) => (
                 <li key={idx} className="talk-message-item">
-                  <strong>{msg.name ? msg.name : 'Anonymous'}:</strong> {msg.message}
+                  <div className="talk-message-name">
+                    <strong>{msg.name?.trim() || 'Anonymous'}</strong>
+                  </div>
+                  <div>{msg.message}</div>
+                  {msg.created_at && (
+                    <div className="talk-message-time">
+                      {new Date(msg.created_at).toLocaleString()}
+                    </div>
+                  )}
                 </li>
               ))}
             </ul>
