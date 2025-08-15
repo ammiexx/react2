@@ -29,8 +29,8 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="nav-links">
-          <NavLink to="/your-offers" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-            your offers
+          <NavLink to="/your-discounts" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
+            discounts
           </NavLink>
           <NavLink to="/login" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
             sign in

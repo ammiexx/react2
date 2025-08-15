@@ -12,6 +12,22 @@
   width: 100%;
   overflow-x: hidden; /* prevent outer horizontal scroll */
 }
+.detailed-menu {
+  width: 100vw; /* Full viewport width */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  position: absolute; /* or fixed depending on your layout */
+  top: 100%; /* show below navbar */
+  left: 0;
+  background-color: white; /* or whatever your background is */
+  z-index: 1000; /* make sure it's above other content */
+}
+
+.navbar-container {
+  margin: 0;
+  padding: 0;
+}
 
 /* Hamburger container */
 .hamburger-container {
@@ -31,10 +47,8 @@
   overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.5) transparent;
-  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
-
-/* Webkit scrollbar styles for Chrome, Safari, Edge */
 .categories::-webkit-scrollbar {
   height: 6px;
 }

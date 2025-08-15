@@ -5,17 +5,17 @@
 }
 
 .profile-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  border-radius: 30%;
   object-fit: cover;
   border: 2px solid #ccc;
 }
 
 .profile-placeholder {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  border-radius: 30%;
   background-color: #666;
   color: white;
   font-weight: bold;
@@ -130,7 +130,7 @@
   align-items: center;
   justify-content: center;
   margin-right: 12px;
-  border-radius: 50%;
+  border-radius: 30%;
   color: #666;
 }
 

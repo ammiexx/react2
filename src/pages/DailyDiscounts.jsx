@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Daily.css';
-import DailyDiscounts from '../BusinessCategories/DailyDiscounts';
-
 const Daily = () => {
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);

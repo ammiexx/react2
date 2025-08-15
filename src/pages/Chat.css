@@ -39,7 +39,7 @@
 
 .talk-input,
 .talk-textarea {
-  padding: 8px 12px;
+  padding: 1px 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 0.95rem;
@@ -89,8 +89,7 @@
   border: 1px solid #c3e6cb;
   font-weight: bold;
 }
-/* Container for all messages */
-/* Container for all messages */
+
 .talk-messages ul {
   list-style: none;
   padding: 0;

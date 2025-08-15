@@ -21,7 +21,7 @@ const Chat2 = () => {
       setError('');
     } catch (err) {
       console.error(err);
-      setError('Failed to load messages');
+      setError('it needs internet connection');
     }
   };
 
@@ -71,22 +71,15 @@ const Chat2 = () => {
   return (
     <div className="talk-container">
       <div className="talk-box">
-        <h1 className="talk-title">💬 Share What You Want and Need</h1>
-        <p className="talk-subtitle">Your voice matters. Say anything you want!</p>
+        <h1 className="talk-title">💬 Share us what you want to be discounted!</h1>
+        <p className="talk-subtitle">We are here to solve your problems!</p>
 
         {submitted && <div className="talk-success">✅ Message submitted!</div>}
         {error && <div className="talk-error" style={{ color: 'red' }}>{error}</div>}
 
         <form className="talk-form" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="Your Name (optional)"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="talk-input"
-          />
           <textarea
-            placeholder="Write your message here..."
+            placeholder="Write what you want to be discounted..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             className="talk-textarea"
