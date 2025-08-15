@@ -96,9 +96,13 @@
   margin: 0;
   max-height: 300px;
   overflow-y: auto;
+
+  /* 3 column grid */
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 2-column responsive grid */
+  grid-template-columns: repeat(3, minmax(200px, 1fr)); /* 3 columns, each min 200px */
   gap: 12px;
+  /* This controls message width */
+  max-width: 700px; /* adjust max width for container */
 }
 
 /* Each message item container */
@@ -149,4 +153,28 @@
 .talk-messages ul::-webkit-scrollbar-thumb {
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 3px;
+}
+.reaction-buttons button {
+  background: #e0e0e0;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.reaction-buttons button:hover {
+  background-color: #b3d4fc;
+}
+
+.like-btn {
+  color: #2980b9;
+}
+
+.dislike-btn {
+  color: #e74c3c;
 }
