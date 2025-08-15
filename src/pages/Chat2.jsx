@@ -1,12 +1,11 @@
-// src/components/Chat2.jsx
 import React, { useState, useEffect } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import './Chat.css';
 
-const BACKEND_URL = 'https://djanagobackend-5.onrender.com/api/cat';
+const MESSAGE_API = 'https://djanagobackend-5.onrender.com/api/cat';
 
 const Chat2 = () => {
-  const { isSignedIn, user } = useUser(); // Clerk user state
+  const { isSignedIn, user } = useUser();
 
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -14,13 +13,11 @@ const Chat2 = () => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const [likesMap, setLikesMap] = useState({}); // Tracks likes: { [messageIndex]: Set<userId> }
-  const [replyingTo, setReplyingTo] = useState(null);
-  const [replies, setReplies] = useState({});
+  const [likesMap, setLikesMap] = useState({});
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch(BACKEND_URL);
+      const response = await fetch(MESSAGE_API);
       if (!response.ok) throw new Error('Failed to fetch messages');
       const data = await response.json();
       setMessages(data.reverse());
@@ -38,17 +35,17 @@ const Chat2 = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!message.trim()) {
-      alert("Please enter a message.");
+      alert('Please enter a message.');
       return;
     }
 
     const userName = isSignedIn
       ? user.fullName || user.username || user.primaryEmailAddress?.emailAddress
-      : "Anonymous";
+      : 'Anonymous';
 
     try {
       setLoading(true);
-      const response = await fetch(BACKEND_URL, {
+      const response = await fetch(MESSAGE_API, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: userName, message }),
@@ -56,8 +53,7 @@ const Chat2 = () => {
 
       if (!response.ok) {
         const text = await response.text();
-        console.error('Server error:', text);
-        throw new Error('Failed to submit message');
+        throw new Error(`Server error: ${text}`);
       }
 
       setSubmitted(true);
@@ -73,10 +69,9 @@ const Chat2 = () => {
     }
   };
 
-  // ✅ Like toggle handler
   const handleReaction = (idx) => {
     if (!isSignedIn) {
-      alert("You must be signed in to like a message.");
+      alert('You must be signed in to like a message.');
       return;
     }
 
@@ -87,27 +82,14 @@ const Chat2 = () => {
       const currentSet = new Set(prev[idx] || []);
 
       if (currentSet.has(userId)) {
-        currentSet.delete(userId); // Unlike
+        currentSet.delete(userId);
       } else {
-        currentSet.add(userId); // Like
+        currentSet.add(userId);
       }
 
       updated[idx] = currentSet;
       return updated;
     });
-  };
-
-  const handleReplyChange = (idx, text) => {
-    setReplies((prev) => ({
-      ...prev,
-      [idx]: text,
-    }));
-  };
-
-  const handleReplySubmit = (idx) => {
-    alert('Reply submitted: ' + replies[idx]);
-    setReplyingTo(null);
-    handleReplyChange(idx, '');
   };
 
   return (
@@ -162,30 +144,7 @@ const Chat2 = () => {
                       >
                         👍 {currentLikes.size}
                       </button>
-
-                      <button
-                        onClick={() => setReplyingTo(idx)}
-                        className="reaction-btn reply-btn"
-                        aria-label="Reply to message"
-                      >
-                        💬 Reply
-                      </button>
                     </div>
-
-                    {replyingTo === idx && (
-                      <div className="reply-box" style={{ marginTop: '10px' }}>
-                        <textarea
-                          rows={2}
-                          placeholder="Write your reply..."
-                          value={replies[idx] || ''}
-                          onChange={(e) => handleReplyChange(idx, e.target.value)}
-                          style={{ width: '100%', padding: '8px', marginBottom: '5px' }}
-                        />
-                        <button onClick={() => handleReplySubmit(idx)} style={{ padding: '6px 12px' }}>
-                          Submit Reply
-                        </button>
-                      </div>
-                    )}
                   </li>
                 );
               })}
