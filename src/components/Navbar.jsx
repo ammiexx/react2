@@ -1,75 +1,144 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, Link } from 'react-router-dom';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Profile from '../pages/Profile';
-import './Navbar.css';
 
-const Navbar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+const navigation = [
+  { name: 'Discounts', href: '/your-discounts' },
+  { name: 'Sign In', href: '/login' },
+  { name: 'Sign Up', href: '/signup' },
+];
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ');
+}
+
+export default function Navigation() {
   return (
-    <nav className="bg-gray-800 text-white">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 justify-between items-center">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-                alt="CBN Logo"
-                className="h-8 w-8"
-              />
-              <span className="hidden sm:block font-bold text-lg">customer-business-network</span>
-            </Link>
-          </div>
-
-          {/* Desktop Nav */}
-          <div className="hidden sm:flex space-x-4 items-center">
-            <NavLink to="/your-discounts" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-              Discounts
-            </NavLink>
-            <NavLink to="/login" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-              Sign In
-            </NavLink>
-            <NavLink to="/signup" className={({ isActive }) => `nav-btn ${isActive ? 'active' : ''}`}>
-              Sign Up
-            </NavLink>
-            <Profile />
-          </div>
-
+    <Disclosure as="nav" className="relative bg-gray-800">
+      <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div className="relative flex h-16 items-center justify-between">
           {/* Mobile menu button */}
-          <div className="sm:hidden flex items-center">
-            <button onClick={toggleMenu} className="text-gray-300 hover:text-white focus:outline-none">
-              {menuOpen ? (
-                <XMarkIcon className="h-6 w-6" />
-              ) : (
-                <Bars3Icon className="h-6 w-6" />
-              )}
+          <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white focus:outline-2 focus:-outline-offset-1 focus:outline-indigo-500">
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
+              <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
+            </DisclosureButton>
+          </div>
+
+          {/* Logo and nav items */}
+          <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+            {/* Logo */}
+            <div className="flex shrink-0 items-center">
+              <Link to="/" className="flex items-center space-x-2">
+                <img
+                  className="h-8 w-auto"
+                  src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+                  alt="CBN Logo"
+                />
+                <span className="text-white text-sm font-semibold hidden sm:block">
+                  customer-business-network
+                </span>
+              </Link>
+            </div>
+
+            {/* Desktop navigation */}
+            <div className="hidden sm:ml-6 sm:block">
+              <div className="flex space-x-4">
+                {navigation.map((item) => (
+                  <NavLink
+                    key={item.name}
+                    to={item.href}
+                    className={({ isActive }) =>
+                      classNames(
+                        isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white',
+                        'rounded-md px-3 py-2 text-sm font-medium'
+                      )
+                    }
+                  >
+                    {item.name}
+                  </NavLink>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right section with bell icon and profile menu */}
+          <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <button
+              type="button"
+              className="relative rounded-full p-1 text-gray-400 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
+            >
+              <span className="sr-only">View notifications</span>
+              <BellIcon className="size-6" aria-hidden="true" />
             </button>
+
+            {/* Profile dropdown */}
+            <Menu as="div" className="relative ml-3">
+              <MenuButton className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                <span className="sr-only">Open user menu</span>
+                <img
+                  className="size-8 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+                  alt=""
+                />
+              </MenuButton>
+              <MenuItems
+                transition
+                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline outline-black/5"
+              >
+                <MenuItem>
+                  <Link
+                    to="/profile"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Your profile
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link
+                    to="/settings"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Settings
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link
+                    to="/logout"
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  >
+                    Sign out
+                  </Link>
+                </MenuItem>
+              </MenuItems>
+            </Menu>
           </div>
         </div>
       </div>
 
-      {/* Mobile Nav */}
-      {menuOpen && (
-        <div className="sm:hidden bg-gray-700 px-4 pt-4 pb-6 space-y-2">
-          <NavLink to="/your-discounts" onClick={() => setMenuOpen(false)} className="block text-white hover:underline">
-            Discounts
-          </NavLink>
-          <NavLink to="/login" onClick={() => setMenuOpen(false)} className="block text-white hover:underline">
-            Sign In
-          </NavLink>
-          <NavLink to="/signup" onClick={() => setMenuOpen(false)} className="block text-white hover:underline">
-            Sign Up
-          </NavLink>
-          <div className="pt-2 border-t border-gray-600">
-            <Profile />
-          </div>
+      {/* Mobile navigation */}
+      <DisclosurePanel className="sm:hidden">
+        <div className="space-y-1 px-2 pt-2 pb-3">
+          {navigation.map((item) => (
+            <DisclosureButton
+              key={item.name}
+              as={NavLink}
+              to={item.href}
+              className={({ isActive }) =>
+                classNames(
+                  isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white',
+                  'block rounded-md px-3 py-2 text-base font-medium'
+                )
+              }
+            >
+              {item.name}
+            </DisclosureButton>
+          ))}
         </div>
-      )}
-    </nav>
+      </DisclosurePanel>
+    </Disclosure>
   );
-};
-
-export default Navbar;
+}
