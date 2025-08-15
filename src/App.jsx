@@ -64,7 +64,6 @@ function App() {
           <Route path="/weekly discounts" element={<Week/>} />
           <Route path="/new offers" element={<Newp/>} />
           <Route path="/upcomming services" element={<Upcomming/>} />
-
         <Route path="/wanted" element={<Wanted />} />
         <Route path="/forsale" element={<ForSale />} />
         <Route path="/login" element={<Login />} />
@@ -76,9 +75,6 @@ function App() {
          <Route path="/language" element={< Language/>} />
            <Route path="/brands" element={< Brands/>} />
            <Route path="/customerservices" element={< CustomerServices/>} />
-          
-
-            
             <Route path="/what u want?" element={< Chat2/>} />
              <Route path="/technologymethods" element={< TechnologyMethods/>} />
              <Route path="/new advantages" element={< Announcements/>} />

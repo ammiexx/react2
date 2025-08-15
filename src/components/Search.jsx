@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import './Search.css';
 import Hamburger from './Hamburger';
+
 const categories = [
   "new advantages",
   "daily discounts",
@@ -10,18 +10,20 @@ const categories = [
   "upcomming services",
   "what u want?",
 ];
+
 const Search = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const menuRef = useRef(null); 
+  const menuRef = useRef(null);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
 
   const handleCategoryClick = (category) => {
+    closeMenu(); // close first
     navigate(`/${category.toLowerCase()}`);
-    closeMenu(); 
   };
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -41,68 +43,90 @@ const Search = () => {
   }, [menuOpen]);
 
   return (
-    <nav className="navigation2">
-      <Hamburger isOpen={menuOpen} toggle={toggleMenu} />
+    <>
+      <nav className="w-full bg-gray-600 border-y border-gray-300 flex items-center px-5 py-3 gap-5 font-sans whitespace-nowrap overflow-x-hidden">
+        {/* Hamburger */}
+        <div className="flex items-center flex-shrink-0 mr-4">
+          <Hamburger isOpen={menuOpen} toggle={toggleMenu} />
+        </div>
 
-      <div className="categories">
-        {categories.map((cat, index) => (
+        {/* Categories */}
+        <div className="flex gap-3 flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-white/50 scrollbar-track-transparent">
+          {categories.map((cat, index) => (
+            <button
+              key={index}
+              onClick={() => handleCategoryClick(cat)}
+              className="flex-shrink-0 px-3 py-1.5 text-sm rounded-full border border-transparent bg-transparent text-white hover:bg-white hover:text-gray-700 hover:border-white transition whitespace-nowrap"
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </nav>
+
+      {/* Backdrop */}
+     {menuOpen && (
+  <div
+  onClick={closeMenu}
+  className="fixed inset-0 bg-black/5 backdrop-blur-sm z-10 transition-opacity duration-200"
+
+></div>
+
+)}
+
+      {/* Side Drawer */}
+      <div
+        ref={menuRef}
+        className={`fixed top-0 left-0 h-full w-72 bg-white z-50 shadow-lg transform transition-transform duration-300 ease-in-out ${
+          menuOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        {/* Close Button */}
+        <div className="flex justify-end p-3 border-b border-gray-200">
           <button
-            key={index}
-            className="category-btn"
-            onClick={() => handleCategoryClick(cat)}
+            onClick={closeMenu}
+            className="text-gray-500 hover:text-gray-700 text-xl font-bold"
+            aria-label="Close menu"
           >
-            {cat}
+            &times;
           </button>
-        ))}
-      </div>
+        </div>
 
-      {menuOpen && (
-        <div className="detailed-menu" ref={menuRef}>
-          <div className="menu-section">
-            <ul>
-              
+        {/* Menu Content */}
+        <div className="p-4 space-y-6 h-full overflow-y-auto">
+          <div>
+            <ul className="space-y-2">
               <li><Link to="/aboutus" onClick={closeMenu}>About Us</Link></li>
               <li><Link to="/new advantages" onClick={closeMenu}>Announcements</Link></li>
               <li><Link to="/" onClick={closeMenu}>what u want?</Link></li>
               <li><Link to="/weekly discounts" onClick={closeMenu}>Want discounts?</Link></li>
-              <li><Link to="/logout" onClick={closeMenu}>sign out</Link></li>
+              <li><Link to="/logout" onClick={closeMenu}>Sign Out</Link></li>
               <li><Link to="/orders" onClick={closeMenu}>Orders</Link></li>
             </ul>
           </div>
-          <div className="menu-section">
-            <ul>
-              <li>
-                Categories
-                <ul className="nested">
-                  <li><Link to="/technologymethods" onClick={closeMenu}>Technology Methods</Link></li>
-                  <li><Link to="/blog" onClick={closeMenu}>Did you know</Link></li>
-                </ul>
-              </li>
-              <li><Link to="/new offers" onClick={closeMenu}>New products</Link></li>
+
+          <div>
+            <h3 className="font-semibold">Categories</h3>
+            <ul className="pl-4 list-disc text-sm space-y-1">
+              <li><Link to="/technologymethods" onClick={closeMenu}>Technology Methods</Link></li>
+              <li><Link to="/blog" onClick={closeMenu}>Did you know</Link></li>
+              <li><Link to="/new offers" onClick={closeMenu}>New Products</Link></li>
               <li><Link to="/brands" onClick={closeMenu}>Brands</Link></li>
             </ul>
           </div>
 
-          <div className="menu-section">
-            <ul>
+          <div>
+            <h3 className="font-semibold">Support</h3>
+            <ul className="space-y-1">
               <li><Link to="/helpcenter" onClick={closeMenu}>Help Center</Link></li>
-            </ul>
-          </div>
-          <div className="menu-section">
-            <ul>
               <li><Link to="/terms" onClick={closeMenu}>Terms & Conditions</Link></li>
               <li><Link to="/privacy" onClick={closeMenu}>Privacy Policy</Link></li>
-            </ul>
-          </div>
-
-          <div className="menu-section">
-            <ul>
               <li><Link to="/language" onClick={closeMenu}>Language</Link></li>
             </ul>
           </div>
         </div>
-      )}
-    </nav>
+      </div>
+    </>
   );
 };
 
