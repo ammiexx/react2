@@ -49,7 +49,7 @@ function App() {
       <Search />
       <Routes>
         <Route path="/signup" element={<Signup />} />
-        <Route path="/your-discounts" element={<Category1 />} />
+        <Route path="/" element={<Category1 />} />
         <Route path="/fashions" element={<Home/>} />
           <Route path="/homes" element={<RealHome/>} />
           <Route path="/electronic-materials" element={<Electronicmaterial/>} />
@@ -75,7 +75,7 @@ function App() {
          <Route path="/language" element={< Language/>} />
            <Route path="/brands" element={< Brands/>} />
            <Route path="/customerservices" element={< CustomerServices/>} />
-            <Route path="/what u want?" element={< Chat2/>} />
+            <Route path="/chat" element={< Chat2/>} />
              <Route path="/technologymethods" element={< TechnologyMethods/>} />
              <Route path="/new advantages" element={< Announcements/>} />
            
