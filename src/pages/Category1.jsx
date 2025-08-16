@@ -84,7 +84,7 @@ const Category1 = () => {
     const interval = setInterval(() => {
       setFirstRowIndex((prev) => (prev + 1) % 6);  // 6 because 10 - 5 + 1 = 6 max start index
       setSecondRowIndex((prev) => (prev + 1) % 6);
-    }, 2000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -106,15 +106,16 @@ const Category1 = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-6">
             {firstRowBrands.map(brand => (
               <a
-                key={brand.id}
-                href={brand.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-lg shadow p-4 flex flex-col items-center hover:shadow-md transition"
-              >
-                <img src={brand.logo} alt={brand.name} className="h-12 mb-2 object-contain" />
-                <span className="font-medium text-gray-700 text-sm">{brand.name}</span>
-              </a>
+  key={brand.id}
+  href={brand.website}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center hover:shadow-xl transition transform hover:scale-105"
+>
+  <img src={brand.logo} alt={brand.name} className="h-20 mb-4 object-contain" />
+  <span className="font-semibold text-gray-800 text-base text-center">{brand.name}</span>
+</a>
+
             ))}
           </div>
 
@@ -142,7 +143,8 @@ const Category1 = () => {
 
 
         {/* Category Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+
           {filteredCategories.length > 0 ? (
             filteredCategories.map((cat, idx) => (
               <div
