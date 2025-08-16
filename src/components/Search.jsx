@@ -74,13 +74,15 @@ const Search = () => {
       >
         {/* Close Button */}
         <div className="flex justify-end p-3 border-b border-gray-200">
-          <button
-            onClick={closeMenu}
-            className="text-gray-500 hover:text-gray-700 text-xl font-bold"
-            aria-label="Close menu"
-          >
-            &times;
-          </button>
+      <button
+  onClick={closeMenu}
+  className="h-10 w-10 flex items-center justify-center text-gray-500 hover:text-gray-700 text-3xl font-bold"
+  aria-label="Close menu"
+>
+  &times;
+</button>
+
+
         </div>
 
         {/* Menu Content */}
@@ -122,3 +124,5 @@ const Search = () => {
 };
 
 export default Search;
+
+
