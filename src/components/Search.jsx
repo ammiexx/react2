@@ -1,3 +1,4 @@
+// src/components/Search.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Hamburger from './Hamburger';
@@ -20,8 +21,8 @@ const Search = () => {
   const closeMenu = () => setMenuOpen(false);
 
   const handleCategoryClick = (category) => {
-    closeMenu(); // close first
-    navigate(`/${category.toLowerCase()}`);
+    closeMenu();
+    navigate(`/${encodeURIComponent(category.toLowerCase())}`);
   };
 
   useEffect(() => {
@@ -64,16 +65,6 @@ const Search = () => {
         </div>
       </nav>
 
-      {/* Backdrop */}
-     {menuOpen && (
-  <div
-  onClick={closeMenu}
-  className="fixed inset-0 bg-black/5 backdrop-blur-sm z-10 transition-opacity duration-200"
-
-></div>
-
-)}
-
       {/* Side Drawer */}
       <div
         ref={menuRef}
@@ -95,29 +86,29 @@ const Search = () => {
         {/* Menu Content */}
         <div className="p-4 space-y-6 h-full overflow-y-auto">
           <div>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-gray-700 text-sm">
               <li><Link to="/aboutus" onClick={closeMenu}>About Us</Link></li>
               <li><Link to="/new advantages" onClick={closeMenu}>Announcements</Link></li>
-              <li><Link to="/" onClick={closeMenu}>what u want?</Link></li>
-              <li><Link to="/weekly discounts" onClick={closeMenu}>Want discounts?</Link></li>
+              <li><Link to="/" onClick={closeMenu}>What U Want?</Link></li>
+              <li><Link to="/weekly discounts" onClick={closeMenu}>Want Discounts?</Link></li>
               <li><Link to="/logout" onClick={closeMenu}>Sign Out</Link></li>
               <li><Link to="/orders" onClick={closeMenu}>Orders</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold">Categories</h3>
-            <ul className="pl-4 list-disc text-sm space-y-1">
+            <h3 className="font-semibold text-gray-800">Categories</h3>
+            <ul className="pl-4 list-disc text-sm space-y-1 text-gray-600">
               <li><Link to="/technologymethods" onClick={closeMenu}>Technology Methods</Link></li>
-              <li><Link to="/blog" onClick={closeMenu}>Did you know</Link></li>
+              <li><Link to="/blog" onClick={closeMenu}>Did You Know</Link></li>
               <li><Link to="/new offers" onClick={closeMenu}>New Products</Link></li>
               <li><Link to="/brands" onClick={closeMenu}>Brands</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="font-semibold">Support</h3>
-            <ul className="space-y-1">
+            <h3 className="font-semibold text-gray-800">Support</h3>
+            <ul className="space-y-1 text-sm text-gray-600">
               <li><Link to="/helpcenter" onClick={closeMenu}>Help Center</Link></li>
               <li><Link to="/terms" onClick={closeMenu}>Terms & Conditions</Link></li>
               <li><Link to="/privacy" onClick={closeMenu}>Privacy Policy</Link></li>

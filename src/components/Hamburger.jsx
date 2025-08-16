@@ -1,17 +1,29 @@
 // src/components/Hamburger.jsx
 import React from 'react';
-import './Hamburger.css';
+
 const Hamburger = ({ isOpen, toggle }) => {
   return (
     <button
-      className={`hamburger-btn ${isOpen ? 'open' : ''}`}
       onClick={toggle}
       aria-label="Toggle menu"
       type="button"
+      className="flex flex-col justify-between w-7 h-6 z-[1100] transition-transform duration-200 hover:scale-110 border border-transparent hover:border-white"
     >
-      <span className="hamburger-line"></span>
-      <span className="hamburger-line"></span>
-      <span className="hamburger-line"></span>
+      <span
+        className={`h-0.5 w-full bg-white rounded transition-transform duration-300 ease-in-out ${
+          isOpen ? 'rotate-45 translate-y-2' : ''
+        }`}
+      />
+      <span
+        className={`h-0.5 w-full bg-white rounded transition-opacity duration-300 ${
+          isOpen ? 'opacity-0' : 'opacity-100'
+        }`}
+      />
+      <span
+        className={`h-0.5 w-full bg-white rounded transition-transform duration-300 ease-in-out ${
+          isOpen ? '-rotate-45 -translate-y-2' : ''
+        }`}
+      />
     </button>
   );
 };
