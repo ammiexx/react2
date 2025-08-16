@@ -12,7 +12,7 @@ import Home from "./pages/Home2";
 import Wanted from "./pages/Wanted";
 import ForSale from "./pages/ForSale";
 import AboutUs from "./pages/Aboutus";
-import Chat2 from "./pages/chat2";
+import Chat2 from "./pages/Chat2";
 import Category1 from "./pages/Category1";
 import Logout from "./components/Logout";
 import Profile from "./pages/Profile"
