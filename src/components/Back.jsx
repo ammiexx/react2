@@ -1,5 +1,4 @@
 import React from 'react';
-import './Back.css';
 
 const Back = () => {
   const scrollToTop = () => {
@@ -7,8 +6,11 @@ const Back = () => {
   };
 
   return (
-    <div className="back-to-top-container">
-      <button className="back-to-top-button" onClick={scrollToTop}>
+    <div className="fixed bottom-6 right-6 z-50">
+      <button
+        onClick={scrollToTop}
+        className="bg-[#6ec1e4] text-white font-semibold px-4 py-2 rounded-full shadow-md hover:bg-[#4ea9cd] transition-colors"
+      >
         ↑ Back to Top
       </button>
     </div>
