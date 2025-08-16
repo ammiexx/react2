@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useUser, SignOutButton } from '@clerk/clerk-react';
-import './Profile.css';
 
 const Profile = () => {
   const { user } = useUser();
@@ -8,7 +7,6 @@ const Profile = () => {
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const profileRef = useRef(null);
 
-  // Close dropdown if click outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
@@ -16,29 +14,30 @@ const Profile = () => {
         setShowLogoutConfirm(false);
       }
     }
+
     if (open) {
       document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
     }
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [open]);
 
-  // Fallback UI if no user loaded yet
   if (!user) {
     return (
-      <div className="profile-wrapper" title="Not logged in">
-        <div className="profile-icon" onClick={() => {}}>
+      <div
+        className="relative inline-block cursor-pointer"
+        title="Not logged in"
+      >
+        <div className="w-10 h-10 flex items-center justify-center text-gray-600 border-2 border-gray-300 rounded-full">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="human-icon"
+            className="w-6 h-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
             strokeWidth={2}
-            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -56,21 +55,20 @@ const Profile = () => {
   const email = user.emailAddresses[0]?.emailAddress || '';
 
   return (
-    <div className="profile-wrapper" ref={profileRef}>
-      {/* Profile icon toggles dropdown */}
+    <div ref={profileRef} className="relative inline-block">
+      {/* Profile icon button */}
       <div
-        className="profile-icon"
+        className="w-10 h-10 border-2 border-gray-300 rounded-full flex items-center justify-center cursor-pointer text-gray-600 hover:text-blue-600 hover:bg-blue-100 transition"
         title="Profile"
         onClick={() => setOpen((prev) => !prev)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="human-icon"
+          className="w-6 h-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
           strokeWidth={2}
-          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -82,17 +80,16 @@ const Profile = () => {
 
       {/* Dropdown */}
       {open && (
-        <div className="profile-dropdown">
-          <div className="profile-info">
-            <div className="profile-large-icon">
+        <div className="absolute top-14 right-0 w-60 bg-white border border-gray-200 shadow-lg rounded-lg p-4 z-50">
+          <div className="flex items-center border-b pb-3 mb-3">
+            <div className="w-12 h-12 text-gray-600 flex items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="human-icon-large"
+                className="w-12 h-12"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
-                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -101,39 +98,41 @@ const Profile = () => {
                 />
               </svg>
             </div>
-            <div className="profile-details">
-              <strong>{user.fullName || firstName + ' ' + lastName}</strong>
-              <div className="profile-email">{email}</div>
+            <div className="ml-3">
+              <p className="text-sm font-semibold text-gray-800">{user.fullName || `${firstName} ${lastName}`}</p>
+              <p className="text-sm text-gray-600">{email}</p>
             </div>
           </div>
 
-          <div className="profile-name">
-            <span>{firstName}</span> <span>{lastName}</span>
+          <div className="text-center text-sm font-medium text-gray-800 mb-3">
+            {firstName} {lastName}
           </div>
 
-          <div className="profile-actions">
+          <div className="text-center">
             <button
-              className="logout-btn"
               onClick={() => setShowLogoutConfirm(true)}
+              className="text-blue-600 hover:underline text-sm font-medium"
             >
               Log out
             </button>
           </div>
 
-          {/* Confirmation Modal */}
+          {/* Logout confirmation modal */}
           {showLogoutConfirm && (
-            <div className="confirm-modal">
-              <div className="confirm-modal-content">
-                <p>Are you sure you want to log out?</p>
-                <div className="confirm-buttons">
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
+              <div className="bg-white rounded-lg shadow-lg p-6 w-80 text-center">
+                <p className="text-lg font-medium mb-4">Are you sure you want to log out?</p>
+                <div className="flex justify-between mt-4">
                   <button
                     onClick={() => setShowLogoutConfirm(false)}
-                    className="cancel-btn"
+                    className="px-4 py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400 transition"
                   >
                     Cancel
                   </button>
                   <SignOutButton>
-                    <button className="confirm-btn">Confirm</button>
+                    <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">
+                      Confirm
+                    </button>
                   </SignOutButton>
                 </div>
               </div>
