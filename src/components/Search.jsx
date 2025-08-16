@@ -1,4 +1,3 @@
-// src/components/Search.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Hamburger from './Hamburger';
@@ -25,6 +24,7 @@ const Search = () => {
     navigate(`/${encodeURIComponent(category.toLowerCase())}`);
   };
 
+  // Lock scroll when menu is open
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -33,25 +33,29 @@ const Search = () => {
     };
 
     if (menuOpen) {
+      document.body.style.overflow = 'hidden';
       document.addEventListener('mousedown', handleClickOutside);
     } else {
+      document.body.style.overflow = '';
       document.removeEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
+      document.body.style.overflow = '';
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [menuOpen]);
 
   return (
     <>
+      {/* Top Navigation */}
       <nav className="w-full bg-gray-600 border-y border-gray-300 flex items-center px-5 py-3 gap-5 font-sans whitespace-nowrap overflow-x-hidden">
-        {/* Hamburger */}
+        {/* Hamburger Icon */}
         <div className="flex items-center flex-shrink-0 mr-4">
           <Hamburger isOpen={menuOpen} toggle={toggleMenu} />
         </div>
 
-        {/* Categories */}
+        {/* Category Buttons */}
         <div className="flex gap-3 flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-white/50 scrollbar-track-transparent">
           {categories.map((cat, index) => (
             <button
@@ -65,21 +69,43 @@ const Search = () => {
         </div>
       </nav>
 
+      {/* Backdrop overlay */}
+      {menuOpen && (
+        <div
+          onClick={closeMenu}
+          className="fixed inset-0 bg-black/5 z-40 backdrop-blur-[1px] transition-opacity duration-300"
+        />
+      )}
+
       {/* Side Drawer */}
       <div
         ref={menuRef}
-        className={`fixed top-0 left-0 h-full w-72 bg-white z-50 shadow-lg transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-screen w-72 bg-white z-50 shadow-lg transform transition-transform duration-300 ease-in-out flex flex-col ${
           menuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        {/* Close Button */}
-        <div className="flex justify-end p-3 border-b border-gray-200">
-      
-
+        {/* Close button */}
+        <div className="flex justify-end items-center h-12 border-b border-gray-200 relative z-10 px-3">
+          <button
+            onClick={closeMenu}
+            className="text-gray-600 hover:text-gray-900 transition focus:outline-none"
+            aria-label="Close menu"
+            style={{ width: '32px', height: '32px' }}
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </div>
 
-        {/* Menu Content */}
-        <div className="p-4 space-y-6 h-full overflow-y-auto">
+        {/* Scrollable menu content */}
+        <div className="flex-grow overflow-y-auto p-4 space-y-6">
           <div>
             <ul className="space-y-2 text-gray-700 text-sm">
               <li><Link to="/aboutus" onClick={closeMenu}>About Us</Link></li>
@@ -117,5 +143,3 @@ const Search = () => {
 };
 
 export default Search;
-
-
