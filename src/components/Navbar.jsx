@@ -1,8 +1,8 @@
 import React from 'react';
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, Link } from 'react-router-dom';
-import Profile from '../pages/Profile';
+import Profile from '../pages/Profile'; // <-- import your Profile component
 
 const navigation = [
   { name: 'Discounts', href: '/your-discounts' },
@@ -65,56 +65,9 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* Right section with bell icon and profile menu */}
+          {/* Right section with Profile component */}
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            <button
-              type="button"
-              className="relative rounded-full p-1 text-gray-400 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
-            >
-              <span className="sr-only">View notifications</span>
-              <BellIcon className="size-6" aria-hidden="true" />
-            </button>
-
-            {/* Profile dropdown */}
-            <Menu as="div" className="relative ml-3">
-              <MenuButton className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                <span className="sr-only">Open user menu</span>
-                <img
-                  className="size-8 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
-                  alt=""
-                />
-              </MenuButton>
-              <MenuItems
-                transition
-                className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline outline-black/5"
-              >
-                <MenuItem>
-                  <Link
-                    to="/profile"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    Your profile
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link
-                    to="/settings"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    Settings
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link
-                    to="/logout"
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    Sign out
-                  </Link>
-                </MenuItem>
-              </MenuItems>
-            </Menu>
+            <Profile />
           </div>
         </div>
       </div>

@@ -1,27 +1,35 @@
 import React from 'react';
 
 const Footer = () => {
+  const normalTextClass = "text-left text-sm text-[#888888]";
+  const linkClass = "hover:text-[#6ec1e4] transition-colors";
+
   return (
-    <footer className="bg-[#0f1e2e] text-white px-6 py-12 font-sans w-full">
+    <footer className="bg-[#0f1e2e] px-6 py-12 font-sans w-full">
       {/* Inner content container */}
       <div className="max-w-5xl mx-auto">
         {/* Logo */}
-        <div className="mb-10">
+        <div className={`mb-10 ${normalTextClass}`}>
           <h1 className="text-3xl font-bold text-[#6ec1e4]">CBN</h1>
         </div>
 
         {/* Mission */}
-        <div className="mb-10 max-w-3xl text-left text-[#cccccc] leading-relaxed text-sm">
+        <div className={`mb-10 max-w-3xl ${normalTextClass} leading-relaxed`}>
           <p>
             making the life of the society better through offering discounts!
           </p>
         </div>
 
         {/* Social Icons */}
-        <div className="flex gap-8 mb-10 text-[#a9c9dd]">
+        <div className={`flex gap-8 mb-10 ${normalTextClass}`}>
           {/* Facebook */}
-          <a href="https://facebook.com/animutalemneh" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-            className="hover:text-[#6ec1e4] transition-colors text-2xl">
+          <a
+            href="https://facebook.com/animutalemneh"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className={`${linkClass} text-2xl`}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
               viewBox="0 0 24 24" className="w-7 h-7">
               <path
@@ -29,8 +37,13 @@ const Footer = () => {
             </svg>
           </a>
           {/* Instagram */}
-          <a href="https://instagram.com/alemnehanimut" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
-            className="hover:text-[#6ec1e4] transition-colors text-2xl">
+          <a
+            href="https://instagram.com/alemnehanimut"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className={`${linkClass} text-2xl`}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2"
               viewBox="0 0 24 24" className="w-7 h-7">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
@@ -39,23 +52,37 @@ const Footer = () => {
             </svg>
           </a>
           {/* Telegram */}
-          <a href="https://t.me/@ammiex" target="_blank" rel="noopener noreferrer" aria-label="Telegram"
-            className="hover:text-[#6ec1e4] transition-colors text-2xl">
+          <a
+            href="https://t.me/@ammiex"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Telegram"
+            className={`${linkClass} text-2xl`}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
               viewBox="0 0 24 24" className="w-7 h-7">
               <path d="M21.04 3.5 3.88 10.42l4.54 1.56 1.75 5.38 2.93-4.6 4.92 3.6z" />
             </svg>
           </a>
           {/* TikTok */}
-          <a href="https://www.tiktok.com/@alemnehanimut" target="_blank" rel="noopener noreferrer" aria-label="TikTok"
-            className="hover:text-[#6ec1e4] transition-colors text-2xl">
+          <a
+            href="https://www.tiktok.com/@alemnehanimut"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok"
+            className={`${linkClass} text-2xl`}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
               viewBox="0 0 24 24" className="w-7 h-7">
               <path d="M9 3v12a4.5 4.5 0 1 0 4.5 4.5v-4.5h3V6H12v3.38a3 3 0 1 1-3-3V3Z" />
             </svg>
           </a>
           {/* Phone */}
-          <a href="tel:+251943453172" aria-label="Phone" className="hover:text-[#6ec1e4] transition-colors text-2xl">
+          <a
+            href="tel:+251943453172"
+            aria-label="Phone"
+            className={`${linkClass} text-2xl`}
+          >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2"
               viewBox="0 0 24 24" className="w-7 h-7">
               <path
@@ -65,44 +92,42 @@ const Footer = () => {
         </div>
 
         {/* Additional Links in 4 Columns */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-12 text-sm text-[#cccccc]">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-12">
           <div>
             <h4 className="text-white font-semibold mb-2">Support</h4>
-            <ul className="space-y-1">
-              <li><a href="/helpcenter" className="hover:text-white">Help Center</a></li>
-              <li><a href="/privacy" className="hover:text-white">Privacy Policy</a></li>
+            <ul className={normalTextClass + " space-y-1"}>
+              <li><a href="/helpcenter" className={linkClass}>Help Center</a></li>
+              <li><a href="/privacy" className={linkClass}>Privacy Policy</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-2">Explore</h4>
-            <ul className="space-y-1">
-              <li><a href="/new offers" className="hover:text-white">New Products</a></li>
-              <li><a href="/blog" className="hover:text-white">Did You Know</a></li>
+            <ul className={normalTextClass + " space-y-1"}>
+              <li><a href="/new offers" className={linkClass}>New Products</a></li>
+              <li><a href="/blog" className={linkClass}>Did You Know</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-2">Quick Links</h4>
-            <ul className="space-y-1">
-              <li><a href="/" className="hover:text-white">What U Want?</a></li>
-              <li><a href="/weekly discounts" className="hover:text-white">Weekly Discounts</a></li>
-              
-            
+            <ul className={normalTextClass + " space-y-1"}>
+              <li><a href="/" className={linkClass}>What U Want?</a></li>
+              <li><a href="/weekly discounts" className={linkClass}>Weekly Discounts</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-semibold mb-2">Company</h4>
-            <ul className="space-y-1">
-              <li><a href="/aboutus" className="hover:text-white">About Us</a></li>
-                <li><a href="/new offers" className="hover:text-white">New Offers</a></li>
+            <ul className={normalTextClass + " space-y-1"}>
+              <li><a href="/aboutus" className={linkClass}>About Us</a></li>
+              <li><a href="/new offers" className={linkClass}>New Offers</a></li>
             </ul>
           </div>
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-12 text-left text-sm text-[#888888] space-y-1">
+        <div className={`mt-12 ${normalTextClass} space-y-1`}>
           <p>© 2025 customer-business-network. All rights reserved.</p>
         </div>
       </div>
