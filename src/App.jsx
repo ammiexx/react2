@@ -22,7 +22,8 @@ import Privacy from "./categories/Privacy";
 import Language from "./categories/Language";
 import Brands from "./categories/Brands";
 import CustomerServices from "./categories/CustomerServices";
-
+import Success from './pages/Success';
+import Cancel from './pages/Cancel';
 
 import TechnologyMethods from "./BusinessCategories/TechnologyMethods";
 import Announcements from "./BusinessCategories/Announcements";
@@ -50,6 +51,8 @@ function App() {
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Category1 />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/cancel" element={<Cancel />} />
         <Route path="/your-discounts" element={<Category1 />} />
         <Route path="/fashions" element={<Home/>} />
           <Route path="/homes" element={<RealHome/>} />

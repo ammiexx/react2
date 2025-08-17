@@ -1,12 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './CarHome.css';
-
+import { loadStripe } from '@stripe/stripe-js';
+const stripePromise = loadStripe('pk_test_51RxBXuC2J5esJHJB3deOeOQ3ZhxYhyM9TT4yjZvE7cSgCQGD3BW2CY0rFFTUmgvLZDgoLRA0QYUNPoWpVqweBgUh00jhNFUdVm');
 const CarHome = () => {
   const [products, setProducts] = useState([]);
+  const handleCheckout = async (product) => {
+  const stripe = await stripePromise;
+
+  const response = await fetch('http://djanagobackend-5.onrender.com/backend/create-checkout-session/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: product.product_name,
+      price: product.price, // make sure your product has a price field
+    }),
+  });
+
+  const session = await response.json();
+
+  const result = await stripe.redirectToCheckout({
+    sessionId: session.id,
+  });
+
+  if (result.error) {
+    console.error(result.error.message);
+  }
+};
+
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
+  
 
   useEffect(() => {
     fetch('https://djanagobackend-5.onrender.com/backend/cars/')
@@ -22,6 +49,7 @@ const CarHome = () => {
   const filteredProducts = products.filter(product =>
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    
   );
 
   return (

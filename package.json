@@ -13,6 +13,7 @@
     "@clerk/clerk-react": "^5.38.0",
     "@headlessui/react": "^2.2.7",
     "@heroicons/react": "^2.2.0",
+    "@stripe/stripe-js": "^7.8.0",
     "@tailwindcss/vite": "^4.1.12",
     "firebase": "^12.0.0",
     "react": "^19.1.0",
