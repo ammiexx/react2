@@ -2,7 +2,8 @@ import React from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, Link } from 'react-router-dom';
-import Profile from '../pages/Profile'; // <-- import your Profile component
+import Profile from '../pages/Profile';
+import { useScrollDirection } from './UseScrollDirection'; // ← import the hook
 
 const navigation = [
   { name: 'Discounts', href: '/your-discounts' },
@@ -15,8 +16,16 @@ function classNames(...classes) {
 }
 
 export default function Navigation() {
+  const scrollDirection = useScrollDirection();
+
   return (
-    <Disclosure as="nav" className="relative bg-gray-800">
+    <Disclosure
+      as="nav"
+      className={classNames(
+        'sticky top-0 z-50 transition-transform duration-300 bg-gray-800',
+        scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0'
+      )}
+    >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-12 items-center justify-between">
           {/* Mobile menu button */}
@@ -30,21 +39,14 @@ export default function Navigation() {
 
           {/* Logo and nav items */}
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            {/* Logo */}
             <div className="flex shrink-0 items-center">
               <Link to="/" className="flex items-center space-x-2">
-                {/* <img
-                  className="h-8 w-auto"
-                  src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-                  alt="CBN Logo"
-                /> */}
                 <span className="text-white text-sm font-semibold hidden sm:block">
                   Knash.com
                 </span>
               </Link>
             </div>
 
-            {/* Desktop navigation */}
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (
@@ -53,7 +55,9 @@ export default function Navigation() {
                     to={item.href}
                     className={({ isActive }) =>
                       classNames(
-                        isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white',
+                        isActive
+                          ? 'bg-gray-900 text-white'
+                          : 'text-gray-300 hover:bg-white/5 hover:text-white',
                         'rounded-md px-3 py-2 text-sm font-medium'
                       )
                     }
@@ -65,7 +69,6 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* Right section with Profile component */}
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <Profile />
           </div>
@@ -82,7 +85,9 @@ export default function Navigation() {
               to={item.href}
               className={({ isActive }) =>
                 classNames(
-                  isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white',
+                  isActive
+                    ? 'bg-gray-900 text-white'
+                    : 'text-gray-300 hover:bg-white/5 hover:text-white',
                   'block rounded-md px-3 py-2 text-base font-medium'
                 )
               }
