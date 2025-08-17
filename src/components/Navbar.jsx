@@ -33,13 +33,13 @@ export default function Navigation() {
             {/* Logo */}
             <div className="flex shrink-0 items-center">
               <Link to="/" className="flex items-center space-x-2">
-                <img
+                {/* <img
                   className="h-8 w-auto"
                   src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
                   alt="CBN Logo"
-                />
+                /> */}
                 <span className="text-white text-sm font-semibold hidden sm:block">
-                  customer-business-network
+                  Knash.com
                 </span>
               </Link>
             </div>

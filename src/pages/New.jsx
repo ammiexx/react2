@@ -30,7 +30,7 @@ const Newp = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>We are here to offer newly realeased products and services:</strong> 👀 💡
+            🎯 <strong>newly realeased products and services:</strong> 👀 💡
           </label>
           <input
             type="text"

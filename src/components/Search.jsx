@@ -8,7 +8,7 @@ const categories = [
   "weekly discounts",
   "new offers",
   "upcomming services",
-  "chat",
+  "send a message",
 ];
 
 const Search = () => {
@@ -110,7 +110,7 @@ const Search = () => {
             <ul className="space-y-2 text-gray-700 text-sm">
               <li><Link to="/aboutus" onClick={closeMenu}>About Us</Link></li>
               <li><Link to="/new advantages" onClick={closeMenu}>Announcements</Link></li>
-              <li><Link to="/chat" onClick={closeMenu}>What U Want?</Link></li>
+              <li><Link to="/chat" onClick={closeMenu}>Send a Message</Link></li>
               <li><Link to="/weekly discounts" onClick={closeMenu}>Want Discounts?</Link></li>
               <li><Link to="/logout" onClick={closeMenu}>Sign Out</Link></li>
               <li><Link to="/orders" onClick={closeMenu}>Orders</Link></li>
@@ -133,7 +133,6 @@ const Search = () => {
               <li><Link to="/helpcenter" onClick={closeMenu}>Help Center</Link></li>
               <li><Link to="/terms" onClick={closeMenu}>Terms & Conditions</Link></li>
               <li><Link to="/privacy" onClick={closeMenu}>Privacy Policy</Link></li>
-              <li><Link to="/language" onClick={closeMenu}>Language</Link></li>
             </ul>
           </div>
         </div>

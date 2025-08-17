@@ -30,7 +30,7 @@ const Upcomming = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>Well We are delighted announce our new services and products:</strong> 👀 💡
+            🎯 <strong>Delighted announce our upcomming services and products:</strong> 👀 💡
           </label>
           <input
             type="text"

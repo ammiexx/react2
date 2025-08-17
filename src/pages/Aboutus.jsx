@@ -1,4 +1,4 @@
-// src/pages/AboutUs.jsx
+
 import React from 'react';
 import './Aboutus.css';
 const AboutUs = () => {

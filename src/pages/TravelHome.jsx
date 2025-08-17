@@ -30,7 +30,7 @@ const TravelHome = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>Well come to Piyasa 🛍️  We are here to travel around the world:</strong> 👀 💡
+            🎯 <strong> 🛍️  Ready to travel around the world?:</strong> 👀 💡
           </label>
           <input
             type="text"

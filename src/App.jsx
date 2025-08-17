@@ -76,7 +76,7 @@ function App() {
          <Route path="/language" element={< Language/>} />
            <Route path="/brands" element={< Brands/>} />
            <Route path="/customerservices" element={< CustomerServices/>} />
-            <Route path="/chat" element={< Chat2/>} />
+            <Route path="/send a message" element={< Chat2/>} />
              <Route path="/technologymethods" element={< TechnologyMethods/>} />
              <Route path="/new advantages" element={< Announcements/>} />
            

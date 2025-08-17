@@ -31,7 +31,7 @@ const Electronicmaterial = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>We are here to offer our products:</strong> 👀 💡
+            🎯 <strong>Computer and electronics collection discounts:</strong> 👀 💡
           </label>
           <input
             type="text"

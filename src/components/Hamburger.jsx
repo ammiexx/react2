@@ -1,6 +1,5 @@
-// src/components/Hamburger.jsx
-import React from 'react';
 
+import React from 'react';
 const Hamburger = ({ isOpen, toggle }) => {
   return (
     <button

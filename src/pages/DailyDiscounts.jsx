@@ -29,7 +29,7 @@ const Daily = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>We are here to offer daily discounts:</strong> 👀 💡
+            🎯 <strong>Todays daily discounts:</strong> 👀 💡
           </label>
           <input
             type="text"

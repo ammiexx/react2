@@ -30,7 +30,7 @@ const Home = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>Well come to Piyasa 🛍️  We are here to offer our products:</strong> 👀 💡
+            🎯 <strong>🛍️ We are here to offer fashion collection discounts:</strong> 👀 💡
           </label>
           <input
             type="text"

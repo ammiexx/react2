@@ -30,7 +30,7 @@ const WeddingHome = () => {
 
         <div className="search-bar">
           <label htmlFor="search">
-            🎯 <strong>We are here to offer our wedding and event products:</strong> 👀 💡
+            🎯 <strong>Our wedding and events:</strong> 👀 💡
           </label>
           <input
             type="text"

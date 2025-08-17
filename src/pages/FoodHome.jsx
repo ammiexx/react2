@@ -32,7 +32,7 @@ const FoodHome = () => {
 
       <section className="search-bar">
         <label htmlFor="search">
-          🔍 <strong>Find food or drink products you love:</strong>
+          🔍 <strong>Browse food or drink products you love:</strong>
         </label>
         <input
           type="text"
