@@ -49,7 +49,7 @@ const Search = () => {
   return (
     <>
       {/* Top Navigation */}
-      <nav className="w-full bg-gray-600 border-y border-gray-300 flex items-center px-5 py-0.6 gap-5 font-sans whitespace-nowrap overflow-x-hidden">
+      <nav className="w-full bg-gray-600 border-y border-gray-300 flex items-center px-5 py-1 gap-5 font-sans whitespace-nowrap overflow-x-hidden">
         {/* Hamburger Icon */}
         <div className="flex items-center flex-shrink-0 mr-4">
           <Hamburger isOpen={menuOpen} toggle={toggleMenu} />
