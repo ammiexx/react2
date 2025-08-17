@@ -24,7 +24,7 @@ const Search = () => {
     navigate(`/${encodeURIComponent(category.toLowerCase())}`);
   };
 
-  // Lock scroll when menu is open
+  // Lock scroll when menu is open and close on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -69,7 +69,7 @@ const Search = () => {
         </div>
       </nav>
 
-      {/* Backdrop overlay */}
+      {/* Backdrop Overlay */}
       {menuOpen && (
         <div
           onClick={closeMenu}
@@ -80,17 +80,17 @@ const Search = () => {
       {/* Side Drawer */}
       <div
         ref={menuRef}
-        className={`fixed top-0 left-0 h-screen w-72 bg-white z-50 shadow-lg transform transition-transform duration-300 ease-in-out flex flex-col ${
+        className={`fixed top-0 left-0 h-screen w-80 bg-white z-50 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${
           menuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        {/* Close button */}
-        <div className="flex justify-end items-center h-12 border-b border-gray-200 relative z-10 px-3">
+        {/* Header */}
+        <div className="flex items-center justify-between h-16 px-5 border-b border-gray-200 bg-gray-100">
+          <h2 className="text-lg font-semibold text-gray-800">Menu</h2>
           <button
             onClick={closeMenu}
-            className="text-gray-600 hover:text-gray-900 transition focus:outline-none"
+            className="text-gray-500 hover:text-gray-800 focus:outline-none"
             aria-label="Close menu"
-            style={{ width: '32px', height: '32px' }}
           >
             <svg
               className="w-6 h-6"
@@ -104,35 +104,39 @@ const Search = () => {
           </button>
         </div>
 
-        {/* Scrollable menu content */}
-        <div className="flex-grow overflow-y-auto p-4 space-y-6">
+        {/* Scrollable Menu Content */}
+        <div className="flex-grow overflow-y-auto p-5 space-y-8">
+          {/* Navigation */}
           <div>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Navigation</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
-              <li><Link to="/aboutus" onClick={closeMenu}>About Us</Link></li>
-              <li><Link to="/new advantages" onClick={closeMenu}>Announcements</Link></li>
-              <li><Link to="/chat" onClick={closeMenu}>Send a Message</Link></li>
-              <li><Link to="/weekly discounts" onClick={closeMenu}>Want Discounts?</Link></li>
-              <li><Link to="/logout" onClick={closeMenu}>Sign Out</Link></li>
-              <li><Link to="/orders" onClick={closeMenu}>Orders</Link></li>
+              <li><Link to="/aboutus" onClick={closeMenu} className="hover:text-blue-600">About Us</Link></li>
+              <li><Link to="/new advantages" onClick={closeMenu} className="hover:text-blue-600">Announcements</Link></li>
+              <li><Link to="/chat" onClick={closeMenu} className="hover:text-blue-600">Send a Message</Link></li>
+              <li><Link to="/weekly discounts" onClick={closeMenu} className="hover:text-blue-600">Want Discounts?</Link></li>
+              <li><Link to="/orders" onClick={closeMenu} className="hover:text-blue-600">Orders</Link></li>
+              <li><Link to="/logout" onClick={closeMenu} className="hover:text-red-600 font-medium">Sign Out</Link></li>
             </ul>
           </div>
 
+          {/* Categories */}
           <div>
-            <h3 className="font-semibold text-gray-800">Categories</h3>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Categories</h3>
             <ul className="pl-4 list-disc text-sm space-y-1 text-gray-600">
-              <li><Link to="/technologymethods" onClick={closeMenu}>Technology Methods</Link></li>
-              <li><Link to="/blog" onClick={closeMenu}>Did You Know</Link></li>
-              <li><Link to="/new offers" onClick={closeMenu}>New Products</Link></li>
-              <li><Link to="/brands" onClick={closeMenu}>Brands</Link></li>
+              <li><Link to="/technologymethods" onClick={closeMenu} className="hover:text-blue-600">Technology Methods</Link></li>
+              <li><Link to="/blog" onClick={closeMenu} className="hover:text-blue-600">Did You Know</Link></li>
+              <li><Link to="/new offers" onClick={closeMenu} className="hover:text-blue-600">New Products</Link></li>
+              <li><Link to="/brands" onClick={closeMenu} className="hover:text-blue-600">Brands</Link></li>
             </ul>
           </div>
 
+          {/* Support */}
           <div>
-            <h3 className="font-semibold text-gray-800">Support</h3>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Support</h3>
             <ul className="space-y-1 text-sm text-gray-600">
-              <li><Link to="/helpcenter" onClick={closeMenu}>Help Center</Link></li>
-              <li><Link to="/terms" onClick={closeMenu}>Terms & Conditions</Link></li>
-              <li><Link to="/privacy" onClick={closeMenu}>Privacy Policy</Link></li>
+              <li><Link to="/helpcenter" onClick={closeMenu} className="hover:text-blue-600">Help Center</Link></li>
+              <li><Link to="/terms" onClick={closeMenu} className="hover:text-blue-600">Terms & Conditions</Link></li>
+              <li><Link to="/privacy" onClick={closeMenu} className="hover:text-blue-600">Privacy Policy</Link></li>
             </ul>
           </div>
         </div>
