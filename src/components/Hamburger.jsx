@@ -6,7 +6,7 @@ const Hamburger = ({ isOpen, toggle }) => {
       onClick={toggle}
       aria-label="Toggle menu"
       type="button"
-      className="flex flex-col justify-between w-9 h-8 z-[1100] transition-transform duration-200 hover:scale-110 border border-transparent hover:border-white"
+      className="flex flex-col justify-between w-8 h-6 z-[1100] transition-transform duration-200 hover:scale-110 border border-transparent hover:border-white"
     >
       <span
         className={`h-1 w-full bg-white rounded transition-transform duration-300 ease-in-out ${
