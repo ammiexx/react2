@@ -54,7 +54,7 @@ const AboutUs = () => {
       </section>
 
       <footer className="about-footer">
-        <p>&copy; {new Date().getFullYear()} CBN. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Knash. All rights reserved.</p>
       </footer>
     </div>
   );

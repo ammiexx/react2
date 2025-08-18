@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './FoodHome.css';
 
 const FoodHome = () => {
   const [products, setProducts] = useState([]);
@@ -24,87 +23,78 @@ const FoodHome = () => {
   );
 
   return (
-    <div className="home-container food-home">
-      <header className="home-header">
-        <h1>🍽️ Explore Our Food & Beverage Selections</h1>
-        <p>Delicious deals from trusted suppliers across various categories.</p>
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      <header className="text-center mb-10">
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-800">🍽️ Explore Our Food & Beverage Selections</h1>
+        <p className="text-gray-600 mt-2">Delicious deals from trusted suppliers across various categories.</p>
       </header>
 
-      <section className="search-bar">
-        <label htmlFor="search">
-          🔍 <strong>Browse food or drink products you love:</strong>
-        </label>
-        <input
-          type="text"
-          id="search"
-          placeholder="Search snacks, beverages, etc..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </section>
+     
 
-      <section className="featured-section">
-        <h2 className="subcategory-title">🍕 Food & Beverage Listings</h2>
+      <section>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-6">🍕 Food & Beverage Listings</h2>
 
-        <div className="featured-grid">
+        <div className="grid gap-8 md:grid-cols-2">
           {filteredProducts.map(item => {
             const allImages = [item.product_photo, ...(item.images || []).map(img => img.image)];
             const firstFourImages = allImages.slice(0, 4);
             const remainingImages = allImages.slice(4);
 
             return (
-              <div className="featured-item-row" key={item.id}>
+              <div key={item.id} className="border border-gray-200 rounded-lg p-6 shadow-sm bg-white hover:shadow-md transition duration-200">
                 {/* Poster Info */}
-                <div className="poster-info-top">
-                  <div className="poster-meta">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
                     <img
                       src={item.profile_photo || 'https://via.placeholder.com/60'}
                       alt={`${item.first_name} ${item.last_name}`}
-                      className="profile-photo"
+                      className="w-12 h-12 rounded-full object-cover"
                     />
                     <div>
-                      <p className="poster-name"><strong>{item.company_name}</strong></p>
-                      <p className="poster-location">📍 {item.location}</p>
+                      <p className="font-semibold text-gray-800">{item.company_name}</p>
+                      <p className="text-sm text-gray-500">📍 {item.location}</p>
                     </div>
                   </div>
-                  {item.contact_phone && <span className="poster-phone">📞 {item.contact_phone}</span>}
+                  {item.contact_phone && (
+                    <span className="text-sm text-blue-600 font-medium whitespace-nowrap">📞 {item.contact_phone}</span>
+                  )}
                 </div>
 
                 {/* Product Images */}
-                <div className="extra-images">
+                <div className="grid grid-cols-2 gap-2 mb-4">
                   {firstFourImages.map((src, idx) => (
                     <img
                       key={idx}
                       src={src}
                       alt={`Image ${idx}`}
-                      className="extra-image"
+                      className="w-full h-28 object-cover rounded cursor-pointer hover:scale-105 transition"
                       onClick={() => setZoomedImage(src)}
                     />
                   ))}
                 </div>
 
                 {/* Product Name */}
-                <h3 className="product-title">{item.product_name}</h3>
+                <h3 className="text-lg font-bold text-gray-700 mb-2">{item.product_name}</h3>
 
                 {/* View More Button */}
                 {remainingImages.length > 0 && (
                   <button
-                    className="view-more-btn"
                     onClick={() => toggleExpand(item.id)}
+                    className="text-sm text-blue-600 font-medium hover:underline focus:outline-none mb-2"
                   >
                     {expandedProductId === item.id ? 'Hide Images' : 'View More'}
                   </button>
                 )}
 
-                {/* Expanded Extra Images */}
+                {/* Expanded Images */}
                 {expandedProductId === item.id && (
-                  <div className="extra-images expanded">
+                  <div className="grid grid-cols-2 gap-2 mb-4">
                     {remainingImages.map((src, idx) => (
                       <img
                         key={idx}
                         src={src}
                         alt={`More ${idx}`}
-                        className="extra-image"
+                        className="w-full h-28 object-cover rounded cursor-pointer hover:scale-105 transition"
                         onClick={() => setZoomedImage(src)}
                       />
                     ))}
@@ -113,17 +103,27 @@ const FoodHome = () => {
 
                 {/* Product Details */}
                 {expandedProductId === item.id && (
-                  <div className="product-details">
+                  <div className="text-sm text-gray-700 space-y-2">
                     <p><strong>📝 Description:</strong> {item.description}</p>
                     <p><strong>📅 Posted:</strong> {new Date(item.date_posted).toLocaleDateString()}</p>
-                    <div className="contact-links">
+                    <div className="flex gap-4 mt-2">
                       {item.contact_telegram && (
-                        <a href={item.contact_telegram} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={item.contact_telegram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 hover:underline"
+                        >
                           📲 Telegram
                         </a>
                       )}
                       {item.contact_tick && (
-                        <a href={item.contact_tick} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={item.contact_tick}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-pink-500 hover:underline"
+                        >
                           📲 TikTok
                         </a>
                       )}
@@ -138,8 +138,11 @@ const FoodHome = () => {
 
       {/* Zoomed Image Modal */}
       {zoomedImage && (
-        <div className="image-modal" onClick={() => setZoomedImage(null)}>
-          <img src={zoomedImage} alt="Zoomed" />
+        <div
+          className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+          onClick={() => setZoomedImage(null)}
+        >
+          <img src={zoomedImage} alt="Zoomed" className="max-h-[90vh] max-w-[90vw] rounded shadow-lg" />
         </div>
       )}
     </div>

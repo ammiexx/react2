@@ -1,5 +1,5 @@
 import React from 'react';
-
+// to move to the top of the navigation
 const Back = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -4,6 +4,7 @@ import { useUser } from '@clerk/clerk-react';
 const MESSAGE_API = 'https://djanagobackend-5.onrender.com/api/cat';
 
 const Chat2 = () => {
+  // to make the customer to chat what they want
   const { isSignedIn, user } = useUser();
 
   const [message, setMessage] = useState('');

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useUser, SignOutButton } from '@clerk/clerk-react';
-
+// render the profile photo
 const Profile = () => {
   const { user } = useUser();
   const [open, setOpen] = useState(false);

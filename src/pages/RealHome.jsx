@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './RealHome.css';
 
 const RealHome = () => {
   const [products, setProducts] = useState([]);
@@ -25,134 +24,141 @@ const RealHome = () => {
   );
 
   return (
-    <div className="home-container">
-
-      {/* HERO SECTION */}
-      <section className="hero-section">
-        <div className="hero-text">
-          <h1>Find Your Dream Home Today</h1>
-          <p>🏡 Browse our latest real estate listings, from cozy apartments to luxurious villas.</p>
-        </div>
-      </section>
-
-      <section className="featured-section">
-        <div className="search-bar">
-          <label htmlFor="search">
-            🔍 <strong>Explore our property listings:</strong>
+    <div className="max-w-[1200px] mx-auto my-10 px-4 text-[#2c3e50] font-sans">
+      {/* Search Section */}
+      <section className="mb-12">
+        <div className="flex flex-col items-center mb-6">
+          <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
+            🎯 <strong>Own a house with 25% initial payment</strong> 👀 💡
           </label>
           <input
             type="text"
             id="search"
-            placeholder="Search by name or company..."
+            placeholder="Search what you want to buy..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full sm:w-[60%] max-w-[500px] px-4 py-3 text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400"
           />
         </div>
 
-        <div className="featured-grid">
-          {[0, 1, 2].map(col => (
-            <div className="featured-column" key={col}>
-              {filteredProducts
-                .filter((_, idx) => idx % 3 === col)
-                .map(item => {
-                  const allImages = [item.product_photo, ...(item.images || []).map(img => img.image)];
-                  const firstFourImages = allImages.slice(0, 4);
-                  const remainingImages = allImages.slice(4);
-
-                  return (
-                    <div className="featured-item-row" key={item.id}>
-                      <div className="poster-info-top">
-                        <div className="poster-meta">
-                          <img
-                            src={item.profile_photo || 'https://via.placeholder.com/60'}
-                            alt={`${item.first_name} ${item.last_name}`}
-                            className="profile-photo"
-                          />
-                          <p><strong>{item.company_name}</strong></p>
-                        </div>
-                        {item.contact_phone && (
-                          <span>📞 {item.contact_phone}</span>
-                        )}
-                        <p className="poster-location">
-                          📍 <strong>{item.location}</strong>
-                        </p>
-                      </div>
-
-                      {/* Badges */}
-                      <div className="badge-container">
-                        <span className="badge-for-sale">🏷️ For Sale</span>
-                        {item.featured && <span className="badge-featured">✨ Featured</span>}
-                      </div>
-
-                      {/* Product Images */}
-                      <div className="extra-images">
-                        {firstFourImages.map((src, idx) => (
-                          <img
-                            key={idx}
-                            src={src}
-                            alt={`Image ${idx}`}
-                            className="extra-image"
-                            onClick={() => setZoomedImage(src)}
-                          />
-                        ))}
-                      </div>
-
-                      <h6 className="product-title">{item.product_name}</h6>
-
-                      {item.price && (
-                        <p className="price-tag">💲 {item.price.toLocaleString()} ETB</p>
-                      )}
-
-                      {remainingImages.length > 0 && (
-                        <button
-                          className="view-more-btn"
-                          onClick={() => toggleExpand(item.id)}
-                        >
-                          {expandedProductId === item.id ? 'Hide' : 'More...'}
-                        </button>
-                      )}
-
-                      {expandedProductId === item.id && (
-                        <>
-                          <div className="extra-images">
-                            {remainingImages.map((src, idx) => (
-                              <img
-                                key={idx}
-                                src={src}
-                                alt={`More ${idx}`}
-                                className="extra-image"
-                                onClick={() => setZoomedImage(src)}
-                              />
-                            ))}
-                          </div>
-                          <div className="product-details">
-                            <p><strong>📝 Description:</strong> {item.description}</p>
-                            <p className="posted-date"><strong>📅 Posted:</strong> {new Date(item.date_posted).toLocaleDateString()}</p>
-                            <p className="contact">
-                              {item.contact_telegram && (
-                                <a href={item.contact_telegram} target="_blank" rel="noopener noreferrer">
-                                  📲 Telegram
-                                </a>
-                              )}
-                            </p>
-                            <Link to={`/schedule/${item.id}`} className="cta-button">
-                              📆 Schedule Visit
-                            </Link>
-                          </div>
-                        </>
-                      )}
-                    </div>
-                  );
-                })}
+        {/* Product Grid */}
+        <div className="grid gap-8 md:grid-cols-2">
+          {filteredProducts.length === 0 ? (
+            <div className="text-center col-span-full text-lg font-semibold text-pink-700 py-10">
+              😢 No products found matching your search.
             </div>
-          ))}
+          ) : (
+            filteredProducts.map(item => {
+              const allImages = [item.product_photo, ...(item.images || []).map(img => img.image)];
+              const firstFourImages = allImages.slice(0, 4);
+              const remainingImages = allImages.slice(4);
+
+              return (
+                <div key={item.id} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-transform hover:scale-105 flex flex-col">
+                  {/* Poster Info */}
+                  <div className="flex flex-col gap-2 mb-2">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={item.profile_photo || 'https://via.placeholder.com/60'}
+                        alt={`${item.first_name} ${item.last_name}`}
+                        className="w-10 h-10 rounded-full object-cover border"
+                      />
+                      <p className="text-sm font-semibold">{item.company_name}</p>
+                    </div>
+                    {item.contact_phone && (
+                      <span className="text-xs text-gray-600">📞 {item.contact_phone}</span>
+                    )}
+                    <p className="text-xs text-gray-500">📍 <strong>Location:</strong> {item.location}</p>
+                  </div>
+
+                  {/* Product Images */}
+                  <div className="grid grid-cols-2 gap-2 mb-2">
+                    {firstFourImages.map((src, idx) => (
+                      <img
+                        key={idx}
+                        src={src}
+                        alt={`Image ${idx}`}
+                        className="aspect-video object-cover border rounded cursor-pointer hover:scale-105 transition"
+                        onClick={() => setZoomedImage(src)}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Product Name */}
+                  <h6 className="text-center text-lg font-bold text-[#2c3e50] mt-2 mb-1">{item.product_name}</h6>
+
+                  {/* View More Button */}
+                  {remainingImages.length > 0 && (
+                    <button
+                      className="mt-3 px-4 py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full text-sm font-semibold shadow hover:from-blue-700 hover:to-blue-800 transition"
+                      onClick={() => toggleExpand(item.id)}
+                    >
+                      {expandedProductId === item.id ? 'Hide' : 'More...'}
+                    </button>
+                  )}
+
+                  {/* Expanded Images */}
+                  {expandedProductId === item.id && (
+                    <div className="grid grid-cols-2 gap-2 mt-3">
+                      {remainingImages.map((src, idx) => (
+                        <img
+                          key={idx}
+                          src={src}
+                          alt={`Extra ${idx}`}
+                          className="aspect-video object-cover border rounded cursor-pointer hover:scale-105 transition"
+                          onClick={() => setZoomedImage(src)}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Expanded Details */}
+                  {expandedProductId === item.id && (
+                    <div className="mt-3 text-sm text-gray-700 space-y-2">
+                      <p>📝 <strong>Description:</strong> {item.description}</p>
+                      <p><strong>Posted:</strong> {new Date(item.date_posted).toLocaleDateString()}</p>
+                      <div className="flex gap-4 text-sm mt-1">
+                        {item.contact_telegram && (
+                          <a
+                            href={item.contact_telegram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-500 hover:underline"
+                          >
+                            📲 Telegram
+                          </a>
+                        )}
+                        {item.contact_tick && (
+                          <a
+                            href={item.contact_tick}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-pink-600 hover:underline"
+                          >
+                            📲 Ticktalk
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          )}
         </div>
       </section>
 
       {/* Zoomed Image Modal */}
       {zoomedImage && (
-        <div className="image-modal" onClick={() => setZoomedImage(null)}>
-          <img src={zoomedImage} alt="Zoomed" />
+        <div
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 cursor-zoom-out"
+          onClick={() => setZoomedImage(null)}
+        >
+          <img
+            src={zoomedImage}
+            alt="Zoomed"
+            className="max-w-[90%] max-h-[90%] rounded shadow-lg"
+          />
         </div>
       )}
     </div>

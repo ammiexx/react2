@@ -1,4 +1,4 @@
-// src/App.jsx
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SignUp,SignIn } from "@clerk/clerk-react";
@@ -9,8 +9,6 @@ import Footer from "./components/Footer";
 import Signup from "./components/Signup"
 import Login from "./components/Login";
 import Home from "./pages/Home2";
-import Wanted from "./pages/Wanted";
-import ForSale from "./pages/ForSale";
 import AboutUs from "./pages/Aboutus";
 import Chat2 from "./pages/Chat2";
 import Category1 from "./pages/Category1";
@@ -68,21 +66,18 @@ function App() {
           <Route path="/weekly discounts" element={<Week/>} />
           <Route path="/new offers" element={<Newp/>} />
           <Route path="/upcomming services" element={<Upcomming/>} />
-        <Route path="/wanted" element={<Wanted />} />
-        <Route path="/forsale" element={<ForSale />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/profile" element={<Profile />} />
+         <Route path="/login" element={<Login />} />
+         <Route path="/logout" element={<Logout />} />
+         <Route path="/profile" element={<Profile />} />
          <Route path="/helpcenter" element={<HelpCenter />} />
          <Route path="/contactus" element={< ContactUs/>} />
          <Route path="/privacy" element={< Privacy/>} />
          <Route path="/language" element={< Language/>} />
-           <Route path="/brands" element={< Brands/>} />
-           <Route path="/customerservices" element={< CustomerServices/>} />
-            <Route path="/send a message" element={< Chat2/>} />
-             <Route path="/technologymethods" element={< TechnologyMethods/>} />
-             <Route path="/new advantages" element={< Announcements/>} />
-           
+         <Route path="/brands" element={< Brands/>} />
+         <Route path="/customerservices" element={< CustomerServices/>} />
+         <Route path="/send a message" element={< Chat2/>} />
+         <Route path="/technologymethods" element={< TechnologyMethods/>} />
+         <Route path="/new advantages" element={< Announcements/>} />
         <Route
           path="/signup"
           element={
@@ -94,7 +89,6 @@ function App() {
           }
         />
         <Route path="/aboutus" element={<AboutUs/>} />
-        
       </Routes>
       <Back/>
       <Footer />
