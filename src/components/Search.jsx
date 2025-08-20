@@ -3,12 +3,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import Hamburger from './Hamburger';
 
 const categories = [
-  "new advantages",
-  "daily discounts",
-  "weekly discounts",
-  "new offers",
-  "upcomming services",
-  "send a message",
+  "New Advantages",
+  "Daily Discounts",
+  "Weekly Discounts",
+  "New Offers",
+  "Upcomming Services",
+  "Send Messages",
 ];
 
 const Search = () => {
@@ -111,9 +111,9 @@ const Search = () => {
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Navigation</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
               <li><Link to="/aboutus" onClick={closeMenu} className="hover:text-blue-600">About Us</Link></li>
-              <li><Link to="/new advantages" onClick={closeMenu} className="hover:text-blue-600">Announcements</Link></li>
+              <li><Link to="/New Advantages" onClick={closeMenu} className="hover:text-blue-600">Announcements</Link></li>
               <li><Link to="/chat" onClick={closeMenu} className="hover:text-blue-600">Send a Message</Link></li>
-              <li><Link to="/weekly discounts" onClick={closeMenu} className="hover:text-blue-600">Want Discounts?</Link></li>
+              <li><Link to="/Weekly Discounts" onClick={closeMenu} className="hover:text-blue-600">Want Discounts?</Link></li>
               <li><Link to="/orders" onClick={closeMenu} className="hover:text-blue-600">Orders</Link></li>
               <li><Link to="/logout" onClick={closeMenu} className="hover:text-red-600 font-medium">Sign Out</Link></li>
             </ul>
@@ -124,7 +124,7 @@ const Search = () => {
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Categories</h3>
             <ul className="pl-4 list-disc text-sm space-y-1 text-gray-600">
               <li><Link to="/technologymethods" onClick={closeMenu} className="hover:text-blue-600">Technology Methods</Link></li>
-              <li><Link to="/new offers" onClick={closeMenu} className="hover:text-blue-600">New Products</Link></li>
+              <li><Link to="/New Offers" onClick={closeMenu} className="hover:text-blue-600">New Products</Link></li>
               <li><Link to="/brands" onClick={closeMenu} className="hover:text-blue-600">Brands</Link></li>
             </ul>
           </div>

@@ -98,24 +98,24 @@ const Footer = () => {
             <h4 className="text-white font-semibold mb-2">Explore</h4>
             <ul className={normalTextClass + " space-y-1"}>
               <li><a href="/" className={linkClass}>All</a></li>
-              <li><a href="/new offers" className={linkClass}>New Products</a></li>
-              <li><a href="/upcomming services" className={linkClass}>Upcomming Services</a></li>
-               <li><a href="/send a message" className={linkClass}>Send Messages</a></li>
+              <li><a href="/New Offers" className={linkClass}>New Products</a></li>
+              <li><a href="/Upcomming Services" className={linkClass}>Upcomming Services</a></li>
+               <li><a href="/Snd  Messages" className={linkClass}>Send Messages</a></li>
             </ul>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-2">Quick Links</h4>
             <ul className={normalTextClass + " space-y-1"}>
-              <li><a href="/new advantages" className={linkClass}>New Advantages</a></li>
-              <li><a href="/weekly discounts" className={linkClass}>Weekly Discounts</a></li>
-              <li><a href="/daily discounts" className={linkClass}>Daily Discounts</a></li>
+              <li><a href="/New Advantages" className={linkClass}>New Advantages</a></li>
+              <li><a href="/Wekly Discounts" className={linkClass}>Weekly Discounts</a></li>
+              <li><a href="/Daily Discounts" className={linkClass}>Daily Discounts</a></li>
             </ul>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-2">Company</h4>
             <ul className={normalTextClass + " space-y-1"}>
               <li><a href="/aboutus" className={linkClass}>About Us</a></li>
-              <li><a href="/new offers" className={linkClass}>New Offers</a></li>
+              <li><a href="/New Offers" className={linkClass}>New Offers</a></li>
               <li><a href="/helpcenter" className={linkClass}>Help Center</a></li>
             </ul>
           </div>

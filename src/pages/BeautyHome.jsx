@@ -46,7 +46,7 @@ const BeautyHome = () => {
         <div className="grid gap-8 md:grid-cols-2">
           {filteredProducts.length === 0 ? (
             <div className="text-center col-span-full text-lg font-semibold text-pink-700 py-10">
-              😢 No products found matching your search.
+              😢 Loading...
             </div>
           ) : (
             filteredProducts.map(item => {
