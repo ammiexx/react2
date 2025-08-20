@@ -93,37 +93,43 @@ const Footer = () => {
 
         {/* Additional Links in 4 Columns */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-12">
-          <div>
-            <h4 className="text-white font-semibold mb-2">Support</h4>
-            <ul className={normalTextClass + " space-y-1"}>
-              <li><a href="/helpcenter" className={linkClass}>Help Center</a></li>
-              <li><a href="/privacy" className={linkClass}>Privacy Policy</a></li>
-            </ul>
-          </div>
-
+          
           <div>
             <h4 className="text-white font-semibold mb-2">Explore</h4>
             <ul className={normalTextClass + " space-y-1"}>
               <li><a href="/new offers" className={linkClass}>New Products</a></li>
               <li><a href="/blog" className={linkClass}>Did You Know</a></li>
+              <li><a href="/upcomming services" className={linkClass}>Upcomming Services</a></li>
+              <li><a href="/chat" className={linkClass}>Send a Message</a></li>
             </ul>
           </div>
-
           <div>
             <h4 className="text-white font-semibold mb-2">Quick Links</h4>
             <ul className={normalTextClass + " space-y-1"}>
-              <li><a href="/" className={linkClass}>What U Want?</a></li>
+              <li><a href="/" className={linkClass}>All</a></li>
+              <li><a href="/new advantages" className={linkClass}>New Advantages</a></li>
               <li><a href="/weekly discounts" className={linkClass}>Weekly Discounts</a></li>
+              <li><a href="/daily discounts" className={linkClass}>Daily Discounts</a></li>
             </ul>
           </div>
-
           <div>
             <h4 className="text-white font-semibold mb-2">Company</h4>
             <ul className={normalTextClass + " space-y-1"}>
               <li><a href="/aboutus" className={linkClass}>About Us</a></li>
               <li><a href="/new offers" className={linkClass}>New Offers</a></li>
+              <li><a href="/helpcenter" className={linkClass}>Help Center</a></li>
             </ul>
           </div>
+          <div>
+            <h4 className="text-white font-semibold mb-2">Sign Up</h4>
+            <ul className={normalTextClass + " space-y-1"}>
+               <li><a href="/login" className={linkClass}>Sign in</a></li>
+              <li><a href="/signup" className={linkClass}>Sign Up</a></li>
+              <li><a href="/privacy" className={linkClass}>Privacy Policy</a></li>
+              
+            </ul>
+          </div>
+
         </div>
 
         {/* Footer Bottom */}
