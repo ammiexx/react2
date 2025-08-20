@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
+import BackButton from '../components/BackButton';
 
 // Load Stripe
 const stripePromise = loadStripe('pk_test_51RxBXuC2J5esJHJB3deOeOQ3ZhxYhyM9TT4yjZvE7cSgCQGD3BW2CY0rFFTUmgvLZDgoLRA0QYUNPoWpVqweBgUh00jhNFUdVm');
@@ -47,6 +48,7 @@ const Home = () => {
 
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans">
+       <BackButton className="md:hidden" />
       <section className="mb-12">
         {/* Search */}
         <div className="flex flex-col items-center mb-6">

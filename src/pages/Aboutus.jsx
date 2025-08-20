@@ -1,9 +1,12 @@
 
 import React from 'react';
 import './Aboutus.css';
+import BackButton from '../components/BackButton';
 const AboutUs = () => {
   return (
     <div className="about-container">
+       <BackButton className="md:hidden" />
+
       <header className="about-header">
         <h1>About Us</h1>
         <p>Building bridges between buyers and sellers—locally, efficiently, and reliably.</p>

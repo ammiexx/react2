@@ -1,11 +1,12 @@
 import React from 'react';
-
+import BackButton from './BackButton';
 const Footer = () => {
   const normalTextClass = "text-left text-sm text-[#888888]";
   const linkClass = "hover:text-[#6ec1e4] transition-colors";
 
   return (
     <footer className="bg-[#0f1e2e] px-6 py-12 font-sans w-full">
+       <BackButton className="md:hidden" />
       {/* Inner content container */}
       <div className="max-w-5xl mx-auto">
         {/* Logo */}

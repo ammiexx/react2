@@ -1,3 +1,4 @@
+
 // src/components/Signup.jsx
 import React from "react";
 import { SignUp } from "@clerk/clerk-react";
@@ -6,6 +7,7 @@ import "./Signup.css";
 const Signup = () => {
   return (
     <div className="signup-page">
+       <BackButton className="md:hidden" />
       <div className="signup-card">
         <div className="signup-header">
           <img

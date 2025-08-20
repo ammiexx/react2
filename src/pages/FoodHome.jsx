@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 
 const FoodHome = () => {
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('https://djanagobackend-5.onrender.com/backend/foods/')
@@ -24,12 +27,12 @@ const FoodHome = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
+    <BackButton className="md:hidden" />
+
       <header className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800">🍽️ Explore Our Food & Beverage Selections</h1>
         <p className="text-gray-600 mt-2">Delicious deals from trusted suppliers across various categories.</p>
       </header>
-
-     
 
       <section>
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">🍕 Food & Beverage Listings</h2>

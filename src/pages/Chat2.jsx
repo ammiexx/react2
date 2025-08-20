@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '@clerk/clerk-react';
+import BackButton from '../components/BackButton';
 
 const MESSAGE_API = 'https://djanagobackend-5.onrender.com/api/cat';
 
@@ -84,6 +85,7 @@ const Chat2 = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-100 to-cyan-100 p-6">
+       <BackButton className="md:hidden" />
       <div className="bg-white max-w-2xl w-full rounded-xl shadow-lg p-6 text-center">
         <h1 className="text-2xl font-bold text-gray-800 mb-2">💬 Share what you want to be discounted!</h1>
         <p className="text-gray-600 mb-6">We are here to solve your problems!</p>
