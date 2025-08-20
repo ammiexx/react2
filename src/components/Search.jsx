@@ -124,7 +124,6 @@ const Search = () => {
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Categories</h3>
             <ul className="pl-4 list-disc text-sm space-y-1 text-gray-600">
               <li><Link to="/technologymethods" onClick={closeMenu} className="hover:text-blue-600">Technology Methods</Link></li>
-              <li><Link to="/blog" onClick={closeMenu} className="hover:text-blue-600">Did You Know</Link></li>
               <li><Link to="/new offers" onClick={closeMenu} className="hover:text-blue-600">New Products</Link></li>
               <li><Link to="/brands" onClick={closeMenu} className="hover:text-blue-600">Brands</Link></li>
             </ul>

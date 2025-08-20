@@ -97,16 +97,15 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-2">Explore</h4>
             <ul className={normalTextClass + " space-y-1"}>
+              <li><a href="/" className={linkClass}>All</a></li>
               <li><a href="/new offers" className={linkClass}>New Products</a></li>
-              <li><a href="/blog" className={linkClass}>Did You Know</a></li>
               <li><a href="/upcomming services" className={linkClass}>Upcomming Services</a></li>
-              <li><a href="/chat" className={linkClass}>Send a Message</a></li>
+               <li><a href="/send a message" className={linkClass}>Send Messages</a></li>
             </ul>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-2">Quick Links</h4>
             <ul className={normalTextClass + " space-y-1"}>
-              <li><a href="/" className={linkClass}>All</a></li>
               <li><a href="/new advantages" className={linkClass}>New Advantages</a></li>
               <li><a href="/weekly discounts" className={linkClass}>Weekly Discounts</a></li>
               <li><a href="/daily discounts" className={linkClass}>Daily Discounts</a></li>
