@@ -52,6 +52,140 @@ const categories = [
     image_url: 'https://images.unsplash.com/photo-1754244774117-a27304d47959',
     path: '/travels',
   },
+  {
+    name: 'Repair And Maintenance',
+    image_url: 'https://plus.unsplash.com/premium_photo-1750449864279-341157c41bc8?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    path: '/Repair_and_maintenace',
+  },
+  {
+    name: 'Agriculture And Livestock',
+    image_url: 'https://plus.unsplash.com/premium_photo-1667860234741-0e500d0e5ba5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YWdyaWN1bHR1cmUlMjBhbmQlMjBsaXZlc3RvY2slMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D',
+    path: '/Agriculture_And_Livestock',
+  },
+  {
+    name: 'Books & Stationaries',
+    image_url: 'https://plus.unsplash.com/premium_photo-1733864775808-c7c1ccbe5422?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3MlMjBhbmQlMjBzdGF0aW9uYXJpZXN8ZW58MHx8MHx8fDA%3D',
+    path: '/Books_And_Stationaries',
+  },
+  {
+    name: 'Vidoes & Games',
+    image_url: 'https://plus.unsplash.com/premium_photo-1664910795422-527440cfce2d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dmlkZW8lMjBnYW1lc3xlbnwwfHwwfHx8MA%3D%3D',
+    path: '/Toys_And_Games',
+  },
+  {
+    name: 'Jewelries',
+    image_url: 'https://images.unsplash.com/photo-1631698532383-97ffe7c223c7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8amV3ZWxlcmllc3xlbnwwfHwwfHx8MA%3D%3D',
+    path: '/Jewelries',
+  },
+  {
+    name: 'Finance & Insurances',
+    image_url: 'https://plus.unsplash.com/premium_photo-1661436432458-f7ca1a171410?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZmluYW5jZSUyMGFuZCUyMGluc3VyYW5jZXxlbnwwfHwwfHx8MA%3D%3D',
+    path: '/Finance_And_Insurances',
+  },
+  {
+    name: 'Baby & Kids Products',
+    image_url: 'https://images.unsplash.com/photo-1744424751775-63a0bae32a21?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJhYnklMjBhbmQlMjBraWRzJTIwcHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D',
+    path: '/Babies_And_Kids_Products',
+  },
+  {
+    name: 'Pet Supplies And Services',
+    image_url: 'https://plus.unsplash.com/premium_photo-1663133568320-97c8c0d0c4ba?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cGV0JTIwc3VwcGxpZXMlMjBhbmQlMjBzZXJ2aWNlc3xlbnwwfHwwfHx8MA%3D%3D',
+    path: '/Pet_Supplies_And_Services',
+  },
+  {
+    name: 'Green And Eco-Friendly products',
+    image_url: 'https://plus.unsplash.com/premium_photo-1711987229773-3832fca590cd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Z3JlZW4lMjBhbmQlMjBFY28lMjBGcmllbmRseSUyMHByb2R1Y3RzfGVufDB8fDB8fHww',
+    path: '/Green_And_Ecofreindly_products',
+  },
+  {
+    name: 'Medical And Pharmaceuticals',
+    image_url: 'https://plus.unsplash.com/premium_photo-1666299175827-59ca81fb2666?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bWVkaWNhbCUyMGFuZCUyMHBoYXJtYWNldXRpY2Fsc3xlbnwwfHwwfHx8MA%3D%3D',
+    path: '/Medical_And_Pharmaceuticals',
+  },
+  {
+    name: 'Logistics And Delivery Services',
+    image_url: 'https://images.unsplash.com/photo-1754765542024-c1320f23b75a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGxvZ2lzdGljJTIwYW5kJTIwZGVsaXZlcnklMjBzZXJ2aWNlc3xlbnwwfHwwfHx8MA%3D%3D',
+    path: '/Logistics_And_Delivery_Services',
+  },
+  {
+    name: 'Consultancy Services',
+    image_url: 'https://images.unsplash.com/photo-1565688527174-775059ac429c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29uc3VsdGFuY3klMjBzZXJ2aWNlc3xlbnwwfHwwfHx8MA%3D%3D',
+    path: '/legal_And_Consultancy_Services',
+  },
+  {
+    name: 'Cleaning And Sanitation Services',
+    image_url: 'https://images.unsplash.com/photo-1579141132886-e86d831034ac?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2xlYW5pbmclMjBhbmQlMjBzYW5pdGF0aW9uJTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D',
+    path: '/Cleaning_And_Sanitation_Services',
+  },
+  {
+    name: 'Telecom Services',
+    image_url: 'https://images.unsplash.com/photo-1697097156924-de4efa72afc8?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZXRoaW90ZWxlY29tfGVufDB8fDB8fHww',
+    path: '/Telecome_Services',
+  },
+  {
+    name: 'Art & Handicrafts',
+    image_url: 'https://images.unsplash.com/photo-1695747001769-15ac88863f90?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGFydCUyMGFuZCUyMGhhbmRpY3JhZnRzfGVufDB8fDB8fHww',
+    path: '/Art_And_Handicrafts',
+  },
+  {
+    name: 'Video & Photography',
+    image_url: 'https://plus.unsplash.com/premium_photo-1684783848153-970ef340c10b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dmlkZW8lMjBhbmQlMjBwaG90b2dyYXBoaWVzfGVufDB8fDB8fHww',
+    path: '/Video_And_Photography',
+  },
+  {
+    name: 'Furniture & Interior Design',
+    image_url: 'https://plus.unsplash.com/premium_photo-1670950413316-f501402ef0a7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnVybml0dXJlJTIwYW5kJTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D',
+    path: '/Furniture_And_Interior_design',
+  },
+  {
+    name: 'Fitness & Sports Services',
+    image_url: 'https://images.unsplash.com/photo-1600026453239-1d702d3e5e19?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJvZHklMjBidWlsZGluZ3xlbnwwfHwwfHx8MA%3D%3D',
+    path: '/fitness_And_Sports_servies',
+  },
+  {
+    name: 'Software & IT Services',
+    image_url: 'https://images.unsplash.com/photo-1598316560453-0246d4611979?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c29mdHdhcmUlMjBkZXZlbG9wZXJzfGVufDB8fDB8fHww',
+    path: '/SoftWare_And_IT_Services',
+  },
+  {
+    name: 'Digital Security Services',
+    image_url: 'https://images.unsplash.com/photo-1639503547276-90230c4a4198?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGRpZ2l0YWwlMjBzZWN1cml0eSUyMHNlcnZpY2VzfGVufDB8fDB8fHww',
+    path: '/Security_Services',
+  },
+  {
+    name: 'Printing & Publishing',
+    image_url: 'https://plus.unsplash.com/premium_photo-1682145489846-081721a9b272?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJpbnRpbmclMjBhbmQlMjBwdWJsaXNoaW5nfGVufDB8fDB8fHww',
+    path: '/Printing_And_Publishing',
+  },
+  {
+    name: 'Automotive Services',
+    image_url: 'https://plus.unsplash.com/premium_photo-1661299233465-ad4268ddb448?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YXV0b21vdGl2ZSUyMHNlcnZpY2VzfGVufDB8fDB8fHww',
+    path: '/Automotive_Services',
+  },
+  
+  
+  {
+    name: 'Tatue And Piercing Studios',
+    image_url: 'https://plus.unsplash.com/premium_photo-1665454931497-1355f79c5f4d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dGF0dWVzfGVufDB8fDB8fHww',
+    path: '/Tatue_And_Piercing_Studios',
+  },
+  {
+    name: 'Elderly & Nursing Services',
+    image_url: 'https://images.unsplash.com/photo-1581056771107-24ca5f033842?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fE51cnNpbmclMjBzZXJ2aWNlc3xlbnwwfHwwfHx8MA%3D%3D',
+    path: '/Elderly_And_Nursing_Services',
+  },
+  {
+    name: 'Rental Services',
+    image_url: 'https://plus.unsplash.com/premium_photo-1661761197559-58493b11151b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVudGFsJTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D',
+    path: '/Rental_Services',
+  },
+  {
+    name: 'Event Planning & Decor',
+    image_url: 'https://images.unsplash.com/photo-1585733254318-9bcc6d81584a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGRlY29yYXRpb258ZW58MHx8MHx8fDA%3D',
+    path: '/Event_planning_And_Decore',
+  },
+  
+
 ];
 
 // 10 brands

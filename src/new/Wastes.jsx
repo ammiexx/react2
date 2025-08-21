@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BackButton from '../components/BackButton';
-const EntertainmentHome = () => {
+const Waste = () => {
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
-
   useEffect(() => {
-    fetch('https://djanagobackend-5.onrender.com/enter/enters/')
+    fetch('https://djanagobackend-5.onrender.com/api/products/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -176,4 +175,4 @@ const EntertainmentHome = () => {
   );
 };
 
-export default EntertainmentHome;
+export default Waste;

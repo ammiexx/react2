@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BackButton from '../components/BackButton';
-const EntertainmentHome = () => {
+const Repair = () => {
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -176,4 +176,4 @@ const EntertainmentHome = () => {
   );
 };
 
-export default EntertainmentHome;
+export default Repair;

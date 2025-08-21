@@ -120,7 +120,7 @@ const FoodHome = () => {
                           📲 Telegram
                         </a>
                       )}
-                      {item.contact_tick && (
+                      {item.web_site && (
                         <a
                           href={item.contact_tick}
                           target="_blank"
@@ -128,6 +128,16 @@ const FoodHome = () => {
                           className="text-pink-500 hover:underline"
                         >
                           📲 TikTok
+                        </a>
+                      )}
+                       {item.web_site && (
+                        <a
+                          href={item.web_site}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-pink-500 hover:underline"
+                        >
+                          📲 Website
                         </a>
                       )}
                     </div>

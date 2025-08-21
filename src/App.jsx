@@ -39,6 +39,56 @@ import Week from "./pages/WeeklyDiscounts";
 import Newp from "./pages/New";
 import Upcomming from "./pages/Upcomming";
 
+// new imports from the new folder
+import Admin from "./new/Admins";
+import Agriculture from "./new/Agricultrure";
+import Architecture from "./new/Architectures";
+import Art from "./new/Arts";
+import Automotive from "./new/Automotives";
+import Babies from "./new/Babies";
+import Books from "./new/Books";
+import Carwash from "./new/Carwashes";
+import Cleaning from "./new/Cleanings";
+import Consultancy from "./new/Consultancies";
+import Decore from "./new/Decores";
+import Design from "./new/Designes";
+import Digital from "./new/Digitals"; 
+import Elearning from "./new/Elearnings";
+import Energy from "./new/Energies";
+import Fitness from "./new/Fitnesses";
+import Freight from "./new/Freights";
+import Funding from "./new/Fundings";
+import Gamming from "./new/Gammings";
+import Green from "./new/Green";
+import Homesecurity from "./new/HomeSecurities";
+import Human from "./new/Humans";
+import Insurances from "./new/Insurances";
+import Jewelries from "./new/Jewelries";
+import Land from "./new/Lands";
+import Logistic from "./new/Logistics";
+import Marin from "./new/Marins";
+import Medical from "./new/Medicals";
+import Mental from "./new/Mentals";
+import Music from "./new/Musics";
+import Nonprofit from "./new/Nonprofits";
+import Nursing from "./new/Nursings";
+import Office from "./new/Offices";
+import Pet from "./new/Pets";
+import Photography from "./new/Photographies";
+import Podcasting from "./new/Podcastings";
+import Printing from "./new/Printings";
+import Rental from "./new/Rentals";
+import Repair from "./new/Repair";
+import Sallon from "./new/Sallons";
+import Security from "./new/Securities";
+import Software from "./new/Softwares";
+import Stationary from "./new/Stationaries";
+import Tatue from "./new/Tatues";
+import Telecom from "./new/Telecoms";
+import Toys from "./new/Toys";
+import Translation from "./new/Translations";
+import Virtual from "./new/Virtuals";
+import Waste from "./new/Wastes";
 
 
 function App() {
@@ -47,7 +97,56 @@ function App() {
       <Navbar />
       <Search />
       <Routes>
+        <Route path="/Virtual_Assistant_And_Admin_Supports" element={<Admin />} />
+        <Route path="/Agriculture_And_Livestock" element={<Agriculture />} />
+        <Route path="/Architecture_And_Engineering_Services" element={<Architecture />} />
+        <Route path="/Art_And_Handicrafts" element={<Art />} />
+        <Route path="/Automotive_Services" element={<Automotive/>} />
+        <Route path="/Babies_And_Kids_Products" element={<Babies />} />
+        <Route path="/Books_And_Stationaries" element={<Books />} />
+        <Route path="/Car_Wash" element={<Carwash />} />
+        <Route path="/Cleaning_And_Sanitation_Services" element={<Cleaning/>} />
+        <Route path="/legal_And_Consultancy_Services" element={<Consultancy/>} />
+        <Route path="/Event_planning_And_Decore" element={<Decore />} />
+        <Route path="/Furniture_And_Interior_design" element={<Design />} />
+        <Route path="/Digital_Marketing_Services" element={<Digital/>} />
+        <Route path="/Energy_And_Utilities" element={<Energy />} />
+        <Route path="/Elearning_And_Online_Cources" element={<Elearning />} />
+        <Route path="/Gamming_And_esports" element={<Gamming />} />
+        <Route path="/Croud_Funding_And_Investment_Services" element={<Funding />} />
+        <Route path="/Courier_And_Freight_Services" element={<Freight />} />
+        <Route path="/fitness_And_Sports_servies" element={<Fitness/>} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/Jewelries" element={<Jewelries/>} />
+        <Route path="/Finance_And_Insurances" element={<Insurances/>} />
+        <Route path="/Human_Resource_And_Staffing" element={<Human/>} />
+        <Route path="/Security_Services" element={<Homesecurity />} />
+        <Route path="/Green_And_Ecofreindly_products" element={<Green />} />
+        <Route path="/Music_And_Instruments" element={<Music />} />
+        <Route path="/Mental_Health_And_Wellness_Services" element={<Mental />} />
+        <Route path="/Medical_And_Pharmaceuticals" element={<Medical />} />
+        <Route path="/Maring_And_Boating_Services" element={<Marin />} />
+        <Route path="/Logistics_And_Delivery_Services" element={<Logistic />} />
+        <Route path="/Landescaping_And_Gardening_sevices" element={<Land/>} />
+        <Route path="/Pet_Supplies_And_Services" element={<Pet />} />
+        <Route path="/Coworking_And_Office_Spaces" element={<Office/>} />
+        <Route path="/Elderly_And_Nursing_Services" element={<Nursing />} />
+        <Route path="/Non_Profit_And_Charity_organizations" element={<Nonprofit/>} />
+        <Route path="/Repair_and_Maintenance" element={<Repair/>} />
+        <Route path="/Rental_Services" element={<Rental/>}/>
+        <Route path="/Printing_And_Publishing" element={<Printing />} />
+        <Route path="/Podcasting_And_Audio_production" element={<Podcasting/>} />
+        <Route path="/Video_And_Photography" element={<Photography />} />
+        <Route path="/Bauty_Sallons_BarberShops" element={<Sallon/>} />
+        <Route path="/Security_Services" element={<Security />} />
+        <Route path="/SoftWare_And_IT_Services" element={<Software/>} />
+        <Route path="/Stationary_And_Office_Supplies" element={<Stationary />} />
+        <Route path="/Tatue_And_Piercing_Studios" element={<Tatue/>} />
+        <Route path="/Telecome_Services" element={<Telecom />} />
+        <Route path="/Waste_Management_And_Recycling" element={<Waste />} />
+        <Route path="/Virtual_Events_And_Webbinaries" element={<Virtual/>} />
+        <Route path="/Language_And_Translation_Services" element={<Translation />} />
+        <Route path="/Toys_And_Games" element={<Toys />} />
         <Route path="/" element={<Category1 />} />
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<Cancel />} />
