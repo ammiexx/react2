@@ -18,8 +18,10 @@ const Marin= () => {
   };
 
   const filteredProducts = products.filter(product =>
+    product.category === 'marin' &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
 
   return (

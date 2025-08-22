@@ -18,8 +18,10 @@ const Security= () => {
   };
 
   const filteredProducts = products.filter(product =>
+    product.category === 'security' &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
 
   return (

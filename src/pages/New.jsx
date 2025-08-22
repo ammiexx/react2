@@ -9,7 +9,7 @@ const Newp = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('https://djanagobackend-5.onrender.com/new/newproducts/')
+    fetch('https://djanagobackend-5.onrender.com/api/products/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -20,8 +20,10 @@ const Newp = () => {
   };
 
   const filteredProducts = products.filter(product =>
+    product.category === 'new' &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
 
   return (

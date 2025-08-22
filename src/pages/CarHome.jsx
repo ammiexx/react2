@@ -12,7 +12,7 @@ const CarHome = () => {
 
   // Fetch car products
   useEffect(() => {
-    fetch('https://djanagobackend-5.onrender.com/backend/cars/')
+    fetch('https://djanagobackend-5.onrender.com/api/products/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -41,8 +41,12 @@ const CarHome = () => {
 
   // Filtered list
   const filteredProducts = products.filter(product =>
+    product.category === 'carsbrands' &&
+    
+    (
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
   );
 
   return (

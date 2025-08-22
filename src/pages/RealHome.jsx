@@ -9,7 +9,7 @@ const RealHome = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('https://djanagobackend-5.onrender.com/api/RealEstates/')
+    fetch('https://djanagobackend-5.onrender.com/api/products/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -19,9 +19,13 @@ const RealHome = () => {
     setExpandedProductId(expandedProductId === productId ? null : productId);
   };
 
-  const filteredProducts = products.filter(product =>
+  const filteredProducts = products.filter(product => 
+  
+   product.category === 'homes' &&
+    (
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
   );
 
   return (

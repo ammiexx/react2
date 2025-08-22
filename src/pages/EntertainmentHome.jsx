@@ -8,7 +8,7 @@ const EntertainmentHome = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('https://djanagobackend-5.onrender.com/enter/enters/')
+    fetch('https://djanagobackend-5.onrender.com/api/products/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -19,8 +19,11 @@ const EntertainmentHome = () => {
   };
 
   const filteredProducts = products.filter(product =>
+    product.category === 'entertainments' &&
+    (
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
   );
 
   return (

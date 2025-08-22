@@ -18,8 +18,10 @@ const Cleaning= () => {
   };
 
   const filteredProducts = products.filter(product =>
+    product.category === 'cleaning' &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
 
   return (

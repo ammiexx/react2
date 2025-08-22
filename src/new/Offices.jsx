@@ -18,8 +18,10 @@ const Office = () => {
   };
 
   const filteredProducts = products.filter(product =>
+    product.category === 'office' &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
 
   return (

@@ -18,8 +18,10 @@ const Telecom= () => {
   };
 
   const filteredProducts = products.filter(product =>
+    product.category === 'telecom' &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
 
   return (

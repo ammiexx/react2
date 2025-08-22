@@ -6,9 +6,8 @@ const Toys= () => {
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
-
   useEffect(() => {
-    fetch('https://djanagobackend-5.onrender.com/enter/enters/')
+    fetch('https://djanagobackend-5.onrender.com/api/products/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -19,10 +18,11 @@ const Toys= () => {
   };
 
   const filteredProducts = products.filter(product =>
+    product.category === 'carwash' &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
-
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-4 text-[#2c3e50] font-sans">
        <BackButton className="md:hidden" />
