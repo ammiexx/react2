@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import QuickLinks from './QuickLinks';
 const categories = [
   {
     name: 'Fashions',
@@ -212,7 +212,7 @@ const Category1 = () => {
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-6xl mx-auto">
-       
+       <QuickLinks/>
        
         {/* Explore More Products Heading */}
 <div className="text-center mt-4 mb-2">

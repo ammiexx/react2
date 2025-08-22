@@ -90,6 +90,7 @@ import Translation from "./new/Translations";
 import Virtual from "./new/Virtuals";
 import Waste from "./new/Wastes";
 import Form from "./pages/Forms";
+import QuickLinks from "./pages/QuickLinks";
 
 
 function App() {
