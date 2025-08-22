@@ -94,8 +94,7 @@ const Form = () => {
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md mt-10">
       <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">📦 Add your Product</h2>
 
-      {successMsg && <p className="text-green-600 text-center mb-4">{successMsg}</p>}
-      {errorMsg && <p className="text-red-600 text-center mb-4">{errorMsg}</p>}
+      
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Product Name */}
@@ -342,6 +341,13 @@ const Form = () => {
 </div>
 
 
+{/* Messages near the submit button */}
+{successMsg && (
+  <p className="text-green-600 text-center mb-4">{successMsg}</p>
+)}
+{errorMsg && (
+  <p className="text-red-600 text-center mb-4">{errorMsg}</p>
+)}
 
 
         {/* Submit Button */}

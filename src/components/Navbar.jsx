@@ -9,7 +9,7 @@ const navigation = [
   { name: 'All', href: '/your-discounts' },
   { name: 'Sign In', href: '/login' },
   { name: 'Sign Up', href: '/signup' },
-  { name: 'Add Service', href: '/form' },
+  { name: 'Add your product', href: '/form' },
 ];
 
 function classNames(...classes) {
