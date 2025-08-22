@@ -89,6 +89,7 @@ import Toys from "./new/Toys";
 import Translation from "./new/Translations";
 import Virtual from "./new/Virtuals";
 import Waste from "./new/Wastes";
+import Form from "./pages/Forms";
 
 
 function App() {
@@ -99,6 +100,7 @@ function App() {
       <Routes>
         <Route path="/Virtual_Assistant_And_Admin_Supports" element={<Admin />} />
         <Route path="/Agriculture_And_Livestock" element={<Agriculture />} />
+        <Route path="/form" element={<Form />} />
         <Route path="/Architecture_And_Engineering_Services" element={<Architecture />} />
         <Route path="/Art_And_Handicrafts" element={<Art />} />
         <Route path="/Automotive_Services" element={<Automotive/>} />

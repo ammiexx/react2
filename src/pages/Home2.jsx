@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import BackButton from '../components/BackButton';
 
-// Load Stripe
 const stripePromise = loadStripe('pk_test_51RxBXuC2J5esJHJB3deOeOQ3ZhxYhyM9TT4yjZvE7cSgCQGD3BW2CY0rFFTUmgvLZDgoLRA0QYUNPoWpVqweBgUh00jhNFUdVm');
 
 const Home = () => {
@@ -11,7 +10,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
 
-  // Fetch car products
+  // Fetch all products from API
   useEffect(() => {
     fetch('https://djanagobackend-5.onrender.com/api/products/')
       .then(response => response.json())
@@ -35,20 +34,24 @@ const Home = () => {
     if (result.error) console.error(result.error.message);
   };
 
-  // Toggle extra images
+  // Toggle additional images
   const toggleExpand = (productId) => {
     setExpandedProductId(expandedProductId === productId ? null : productId);
   };
 
-  // Filtered list
+  // Filter products: only 'fashions' category and matching search term
   const filteredProducts = products.filter(product =>
-    product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    product.category === 'fashions' &&
+    (
+      product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
 
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans">
-       <BackButton className="md:hidden" />
+      <BackButton className="md:hidden" />
+
       <section className="mb-12">
         {/* Search */}
         <div className="flex flex-col items-center mb-6">
@@ -108,7 +111,7 @@ const Home = () => {
                   {item.product_name}
                 </h6>
 
-                {/* View More */}
+                {/* View More Button */}
                 {remainingImages.length > 0 && (
                   <button
                     className="mt-3 px-4 py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full text-sm font-semibold shadow hover:from-blue-700 hover:to-blue-800 transition"
@@ -118,18 +121,17 @@ const Home = () => {
                   </button>
                 )}
 
-                {/* Extra Images and Details */}
+                {/* Expanded Details */}
                 {expandedProductId === item.id && (
                   <>
                     <div className="w-full h-[200px] overflow-hidden rounded-md mb-4">
-  <img
-    src={item.product_photo}
-    alt={item.product_name}
-    className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
-    onClick={() => setZoomedImage(item.product_photo)}
-  />
-</div>
-
+                      <img
+                        src={item.product_photo}
+                        alt={item.product_name}
+                        className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
+                        onClick={() => setZoomedImage(item.product_photo)}
+                      />
+                    </div>
 
                     <div className="text-sm text-gray-700 leading-relaxed mt-2 space-y-1">
                       <p>📝 <strong>Description:</strong> {item.description}</p>
@@ -152,14 +154,13 @@ const Home = () => {
                             rel="noopener noreferrer"
                             className="text-pink-600 hover:underline"
                           >
-                            📲 Ticktalk
+                            📲 TikTok
                           </a>
                         )}
                       </div>
                     </div>
                   </>
                 )}
-
               </div>
             );
           })}

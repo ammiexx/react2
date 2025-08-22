@@ -9,25 +9,31 @@ const FoodHome = () => {
   const [zoomedImage, setZoomedImage] = useState(null);
   const navigate = useNavigate();
 
+  // Fetch all products from API
   useEffect(() => {
-    fetch('https://djanagobackend-5.onrender.com/backend/foods/')
+    fetch('https://djanagobackend-5.onrender.com/api/products/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
   }, []);
 
+  // Toggle expanded image group
   const toggleExpand = (productId) => {
     setExpandedProductId(expandedProductId === productId ? null : productId);
   };
 
+  // Filter by category === 'foods' AND search term
   const filteredProducts = products.filter(product =>
-    product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    product.category === 'foods' &&
+    (
+      product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
   );
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-    <BackButton className="md:hidden" />
+      <BackButton className="md:hidden" />
 
       <header className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800">🍽️ Explore Our Food & Beverage Selections</h1>
@@ -37,6 +43,18 @@ const FoodHome = () => {
       <section>
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">🍕 Food & Beverage Listings</h2>
 
+        {/* Search Input */}
+        <div className="flex justify-center mb-6">
+          <input
+            type="text"
+            placeholder="Search foods or beverages..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
+        {/* Product Grid */}
         <div className="grid gap-8 md:grid-cols-2">
           {filteredProducts.map(item => {
             const allImages = [item.product_photo, ...(item.images || []).map(img => img.image)];
@@ -120,7 +138,7 @@ const FoodHome = () => {
                           📲 Telegram
                         </a>
                       )}
-                      {item.web_site && (
+                      {item.contact_tick && (
                         <a
                           href={item.contact_tick}
                           target="_blank"
@@ -130,14 +148,14 @@ const FoodHome = () => {
                           📲 TikTok
                         </a>
                       )}
-                       {item.web_site && (
+                      {item.web_site && (
                         <a
                           href={item.web_site}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-pink-500 hover:underline"
+                          className="text-green-500 hover:underline"
                         >
-                          📲 Website
+                          🌐 Website
                         </a>
                       )}
                     </div>

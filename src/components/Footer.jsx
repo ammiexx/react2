@@ -109,6 +109,7 @@ const Footer = () => {
               <li><a href="/New Advantages" className={linkClass}>New Advantages</a></li>
               <li><a href="/Wekly Discounts" className={linkClass}>Weekly Discounts</a></li>
               <li><a href="/Daily Discounts" className={linkClass}>Daily Discounts</a></li>
+              <li><a href="/New Offers" className={linkClass}>Holiday Discounts</a></li>
             </ul>
           </div>
           <div>
