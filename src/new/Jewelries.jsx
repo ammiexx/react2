@@ -32,7 +32,7 @@ const Jewelries= () => {
       <section className="mb-12">
         <div className="flex flex-col items-center mb-6">
           <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
-            🎯 <strong>Make your day pleasing by wathing recently released music and films:</strong> 👀 💡
+            🎯 <strong>Shine in every moment — discover timeless jewelry that speaks your style 💍✨</strong> 👀 💡
           </label>
           <input
             type="text"

@@ -31,7 +31,7 @@ const Printing= () => {
       <section className="mb-12">
         <div className="flex flex-col items-center mb-6">
           <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
-            🎯 <strong>Make your day pleasing by wathing recently released music and films:</strong> 👀 💡
+            🎯 <strong>Bring ideas to life — explore top-tier printing and publishing supplies today ✨📝"</strong> 👀 💡
           </label>
           <input
             type="text"

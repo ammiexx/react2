@@ -32,7 +32,7 @@ const Books= () => {
       <section className="mb-12">
         <div className="flex flex-col items-center mb-6">
           <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
-            🎯 <strong>Make your day pleasing by wathing recently released music and films:</strong> 👀 💡
+            🎯 <strong>Fuel your mind and organize your life — shop books & stationery that inspire 📖🖊️</strong> 👀 💡
           </label>
           <input
             type="text"

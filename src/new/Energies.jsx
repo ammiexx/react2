@@ -31,7 +31,7 @@ const Energy = () => {
       <section className="mb-12">
         <div className="flex flex-col items-center mb-6">
           <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
-            🎯 <strong>Make your day pleasing by wathing recently released music and films:</strong> 👀 💡
+            🎯 <strong>Power your world smarter — reliable, sustainable energy at your service ⚡🌍</strong> 👀 💡
           </label>
           <input
             type="text"

@@ -48,37 +48,37 @@ const categories = [
     path: '/entertainments',
   },
   {
-    name: 'Travels',
+    name: 'Travel services',
     image_url: 'https://images.unsplash.com/photo-1754244774117-a27304d47959',
     path: '/travels',
   },
   {
-    name: 'Repair And Maintenance',
+    name: 'Repair And Maintenance products',
     image_url: 'https://plus.unsplash.com/premium_photo-1750449864279-341157c41bc8?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     path: '/Repair_and_maintenace',
   },
   {
-    name: 'Agriculture And Livestock',
+    name: 'Agriculture And Livestock products',
     image_url: 'https://plus.unsplash.com/premium_photo-1667860234741-0e500d0e5ba5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YWdyaWN1bHR1cmUlMjBhbmQlMjBsaXZlc3RvY2slMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D',
     path: '/Agriculture_And_Livestock',
   },
   {
-    name: 'Books & Stationaries',
+    name: 'Books & Stationaries materials',
     image_url: 'https://plus.unsplash.com/premium_photo-1733864775808-c7c1ccbe5422?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3MlMjBhbmQlMjBzdGF0aW9uYXJpZXN8ZW58MHx8MHx8fDA%3D',
     path: '/Books_And_Stationaries',
   },
   {
-    name: 'Vidoes & Games',
+    name: 'Vidoes & Games products',
     image_url: 'https://plus.unsplash.com/premium_photo-1664910795422-527440cfce2d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dmlkZW8lMjBnYW1lc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/Toys_And_Games',
   },
   {
-    name: 'Jewelries',
+    name: 'Jewelry products',
     image_url: 'https://images.unsplash.com/photo-1631698532383-97ffe7c223c7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8amV3ZWxlcmllc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/Jewelries',
   },
   {
-    name: 'Finance & Insurances',
+    name: 'Finance & Insurances services',
     image_url: 'https://plus.unsplash.com/premium_photo-1661436432458-f7ca1a171410?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZmluYW5jZSUyMGFuZCUyMGluc3VyYW5jZXxlbnwwfHwwfHx8MA%3D%3D',
     path: '/Finance_And_Insurances',
   },
@@ -93,12 +93,12 @@ const categories = [
     path: '/Pet_Supplies_And_Services',
   },
   {
-    name: 'Green And Eco-Friendly products',
+    name: 'Green And Eco-Friendly products materials',
     image_url: 'https://plus.unsplash.com/premium_photo-1711987229773-3832fca590cd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Z3JlZW4lMjBhbmQlMjBFY28lMjBGcmllbmRseSUyMHByb2R1Y3RzfGVufDB8fDB8fHww',
     path: '/Green_And_Ecofreindly_products',
   },
   {
-    name: 'Medical And Pharmaceuticals',
+    name: 'Medical And Pharmaceutical materials',
     image_url: 'https://plus.unsplash.com/premium_photo-1666299175827-59ca81fb2666?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bWVkaWNhbCUyMGFuZCUyMHBoYXJtYWNldXRpY2Fsc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/Medical_And_Pharmaceuticals',
   },
@@ -113,7 +113,7 @@ const categories = [
     path: '/legal_And_Consultancy_Services',
   },
   {
-    name: 'Cleaning And Sanitation Services',
+    name: 'Cleaning And Sanitation materials',
     image_url: 'https://images.unsplash.com/photo-1579141132886-e86d831034ac?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2xlYW5pbmclMjBhbmQlMjBzYW5pdGF0aW9uJTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D',
     path: '/Cleaning_And_Sanitation_Services',
   },
@@ -128,12 +128,12 @@ const categories = [
     path: '/Art_And_Handicrafts',
   },
   {
-    name: 'Video & Photography',
+    name: 'Video & Photography materials',
     image_url: 'https://plus.unsplash.com/premium_photo-1684783848153-970ef340c10b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dmlkZW8lMjBhbmQlMjBwaG90b2dyYXBoaWVzfGVufDB8fDB8fHww',
     path: '/Video_And_Photography',
   },
   {
-    name: 'Furniture & Interior Design',
+    name: 'Furniture & Interior Design materials',
     image_url: 'https://plus.unsplash.com/premium_photo-1670950413316-f501402ef0a7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnVybml0dXJlJTIwYW5kJTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D',
     path: '/Furniture_And_Interior_design',
   },
@@ -143,29 +143,29 @@ const categories = [
     path: '/fitness_And_Sports_servies',
   },
   {
-    name: 'Software & IT Services',
+    name: 'Software & IT products',
     image_url: 'https://images.unsplash.com/photo-1598316560453-0246d4611979?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c29mdHdhcmUlMjBkZXZlbG9wZXJzfGVufDB8fDB8fHww',
     path: '/SoftWare_And_IT_Services',
   },
   {
-    name: 'Digital Security Services',
+    name: 'Digital Security products',
     image_url: 'https://images.unsplash.com/photo-1639503547276-90230c4a4198?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGRpZ2l0YWwlMjBzZWN1cml0eSUyMHNlcnZpY2VzfGVufDB8fDB8fHww',
     path: '/Security_Services',
   },
   {
-    name: 'Printing & Publishing',
+    name: 'Printing & Publishing materials',
     image_url: 'https://plus.unsplash.com/premium_photo-1682145489846-081721a9b272?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJpbnRpbmclMjBhbmQlMjBwdWJsaXNoaW5nfGVufDB8fDB8fHww',
     path: '/Printing_And_Publishing',
   },
   {
-    name: 'Automotive Services',
+    name: 'Automotive products',
     image_url: 'https://plus.unsplash.com/premium_photo-1661299233465-ad4268ddb448?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YXV0b21vdGl2ZSUyMHNlcnZpY2VzfGVufDB8fDB8fHww',
     path: '/Automotive_Services',
   },
   
   
   {
-    name: 'Tatue And Piercing Studios',
+    name: 'Tatue And Piercing materials',
     image_url: 'https://plus.unsplash.com/premium_photo-1665454931497-1355f79c5f4d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dGF0dWVzfGVufDB8fDB8fHww',
     path: '/Tatue_And_Piercing_Studios',
   },
@@ -180,7 +180,7 @@ const categories = [
     path: '/Rental_Services',
   },
   {
-    name: 'Event Planning & Decor',
+    name: 'Event Planning & Decor materials',
     image_url: 'https://images.unsplash.com/photo-1585733254318-9bcc6d81584a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGRlY29yYXRpb258ZW58MHx8MHx8fDA%3D',
     path: '/Event_planning_And_Decore',
   },

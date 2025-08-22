@@ -31,7 +31,7 @@ const Cleaning= () => {
       <section className="mb-12">
         <div className="flex flex-col items-center mb-6">
           <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
-            🎯 <strong>Make your day pleasing by wathing recently released music and films:</strong> 👀 💡
+            🎯 <strong>Make every surface sparkle — shop powerful cleaning essentials for home and beyond ✨🧽</strong> 👀 💡
           </label>
           <input
             type="text"
