@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useUser, SignOutButton } from '@clerk/clerk-react';
+import { Link } from 'react-router-dom';
 // render the profile photo
 const Profile = () => {
   const { user } = useUser();
@@ -24,31 +25,35 @@ const Profile = () => {
     };
   }, [open]);
 
-  if (!user) {
-    return (
-      <div
-        className="relative inline-block cursor-pointer"
-        title="Not logged in"
-      >
-        <div className="w-10 h-10 flex items-center justify-center text-gray-600 border-2 border-gray-300 rounded-full">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-            />
-          </svg>
-        </div>
+ if (!user) {
+  return (
+    <div
+      className="relative inline-block cursor-pointer group"
+      title="Not logged in"
+    >
+      <div className="w-10 h-10 flex items-center justify-center text-gray-600 border-2 border-gray-300 rounded-full">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+          />
+        </svg>
       </div>
-    );
-  }
+      <div className="absolute top-12 right-0 bg-white border border-gray-300 shadow-md rounded-md px-3 py-2 text-xs text-gray-700 whitespace-nowrap z-50">
+        Account not created, please <Link to="/signup" className="text-blue-600 underline">sign up</Link>.
+      </div>
+    </div>
+  );
+}
+
 
   const firstName = user.firstName || '';
   const lastName = user.lastName || '';

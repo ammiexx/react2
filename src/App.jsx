@@ -119,7 +119,6 @@ function App() {
         <Route path="/Croud_Funding_And_Investment_Services" element={<Funding />} />
         <Route path="/Courier_And_Freight_Services" element={<Freight />} />
         <Route path="/fitness_And_Sports_servies" element={<Fitness/>} />
-        <Route path="/signup" element={<Signup />} />
         <Route path="/Jewelries" element={<Jewelries/>} />
         <Route path="/Finance_And_Insurances" element={<Insurances/>} />
         <Route path="/Human_Resource_And_Staffing" element={<Human/>} />

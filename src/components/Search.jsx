@@ -3,11 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import Hamburger from './Hamburger';
 
 const categories = [
-  "New Advantages",
   "Daily Discounts",
   "Weekly Discounts",
   "Holyday Discounts",
-  "New Offers",
   "Upcomming Services",
   "Send Messages",
 ];

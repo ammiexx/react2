@@ -10,6 +10,7 @@ const navigation = [
   { name: 'Sign In', href: '/login' },
   { name: 'Sign Up', href: '/signup' },
   { name: 'Add Product', href: '/form' },
+  
 ];
 
 function classNames(...classes) {
