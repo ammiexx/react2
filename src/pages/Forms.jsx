@@ -134,7 +134,6 @@ const Form = () => {
             className="w-full border px-4 py-2 rounded focus:ring-2 ring-blue-300"
           />
         </div>
-
         {/* Category */}
         <div>
           <label className="block text-gray-700 font-semibold mb-1">Category</label>
