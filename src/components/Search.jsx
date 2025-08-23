@@ -7,7 +7,6 @@ const categories = [
   "Weekly Discounts",
   "Holyday Discounts",
   "Upcomming Services",
-  "Send Messages",
 ];
 
 const Search = () => {
