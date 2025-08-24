@@ -68,7 +68,9 @@ const Form = () => {
 
       if (!response.ok) throw new Error('Failed to submit');
 
-      setSuccessMsg('✅ Product submitted successfully!');
+     setSuccessMsg('✅ Product submitted successfully!');
+setTimeout(() => setSuccessMsg(''), 2000);
+
       setFormData({
         profile_photo: '',
         product_name: '',
@@ -85,6 +87,8 @@ const Form = () => {
       });
     } catch (error) {
       setErrorMsg('❌ Error submitting product. Please try again.');
+setTimeout(() => setErrorMsg(''), 2000);
+
     } finally {
       setLoading(false);
     }

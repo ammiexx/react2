@@ -69,14 +69,18 @@ const Home = () => {
         </div>
 
         {/* Product Grid */}
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-2 auto-rows-auto">
+
           {filteredProducts.map(item => {
             const allImages = [item.product_photo, ...(item.images || []).map(img => img.image)];
             const firstFourImages = allImages.slice(0, 4);
             const remainingImages = allImages.slice(4);
 
             return (
-              <div key={item.id} className="bg-white p-4 rounded-lg shadow transition-transform hover:scale-[1.01] flex flex-col">
+              <div
+  key={item.id}
+  className="bg-white p-4 rounded-lg shadow transition-transform hover:scale-[1.01] flex flex-col self-start"
+>
                 {/* Poster Info */}
                 <div className="flex flex-wrap items-center justify-between gap-1.5 mb-2 p-2 bg-gray-100 border-b border-gray-200 rounded-md">
                   <div className="flex items-center gap-2">

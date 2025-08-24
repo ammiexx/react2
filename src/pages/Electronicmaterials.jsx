@@ -76,7 +76,8 @@ const ElectronicMaterial = () => {
                   </div>
 
                   {/* Product Images */}
-                  <div className="grid grid-cols-2 gap-2 mb-2">
+                  <div className="grid gap-8 md:grid-cols-2 auto-rows-auto">
+
                     {firstFourImages.map((src, idx) => (
                       <img
                         key={idx}

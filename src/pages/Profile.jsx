@@ -1,8 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useUser, SignOutButton } from '@clerk/clerk-react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 // render the profile photo
 const Profile = () => {
+  const navigate = useNavigate();
+  const [loadingRedirect, setLoadingRedirect] = useState(false); // ✅ New state
   const { user } = useUser();
   const [open, setOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
@@ -25,12 +29,9 @@ const Profile = () => {
     };
   }, [open]);
 
- if (!user) {
+if (!user) {
   return (
-    <div
-      className="relative inline-block cursor-pointer group"
-      title="Not logged in"
-    >
+    <div className="relative inline-block cursor-pointer group" title="Not logged in">
       <div className="w-10 h-10 flex items-center justify-center text-gray-600 border-2 border-gray-300 rounded-full">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -47,8 +48,29 @@ const Profile = () => {
           />
         </svg>
       </div>
+
       <div className="absolute top-12 right-0 bg-white border border-gray-300 shadow-md rounded-md px-3 py-2 text-xs text-gray-700 whitespace-nowrap z-50">
-        Account not created, please <Link to="/signup" className="text-blue-600 underline">sign up</Link>.
+        Account not created, please{' '}
+     <button
+  onClick={() => {
+  if (!navigator.onLine) {
+    alert('❌ No internet connection. Please check your connection and try again.');
+    return;
+  }
+  setLoadingRedirect(true);
+  setTimeout(() => {
+    navigate('/signup', { state: { fromRedirect: true } }); // ✅ signal that it's from redirect
+  }, 300);
+}}
+
+  className="text-blue-600 underline hover:text-blue-800 hover:underline transition duration-200"
+>
+  sign up
+</button>
+
+        {loadingRedirect && ( // ✅ Loading message
+          <div className="mt-2 text-gray-500 text-xs animate-pulse"></div>
+        )}
       </div>
     </div>
   );

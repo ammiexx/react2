@@ -22,7 +22,6 @@ import Brands from "./categories/Brands";
 import CustomerServices from "./categories/CustomerServices";
 import Success from './pages/Success';
 import Cancel from './pages/Cancel';
-
 import TechnologyMethods from "./BusinessCategories/TechnologyMethods";
 import Announcements from "./BusinessCategories/Announcements";
 import RealHome from "./pages/RealHome";
@@ -91,13 +90,13 @@ import Virtual from "./new/Virtuals";
 import Waste from "./new/Wastes";
 import Form from "./pages/Forms";
 import QuickLinks from "./pages/QuickLinks";
-
+import categories from "./components/Search"
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <Search />
+      <Search/>
       <Routes>
         <Route path="/Virtual_Assistant_And_Admin_Supports" element={<Admin />} />
         <Route path="/Agriculture_And_Livestock" element={<Agriculture />} />
