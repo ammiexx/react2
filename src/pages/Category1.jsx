@@ -4,7 +4,7 @@ import QuickLinks from './QuickLinks';
 const categories = [
   {
     name: 'Fashions',
-    image_url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7',
+    image_url: 'https://images.unsplash.com/photo-1605581494291-317cf1f77ddf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFzaGlvbiUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/fashions',
   },
   {
@@ -14,7 +14,7 @@ const categories = [
   },
   {
     name: 'Homes',
-    image_url: 'https://images.unsplash.com/photo-1752407828488-1c6fafa47c50',
+    image_url: 'https://plus.unsplash.com/premium_photo-1680300960892-bd11b59b469b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/homes',
   },
   {
@@ -24,12 +24,12 @@ const categories = [
   },
   {
     name: 'Food & Beverages',
-    image_url: 'https://images.unsplash.com/photo-1498579809087-ef1e558fd1da',
+    image_url: 'https://images.unsplash.com/photo-1614207279966-a46c93c0fbc2?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Zm9vZCUyMGFuZCUyMGJldmFyYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/food-and-beverages',
   },
   {
     name: 'Home and Appliances',
-    image_url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7',
+    image_url: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZSUyMGFwcGxpYW5jZXN8ZW58MHx8MHx8fDA%3D',
     path: '/home-appliances',
   },
   {
@@ -44,7 +44,7 @@ const categories = [
   },
   {
     name: 'Entertainments',
-    image_url: 'https://images.unsplash.com/photo-1754244774117-a27304d47959',
+    image_url: 'https://plus.unsplash.com/premium_photo-1683129679874-15966b2c1fdc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Y29uY2VydCUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/entertainments',
   },
   {

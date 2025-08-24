@@ -6,6 +6,11 @@ const ElectronicMaterial = () => {
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
+  const getFullCloudinaryURL = (path) => {
+  if (!path) return 'https://via.placeholder.com/150'; // fallback
+  if (path.startsWith('http')) return path;
+  return `https://res.cloudinary.com/<dvsmzrizu>/${path}`;
+};
 
   useEffect(() => {
     fetch('https://djanagobackend-5.onrender.com/api/products/')
@@ -53,7 +58,7 @@ const ElectronicMaterial = () => {
             </div>
           ) : (
             filteredProducts.map(item => {
-              const allImages = [item.product_photo, ...(item.images || []).map(img => img.image)];
+              const allImages = [item.product_photo, ...(item.images || []).map(img => getFullCloudinaryURL(img.image))];
               const firstFourImages = allImages.slice(0, 4);
               const remainingImages = allImages.slice(4);
 
@@ -63,7 +68,8 @@ const ElectronicMaterial = () => {
                   <div className="flex flex-col gap-2 mb-2">
                     <div className="flex items-center gap-3">
                       <img
-                        src={item.profile_photo || 'https://via.placeholder.com/60'}
+  src={getFullCloudinaryURL(item.profile_photo)}
+
                         alt={`${item.first_name} ${item.last_name}`}
                         className="w-10 h-10 rounded-full object-cover border"
                       />

@@ -20,14 +20,14 @@ const RealHome = () => {
   };
 
   const filteredProducts = products.filter(product => 
-  
+ 
    product.category === 'homes' &&
     (
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
   )
   );
-
+ console.log(filteredProducts)
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-4 text-[#2c3e50] font-sans">
        <BackButton className="md:hidden" />
@@ -65,7 +65,7 @@ const RealHome = () => {
                   <div className="flex flex-col gap-2 mb-2">
                     <div className="flex items-center gap-3">
                       <img
-                        src={item.profile_photo || 'https://via.placeholder.com/60'}
+                        src={item.profile_photo}
                         alt={`${item.first_name} ${item.last_name}`}
                         className="w-10 h-10 rounded-full object-cover border"
                       />

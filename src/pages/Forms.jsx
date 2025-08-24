@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Form = () => {
   const [formData, setFormData] = useState({
-    profile_photo:'',
+    profile_photo:null,
     product_name: '',
     company_name: '',
     description: '',
@@ -26,9 +26,13 @@ const Form = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleImageChange = (e) => {
-    setFormData(prev => ({ ...prev, product_photo: e.target.files[0] }));
-  };
+ const handleImageChange = (e) => {
+  const { name, files } = e.target;
+  setFormData((prev) => ({
+    ...prev,
+    [name]: files[0],
+  }));
+};
 
 
 
@@ -46,17 +50,17 @@ const Form = () => {
     setErrorMsg('');
 
     const form = new FormData();
-    Object.entries(formData).forEach(([key, value]) => {
+   Object.entries(formData).forEach(([key, value]) => {
   if (key === 'images') {
     value
       .filter((img) => img instanceof File)
       .forEach((img) => {
-        form.append('uploaded_images', img); // must match serializer field
+        form.append('uploaded_images', img); // backend expects this
       });
-  } else {
-    if (value !== null) {
-      form.append(key, value);
-    }
+  } else if (value instanceof File) {
+    form.append(key, value); // handle product_photo and profile_photo
+  } else if (typeof value === 'string' && value.trim() !== '') {
+    form.append(key, value); // handle all text fields
   }
 });
 
@@ -72,7 +76,7 @@ const Form = () => {
 setTimeout(() => setSuccessMsg(''), 2000);
 
       setFormData({
-        profile_photo: '',
+        profile_photo: null,
         product_name: '',
         company_name: '',
         description: '',
@@ -117,13 +121,12 @@ setTimeout(() => setErrorMsg(''), 2000);
 <div>
   <label className="block text-gray-700 font-semibold mb-1">Company Logo</label>
   <input
-    type="file"
-    accept="image/*"
-    onChange={(e) =>
-      setFormData((prev) => ({ ...prev, profile_photo: e.target.files[0] }))
-    }
-    className="w-full"
-  />
+  type="file"
+  accept="image/*"
+  name="profile_photo"
+  onChange={handleImageChange}
+/>
+
 </div>
 
         {/* Company Name */}
@@ -290,12 +293,14 @@ setTimeout(() => setErrorMsg(''), 2000);
         <div>
           <label className="block text-gray-700 font-semibold mb-1">Main Product Image</label>
           <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            className="w-full"
-            required
-          />
+  type="file"
+  name="product_photo"
+  accept="image/*"
+  onChange={handleImageChange}
+  className="w-full"
+  required
+/>
+
         </div>
 
 {/* Additional Images (Dynamic) */}
@@ -369,3 +374,4 @@ setTimeout(() => setErrorMsg(''), 2000);
 };
 
 export default Form;
+

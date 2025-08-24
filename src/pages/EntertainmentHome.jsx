@@ -38,7 +38,7 @@ const EntertainmentHome = () => {
           <input
             type="text"
             id="search"
-            placeholder="Search what you want to buy..."
+            placeholder="Search packages..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full sm:w-[60%] max-w-[500px] px-4 py-3 text-base border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-400"
