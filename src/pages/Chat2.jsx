@@ -5,7 +5,6 @@ import BackButton from '../components/BackButton';
 const MESSAGE_API = 'https://djanagobackend-5.onrender.com/api/cat';
 
 const Chat2 = () => {
-  // to make the customer to chat what they want
   const { isSignedIn, user } = useUser();
 
   const [message, setMessage] = useState('');
@@ -31,6 +30,22 @@ const Chat2 = () => {
   useEffect(() => {
     fetchMessages();
   }, []);
+
+  // Auto-clear success message after 2 seconds
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => setSubmitted(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitted]);
+
+  // Auto-clear error message after 2 seconds
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(''), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -65,7 +80,7 @@ const Chat2 = () => {
 
   const handleReaction = (idx) => {
     if (!isSignedIn) {
-      alert('You must be signed in to like a message.');
+      alert('You must be sign up to like a message.');
       return;
     }
 
@@ -85,19 +100,19 @@ const Chat2 = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-100 to-cyan-100 p-6">
-       <BackButton className="md:hidden" />
+      <BackButton className="md:hidden" />
       <div className="bg-white max-w-2xl w-full rounded-xl shadow-lg p-6 text-center">
         <h1 className="text-2xl font-bold text-gray-800 mb-2">💬 Share what you want to be discounted!</h1>
         <p className="text-gray-600 mb-6">We are here to solve your problems!</p>
 
         {submitted && (
-          <div className="bg-green-100 text-green-800 text-sm font-medium p-3 rounded mb-4 border border-green-300">
+          <div className="bg-green-100 text-green-800 text-sm font-medium p-3 rounded mb-4 border border-green-300 transition-opacity duration-500">
             ✅ Message submitted!
           </div>
         )}
 
         {error && (
-          <div className="bg-red-100 text-red-700 text-sm p-3 rounded mb-4 border border-red-300">
+          <div className="bg-red-100 text-red-700 text-sm p-3 rounded mb-4 border border-red-300 transition-opacity duration-500">
             {error}
           </div>
         )}
@@ -161,5 +176,4 @@ const Chat2 = () => {
     </div>
   );
 };
-
 export default Chat2;
