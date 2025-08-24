@@ -92,7 +92,8 @@ const Footer = () => {
         </div>
 
         {/* Additional Links in 4 Columns */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-12 text-left">
+
           
           <div>
             <h4 className="text-white font-semibold mb-2">Explore</h4>

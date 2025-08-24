@@ -8,7 +8,6 @@ import { useScrollDirection } from './UseScrollDirection'; // ← import the hoo
 
 const navigation = [
   { name: 'All', href: '/your-discounts' },
-  { name: 'Sign In', href: '/login' },
   { name: 'Add Product', href: '/form' },
   
 ];

@@ -10,5 +10,4 @@ const Hamburger = ({ toggle }) => {
     </button>
   );
 };
-
 export default Hamburger;
