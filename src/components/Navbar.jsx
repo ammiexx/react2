@@ -1,5 +1,6 @@
 import React from 'react';
 import FloatingSendButton from './FloatingSendButton';
+import { PlusCircleIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, Link } from 'react-router-dom';
@@ -7,7 +8,7 @@ import Profile from '../pages/Profile';
 import { useScrollDirection } from './UseScrollDirection'; // ← import the hook
 
 const navigation = [
-  { name: 'All Products', href: '/your-discounts' },
+  { name: 'All In One', href: '/your-discounts' },
   
 ];
 
@@ -69,18 +70,21 @@ export default function Navigation() {
             </div>
           </div>
 <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+  {/* Add Post */}
+      <Link
+        to="/form"
+        className="flex items-center gap-2 px-4 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
+      >
+        <PlusCircleIcon className="h-5 w-5" />
+        Add Post
+      </Link>
   <Link
-    to="/form"
-    className="px-4 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
-  >
-    Add Post
-  </Link>
-  <Link
-    to="/send a message"
-    className="px-4 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
-  >
-    What you want?
-  </Link>
+        to="/send a message"
+        className="flex items-center gap-2 px-4 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
+      >
+        <ChatBubbleLeftRightIcon className="h-5 w-5" />
+        What You Want?
+      </Link>
   <Profile />
 </div>
 
