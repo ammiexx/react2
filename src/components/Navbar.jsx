@@ -7,8 +7,7 @@ import Profile from '../pages/Profile';
 import { useScrollDirection } from './UseScrollDirection'; // ← import the hook
 
 const navigation = [
-  { name: 'All', href: '/your-discounts' },
-  { name: 'Add Product', href: '/form' },
+  { name: 'All Products', href: '/your-discounts' },
   
 ];
 
@@ -70,6 +69,12 @@ export default function Navigation() {
             </div>
           </div>
 <div className="absolute inset-y-0 right-0 flex items-center gap-2 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+  <Link
+    to="/form"
+    className="px-4 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
+  >
+    Add Post
+  </Link>
   <Link
     to="/send a message"
     className="px-4 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
