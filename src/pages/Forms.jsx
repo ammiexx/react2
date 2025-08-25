@@ -26,7 +26,7 @@ const Form = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
- const handleImageChange = (e) => {
+const handleImageChange = (e) => {
   const { name, files } = e.target;
   setFormData((prev) => ({
     ...prev,
@@ -50,19 +50,18 @@ const Form = () => {
     setErrorMsg('');
 
     const form = new FormData();
-   Object.entries(formData).forEach(([key, value]) => {
+ Object.entries(formData).forEach(([key, value]) => {
   if (key === 'images') {
-    value
-      .filter((img) => img instanceof File)
-      .forEach((img) => {
-        form.append('uploaded_images', img); // backend expects this
-      });
+    value.filter((img) => img instanceof File).forEach((img) => {
+      form.append('uploaded_images', img);
+    });
   } else if (value instanceof File) {
-    form.append(key, value); // handle product_photo and profile_photo
+    form.append(key, value);
   } else if (typeof value === 'string' && value.trim() !== '') {
-    form.append(key, value); // handle all text fields
+    form.append(key, value);
   }
 });
+
 
     try {
       const response = await fetch('https://djanagobackend-5.onrender.com/api/products/', {
