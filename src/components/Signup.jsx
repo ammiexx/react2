@@ -1,6 +1,7 @@
 
 // src/components/Signup.jsx
 import React from "react";
+import BackButton from "./Back";
 import { SignUp } from "@clerk/clerk-react";
 import "./Signup.css";
 
@@ -19,14 +20,12 @@ const Signup = () => {
           <p>Join us to explore products and post your business offerings.</p>
         </div>
 
-        {/* Clerk's signup component */}
-        <SignUp
-          path="/signup"
-          routing="path"
-          signInUrl="/login"
-          // afterSignUpUrl="/"
-        />
-
+       <SignUp
+  path="/signup"
+  routing="path"
+  signInUrl="/login"
+  afterSignUpUrl="/home"
+/>
         <p className="terms">
           By signing up, you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
         </p>

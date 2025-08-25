@@ -98,6 +98,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/signup" element={<Signup />} />
         <Route path="/Virtual_Assistant_And_Admin_Supports" element={<Admin />} />
         <Route path="/Agriculture_And_Livestock" element={<Agriculture />} />
         <Route path="/form" element={<Form />} />
@@ -178,16 +179,6 @@ function App() {
          <Route path="/send a message" element={< Chat2/>} />
          <Route path="/technologymethods" element={< TechnologyMethods/>} />
          <Route path="/new advantages" element={< Announcements/>} />
-        <Route
-          path="/signup"
-          element={
-            <SignUp
-              path="/signup"
-              routing="path"
-              afterSignUpUrl="/home"
-            />
-          }
-        />
         <Route path="/aboutus" element={<AboutUs/>} />
       </Routes>
       <Back/>
