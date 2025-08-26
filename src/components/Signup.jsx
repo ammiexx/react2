@@ -24,7 +24,7 @@ const Signup = () => {
   path="/signup"
   routing="path"
   signInUrl="/login"
-  afterSignUpUrl="/home"
+  afterSignUpUrl="/"
 />
         <p className="terms">
           By signing up, you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
