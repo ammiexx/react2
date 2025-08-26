@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import BackButton from '../components/BackButton';
+import { useUser } from '@clerk/clerk-react';
+
 
 const stripePromise = loadStripe('pk_test_51RxBXuC2J5esJHJB3deOeOQ3ZhxYhyM9TT4yjZvE7cSgCQGD3BW2CY0rFFTUmgvLZDgoLRA0QYUNPoWpVqweBgUh00jhNFUdVm');
 
 const MyPosts = () => {
+    const { user } = useUser(); // Fetch the logged-in user
   const [fieldEditing, setFieldEditing] = useState({});
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);
@@ -24,12 +27,37 @@ const cancelFieldEdit = () => {
   setEditFormData({});
 };
 
-  useEffect(() => {
-    fetch('https://djanagobackend-5.onrender.com/api/products/')
-      .then(response => response.json())
-      .then(data => setProducts(data))
-      .catch(error => console.error('Error fetching products:', error));
-  }, []);
+ useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch('https://djanagobackend-5.onrender.com/api/products/');
+      const data = await response.json();
+
+      if (user && user.emailAddresses[0]?.emailAddress) {
+        const userEmail = user.emailAddresses[0].emailAddress;
+
+        // 🟡 Log the Clerk user email
+        console.log("🔐 Clerk Email:", userEmail);
+
+        // 🟡 Log the product emails returned by the API
+        console.log("📦 Product Emails from API:", data.map(product => product.email));
+
+        // Apply case-insensitive filtering (recommended)
+        const filtered = data.filter(
+          product => product.email?.toLowerCase() === userEmail.toLowerCase()
+        );
+
+        setProducts(filtered);
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error);
+    }
+  };
+
+  fetchProducts();
+}, [user]);
+
+
 
   const handleCheckout = async (product) => {
     const stripe = await stripePromise;
@@ -89,15 +117,17 @@ const handleEdit = (product) => {
  const handleUpdateSubmit = async (e, productId) => {
   e.preventDefault();
 
-  const fieldToUpdate = Object.keys(editFormData)[0];
-  const value = editFormData[fieldToUpdate];
-
   try {
     const formData = new FormData();
-    formData.append(fieldToUpdate, value);
+
+    for (const key in editFormData) {
+      if (editFormData[key]) {
+        formData.append(key, editFormData[key]);
+      }
+    }
 
     const response = await fetch(`https://djanagobackend-5.onrender.com/api/products/${productId}/`, {
-      method: 'PATCH', // use PATCH to update partial fields
+      method: 'PATCH',
       body: formData,
     });
 
@@ -116,16 +146,15 @@ const handleEdit = (product) => {
 };
 
 
+
   const toggleExpand = (productId) => {
     setExpandedProductId(expandedProductId === productId ? null : productId);
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'fashions' &&
-    (
       product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    
   );
 
   return (
@@ -134,19 +163,7 @@ const handleEdit = (product) => {
 
       <section className="mb-12">
         <div className="flex flex-col items-center mb-6">
-          <label htmlFor="search" className="text-xl mb-2 font-bold text-[#2c3e50]">
-            🎯 <strong>Make your personal impression higher by dressing well:</strong> 👀 💡
-          </label>
-          <input
-            type="text"
-            id="search"
-            placeholder="Search what you want to buy..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-[60%] max-w-[400px] px-4 py-2 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
         </div>
-
         <div className="flex flex-col gap-8">
           {filteredProducts.map(item => {
             const allImages = [item.product_photo, ...(item.images || []).map(img => img.image)];
@@ -188,11 +205,12 @@ const handleEdit = (product) => {
 
                 {remainingImages.length > 0 && (
                   <button
-                    className="mt-3 px-4 py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full text-sm font-semibold shadow hover:from-blue-700 hover:to-blue-800 transition"
-                    onClick={() => toggleExpand(item.id)}
-                  >
-                    {expandedProductId === item.id ? 'Hide' : 'More...'}
-                  </button>
+  className="mt-1 px-2 py-1 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full text-xs font-medium shadow hover:from-blue-700 hover:to-blue-800 transition w-fit self-start"
+  onClick={() => toggleExpand(item.id)}
+>
+  {expandedProductId === item.id ? 'Hide' : 'More...'}
+</button>
+
                 )}
 
                 {expandedProductId === item.id && (
@@ -266,16 +284,29 @@ const handleEdit = (product) => {
     </>
   )}
 </div>
- <input
-  type="file"
-  name="product_photo"
-  accept="image/*"
-  onChange={(e) => setEditFormData(prev => ({
-    ...prev,
-    product_photo: e.target.files[0],
-  }))}
-  className="w-full px-3 py-2 border rounded-md"
-/>
+<div className="mb-1">
+  <strong>Product Image:</strong>
+  <input
+    type="file"
+    name="product_photo"
+    accept="image/*"
+    onChange={(e) =>
+      setEditFormData(prev => ({
+        ...prev,
+        product_photo: e.target.files[0],
+      }))
+    }
+    className="w-full px-3 py-2 border rounded-md mt-1"
+  />
+  {item.product_photo && (
+    <img
+      src={item.product_photo}
+      alt="Current product"
+      className="mt-2 w-[120px] h-[80px] object-cover border rounded"
+    />
+  )}
+</div>
+
 
 
   {/* Category */}

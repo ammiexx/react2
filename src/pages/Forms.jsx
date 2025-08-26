@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import { useUser } from '@clerk/clerk-react';
-
+import { useEffect } from 'react';
 const Form = () => {
   const { user } = useUser();
+
+useEffect(() => {
+  if (user) {
+    setFormData(prev => ({
+      ...prev,
+      email: user.emailAddresses[0]?.emailAddress || '',
+    }));
+  }
+}, [user]);
+
   const [formData, setFormData] = useState({
-     clerk_user_id: '', 
     profile_photo:null,
+    email: '',
     product_name: '',
     company_name: '',
     description: '',
@@ -23,22 +33,13 @@ const Form = () => {
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  useEffect(() => {
-  if (user) {
-    setFormData(prev => ({
-      ...prev,
-      clerk_user_id: user.id, // 👈 This sets the current user's ID
-    }));
-  }
-}, [user]);
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-const handleImageChange = (e) => {
+ const handleImageChange = (e) => {
   const { name, files } = e.target;
   setFormData((prev) => ({
     ...prev,
@@ -88,6 +89,7 @@ setTimeout(() => setSuccessMsg(''), 2000);
 
       setFormData({
         profile_photo: null,
+         email: user?.emailAddresses[0]?.emailAddress || '', 
         product_name: '',
         company_name: '',
         description: '',
