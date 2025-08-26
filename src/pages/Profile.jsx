@@ -135,6 +135,18 @@ if (!user) {
           <div className="text-center text-sm font-medium text-gray-800 mb-3">
             {firstName} {lastName}
           </div>
+                                        <div className="text-center mb-2">
+                                <button
+                                  onClick={() => {
+                                    navigate('/myposts');
+                                    setOpen(false); // close dropdown
+                                  }}
+                                  className="text-blue-600 hover:underline text-sm font-medium"
+                                >
+                                  My Posts
+                                </button>
+                              </div>
+
 
           <div className="text-center">
             <button

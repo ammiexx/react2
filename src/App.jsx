@@ -89,6 +89,7 @@ import Translation from "./new/Translations";
 import Virtual from "./new/Virtuals";
 import Waste from "./new/Wastes";
 import Form from "./pages/Forms";
+import MyPosts from "./pages/MyPosts";
 import QuickLinks from "./pages/QuickLinks";
 import categories from "./components/Search"
 
@@ -98,6 +99,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/myposts" element={<MyPosts/>} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/Virtual_Assistant_And_Admin_Supports" element={<Admin />} />
         <Route path="/Agriculture_And_Livestock" element={<Agriculture />} />

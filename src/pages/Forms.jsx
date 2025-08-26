@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useUser } from '@clerk/clerk-react';
 
 const Form = () => {
+  const { user } = useUser();
   const [formData, setFormData] = useState({
+     clerk_user_id: '', 
     profile_photo:null,
     product_name: '',
     company_name: '',
@@ -20,6 +23,15 @@ const Form = () => {
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
+  useEffect(() => {
+  if (user) {
+    setFormData(prev => ({
+      ...prev,
+      clerk_user_id: user.id, // 👈 This sets the current user's ID
+    }));
+  }
+}, [user]);
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
