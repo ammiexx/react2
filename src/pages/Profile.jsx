@@ -59,7 +59,7 @@ if (!user) {
   }
   setLoadingRedirect(true);
   setTimeout(() => {
-   navigate('/login', { state: { fromRedirect: true } });
+   navigate('/signup', { state: { fromRedirect: true } });
  // ✅ signal that it's from redirect
   }, 300);
 }}
