@@ -74,24 +74,25 @@ const cancelFieldEdit = () => {
     if (result.error) console.error(result.error.message);
   };
 
-  const handleDelete = async (id) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this product?');
-    if (!confirmDelete) return;
+ const handleDelete = async (id) => {
+  const confirmDelete = window.confirm('Are you sure you want to delete this product?');
+  if (!confirmDelete) return;
 
-    try {
-      const response = await fetch(`https://djanagobackend-5.onrender.com/api/products/${id}/`, {
-        method: 'DELETE',
-      });
+  try {
+    const response = await fetch(`https://djanagobackend-5.onrender.com/api/delete/products/${id}/`, {
+      method: 'DELETE',
+    });
 
-      if (response.ok) {
-        setProducts(prev => prev.filter(product => product.id !== id));
-      } else {
-        console.error('Failed to delete product');
-      }
-    } catch (error) {
-      console.error('Error deleting product:', error);
+    if (response.ok) {
+      setProducts(prev => prev.filter(product => product.id !== id));
+    } else {
+      console.error('Failed to delete product');
     }
-  };
+  } catch (error) {
+    console.error('Error deleting product:', error);
+  }
+};
+
 const handleEdit = (product) => {
   setEditingProduct(product.id);
   setEditFormData({
@@ -126,7 +127,7 @@ const handleEdit = (product) => {
       }
     }
 
-    const response = await fetch(`https://djanagobackend-5.onrender.com/api/products/${productId}/`, {
+    const response = await fetch(`https://djanagobackend-5.onrender.com/api/delete/products/${productId}/`, {
       method: 'PATCH',
       body: formData,
     });
