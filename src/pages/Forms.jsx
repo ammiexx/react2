@@ -322,8 +322,9 @@ setTimeout(() => setErrorMsg(''), 2000);
     Additional Images (Min: 5, Max: 10)
   </label>
 
+  <div className="flex space-x-4 overflow-x-auto">
   {formData.images.map((image, index) => (
-    <div key={index} className="mb-2">
+    <div key={index} className="flex-shrink-0 w-32">
       <input
         type="file"
         accept="image/*"
@@ -338,8 +339,19 @@ setTimeout(() => setErrorMsg(''), 2000);
         }}
         className="w-full"
       />
+      {/* Optional: preview thumbnail of selected image */}
+      {image && typeof image !== 'string' && (
+        <img
+          src={URL.createObjectURL(image)}
+          alt={`preview-${index}`}
+          className="mt-2 w-full h-20 object-contain rounded"
+          onLoad={e => URL.revokeObjectURL(e.target.src)} // Clean up memory
+        />
+      )}
     </div>
   ))}
+</div>
+
 
   {formData.images.length < 10 && (
     <button
