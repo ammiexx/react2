@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useUser, SignOutButton } from '@clerk/clerk-react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import ThemeToggle from '../pages/ThemeToggle'; // ✅ Import ThemeToggle
 // render the profile photo
 const Profile = () => {
   const navigate = useNavigate();
@@ -141,17 +141,54 @@ if (!user) {
                                     navigate('/myposts');
                                     setOpen(false); // close dropdown
                                   }}
-                                  className="text-blue-600 hover:underline text-sm font-medium"
+                                  className="text-gray-600 hover:underline text-sm font-medium"
                                 >
-                                  My Posts
+                                  edit profile
                                 </button>
                               </div>
+<div className="text-center mb-2">
+  <button
+    onClick={() => {
+      navigate('/notifications');
+      setOpen(false);
+    }}
+    className="text-gray-600 hover:underline text-sm font-medium"
+  >
+    Notifications
+  </button>
+</div>
 
+<div className="text-center mb-2">
+  <button
+    onClick={() => {
+      navigate('/saved');
+      setOpen(false);
+    }}
+    className="text-gray-600 hover:underline text-sm font-medium"
+  >
+    Saved Posts
+  </button>
+</div>
+<div className="text-center mb-2">
+  <button
+    onClick={() => {
+      navigate('/saved');
+      setOpen(false);
+    }}
+    className="text-gray-600 hover:underline text-sm font-medium"
+  >
+    favorites
+  </button>
+</div>
+<div className="text-center mb-2">
+  <ThemeToggle />
+</div>
 
           <div className="text-center">
+
             <button
               onClick={() => setShowLogoutConfirm(true)}
-              className="text-blue-600 hover:underline text-sm font-medium"
+              className="text-gray-600 hover:underline text-sm font-medium"
             >
               Log out
             </button>

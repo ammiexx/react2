@@ -28,12 +28,18 @@ const Login = () => {
       <h2>Welcome back</h2>
 
       {/* Clerk's sign-in component */}
-      <SignIn
-        path="/login"
-        routing="path"
-        signUpUrl="/signup"
-         afterSignUpUrl="/?signupSuccess=true" //
-      />
+   <SignIn
+  path="/login"
+  routing="path"
+  signUpUrl="/signup"
+  afterSignUpUrl="/?signupSuccess=true"
+  appearance={{
+    elements: {
+      footer: 'hidden',
+    },
+  }}
+/>
+
 
       {/* Pop-up success message */}
       {showSuccessPopup && (
