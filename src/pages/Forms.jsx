@@ -115,8 +115,16 @@ setTimeout(() => setErrorMsg(''), 2000);
   };
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-md mt-10">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">📦 Add Product</h2>
+    <div className="max-w-3xl mx-auto p-8 bg-gray-100 shadow-xl rounded-xl mt-10 border border-gray-200">
+
+      <div className="text-center mb-8">
+  <h1 className="text-3xl font-bold text-blue-800">🚀 Promote Your Product</h1>
+  <p className="text-gray-600 mt-2">
+    Fill in the details below to get your product listed in front of thousands of viewers.
+  </p>
+  <hr className="mt-4 border-gray-300" />
+</div>
+
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Product Name */}
         <div>
@@ -127,7 +135,7 @@ setTimeout(() => setErrorMsg(''), 2000);
             value={formData.product_name}
             onChange={handleChange}
             required
-            className="w-full border px-4 py-2 rounded focus:ring-2 ring-blue-300"
+            className="w-full border px-4 py-2 rounded"
           />
         </div>
 {/* Profile Photo */}
@@ -248,7 +256,7 @@ setTimeout(() => setErrorMsg(''), 2000);
 
         {/* Location */}
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Location</label>
+          <label className="text-xl font-semibold text-gray-700 mt-10 mb-4 border-b pb-1">Location</label>
           <input
             type="text"
             name="location"
