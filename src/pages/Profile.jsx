@@ -146,6 +146,18 @@ if (!user) {
                                   edit profile
                                 </button>
                               </div>
+                              <div className="text-center mb-2">
+  <button
+    onClick={() => {
+      navigate('/notifications');
+      setOpen(false);
+    }}
+    className="text-gray-600 hover:underline text-sm font-medium"
+  >
+    Recent posts
+  </button>
+</div>
+
 <div className="text-center mb-2">
   <button
     onClick={() => {
@@ -184,15 +196,7 @@ if (!user) {
   <ThemeToggle />
 </div>
 
-          <div className="text-center">
-
-            <button
-              onClick={() => setShowLogoutConfirm(true)}
-              className="text-gray-600 hover:underline text-sm font-medium"
-            >
-              Log out
-            </button>
-          </div>
+          
 
           {/* Logout confirmation modal */}
           {showLogoutConfirm && (
