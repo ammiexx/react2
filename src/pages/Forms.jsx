@@ -88,7 +88,7 @@ if (!formData.email) {
       if (!response.ok) throw new Error('Failed to submit');
 
      setSuccessMsg('✅ Product submitted successfully!');
-setTimeout(() => setSuccessMsg(''), 2000);
+setTimeout(() => setSuccessMsg(''), 4000);
 
       setFormData({
         profile_photo: null,
