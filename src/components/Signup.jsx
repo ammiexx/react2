@@ -82,7 +82,7 @@ const Signup = () => {
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded"
             disabled={!isLoaded || loading}
           >
-            {loading ? "Signing up..." : "Sign Up"}
+            {loading ? "Signing..." : "Sign In"}
           </button>
         </form>
 
@@ -94,7 +94,7 @@ const Signup = () => {
 
         <p className="text-sm text-center mt-2 text-gray-700">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-600 hover:underline">Sign in</a>
+          {/* <a href="/login" className="text-blue-600 hover:underline">Sign Up</a> */}
         </p>
       </div>
     </div>
