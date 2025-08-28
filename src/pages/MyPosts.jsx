@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import BackButton from '../components/BackButton';
 import { useUser } from '@clerk/clerk-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 const stripePromise = loadStripe('pk_test_51RxBXuC2J5esJHJB3deOeOQ3ZhxYhyM9TT4yjZvE7cSgCQGD3BW2CY0rFFTUmgvLZDgoLRA0QYUNPoWpVqweBgUh00jhNFUdVm');
 
 const MyPosts = () => {
-    const { user } = useUser(); // Fetch the logged-in user
+  const [productPostedMsg, setProductPostedMsg] = useState(false);
+  const [showSignupPrompt, setShowSignupPrompt] = useState(false);
+  const [loadingRedirect, setLoadingRedirect] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();  
+  const { user } = useUser(); // Fetch the logged-in user
   const [fieldEditing, setFieldEditing] = useState({});
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);

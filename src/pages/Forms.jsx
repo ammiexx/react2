@@ -3,6 +3,7 @@ import { useUser } from '@clerk/clerk-react';
 import { useEffect } from 'react';
 const Form = () => {
   const { user } = useUser();
+const [authWarning, setAuthWarning] = useState(false);
 
 useEffect(() => {
   if (user) {
@@ -49,14 +50,13 @@ useEffect(() => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-      if (!formData.email) {
-    setErrorMsg('❌ You must be signed in to submit a product.');
-    setLoading(false);
-    return;
-  }
-  
   if (formData.images.length < 5 || formData.images.length > 10) {
   setErrorMsg('❌ You must upload between 5 and 10 additional images.');
+  setLoading(false);
+  return;
+}
+if (!formData.email) {
+  setAuthWarning(true);
   setLoading(false);
   return;
 }
@@ -321,7 +321,8 @@ setTimeout(() => setErrorMsg(''), 2000);
     Additional Images (Min: 5, Max: 10)
   </label>
 
-  <div className="flex space-x-4 overflow-x-auto">
+ <div className="flex flex-col space-y-4">
+
   {formData.images.map((image, index) => (
     <div key={index} className="flex-shrink-0 w-32">
       <input
@@ -381,6 +382,28 @@ setTimeout(() => setErrorMsg(''), 2000);
   <p className="text-red-600 text-center mb-4">{errorMsg}</p>
 )}
 
+{authWarning && (
+  <div className="text-red-600 text-center text-sm mb-4 bg-red-50 border border-red-300 rounded p-2 relative">
+    <span>
+      ⚠️ Account not created. Please{' '}
+      <button
+        onClick={() => {
+          if (!navigator.onLine) {
+            alert('❌ No internet connection. Please check your connection and try again.');
+            return;
+          }
+          setAuthWarning(false);
+          setTimeout(() => {
+            window.location.href = '/signup'; // or use navigate('/signup') if using React Router
+          }, 300);
+        }}
+        className="text-blue-600 underline hover:text-blue-800 transition duration-200"
+      >
+        sign up
+      </button>
+    </span>
+  </div>
+)}
 
         {/* Submit Button */}
         <div className="text-center">
