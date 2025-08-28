@@ -147,7 +147,6 @@ setTimeout(() => setErrorMsg(''), 2000);
   name="profile_photo"
   onChange={handleImageChange}
 />
-
 </div>
 
         {/* Company Name */}
