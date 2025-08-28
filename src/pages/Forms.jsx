@@ -49,6 +49,12 @@ useEffect(() => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+      if (!formData.email) {
+    setErrorMsg('❌ You must be signed in to submit a product.');
+    setLoading(false);
+    return;
+  }
+  
   if (formData.images.length < 5 || formData.images.length > 10) {
   setErrorMsg('❌ You must upload between 5 and 10 additional images.');
   setLoading(false);
