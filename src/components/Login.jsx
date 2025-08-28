@@ -20,14 +20,14 @@ const Login = () => {
         path="/login"
         routing="path"
         signUpUrl="/signup"
-        afterSignInUrl="http://localhost:5173/home"
+        afterSignInUrl="/"
       />
 
       {/* Custom sign up link below the component */}
       <p className="signin-footer">
-        Don’t have an account?
+        you have an account?
         <button className="signup-link-button" onClick={goToSignup}>
-          Sign up here
+          Sign In
         </button>
       </p>
     </div>

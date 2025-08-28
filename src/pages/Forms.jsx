@@ -394,7 +394,7 @@ setTimeout(() => setErrorMsg(''), 2000);
           }
           setAuthWarning(false);
           setTimeout(() => {
-            window.location.href = '/signup'; // or use navigate('/signup') if using React Router
+            window.location.href = '/login'; // or use navigate('/signup') if using React Router
           }, 300);
         }}
         className="text-blue-600 underline hover:text-blue-800 transition duration-200"
