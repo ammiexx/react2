@@ -199,26 +199,32 @@ const handleUpdateSubmit = async (e, productId) => {
 
             return (
               <div key={item.id} className="bg-white p-4 rounded-lg shadow transition-transform hover:scale-[1.01] flex flex-col self-start">
-                <div className="flex flex-wrap items-center justify-between gap-1.5 mb-2 p-2 bg-gray-100 border-b border-gray-200 rounded-md">
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={item.profile_photo || 'https://via.placeholder.com/60'}
-                      alt={`${item.first_name} ${item.last_name}`}
-                      className="w-9 h-9 rounded-full object-cover border border-gray-300"
-                    />
-                    <p className="text-sm font-semibold text-[#2c3e50]">{item.company_name}</p>
-                  </div>
-                  {item.contact_phone && (
-                    <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
-                  )}
-                  <p className="text-xs text-gray-600">📍 <strong>Location:</strong> {item.location}</p>
-                </div>
+                <div className="flex flex-col gap-2 mb-2 p-2 bg-gray-100 border-b border-gray-200 rounded-md">
+  <div className="flex items-center gap-2">
+    <img
+      src={item.profile_photo || 'https://via.placeholder.com/60'}
+      alt={`${item.first_name} ${item.last_name}`}
+      className="w-10 h-10 rounded-full object-cover border border-gray-300"
+    />
+    <p className="text-sm font-semibold text-[#2c3e50]">{item.company_name}</p>
+  </div>
+
+  {item.contact_phone && (
+    <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
+  )}
+
+  <p className="text-xs text-gray-600">
+    📍 <strong>Location:</strong> {item.location}
+  </p>
+   <p className="text-sm text-gray-600">
+                  {item.product_name}
+                </p>
+</div>
+
 
  
 
-                <h6 className="text-lg font-bold text-center text-[#2c3e50] mt-2 mb-2">
-                  {item.product_name}
-                </h6>
+               
 
                 {remainingImages.length > 0 && (
                   <button
