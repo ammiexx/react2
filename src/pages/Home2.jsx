@@ -118,10 +118,10 @@ const Home = () => {
                 {/* View More Button */}
                 {remainingImages.length > 0 && (
                   <button
-                    className="mt-3 px-4 py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full text-sm font-semibold shadow hover:from-blue-700 hover:to-blue-800 transition"
+                    className="mt-1 px-4 py-1 w-[100px] bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full text-xs font-medium shadow hover:from-blue-700 hover:to-blue-800 transition self-start"
                     onClick={() => toggleExpand(item.id)}
                   >
-                    {expandedProductId === item.id ? 'Hide' : 'More...'}
+                    {expandedProductId === item.id ? 'Less' : 'More...'}
                   </button>
                 )}
 

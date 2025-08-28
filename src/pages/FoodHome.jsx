@@ -101,9 +101,9 @@ const FoodHome = () => {
                 {remainingImages.length > 0 && (
                   <button
                     onClick={() => toggleExpand(item.id)}
-                    className="text-sm text-blue-600 font-medium hover:underline focus:outline-none mb-2"
+                    className="mt-1 px-4 py-1 w-[100px] bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full text-xs font-medium shadow hover:from-blue-700 hover:to-blue-800 transition self-start"
                   >
-                    {expandedProductId === item.id ? 'Hide Images' : 'View More'}
+                    {expandedProductId === item.id ? 'Less...' : 'More...'}
                   </button>
                 )}
 

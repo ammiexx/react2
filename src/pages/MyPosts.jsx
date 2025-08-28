@@ -97,26 +97,57 @@ const handleEdit = (product) => {
     contact_tick: product.contact_tick || '',
     web_site: product.web_site || '',
     contact_phone: product.contact_phone || '',
+    profile_photo: '',
+    product_photo: '', // file input
+    existing_product_photo: product.product_photo || '',
+    images: product.images.map(img => ({
+      id: img.id,
+      image: img.image,
+      file: null, // file replacement
+    }))
   });
 };
 
 
-  const handleEditChange = (e) => {
-    const { name, value } = e.target;
-    setEditFormData(prev => ({ ...prev, [name]: value }));
-  };
+const handleEditChange = (e, index = null) => {
+  const { name, files, value } = e.target;
 
- const handleUpdateSubmit = async (e, productId) => {
+  if (name === 'images' && index !== null) {
+    const updatedImages = [...editFormData.images];
+    updatedImages[index].file = files[0]; // store File object
+    setEditFormData(prev => ({ ...prev, images: updatedImages }));
+  } else if (files) {
+    setEditFormData(prev => ({ ...prev, [name]: files[0] }));
+  } else {
+    setEditFormData(prev => ({ ...prev, [name]: value }));
+  }
+};
+
+
+
+const handleUpdateSubmit = async (e, productId) => {
   e.preventDefault();
 
   try {
     const formData = new FormData();
 
+    // Append basic fields
     for (const key in editFormData) {
-      if (editFormData[key]) {
+      if (['images', 'existing_product_photo'].includes(key)) continue;
+      if (editFormData[key] instanceof File) {
+        formData.append(key, editFormData[key]);
+      } else if (typeof editFormData[key] === 'string' && editFormData[key].trim() !== '') {
         formData.append(key, editFormData[key]);
       }
     }
+
+    // Append additional images (only updated ones)
+    editFormData.images.forEach((imgObj, idx) => {
+      if (imgObj.file) {
+        formData.append('uploaded_images', imgObj.file); // backend must support this key
+        formData.append('image_ids', imgObj.id); // helps match replacement
+      }
+    });
 
     const response = await fetch(`https://djanagobackend-5.onrender.com/api/delete/products/${productId}/`, {
       method: 'PATCH',
@@ -136,8 +167,6 @@ const handleEdit = (product) => {
     console.error('Error updating product:', error);
   }
 };
-
-
 
   const toggleExpand = (productId) => {
     setExpandedProductId(expandedProductId === productId ? null : productId);
@@ -179,18 +208,7 @@ const handleEdit = (product) => {
                   <p className="text-xs text-gray-600">📍 <strong>Location:</strong> {item.location}</p>
                 </div>
 
-                <div className="flex gap-2 mt-2 overflow-x-auto max-w-full">
-  {firstFourImages.map((src, idx) => (
-    <img
-      key={idx}
-      src={src}
-      alt={`Image ${idx}`}
-      className="w-[150px] h-[100px] object-cover border border-gray-300 rounded cursor-pointer hover:scale-105 transition-transform shrink-0"
-      onClick={() => setZoomedImage(src)}
-    />
-  ))}
-</div>
-
+ 
 
                 <h6 className="text-lg font-bold text-center text-[#2c3e50] mt-2 mb-2">
                   {item.product_name}
@@ -202,21 +220,14 @@ const handleEdit = (product) => {
 
   onClick={() => toggleExpand(item.id)}
 >
-  {expandedProductId === item.id ? 'Hide' : 'More...'}
+  {expandedProductId === item.id ? 'Less..' : 'More...'}
 </button>
 
                 )}
 
                 {expandedProductId === item.id && (
                   <>
-                    <div className="w-full h-[200px] overflow-hidden rounded-md mb-4">
-                      <img
-                        src={item.product_photo}
-                        alt={item.product_name}
-                        className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
-                        onClick={() => setZoomedImage(item.product_photo)}
-                      />
-                    </div>
+                  
 
                     <div className="text-sm text-gray-700 leading-relaxed mt-2 space-y-1">
                     </div>
@@ -226,6 +237,7 @@ const handleEdit = (product) => {
   <div className="mb-1">
   <strong>Product Name:</strong>{' '}
   {editingProduct === item.id && fieldEditing.product_name ? (
+    
     <form onSubmit={(e) => handleUpdateSubmit(e, item.id)} className="inline">
       <input
         type="text"
@@ -248,11 +260,76 @@ const handleEdit = (product) => {
   )}
 </div>
 
+<div className="mb-1">
+  <strong>Company Logo:</strong>{' '}
+  <input
+    type="file"
+    name="profile_photo"
+    accept="image/*"
+    onChange={handleEditChange}
+    className="border rounded px-1 py-0.5"
+  />
+  {item.profile_photo && (
+    <img
+      src={item.profile_photo}
+      alt="Current Logo"
+      className="w-16 h-16 object-cover mt-2 border"
+    />
+  )}
+</div>
+
+<div className="mb-1">
+  <strong>Main Product Image:</strong>
+  <input
+    type="file"
+    name="product_photo"
+    accept="image/*"
+    onChange={handleEditChange}
+    className="block mt-1"
+  />
+  {editFormData.existing_product_photo && (
+    <img
+      src={editFormData.existing_product_photo}
+      alt="Main Product"
+      className="w-20 h-20 object-cover mt-2 border rounded"
+    />
+  )}
+</div>
+
+<div className="mb-1">
+  <strong>Additional Images:</strong>
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
+    {editFormData.images.map((imgObj, idx) => (
+      <div key={idx} className="flex flex-col items-start space-y-1">
+        <input
+          type="file"
+          name="images"
+          accept="image/*"
+          onChange={(e) => handleEditChange(e, idx)}
+        />
+        <img
+          src={
+            imgObj.file
+              ? URL.createObjectURL(imgObj.file)
+              : imgObj.image
+          }
+          alt={`Product ${idx}`}
+          className="w-20 h-20 object-cover border rounded"
+          onLoad={(e) => imgObj.file && URL.revokeObjectURL(e.target.src)}
+        />
+        <small className="text-gray-600 text-xs">
+          {imgObj.file ? 'New image selected' : 'Current image'}
+        </small>
+      </div>
+    ))}
+  </div>
+</div>
 
   {/* Description */}
 <div className="mb-1">
   <strong>Description:</strong>{' '}
   {editingProduct === item.id && fieldEditing.description ? (
+    
     <form onSubmit={(e) => handleUpdateSubmit(e, item.id)} className="inline">
       <textarea
         name="description"
