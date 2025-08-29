@@ -1,5 +1,6 @@
 
 import React from "react";
+import { useTheme } from "./pages/ThemeContext";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { SignUp,SignIn } from "@clerk/clerk-react";
 import Navbar from "./components/Navbar";
@@ -97,8 +98,9 @@ import Notification from "./pages/Notifications";
 
 
 function App() {
+
   return (
-    <div className="bg-white text-gray-900 dark:bg-gray-900 dark:text-white min-h-screen transition-colors duration-300">
+    <div >
     <Router>
       <Navbar />
       <Search/>

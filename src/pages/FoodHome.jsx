@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BackButton from '../components/BackButton';
-
+import { useTheme } from './ThemeContext';
 const FoodHome = () => {
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
   const navigate = useNavigate();
-
+  const {mytheme}=useTheme();
   // Fetch all products from API
   useEffect(() => {
     fetch('https://djanagobackend-5.onrender.com/api/products/')
@@ -32,7 +32,7 @@ const FoodHome = () => {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8" style={{backgroundColor: mytheme==='dark'?'black':'white', color: mytheme==='dark'?'white':'black'}}>
       <BackButton className="md:hidden" />
 
       <header className="text-center mb-10">

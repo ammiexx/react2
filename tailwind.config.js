@@ -3,7 +3,8 @@ export default {
   darkMode: 'class', // Enable class-based dark mode
   content: [
     './index.html',
-    './src/**/*.{js,ts,jsx,tsx}', // Scan all relevant source files
+    './src/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,jsx}', // Scan all relevant source files
   ],
   theme: {
     extend: {},

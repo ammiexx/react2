@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuickLinks from './QuickLinks';
+import { useTheme } from './ThemeContext';
 const categories = [
   {
     name: 'Fashions',
@@ -208,10 +209,13 @@ const Category1 = () => {
   const filteredCategories = categories.filter(cat =>
     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
+const {theme} = useTheme();
+console.log(theme);
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-6xl mx-auto">
+    
+<div className="min-h-screen p-6 " style={{backgroundColor: theme==="dark"?"black":"white",color: theme==="dark"?"black":"white"}}>
+      
+      <div className="max-w-6xl mx-auto" >
        <QuickLinks/>
        
         {/* Explore More Products Heading */}

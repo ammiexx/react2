@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import BackButton from '../components/BackButton';
+import { useTheme } from './ThemeContext';
 
 const stripePromise = loadStripe('pk_test_51RxBXuC2J5esJHJB3deOeOQ3ZhxYhyM9TT4yjZvE7cSgCQGD3BW2CY0rFFTUmgvLZDgoLRA0QYUNPoWpVqweBgUh00jhNFUdVm');
 
@@ -47,9 +48,10 @@ const Home = () => {
       product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
-
+const { mytheme } = useTheme();
   return (
-    <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans">
+    <div className={`max-w-[1200px] mx-auto my-10 px-5 bg-white  font-sans`} style={{backgroundColor: mytheme==='dark'?'black':'white', color: mytheme==='dark'?'white':'black'}}>
+
       <BackButton className="md:hidden" />
 
       <section className="mb-12">

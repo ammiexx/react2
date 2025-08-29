@@ -2,8 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useUser, SignOutButton } from '@clerk/clerk-react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import DarkModeToggle from '../pages/ThemeToggle'; // ✅ Import ThemeToggle
+
+import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
+
+import ThemeToggle from '../pages/ThemeToggle';
 const Profile = () => {
+
   const navigate = useNavigate();
   const [loadingRedirect, setLoadingRedirect] = useState(false); // ✅ New state
   const { user } = useUser();
@@ -172,9 +176,7 @@ if (!user) {
 </div>
 
 
-<div className="text-center mb-2">
-  <DarkModeToggle />
-</div>
+{/* <ThemeToggle /> */}
           {/* Logout confirmation modal */}
           {showLogoutConfirm && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">
