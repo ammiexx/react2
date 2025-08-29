@@ -2,8 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useUser, SignOutButton } from '@clerk/clerk-react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import ThemeToggle from '../pages/ThemeToggle'; // ✅ Import ThemeToggle
-// render the profile photo
+import DarkModeToggle from '../pages/ThemeToggle'; // ✅ Import ThemeToggle
 const Profile = () => {
   const navigate = useNavigate();
   const [loadingRedirect, setLoadingRedirect] = useState(false); // ✅ New state
@@ -108,7 +107,8 @@ if (!user) {
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute top-14 right-0 w-60 bg-white border border-gray-200 shadow-lg rounded-lg p-4 z-50">
+        <div className="absolute top-14 right-0 w-60 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 shadow-lg rounded-lg p-4 z-50 text-gray-800 dark:text-white">
+
           <div className="flex items-center border-b pb-3 mb-3">
             <div className="w-12 h-12 text-gray-600 flex items-center justify-center">
               <svg
@@ -182,18 +182,7 @@ if (!user) {
   </button>
 </div>
 <div className="text-center mb-2">
-  <button
-    onClick={() => {
-      navigate('/saved');
-      setOpen(false);
-    }}
-    className="text-gray-600 hover:underline text-sm font-medium"
-  >
-    favorites
-  </button>
-</div>
-<div className="text-center mb-2">
-  <ThemeToggle />
+  <DarkModeToggle />
 </div>
           {/* Logout confirmation modal */}
           {showLogoutConfirm && (

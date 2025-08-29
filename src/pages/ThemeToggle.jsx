@@ -1,45 +1,43 @@
 import React, { useEffect, useState } from 'react';
 
-const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
+const DarkModeToggle = () => {
+  const [darkMode, setDarkMode] = useState(() => {
+    // Initialize from localStorage or system preference
+    const stored = localStorage.getItem('theme');
+    if (stored) return stored === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
 
+  // Apply or remove dark mode class on <html>
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    const root = document.body; // 👈 use body instead of html
-
-    if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+    const root = window.document.documentElement;
+    if (darkMode) {
       root.classList.add('dark');
-      setIsDark(true);
+      localStorage.setItem('theme', 'dark');
     } else {
       root.classList.remove('dark');
-      setIsDark(false);
+      localStorage.setItem('theme', 'light');
     }
-  }, []);
+  }, [darkMode]);
 
-  const toggleTheme = () => {
-    const root = document.body;
-    const newTheme = root.classList.contains('dark') ? 'light' : 'dark';
-
-    if (newTheme === 'dark') {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-
-    localStorage.setItem('theme', newTheme);
-    setIsDark(newTheme === 'dark');
-  };
+  const toggleMode = () => setDarkMode(prev => !prev);
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="w-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white px-4 py-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-200 text-sm"
-    >
-      {isDark ? '☀️ Light Mode' : '🌙 Dark Mode'}
-    </button>
+    <div className="flex items-center gap-3 cursor-pointer" onClick={toggleMode}>
+      <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">
+        {darkMode ? 'Dark Mode' : 'Light Mode'}
+      </span>
+      <div
+        className={`w-12 h-6 flex items-center bg-gray-300 dark:bg-gray-600 rounded-full p-1 transition-all duration-300`}
+      >
+        <div
+          className={`w-4 h-4 bg-white rounded-full shadow-md transform transition-transform duration-300 ${
+            darkMode ? 'translate-x-6' : 'translate-x-0'
+          }`}
+        />
+      </div>
+    </div>
   );
 };
 
-export default ThemeToggle;
+export default DarkModeToggle;

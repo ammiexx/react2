@@ -93,14 +93,17 @@ import MyPosts from "./pages/MyPosts";
 import QuickLinks from "./pages/QuickLinks";
 import categories from "./components/Search"
 import Recents from "./pages/Recents";
+import Notification from "./pages/Notifications";
 
 
 function App() {
   return (
+    <div className="bg-white text-gray-900 dark:bg-gray-900 dark:text-white min-h-screen transition-colors duration-300">
     <Router>
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/notifications" element={<Notification/>} />
         <Route path="/recents" element={<Recents/>} />
         <Route path="/myposts" element={<MyPosts/>} />
         <Route path="/signup" element={<Signup />} />
@@ -189,6 +192,7 @@ function App() {
       <Back/>
       <Footer />
     </Router>
+    </div>
   );
 }
 export default App;
