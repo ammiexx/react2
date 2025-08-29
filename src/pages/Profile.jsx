@@ -149,7 +149,7 @@ if (!user) {
                               <div className="text-center mb-2">
   <button
     onClick={() => {
-      navigate('/notifications');
+      navigate('/recents');
       setOpen(false);
     }}
     className="text-gray-600 hover:underline text-sm font-medium"
@@ -195,9 +195,6 @@ if (!user) {
 <div className="text-center mb-2">
   <ThemeToggle />
 </div>
-
-          
-
           {/* Logout confirmation modal */}
           {showLogoutConfirm && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1000]">

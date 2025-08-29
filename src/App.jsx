@@ -92,6 +92,8 @@ import Form from "./pages/Forms";
 import MyPosts from "./pages/MyPosts";
 import QuickLinks from "./pages/QuickLinks";
 import categories from "./components/Search"
+import Recents from "./pages/Recents";
+
 
 function App() {
   return (
@@ -99,6 +101,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/recents" element={<Recents/>} />
         <Route path="/myposts" element={<MyPosts/>} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/Virtual_Assistant_And_Admin_Supports" element={<Admin />} />
