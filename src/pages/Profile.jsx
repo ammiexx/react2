@@ -135,18 +135,19 @@ if (!user) {
           <div className="text-center text-sm font-medium text-gray-800 mb-3">
             {firstName} {lastName}
           </div>
-                                        <div className="text-center mb-2">
-                                <button
-                                  onClick={() => {
-                                    navigate('/myposts');
-                                    setOpen(false); // close dropdown
-                                  }}
-                                  className="text-gray-600 hover:underline text-sm font-medium"
-                                >
-                                  edit profile
-                                </button>
-                              </div>
-                              <div className="text-center mb-2">
+      
+                                          <div className="text-center mb-2">
+                                  <button
+                                    onClick={() => {
+                                      navigate('/myposts');
+                                      setOpen(false); // close dropdown
+                                    }}
+                                    className="text-gray-600 hover:underline text-sm font-medium"
+                                  >
+                                    edit profile
+                                  </button>
+                                </div>
+                                <div className="text-center mb-2">
   <button
     onClick={() => {
       navigate('/recents');
@@ -170,17 +171,7 @@ if (!user) {
   </button>
 </div>
 
-<div className="text-center mb-2">
-  <button
-    onClick={() => {
-      navigate('/saved');
-      setOpen(false);
-    }}
-    className="text-gray-600 hover:underline text-sm font-medium"
-  >
-    Saved Posts
-  </button>
-</div>
+
 <div className="text-center mb-2">
   <DarkModeToggle />
 </div>
