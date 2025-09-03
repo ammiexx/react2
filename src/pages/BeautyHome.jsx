@@ -30,7 +30,7 @@ const BeautyHome = () => {
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-4 text-[#2c3e50] font-sans">
        <BackButton className="md:hidden" />
-      {/* Search Section */}
+      {/* Search Section , my= margin y, text-[#2c3e50]=sets the text color*/}
       <section className="mb-12">
         <div className="flex flex-col items-center mb-6">
           <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
@@ -60,7 +60,7 @@ const BeautyHome = () => {
 
               return (
                 <div key={item.id} className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-transform hover:scale-105 flex flex-col">
-                  {/* Poster Info */}
+                  {/* Poster Info ,border → 1px border.*/}
                   <div className="flex flex-col gap-2 mb-2">
                     <div className="flex items-center gap-3">
                       <img
@@ -76,7 +76,7 @@ const BeautyHome = () => {
                     <p className="text-xs text-gray-500">📍 <strong>Location:</strong> {item.location}</p>
                   </div>
 
-                  {/* Product Images */}
+                  {/* Product Images text-xl → Font size = 1.25rem (20px),text-base → Default font size (1rem / 16px).,shadow-sm → Small shadow.*/}
                   <div className="grid grid-cols-2 gap-2 mb-2">
                     {firstFourImages.map((src, idx) => (
                       <img
@@ -89,10 +89,10 @@ const BeautyHome = () => {
                     ))}
                   </div>
 
-                  {/* Product Name */}
+                  {/* Product Name border=thin border,rounded=slightly rounded corners,pointer-cursor=pointer cursor on hover,hover scale=zoom in scale,transition=smooth transition */}
                   <h6 className="text-center text-lg font-bold text-[#2c3e50] mt-2 mb-1">{item.product_name}</h6>
 
-                  {/* View More Button */}
+                  {/* View More Button rounded-lg → Large rounded corners.,text-lg → 18px font.,text-sm → Small text.*/}
                   {remainingImages.length > 0 && (
                     <button
                       className="mt-2 px-4 py-1 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-full text-sm font-semibold shadow hover:from-pink-600 hover:to-pink-700 transition"
