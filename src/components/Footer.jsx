@@ -135,7 +135,7 @@ const Footer = () => {
 
         {/* Footer Bottom */}
         <div className={`mt-12 ${normalTextClass} space-y-1`}>
-          <p>© 2025 Knash.com.  All rights reserved.</p>
+          <p>© 2025 Knash.shop.  All rights reserved.</p>
         </div>
       </div>
     </footer>
