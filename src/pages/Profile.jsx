@@ -148,7 +148,7 @@ if (!user) {
                                     }}
                                     className="text-gray-600 hover:underline text-sm font-medium"
                                   >
-                                    edit profile
+                                    my posts
                                   </button>
                                 </div>
                                 <div className="text-center mb-2">
@@ -203,5 +203,4 @@ if (!user) {
     </div>
   );
 };
-
 export default Profile;

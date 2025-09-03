@@ -87,7 +87,6 @@ const Newp = () => {
                       />
                     ))}
                   </div>
-
                   {/* Product Name */}
                   <h6 className="text-center text-lg font-bold text-[#2c3e50] mt-2 mb-1">{item.product_name}</h6>
 
