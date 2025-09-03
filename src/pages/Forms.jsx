@@ -22,6 +22,8 @@ useEffect(() => {
     description: '',
     category: '',
     location: '',
+    latitude: '',
+    longitude: '',
     contact_telegram: '',
     contact_tick: '',
     web_site: '',
@@ -253,17 +255,67 @@ setTimeout(() => setErrorMsg(''), 2000);
           ></textarea>
         </div>
 
-        {/* Location */}
-        <div>
-          <label className="text-xl font-semibold text-gray-700 mt-10 mb-4 border-b pb-1">Location</label>
-          <input
-            type="text"
-            name="location"
-            value={formData.location}
-            onChange={handleChange}
-            className="w-full border px-4 py-2 rounded"
-          />
-        </div>
+       {/* Location (Text) */}
+<div>
+  <label className="text-xl font-semibold text-gray-700 mt-10 mb-4 border-b pb-1">Location</label>
+  <input
+    type="text"
+    name="location"
+    value={formData.location}
+    onChange={handleChange}
+    placeholder="e.g. Mall of XYZ"
+    className="w-full border px-4 py-2 rounded"
+  />
+</div>
+
+{/* Precise Location Picker */}
+<div className="mt-4">
+  <label className="block text-gray-700 font-semibold mb-1">Precise Location</label>
+  <div className="flex gap-2">
+    <input
+      type="text"
+      name="latitude"
+      value={formData.latitude}
+      onChange={handleChange}
+      placeholder="Latitude"
+      className="w-1/2 border px-4 py-2 rounded"
+      readOnly
+    />
+    <input
+      type="text"
+      name="longitude"
+      value={formData.longitude}
+      onChange={handleChange}
+      placeholder="Longitude"
+      className="w-1/2 border px-4 py-2 rounded"
+      readOnly
+    />
+  </div>
+
+  <button
+    type="button"
+    onClick={() => {
+      // Get browser geolocation
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((pos) => {
+          setFormData((prev) => ({
+            ...prev,
+            latitude: pos.coords.latitude.toFixed(6),
+            longitude: pos.coords.longitude.toFixed(6),
+          }));
+        }, () => {
+          alert("❌ Unable to fetch your location.");
+        });
+      } else {
+        alert("❌ Geolocation not supported by this browser.");
+      }
+    }}
+    className="mt-2 px-4 py-1 bg-blue-200 rounded hover:bg-blue-300"
+  >
+    📍 Use My Current Location
+  </button>
+</div>
+
         {/* Contact Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>

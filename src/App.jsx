@@ -95,6 +95,7 @@ import QuickLinks from "./pages/QuickLinks";
 import categories from "./components/Search"
 import Recents from "./pages/Recents";
 import Notification from "./pages/Notifications";
+import Nearby from "./pages/Nearby";
 
 
 function App() {
@@ -105,6 +106,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/Nearby-shops" element={<Nearby/>} />
         <Route path="/notifications" element={<Notification/>} />
         <Route path="/recents" element={<Recents/>} />
         <Route path="/myposts" element={<MyPosts/>} />

@@ -9,6 +9,7 @@ import { useScrollDirection } from './UseScrollDirection'; // ← import the hoo
 
 const navigation = [
   { name: 'All In One', href: '/your-discounts' },
+  { name: 'Nearby Shops', href: '/Nearby-shops' },
   
 ];
 
@@ -43,7 +44,7 @@ export default function Navigation() {
             <div className="flex shrink-0 items-center">
               <Link to="/" className="flex items-center space-x-2">
                 <span className="text-white text-sm font-semibold hidden sm:block">
-                  Knash.com
+                  Knash.shop
                 </span>
               </Link>
             </div>
