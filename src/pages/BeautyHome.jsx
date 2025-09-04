@@ -94,6 +94,7 @@ const BeautyHome = () => {
 
                   {/* View More Button rounded-lg → Large rounded corners.,text-lg → 18px font.,text-sm → Small text.*/}
                   {remainingImages.length > 0 && (
+                    
                     <button
                       className="mt-2 px-4 py-1 bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-full text-sm font-semibold shadow hover:from-pink-600 hover:to-pink-700 transition"
                       onClick={() => toggleExpand(item.id)}

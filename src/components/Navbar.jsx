@@ -43,7 +43,7 @@ export default function Navigation() {
             <div className="flex shrink-0 items-center">
               <Link to="/" className="flex items-center space-x-2">
                 <span className="text-white text-sm font-semibold hidden sm:block">
-                  Knash.shop
+                  Kenash.shop
                 </span>
               </Link>
             </div>
@@ -87,7 +87,7 @@ export default function Navigation() {
       </Link>
   <Link
         to="/send a message"
-        className="flex items-center gap-2 px-2 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
+        className="flex items-center gap-2 px-1 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
       >
         <ChatBubbleLeftRightIcon className="h-5 w-5" />
         What You Want?
