@@ -41,12 +41,16 @@ export default function Navigation() {
           {/* Logo and nav items */}
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
-              <Link to="/" className="flex items-center space-x-2">
-                <span className="text-white text-sm font-semibold hidden sm:block">
-                  Kenash.shop
-                </span>
-              </Link>
-            </div>
+  <Link to="/" className="flex items-center space-x-2">
+    <img
+      src="https://videos.openai.com/vg-assets/assets%2Ftask_01k4b6czxyfbe8qgcthwvqfhm5%2F1757017545_img_1.webp?st=2025-09-04T19%3A03%3A48Z&se=2025-09-10T20%3A03%3A48Z&sks=b&skt=2025-09-04T19%3A03%3A48Z&ske=2025-09-10T20%3A03%3A48Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=3d249c53-07fa-4ba4-9b65-0bf8eb4ea46a&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=PVbD2MGvKk2NsTGMPSjh5531H2465mfLvChAPPGVscA%3D&az=oaivgprodscus"
+      alt="Kenash Logo"
+      className="h-7 w-30 rounded-full object-cover"
+      
+    />
+  </Link>
+</div>
+
 
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
