@@ -115,7 +115,6 @@ if (!formData.email) {
   }
 });
 
-
     try {
       const response = await fetch('https://djanagobackend-5.onrender.com/api/products/', {
         method: 'POST',
