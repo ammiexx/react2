@@ -124,7 +124,7 @@ if (!formData.email) {
 
       if (!response.ok) throw new Error('Failed to submit');
 
-     setSuccessMsg('✅ Your post submitted successfully!');
+     setSuccessMsg('✅ Your post submitted successfully! Waiting for admin approval.');
 setTimeout(() => setSuccessMsg(''), 4000);
 
       setFormData({
