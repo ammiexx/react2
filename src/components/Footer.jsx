@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from "react-router-dom";
 const Footer = () => {
   const normalTextClass = "text-left text-sm text-[#888888]";
   const linkClass = "hover:text-[#6ec1e4] transition-colors";
@@ -124,9 +124,9 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-2">Sign Up</h4>
             <ul className={normalTextClass + " space-y-1"}>
-               <li><a href="/login" className={linkClass}>Sign in</a></li>
-              <li><a href="/signup" className={linkClass}>Sign Up</a></li>
-              <li><a href="/privacy" className={linkClass}>Privacy Policy</a></li>
+              <li><Link to="/login" className={linkClass}>Sign in</Link></li>
+              <li><Link to="/signup" className={linkClass}>Sign Up</Link></li>
+              <li><Link to="/privacy" className={linkClass}>Privacy Policy</Link></li>
               
             </ul>
           </div>

@@ -89,7 +89,7 @@ if (!formData.email) {
 
       if (!response.ok) throw new Error('Failed to submit');
 
-     setSuccessMsg('✅ Product submitted successfully!');
+     setSuccessMsg('✅ Your post submitted successfully!');
 setTimeout(() => setSuccessMsg(''), 4000);
 
       setFormData({
@@ -130,7 +130,7 @@ setTimeout(() => setErrorMsg(''), 2000);
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Product Name */}
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Product Name</label>
+          <label className="block text-gray-700 font-semibold mb-1">Item for sale</label>
           <input
             type="text"
             name="product_name"
@@ -142,7 +142,7 @@ setTimeout(() => setErrorMsg(''), 2000);
         </div>
 {/* Profile Photo */}
 <div>
-  <label className="block text-gray-700 font-semibold mb-1">Company Logo</label>
+  <label className="block text-gray-700 font-semibold mb-1">Capela/Your photo/Company Logo</label>
   <input
   type="file"
   accept="image/*"
@@ -153,7 +153,7 @@ setTimeout(() => setErrorMsg(''), 2000);
 
         {/* Company Name */}
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Company Name</label>
+          <label className="block text-gray-700 font-semibold mb-1">your company</label>
           <input
             type="text"
             name="company_name"
@@ -248,7 +248,7 @@ setTimeout(() => setErrorMsg(''), 2000);
           <label className="block text-gray-700 font-semibold mb-1">Description</label>
           <textarea
             name="description"
-            rows="4"
+            rows="2"
             value={formData.description}
             onChange={handleChange}
             className="w-full border px-4 py-2 rounded"
@@ -263,7 +263,7 @@ setTimeout(() => setErrorMsg(''), 2000);
     name="location"
     value={formData.location}
     onChange={handleChange}
-    placeholder="e.g. Mall of XYZ"
+    placeholder="Addis ababa-> bole->Friendship building-> floor-3->office X"
     className="w-full border px-4 py-2 rounded"
   />
 </div>
@@ -338,7 +338,7 @@ setTimeout(() => setErrorMsg(''), 2000);
               className="w-full border px-4 py-2 rounded"
             />
           </div>
-          <div>
+          {/* <div>
             <label className="block text-gray-700 font-semibold mb-1">Website</label>
             <input
               type="url"
@@ -347,7 +347,7 @@ setTimeout(() => setErrorMsg(''), 2000);
               onChange={handleChange}
               className="w-full border px-4 py-2 rounded"
             />
-          </div>
+          </div> */}
           <div>
             <label className="block text-gray-700 font-semibold mb-1">Phone Number</label>
             <input
