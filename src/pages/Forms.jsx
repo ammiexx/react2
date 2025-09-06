@@ -1,42 +1,7 @@
 import React, { useState } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import { useEffect } from 'react';
-import Select from "react-select";
-
 const Form = () => {
-  const categories = [
-  "Fashions", "Electronics", "Homes", "Car Brands", "Foods & Beverages",
-  "Home & Appliances", "Health & Beauties", "Events & Weddings",
-  "Intertainments", "Travels", "Daily Discounts", "Weekly Discounts",
-  "New Advantages", "New Offers", "Upcomming Services", "Repair & Maintainance",
-  "Agriculture & Livestock", "Books & Stationary", "Toys & Games", "Jewelries",
-  "Finance & Insurances", "Baby & Kids products", "Pet Suplies & services",
-  "Green & Eco-friendly products", "Medical & Pharmaceuticals",
-  "Logistic & Delivery Services", "Legal & Consultancy Services",
-  "Cleaning & Sanitation Services", "Telecomunication Services",
-  "Art & Handicrafts", "Photograpy & Videograph",
-  "Furniture & Interior Design", "Fitness & Sports Service",
-  "Software & IT services", "Security Services", "Printing & Publishing",
-  "Automotive Services", "Waste Management & Recycling",
-  "Human Resources & Staffing", "Energy & Utilities", "Gaming & eSports",
-  "Tattoo And Piercing Studios", "Elderly Care & Nursing Services",
-  "Rental Services", "Event Planning & Decor", "Language And Translation",
-  "Non Profit & Charity Organization", "Courier & Freight Services",
-  "Beauty Salons and Barbershops", "Music & Instruments",
-  "Coworking & Office Spaces", "Digital Marketing Services",
-  "Architecture & Engineering Services", "Mental Health & Wellness Services",
-  "Home Security & Smart Homes", "Landscaping and Gardening Services",
-  "Podcasting & Audio Production", "Stationary & Office Supplies",
-  "Marine & Boating Services", "Virtual Events and Webinars",
-  "Crowd Funding And Investment Services", "Elearning & Online Courses",
-  "Car Wash & Detailing", "Virtual Assistant & Admin Support"
-];
-
-const categoryOptions = categories.map((c) => ({
-  value: c.toLowerCase(),
-  label: c,
-}));
-
   const { user } = useUser();
 const [authWarning, setAuthWarning] = useState(false);
 
@@ -124,7 +89,7 @@ if (!formData.email) {
 
       if (!response.ok) throw new Error('Failed to submit');
 
-     setSuccessMsg('✅ Your post submitted successfully! Waiting for admin approval.');
+     setSuccessMsg('✅ Your post submitted successfully!');
 setTimeout(() => setSuccessMsg(''), 4000);
 
       setFormData({
@@ -201,17 +166,81 @@ setTimeout(() => setErrorMsg(''), 2000);
         {/* Category */}
         <div>
           <label className="block text-gray-700 font-semibold mb-1">Category</label>
-       <Select
-  options={categoryOptions}
-  value={categoryOptions.find((opt) => opt.value === formData.category)}
-  onChange={(selected) =>
-    setFormData((prev) => ({ ...prev, category: selected.value }))
-  }
-  placeholder="Search or select a category..."
-  isSearchable
-  className="text-gray-700"
-/>
-
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+            className="w-full border px-4 py-2 rounded bg-white"
+          >
+            <option value="">Select a category</option>
+<option value="fashions">Fashions</option>
+<option value="electronics">Electronics</option>
+<option value="homes">Homes</option>
+<option value="carbrands">Car Brands</option>
+<option value="foods">Foods & Beverages</option>
+<option value="appliances">Home & Appliances</option>
+<option value="health">Health & Beauties</option>
+<option value="events">Events & Weddings</option>
+<option value="entertainments">Intertainments</option>
+<option value="travels">Travels</option>
+<option value="daily">Daily Discounts</option>
+<option value="weekly">Weekly Discounts</option>
+<option value="new">New Advantages</option>
+<option value="newoffers">New Offers</option>
+<option value="upcomming">Upcomming Services</option>
+<option value="repair">Repair & Maintainance</option>
+<option value="agricultural">Agriculture & Livestock</option>
+<option value="books">Books & Stationary</option>
+<option value="toys">Toys & Games</option>
+<option value="jewelry">Jewelries</option>
+<option value="insurances">Finance & Insurances</option>
+<option value="baby">Baby & Kids products</option>
+<option value="pet">Pet Suplies & services</option>
+<option value="green">Green & Eco-friendly products</option>
+<option value="medical">Medical & Pharmaceuticals</option>
+<option value="logistic">logistic & Delivery Services</option>
+<option value="consustancy">Legal & Consultancy Services</option>
+<option value="cleaning">Cleaning & Sanitation Services</option>
+<option value="telecom">Telecomunication Services</option>
+<option value="art">Art & Handicrafts</option>
+<option value="photograpy">Photograpy & Videograph</option>
+<option value="design">Furniture & Interior Design</option>
+<option value="fitness">Fitness & Sports Service</option>
+<option value="software">Software & IT services</option>
+<option value="sercurity">Security Services</option>
+<option value="printing">Printing & publishing</option>
+<option value="automotive">Automotive Services</option>
+<option value="waste">Waste Management & Recycling </option>
+<option value="Human">Human Resources & staffing</option>
+<option value="energy">Energy & Utilities</option>
+<option value="gaming">Gaming & eSports</option>
+<option value="tatue">Tatto And Piercing Studios</option>
+<option value="nursing">Elderly Care & Nursing Services</option>
+<option value="rental">Rental Services</option>
+<option value="decor">Event Planning & Decor</option>
+<option value="translation">Language And Translation</option>
+<option value="nonprofit">Non Profit & Charity Organization</option>
+<option value="freight">Courier & Freight Services</option>
+<option value="sallons">Beauty Sallons and Barbershops</option>
+<option value="music">Music & Instruments</option>
+<option value="office">Coworking & Office Spaces</option>
+<option value="digital">Digital Marketing Services</option>
+<option value="architecture">Architecture & Engineering Services</option>
+<option value="mental">Mental Health & Wellness Services</option>
+<option value="homesecurity">Home Securty & Smart Homes</option>
+<option value="land">Land Escaping and Gardeing services</option>
+<option value="podcasting">podcasting & Audio Production</option>
+<option value="stationary">Stationary & Office Supplieis</option>
+<option value="marin">Marine & boating Services</option>
+<option value="virtual">Virtual Events and Webinars</option>
+<option value="funding">Croud Funding And Investment Services</option>
+<option value="elearing">Elearning & online Cources</option>
+<option value="carwash">Car Wash & Detailing</option>
+<option value="admin">Virtual Assistant & Admin Support</option>
+        
+            {/* Add more options as needed */}
+          </select>
         </div>
 
         {/* Description */}
