@@ -168,8 +168,8 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-2">Sign Up</h4>
             <ul className={normalTextClass + " space-y-1"}>
-              <li><Link to="/login" className={linkClass}>Sign in</Link></li>
-              <li><Link to="/signup" className={linkClass}>Sign Up</Link></li>
+              <li><Link to="/signup" className={linkClass}>Sign in</Link></li>
+              <li><Link to="/login" className={linkClass}>Sign Up</Link></li>
               <li><Link to="/privacy" className={linkClass}>Privacy Policy</Link></li>
               
             </ul>
