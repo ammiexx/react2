@@ -97,28 +97,72 @@ const Footer = () => {
           
           <div>
             <h4 className="text-white font-semibold mb-2">Explore</h4>
-            <ul className={normalTextClass + " space-y-1"}>
-              <li><a href="/" className={linkClass}>All</a></li>
-              <li><a href="/New Offers" className={linkClass}>New Products</a></li>
-              <li><a href="/Upcomming Services" className={linkClass}>Upcomming Services</a></li>
-               <li><a href="/Snd  Messages" className={linkClass}>Send Messages</a></li>
-            </ul>
+          <ul className={normalTextClass + " space-y-1"}>
+  <li>
+    <Link to="/" className={linkClass}>
+      All
+    </Link>
+  </li>
+  <li>
+    <Link to="/new-products" className={linkClass}>
+      New Products
+    </Link>
+  </li>
+  <li>
+    <Link to="/upcoming-services" className={linkClass}>
+      Upcoming Services
+    </Link>
+  </li>
+  <li>
+    <Link to="/send-messages" className={linkClass}>
+      Send Messages
+    </Link>
+  </li>
+</ul>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-2">Quick Links</h4>
-            <ul className={normalTextClass + " space-y-1"}>
-              <li><a href="/New Advantages" className={linkClass}>New Advantages</a></li>
-              <li><a href="/Wekly Discounts" className={linkClass}>Weekly Discounts</a></li>
-              <li><a href="/Daily Discounts" className={linkClass}>Daily Discounts</a></li>
-              <li><a href="/New Offers" className={linkClass}>Holiday Discounts</a></li>
-            </ul>
+           <ul className={normalTextClass + " space-y-1"}>
+  <li>
+    <Link to="/new-advantages" className={linkClass}>
+      New Advantages
+    </Link>
+  </li>
+  <li>
+    <Link to="/weekly-discounts" className={linkClass}>
+      Weekly Discounts
+    </Link>
+  </li>
+  <li>
+    <Link to="/daily-discounts" className={linkClass}>
+      Daily Discounts
+    </Link>
+  </li>
+  <li>
+    <Link to="/holiday-discounts" className={linkClass}>
+      Holiday Discounts
+    </Link>
+  </li>
+</ul>
           </div>
           <div>
             <h4 className="text-white font-semibold mb-2">Company</h4>
             <ul className={normalTextClass + " space-y-1"}>
-              <li><a href="/aboutus" className={linkClass}>About Us</a></li>
-              <li><a href="/New Offers" className={linkClass}>New Offers</a></li>
-              <li><a href="/helpcenter" className={linkClass}>Help Center</a></li>
+              <li>
+  <Link to="/aboutus" className={linkClass}>
+    About Us
+  </Link>
+</li>
+<li>
+  <Link to="/newoffers" className={linkClass}>
+    New Offers
+  </Link>
+</li>
+<li>
+  <Link to="/helpcenter" className={linkClass}>
+    Help Center
+  </Link>
+</li>
             </ul>
           </div>
           <div>
