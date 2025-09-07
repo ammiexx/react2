@@ -16,8 +16,8 @@ const Footer = () => {
         {/* Mission */}
         <div className={`mb-10 max-w-3xl ${normalTextClass} leading-relaxed`}>
           <p>
-            Making the life of the society better through offering discounts!
-          </p>
+        Creating a shopping platform that helps customers to purchase what they need at the best value!
+        </p>
         </div>
 
         {/* Social Icons */}
