@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe("pk_test_12345YOURPUBLISHABLEKEY");
+const stripePromise = loadStripe("pk_test_51RxBXuC2J5esJHJB3deOeOQ3ZhxYhyM9TT4yjZvE7cSgCQGD3BW2CY0rFFTUmgvLZDgoLRA0QYUNPoWpVqweBgUh00jhNFUdVm");
 
 const dummyProducts = [
   {
