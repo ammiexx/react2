@@ -144,7 +144,6 @@ setTimeout(() => setSuccessMsg(''), 4000);
     } catch (error) {
       setErrorMsg('❌ Error submitting product. Please try again.');
 setTimeout(() => setErrorMsg(''), 2000);
-
     } finally {
       setLoading(false);
     }

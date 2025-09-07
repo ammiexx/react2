@@ -96,6 +96,7 @@ import categories from "./components/Search"
 import Recents from "./pages/Recents";
 import Notification from "./pages/Notifications";
 import Nearby from "./pages/Nearby";
+import Forsale from "./components/Forsale";
 
 
 function App() {
@@ -106,6 +107,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/forsale" element={<Forsale/>} />
         <Route path="/Nearby-shops" element={<Nearby/>} />
         <Route path="/notifications" element={<Notification/>} />
         <Route path="/recents" element={<Recents/>} />
