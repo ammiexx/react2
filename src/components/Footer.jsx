@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="max-w-5xl mx-auto">
         {/* Logo */}
         <div className={`mb-10 ${normalTextClass}`}>
-          <h1 className="text-3xl font-bold text-[#6ec1e4]">Addis gebeya</h1>
+          <h1 className="text-3xl font-bold text-[#6ec1e4]">Kenash</h1>
         </div>
 
         {/* Mission */}
@@ -179,7 +179,7 @@ const Footer = () => {
 
         {/* Footer Bottom */}
         <div className={`mt-12 ${normalTextClass} space-y-1`}>
-          <p>© 2025 AddisGEBEYA</p>
+          <p>© 2025 Kenash</p>
         </div>
       </div>
     </footer>

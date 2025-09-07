@@ -44,7 +44,7 @@ export default function Navigation() {
             <div className="flex shrink-0 items-center">
   <Link to="/" className="flex items-center space-x-2">
     <img
-      src="https://videos.openai.com/vg-assets/assets%2Ftask_01k4fjvajhew0bckzte1mfx8g6%2F1757164818_img_1.webp?st=2025-09-06T12%3A18%3A59Z&se=2025-09-12T13%3A18%3A59Z&sks=b&skt=2025-09-06T12%3A18%3A59Z&ske=2025-09-12T13%3A18%3A59Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=fea36edb-a052-425e-a84a-436fdce0a7b4&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=a1lfYcXQv1wLcOAW7VyUa9Ploen7FLIT2a9UlVn%2BOao%3D&az=oaivgprodscus"
+      src="https://videos.openai.com/vg-assets/assets%2Ftask_01k4b6czxyfbe8qgcthwvqfhm5%2F1757017545_img_0_thumb.webp?st=2025-09-07T09%3A22%3A43Z&se=2025-09-13T10%3A22%3A43Z&sks=b&skt=2025-09-07T09%3A22%3A43Z&ske=2025-09-13T10%3A22%3A43Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=fea36edb-a052-425e-a84a-436fdce0a7b4&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=1Or6HgAOASO23VNiizoZJBkOBNX42m7bvlwM4xEsQ7w%3D&az=oaivgprodscus"
       alt="Kenash Logo"
       className="h-9 w-30 rounded-full object-cover"
       
