@@ -153,7 +153,7 @@ if (!formData.email) {
 });
 
    try {
-  const response = await fetch('http://127.0.0.1:8000/api/products/', {
+  const response = await fetch('https://djanagobackend-5.onrender.com/api/products/', {
     method: 'POST',
     body: form,
   });
