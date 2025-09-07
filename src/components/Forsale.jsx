@@ -177,10 +177,11 @@ const Forsale = () => {
   };
 
   // Buy Now with Stripe
+// Buy Now with Stripe
 const handleBuyNow = async (product) => {
   const stripe = await stripePromise;
 
-  const response = await fetch("/api/create-checkout-session", {
+  const response = await fetch("http://127.0.0.1:8000/api/create-checkout-session/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -199,24 +200,27 @@ const handleBuyNow = async (product) => {
   await stripe.redirectToCheckout({ sessionId: session.id });
 };
 
-  const beginCheckout = async () => {
-    const stripe = await stripePromise;
-    const response = await fetch("/api/create-checkout-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        items: cart.map((p) => ({
-          id: p.id,
-          name: p.name,
-          price: p.price,
-          quantity: 1,
-        })),
-      }),
-    });
 
-    const session = await response.json();
-    await stripe.redirectToCheckout({ sessionId: session.id });
-  };
+ const beginCheckout = async () => {
+  const stripe = await stripePromise;
+
+  const response = await fetch("http://127.0.0.1:8000/api/create-checkout-session/", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      items: cart.map((p) => ({
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        quantity: 1,
+      })),
+    }),
+  });
+
+  const session = await response.json();
+  await stripe.redirectToCheckout({ sessionId: session.id });
+};
+
 
   // Filter products by search term
   const filteredProducts = dummyProducts.filter((p) =>
