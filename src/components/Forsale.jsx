@@ -254,11 +254,12 @@ const handleBuyNow = async (product) => {
               key={product.id}
               className="border border-gray-200 rounded-xl shadow-sm p-4 bg-white hover:shadow-md transition"
             >
-              <img
+             <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-40 object-cover rounded-md mb-2"
-              />
+                className="w-full h-40 object-cover rounded-md mb-2 transform transition-transform duration-300 hover:scale-105"
+                />
+
               <h3 className="text-sm font-semibold">{product.name}</h3>
               <p className="text-blue-600 font-bold text-sm mb-1">
                 {product.price.toLocaleString()} Birr
