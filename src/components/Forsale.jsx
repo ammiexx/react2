@@ -2,7 +2,9 @@
 import React, { useState } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe("pk_test_51RxBXuC2J5esJHJB3deOeOQ3ZhxYhyM9TT4yjZvE7cSgCQGD3BW2CY0rFFTUmgvLZDgoLRA0QYUNPoWpVqweBgUh00jhNFUdVm");
+const stripePromise = loadStripe(
+  "pk_test_51RxBXuC2J5esJHJB3deOeOQ3ZhxYhyM9TT4yjZvE7cSgCQGD3BW2CY0rFFTUmgvLZDgoLRA0QYUNPoWpVqweBgUh00jhNFUdVm"
+);
 
 const dummyProducts = [
   {
@@ -95,11 +97,76 @@ const dummyProducts = [
       "https://images.unsplash.com/photo-1620207418302-439b387441b0?auto=format&fit=crop&w=500&q=80",
     specs: ["Bluetooth 5.1", "Waterproof", "Battery: 12hrs"],
   },
+  {
+  id: 11,
+  name: "HP Spectre x360",
+  description: "Convertible 2-in-1 laptop with 11th Gen Intel i7.",
+  price: 72000,
+  image:
+    "https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?auto=format&fit=crop&w=600&q=80",
+  specs: ["16GB RAM", "1TB SSD", "13.3 inch", "Touchscreen"],
+},
+{
+  id: 12,
+  name: "PlayStation 5",
+  description: "Next-gen gaming console with ultra-fast SSD.",
+  price: 45000,
+  image:
+    "https://images.unsplash.com/photo-1606813907291-d86efa9b94d8?auto=format&fit=crop&w=600&q=80",
+  specs: ["825GB SSD", "Ray Tracing", "4K Gaming"],
+},
+{
+  id: 13,
+  name: "Apple MacBook Pro 14",
+  description: "M1 Pro chip with stunning Liquid Retina XDR display.",
+  price: 115000,
+  image:
+    "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80",
+  specs: ["16GB RAM", "512GB SSD", "14 inch", "Battery: 17hrs"],
+},
+{
+  id: 14,
+  name: "DJI Mini 3 Pro",
+  description: "Lightweight drone with 4K HDR video and obstacle sensors.",
+  price: 68000,
+  image:
+    "https://images.unsplash.com/photo-1585421514738-01798e348b17?auto=format&fit=crop&w=600&q=80",
+  specs: ["4K Video", "249g", "GPS Tracking"],
+},
+{
+  id: 15,
+  name: "Oculus Quest 2",
+  description: "Standalone VR headset with 128GB storage.",
+  price: 35000,
+  image:
+    "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?auto=format&fit=crop&w=600&q=80",
+  specs: ["128GB", "VR Wireless", "Touch Controllers"],
+},
+{
+  id: 16,
+  name: "Logitech MX Master 3",
+  description: "Ergonomic wireless mouse with customizable buttons.",
+  price: 5200,
+  image:
+    "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=600&q=80",
+  specs: ["Bluetooth", "USB-C Charging", "7 Buttons"],
+},
+{
+  id: 17,
+  name: "Samsung QLED 55” TV",
+  description: "4K UHD Smart TV with vibrant Quantum Dot display.",
+  price: 58000,
+  image:
+    "https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=600&q=80",
+  specs: ["55 inch", "4K UHD", "HDR10+"],
+},
+
 ];
 
 const Forsale = () => {
   const [cart, setCart] = useState([]);
   const [expanded, setExpanded] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const addToCart = (product) => {
     setCart((prev) => [...prev, product]);
@@ -128,62 +195,85 @@ const Forsale = () => {
     await stripe.redirectToCheckout({ sessionId: session.id });
   };
 
+  // Filter products by search term
+  const filteredProducts = dummyProducts.filter((p) =>
+    p.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="p-6">
-      <h1 className="text-xl font-bold mb-6">🛒 Forsale Products</h1>
+      <h1 className="text-xl font-bold mb-4"></h1>
+
+      {/* Search Bar */}
+      {/* Search Bar */}
+<div className="flex justify-center mb-6">
+  <input
+    type="text"
+    placeholder="Search products..."
+    value={searchTerm}
+    onChange={(e) => setSearchTerm(e.target.value)}
+    className="w-full sm:w-1/2 md:w-1/3 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+  />
+</div>
+
 
       {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {dummyProducts.map((product) => (
-          <div
-            key={product.id}
-            className="border border-gray-200 rounded-xl shadow-sm p-4 bg-white hover:shadow-md transition"
-          >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-40 object-cover rounded-md mb-2"
-            />
-            <h3 className="text-sm font-semibold">{product.name}</h3>
-            <p className="text-blue-600 font-bold text-sm mb-1">
-              {product.price.toLocaleString()} Birr
-            </p>
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <div
+              key={product.id}
+              className="border border-gray-200 rounded-xl shadow-sm p-4 bg-white hover:shadow-md transition"
+            >
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-40 object-cover rounded-md mb-2"
+              />
+              <h3 className="text-sm font-semibold">{product.name}</h3>
+              <p className="text-blue-600 font-bold text-sm mb-1">
+                {product.price.toLocaleString()} Birr
+              </p>
 
-            {/* Expandable Details */}
-            {expanded === product.id && (
-              <div className="mb-2">
-                <p className="text-gray-600 text-xs">{product.description}</p>
-                <ul className="list-disc list-inside text-xs text-gray-500 mt-1">
-                  {product.specs.map((spec, i) => (
-                    <li key={i}>{spec}</li>
-                  ))}
-                </ul>
+              {/* Expandable Details */}
+              {expanded === product.id && (
+                <div className="mb-2">
+                  <p className="text-gray-600 text-xs">{product.description}</p>
+                  <ul className="list-disc list-inside text-xs text-gray-500 mt-1">
+                    {product.specs.map((spec, i) => (
+                      <li key={i}>{spec}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Buttons */}
+              <div className="mt-2 flex gap-3 items-center">
+                <button
+                  onClick={() => toggleExpand(product.id)}
+                  className="text-xs font-medium text-gray-700 hover:underline"
+                >
+                  {expanded === product.id ? "View Less" : "View More"}
+                </button>
+                <button
+                  onClick={() => addToCart(product)}
+                  className="px-3 py-1 text-xs rounded-lg bg-green-500 text-white font-medium hover:bg-green-600 transition"
+                >
+                  Add to Cart
+                </button>
               </div>
-            )}
-
-            {/* Buttons */}
-            <div className="mt-2 flex gap-3 items-center">
-              <button
-                onClick={() => toggleExpand(product.id)}
-                className="text-xs font-medium text-gray-700 hover:underline"
-              >
-                {expanded === product.id ? "View Less" : "View More"}
-              </button>
-              <button
-                onClick={() => addToCart(product)}
-                className="px-3 py-1 text-xs rounded-lg bg-green-500 text-white font-medium hover:bg-green-600 transition"
-              >
-                Add to Cart
-              </button>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <p className="col-span-3 text-gray-500 text-sm">
+            No products found.
+          </p>
+        )}
       </div>
 
       {/* Cart Section */}
       <hr className="my-8" />
 
-      <h2 className="text-lg font-semibold mb-3">🛍 Your Cart</h2>
       {cart.length === 0 ? (
         <p className="text-gray-500 text-sm">No items in cart.</p>
       ) : (
