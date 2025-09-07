@@ -110,7 +110,7 @@ function App() {
       <Routes>
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<h1 className="p-10 text-center text-red-600">❌ Payment Cancelled</h1>} /> 
-        <Route path="/forsale" element={<Forsale/>} />
+        <Route path="/" element={<Forsale/>} />
         <Route path="/Nearby-shops" element={<Nearby/>} />
         <Route path="/notifications" element={<Notification/>} />
         <Route path="/recents" element={<Recents/>} />
@@ -166,7 +166,7 @@ function App() {
         <Route path="/Virtual_Events_And_Webbinaries" element={<Virtual/>} />
         <Route path="/Language_And_Translation_Services" element={<Translation />} />
         <Route path="/Toys_And_Games" element={<Toys />} />
-        <Route path="/" element={<Category1 />} />
+        <Route path="/discounts" element={<Category1 />} />
         <Route path="/cancel" element={<Cancel />} />
         <Route path="/your-discounts" element={<Category1 />} />
         <Route path="/fashions" element={<Home/>} />

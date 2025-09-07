@@ -8,8 +8,8 @@ import Profile from '../pages/Profile';
 import { useScrollDirection } from './UseScrollDirection'; // ← import the hook
 
 const navigation = [
-  { name: 'Discounts', href: '/your-discounts' },
-  { name: 'Forsale', href: '/forsale' },
+  { name: 'Discount Categories', href: '/discounts' },
+  // { name: 'Forsale', href: '/forsale' },
   
 ];
 
