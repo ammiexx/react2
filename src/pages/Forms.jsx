@@ -4,38 +4,75 @@ import { useEffect } from 'react';
 import Select from "react-select";
 
 const Form = () => {
-  const categories = [
-  "Fashions", "Electronics", "Homes", "Car Brands", "Foods & Beverages",
-  "Home & Appliances", "Health & Beauties", "Events & Weddings",
-  "Intertainments", "Travels", "Daily Discounts", "Weekly Discounts",
-  "New Advantages", "New Offers", "Upcomming Services", "Repair & Maintainance",
-  "Agriculture & Livestock", "Books & Stationary", "Toys & Games", "Jewelries",
-  "Finance & Insurances", "Baby & Kids products", "Pet Suplies & services",
-  "Green & Eco-friendly products", "Medical & Pharmaceuticals",
-  "Logistic & Delivery Services", "Legal & Consultancy Services",
-  "Cleaning & Sanitation Services", "Telecomunication Services",
-  "Art & Handicrafts", "Photograpy & Videograph",
-  "Furniture & Interior Design", "Fitness & Sports Service",
-  "Software & IT services", "Security Services", "Printing & Publishing",
-  "Automotive Services", "Waste Management & Recycling",
-  "Human Resources & Staffing", "Energy & Utilities", "Gaming & eSports",
-  "Tattoo And Piercing Studios", "Elderly Care & Nursing Services",
-  "Rental Services", "Event Planning & Decor", "Language And Translation",
-  "Non Profit & Charity Organization", "Courier & Freight Services",
-  "Beauty Salons and Barbershops", "Music & Instruments",
-  "Coworking & Office Spaces", "Digital Marketing Services",
-  "Architecture & Engineering Services", "Mental Health & Wellness Services",
-  "Home Security & Smart Homes", "Landscaping and Gardening Services",
-  "Podcasting & Audio Production", "Stationary & Office Supplies",
-  "Marine & Boating Services", "Virtual Events and Webinars",
-  "Crowd Funding And Investment Services", "Elearning & Online Courses",
-  "Car Wash & Detailing", "Virtual Assistant & Admin Support"
+ const categoryOptions = [
+  { value: "fashions", label: "Fashions" },
+  { value: "electronics", label: "Electronics" },
+  { value: "homes", label: "Homes" },
+  { value: "carbrands", label: "Car Brands" },
+  { value: "foods", label: "Foods & Beverages" },
+  { value: "appliances", label: "Home & Appliances" },
+  { value: "health", label: "Health & Beauties" },
+  { value: "events", label: "Events & Weddings" },
+  { value: "entertainments", label: "Intertainments" },
+  { value: "travels", label: "Travels" },
+  { value: "daily", label: "Daily Discounts" },
+  { value: "weekly", label: "Weekly Discounts" },
+  { value: "new", label: "New Advantages" },
+  { value: "newoffers", label: "New Offers" },
+  { value: "upcomming", label: "Upcomming Services" },
+  { value: "repair", label: "Repair & Maintainance" },
+  { value: "agricultural", label: "Agriculture & Livestock" },
+  { value: "books", label: "Books & Stationary" },
+  { value: "toys", label: "Toys & Games" },
+  { value: "jewelry", label: "Jewelries" },
+  { value: "insurances", label: "Finance & Insurances" },
+  { value: "baby", label: "Baby & Kids products" },
+  { value: "pet", label: "Pet Suplies & services" },
+  { value: "green", label: "Green & Eco-friendly products" },
+  { value: "medical", label: "Medical & Pharmaceuticals" },
+  { value: "logistic", label: "Logistic & Delivery Services" },
+  { value: "consultancy", label: "Legal & Consultancy Services" },
+  { value: "cleaning", label: "Cleaning & Sanitation Services" },
+  { value: "telecom", label: "Telecomunication Services" },
+  { value: "art", label: "Art & Handicrafts" },
+  { value: "photograpy", label: "Photograpy & Videograph" }, // backend spelling!
+  { value: "design", label: "Furniture & Interior Design" },
+  { value: "fitness", label: "Fitness & Sports Service" },
+  { value: "software", label: "Software & IT services" },
+  { value: "sercurity", label: "Security Services" }, // backend typo must match!
+  { value: "printing", label: "Printing & Publishing" },
+  { value: "automotive", label: "Automotive Services" },
+  { value: "waste", label: "Waste Management & Recycling" },
+  { value: "human", label: "Human Resources & Staffing" },
+  { value: "energy", label: "Energy & Utilities" },
+  { value: "gaming", label: "Gaming & eSports" },
+  { value: "tatue", label: "Tattoo And Piercing Studios" }, // backend typo
+  { value: "nursing", label: "Elderly Care & Nursing Services" },
+  { value: "rental", label: "Rental Services" },
+  { value: "decor", label: "Event Planning & Decor" },
+  { value: "translation", label: "Language And Translation" },
+  { value: "nonprofit", label: "Non Profit & Charity Organization" },
+  { value: "freight", label: "Courier & Freight Services" },
+  { value: "sallons", label: "Beauty Salons and Barbershops" }, // backend typo
+  { value: "music", label: "Music & Instruments" },
+  { value: "office", label: "Coworking & Office Spaces" },
+  { value: "digital", label: "Digital Marketing Services" },
+  { value: "architecture", label: "Architecture & Engineering Services" },
+  { value: "mental", label: "Mental Health & Wellness Services" },
+  { value: "homesecurity", label: "Home Security & Smart Homes" },
+  { value: "land", label: "Landscaping and Gardening Services" },
+  { value: "podcasting", label: "Podcasting & Audio Production" },
+  { value: "stationary", label: "Stationary & Office Supplies" },
+  { value: "marin", label: "Marine & Boating Services" },
+  { value: "virtual", label: "Virtual Events and Webinars" },
+  { value: "funding", label: "Crowd Funding And Investment Services" },
+  { value: "elearning", label: "Elearning & Online Courses" },
+  { value: "carwash", label: "Car Wash & Detailing" },
+  { value: "admin", label: "Virtual Assistant & Admin Support" },
 ];
 
-const categoryOptions = categories.map((c) => ({
-  value: c.toLowerCase(),
-  label: c,
-}));
+
+
 
   const { user } = useUser();
 const [authWarning, setAuthWarning] = useState(false);
@@ -115,38 +152,53 @@ if (!formData.email) {
   }
 });
 
-    try {
-      const response = await fetch('https://djanagobackend-5.onrender.com/api/products/', {
-        method: 'POST',
-        body: form,
-      });
+   try {
+  const response = await fetch('http://127.0.0.1:8000/api/products/', {
+    method: 'POST',
+    body: form,
+  });
 
-      if (!response.ok) throw new Error('Failed to submit');
+  if (!response.ok) {
+    // 🔎 Read JSON error message from Django
+    const errorData = await response.json();
+    console.error("Backend error:", errorData);
 
-     setSuccessMsg('✅ Your post submitted successfully! Waiting for admin approval.');
-setTimeout(() => setSuccessMsg(''), 4000);
+    // Show a readable error to user
+    setErrorMsg(
+      "❌ Failed to submit: " +
+      JSON.stringify(errorData) // example: {"category":["Invalid choice"]}
+    );
+    setTimeout(() => setErrorMsg(''), 4000);
+    return;
+  }
 
-      setFormData({
-        profile_photo: null,
-         email: user?.emailAddresses[0]?.emailAddress || '', 
-        product_name: '',
-        company_name: '',
-        description: '',
-        category: '',
-        location: '',
-        contact_telegram: '',
-        contact_tick: '',
-        web_site: '',
-        contact_phone: '',
-        product_photo: null,
-        images: [],
-      });
-    } catch (error) {
-      setErrorMsg('❌ Error submitting product. Please try again.');
-setTimeout(() => setErrorMsg(''), 2000);
-    } finally {
-      setLoading(false);
-    }
+  // ✅ Success
+  setSuccessMsg('✅ Your post submitted successfully! Waiting for admin approval.');
+  setTimeout(() => setSuccessMsg(''), 4000);
+
+  setFormData({
+    profile_photo: null,
+    email: user?.emailAddresses[0]?.emailAddress || '', 
+    product_name: '',
+    company_name: '',
+    description: '',
+    category: '',
+    location: '',
+    contact_telegram: '',
+    contact_tick: '',
+    web_site: '',
+    contact_phone: '',
+    product_photo: null,
+    images: [],
+  });
+} catch (error) {
+  console.error("Network or JS error:", error);
+  setErrorMsg('❌ Network error. Please try again.');
+  setTimeout(() => setErrorMsg(''), 2000);
+} finally {
+  setLoading(false);
+}
+
   };
 
   return (
