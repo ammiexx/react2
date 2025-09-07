@@ -176,6 +176,29 @@ const Forsale = () => {
     setExpanded(expanded === id ? null : id);
   };
 
+  // Buy Now with Stripe
+const handleBuyNow = async (product) => {
+  const stripe = await stripePromise;
+
+  const response = await fetch("/api/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      items: [
+        {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          quantity: 1,
+        },
+      ],
+    }),
+  });
+
+  const session = await response.json();
+  await stripe.redirectToCheckout({ sessionId: session.id });
+};
+
   const beginCheckout = async () => {
     const stripe = await stripePromise;
     const response = await fetch("/api/create-checkout-session", {
@@ -256,11 +279,12 @@ const Forsale = () => {
                   {expanded === product.id ? "View Less" : "View More"}
                 </button>
                 <button
-                  onClick={() => addToCart(product)}
-                  className="px-3 py-1 text-xs rounded-lg bg-green-500 text-white font-medium hover:bg-green-600 transition"
-                >
-                  Add to Cart
-                </button>
+  onClick={() => handleBuyNow(product)}
+  className="px-3 py-1 text-xs rounded-lg bg-green-500 text-white font-medium hover:bg-green-600 transition"
+>
+  Buy Now
+</button>
+
               </div>
             </div>
           ))
