@@ -4,6 +4,7 @@ import { useUser } from '@clerk/clerk-react';
 import { useEffect } from 'react';
 import Select from "react-select";
 const Form = () => {
+  const [pendingProduct, setPendingProduct] = useState(null);
   const navigate = useNavigate();
  const categoryOptions = [
   { value: "fashions", label: "Fashions" },
@@ -82,6 +83,12 @@ useEffect(() => {
     }));
   }
 }, [user]);
+useEffect(() => {
+  if (user && pendingProduct) {
+    postProduct(pendingProduct);   // resume product submission
+    setPendingProduct(null);       // clear buffer
+  }
+}, [user, pendingProduct]);
   const [formData, setFormData] = useState({
     profile_photo:null,
     email: '',
@@ -113,8 +120,18 @@ useEffect(() => {
     [name]: files[0],
   }));
 };
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e) =>
+     {
     e.preventDefault();
+     if (!user) {
+    // Save product data temporarily
+    setPendingProduct(formData);
+    setAuthWarning(true); // show signup popup
+    return;
+  }
+
+  // If user exists → post directly
+  await postProduct(formData);
   if (formData.images.length < 5 || formData.images.length > 10) {
   setErrorMsg('❌ You must upload between 5 and 10 additional images.');
   setLoading(false);
