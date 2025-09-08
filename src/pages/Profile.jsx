@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useUser, SignOutButton } from '@clerk/clerk-react';
+import { useUser, SignOutButton ,useClerk} from '@clerk/clerk-react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
 import ThemeToggle from '../pages/ThemeToggle';
 const Profile = () => {
+  const { signOut } = useClerk();
   const navigate = useNavigate();
   const [loadingRedirect, setLoadingRedirect] = useState(false); // ✅ New state
   const { user } = useUser();
@@ -168,6 +169,17 @@ if (!user) {
   >
     Notifications
   </button>
+  {user && (
+  <div className="flex justify-end mb-4">
+    <button
+      onClick={() => signOut(() => navigate('/'))} // redirect to home after logout
+      className="bg-red-600 text-white px-4 py-1 rounded hover:bg-red-700 transition"
+    >
+      🚪 Sign Out
+    </button>
+  </div>
+)}
+
 </div>
 
 

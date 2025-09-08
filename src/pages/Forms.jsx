@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '@clerk/clerk-react';
+import { useUser,useClerk } from '@clerk/clerk-react';
 import { useEffect } from 'react';
 import Select from "react-select";
 const Form = () => {
   const [pendingProduct, setPendingProduct] = useState(null);
   const navigate = useNavigate();
+  const { signOut } = useClerk();
+
  const categoryOptions = [
   { value: "fashions", label: "Fashions" },
   { value: "electronics", label: "Electronics" },
