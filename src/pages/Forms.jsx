@@ -84,11 +84,17 @@ useEffect(() => {
   }
 }, [user]);
 useEffect(() => {
-  if (user && pendingProduct) {
-    postProduct(pendingProduct);   // resume product submission
-    setPendingProduct(null);       // clear buffer
+  if (user) {
+    // Check if we have a pending product in localStorage
+    const savedProduct = localStorage.getItem('pendingProduct');
+    if (savedProduct) {
+      const productData = JSON.parse(savedProduct);
+      postProduct(productData);
+      localStorage.removeItem('pendingProduct'); // clear buffer
+    }
   }
-}, [user, pendingProduct]);
+}, [user]);
+
   const [formData, setFormData] = useState({
     profile_photo:null,
     email: '',
@@ -120,87 +126,90 @@ useEffect(() => {
     [name]: files[0],
   }));
 };
-  const handleSubmit = async (e) =>
-     {
-    e.preventDefault();
-     if (!user) {
-    // Save product data temporarily
-    setPendingProduct(formData);
-    setAuthWarning(true); // show signup popup
-    return;
-  }
+const postProduct = async (productData) => {
+  setLoading(true);
+  setSuccessMsg('');
+  setErrorMsg('');
 
-  // If user exists → post directly
-  await postProduct(formData);
-  if (formData.images.length < 5 || formData.images.length > 10) {
-  setErrorMsg('❌ You must upload between 5 and 10 additional images.');
-  setLoading(false);
-  return;
-}
-if (!formData.email) {
-  setAuthWarning(true);
-  setLoading(false);
-  return;
-}
-    setLoading(true);
-    setSuccessMsg('');
-    setErrorMsg('');
-    const form = new FormData();
- Object.entries(formData).forEach(([key, value]) => {
-  if (key === 'images') {
-    value.filter((img) => img instanceof File).forEach((img) => {
-      form.append('uploaded_images', img);
-    });
-  } else if (value instanceof File) {
-    form.append(key, value);
-  } else if (typeof value === 'string' && value.trim() !== '') {
-    form.append(key, value);
-  }
-});
-
-   try {
-  const response = await fetch('https://djanagobackend-5.onrender.com/api/products/', {
-    method: 'POST',
-    body: form,
+  const form = new FormData();
+  Object.entries(productData).forEach(([key, value]) => {
+    if (key === 'images') {
+      value.filter((img) => img instanceof File).forEach((img) => {
+        form.append('uploaded_images', img);
+      });
+    } else if (value instanceof File) {
+      form.append(key, value);
+    } else if (typeof value === 'string' && value.trim() !== '') {
+      form.append(key, value);
+    }
   });
 
-  if (!response.ok) {
-    const errorData = await response.json();
-    console.error("Backend error:", errorData);
-    setErrorMsg(
-      "❌ Failed to submit: " +
-      JSON.stringify(errorData)
+  try {
+    const response = await fetch(
+      'https://djanagobackend-5.onrender.com/api/products/',
+      {
+        method: 'POST',
+        body: form,
+      }
     );
-    setTimeout(() => setErrorMsg(''), 4000);
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Backend error:', errorData);
+      setErrorMsg('❌ Failed to submit: ' + JSON.stringify(errorData));
+      setTimeout(() => setErrorMsg(''), 4000);
+      return;
+    }
+
+    setSuccessMsg(
+      '✅ Your post submitted successfully! Waiting for admin approval.'
+    );
+    setTimeout(() => setSuccessMsg(''), 4000);
+
+    setFormData({
+      profile_photo: null,
+      email: user?.emailAddresses[0]?.emailAddress || '',
+      product_name: '',
+      company_name: '',
+      description: '',
+      category: '',
+      location: '',
+      contact_telegram: '',
+      contact_tick: '',
+      web_site: '',
+      contact_phone: '',
+      product_photo: null,
+      images: [],
+    });
+  } catch (error) {
+    console.error('Network or JS error:', error);
+    setErrorMsg('❌ Network error. Please try again.');
+    setTimeout(() => setErrorMsg(''), 2000);
+  } finally {
+    setLoading(false);
+  }
+};
+
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (formData.images.length < 5 || formData.images.length > 10) {
+    setErrorMsg('❌ You must upload between 5 and 10 additional images.');
+    setLoading(false);
     return;
   }
-
-  // ✅ Success
-  setSuccessMsg('✅ Your post submitted successfully! Waiting for admin approval.');
-  setTimeout(() => setSuccessMsg(''), 4000);
-  setFormData({
-    profile_photo: null,
-    email: user?.emailAddresses[0]?.emailAddress || '', 
-    product_name: '',
-    company_name: '',
-    description: '',
-    category: '',
-    location: '',
-    contact_telegram: '',
-    contact_tick: '',
-    web_site: '',
-    contact_phone: '',
-    product_photo: null,
-    images: [],
-  });
-} catch (error) {
-  console.error("Network or JS error:", error);
-  setErrorMsg('❌ Network error. Please try again.');
-  setTimeout(() => setErrorMsg(''), 2000);
-} finally {
-  setLoading(false);
+if (!user) {
+  setPendingProduct(formData);  
+  localStorage.setItem('pendingProduct', JSON.stringify(formData)); // ✅ persist
+  setAuthWarning(true);
+  return;
 }
-  };
+
+
+  // Post directly if user exists
+  await postProduct(formData);
+};
+
   return (
     <div className="max-w-3xl mx-auto p-8 bg-gray-100 shadow-xl rounded-xl mt-10 border border-gray-200">
 
