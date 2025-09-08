@@ -19,7 +19,7 @@ const Mental= () => {
 
   const filteredProducts = products.filter(product =>
     product.category === 'mental' &&
-    product.verified === True &&(
+    product.verified === true &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )

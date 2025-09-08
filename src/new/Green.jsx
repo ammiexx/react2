@@ -19,7 +19,7 @@ const Green = () => {
 
   const filteredProducts = products.filter(product =>
     product.category === 'green' &&
-    product.verified === True &&
+    product.verified === true &&
     (
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
