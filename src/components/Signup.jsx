@@ -33,7 +33,7 @@ const Signup = () => {
       await setActive({ session: signUp.createdSessionId });
 
       // Redirect to homepage
-      navigate("/");
+      navigate("/welcome");
     } catch (err) {
       console.error("❌ Signup failed:", err);
       const errorMessage = err.errors?.[0]?.message || "Signup failed. Try again.";

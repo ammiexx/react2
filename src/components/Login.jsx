@@ -32,7 +32,7 @@ const Login = () => {
   path="/login"
   routing="path"
   signUpUrl="/signup"
-  afterSignUpUrl="/?signupSuccess=true"
+  afterSignUpUrl="/welcome"
   appearance={{
     elements: {
       footer: 'hidden',

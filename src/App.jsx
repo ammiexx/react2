@@ -97,6 +97,7 @@ import Recents from "./pages/Recents";
 import Notification from "./pages/Notifications";
 import Nearby from "./pages/Nearby";
 import Forsale from "./components/Forsale";
+import Welcome from "./pages/WellCome";
 
 function App() {
   return (
@@ -105,6 +106,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<h1 className="p-10 text-center text-red-600">❌ Payment Cancelled</h1>} /> 
         <Route path="/forsale" element={<Forsale/>} />
