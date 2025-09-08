@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import { useEffect } from 'react';
 import Select from "react-select";
 const Form = () => {
+  const navigate = useNavigate();
  const categoryOptions = [
   { value: "fashions", label: "Fashions" },
   { value: "electronics", label: "Electronics" },
@@ -447,21 +449,21 @@ if (!formData.email) {
   <div className="text-red-600 text-center text-sm mb-4 bg-red-50 border border-red-300 rounded p-2 relative">
     <span>
       ⚠️ Account not created. Please{' '}
-      <button
-        onClick={() => {
-          if (!navigator.onLine) {
-            alert('❌ No internet connection. Please check your connection and try again.');
-            return;
-          }
-          setAuthWarning(false);
-          setTimeout(() => {
-            window.location.href = '/login'; // or use navigate('/signup') if using React Router
-          }, 300);
-        }}
-        className="text-blue-600 underline hover:text-blue-800 transition duration-200"
-      >
-        sign up
-      </button>
+         <button
+      onClick={() => {
+        if (!navigator.onLine) {
+          alert('❌ No internet connection. Please check your connection and try again.');
+          return;
+        }
+        setAuthWarning(false);
+        setTimeout(() => {
+          navigate('/login');  // ✅ React Router navigation
+        }, 300);
+      }}
+      className="text-blue-600 underline hover:text-blue-800 transition duration-200"
+    >
+      sign up
+    </button>
     </span>
   </div>
 )}
