@@ -220,12 +220,6 @@ const handleUpdateSubmit = async (e, productId) => {
                   {item.product_name}
                 </p>
 </div>
-
-
- 
-
-               
-
                 {remainingImages.length > 0 && (
                   <button
  className="mt-1 px-4 py-1 w-[100px] bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full text-xs font-medium shadow hover:from-blue-700 hover:to-blue-800 transition self-start"
@@ -271,7 +265,6 @@ const handleUpdateSubmit = async (e, productId) => {
     </>
   )}
 </div>
-
 <div className="mb-1">
   <strong>Company Logo:</strong>{' '}
   <input
@@ -289,7 +282,6 @@ const handleUpdateSubmit = async (e, productId) => {
     />
   )}
 </div>
-
 <div className="mb-1">
   <strong>Main Product Image:</strong>
   <input
@@ -307,7 +299,6 @@ const handleUpdateSubmit = async (e, productId) => {
     />
   )}
 </div>
-
 <div className="mb-1">
   <strong>Additional Images:</strong>
   <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
@@ -336,12 +327,10 @@ const handleUpdateSubmit = async (e, productId) => {
     ))}
   </div>
 </div>
-
   {/* Description */}
 <div className="mb-1">
   <strong>Description:</strong>{' '}
   {editingProduct === item.id && fieldEditing.description ? (
-    
     <form onSubmit={(e) => handleUpdateSubmit(e, item.id)} className="inline">
       <textarea
         name="description"
@@ -363,9 +352,6 @@ const handleUpdateSubmit = async (e, productId) => {
     </>
   )}
 </div>
-
-
-
   {/* Category */}
 <div className="mb-1">
   <strong>Category:</strong>{' '}
@@ -571,5 +557,4 @@ const handleUpdateSubmit = async (e, productId) => {
     </div>
   );
 };
-
 export default MyPosts;

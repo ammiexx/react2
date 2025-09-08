@@ -19,7 +19,9 @@ const Babies = () => {
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'baby' &&(
+    product.category === 'baby' &&
+    product.verified === True &&
+    (
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
   )

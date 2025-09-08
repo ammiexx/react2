@@ -98,10 +98,7 @@ import Notification from "./pages/Notifications";
 import Nearby from "./pages/Nearby";
 import Forsale from "./components/Forsale";
 
-
-
 function App() {
-
   return (
     <div >
     <Router>
@@ -110,7 +107,7 @@ function App() {
       <Routes>
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<h1 className="p-10 text-center text-red-600">❌ Payment Cancelled</h1>} /> 
-        <Route path="/" element={<Forsale/>} />
+        <Route path="/forsale" element={<Forsale/>} />
         <Route path="/Nearby-shops" element={<Nearby/>} />
         <Route path="/notifications" element={<Notification/>} />
         <Route path="/recents" element={<Recents/>} />
@@ -168,7 +165,7 @@ function App() {
         <Route path="/Toys_And_Games" element={<Toys />} />
         <Route path="/discounts" element={<Category1 />} />
         <Route path="/cancel" element={<Cancel />} />
-        <Route path="/your-discounts" element={<Category1 />} />
+        <Route path="/" element={<Category1 />} />
         <Route path="/fashions" element={<Home/>} />
           <Route path="/homes" element={<RealHome/>} />
           <Route path="/electronic-materials" element={<Electronicmaterial/>} />

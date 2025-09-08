@@ -18,7 +18,8 @@ const Podcasting = () => {
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'podcasting' &&(
+    product.category === 'podcasting' &&
+    product.verified === True &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )

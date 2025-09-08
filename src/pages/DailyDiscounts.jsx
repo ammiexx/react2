@@ -19,10 +19,12 @@ const Daily= () => {
   };
 
   const filteredProducts = products.filter(product =>
+   product.category === 'daily' &&
+    product.verified === True &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
+  )
   );
-
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-4 text-[#2c3e50] font-sans">
        <BackButton className="md:hidden" />

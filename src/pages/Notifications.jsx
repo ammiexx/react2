@@ -3,15 +3,12 @@ import { useUser } from '@clerk/clerk-react';
 import BackButton from '../components/BackButton';
 
 const MESSAGE_API = 'https://djanagobackend-5.onrender.com/api/cat';
-
 const Notification = () => {
   const { isSignedIn, user } = useUser();
-
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState('');
   const [likesMap, setLikesMap] = useState({});
   const [showAll, setShowAll] = useState(false); // To control expanded view
-
   const fetchMessages = async () => {
     try {
       const response = await fetch(MESSAGE_API);
@@ -24,46 +21,36 @@ const Notification = () => {
       setError('Internet connection is required to load messages.');
     }
   };
-
   useEffect(() => {
     fetchMessages();
   }, []);
-
   const handleReaction = (idx) => {
     if (!isSignedIn) {
       alert('You must be signed in to like a message.');
       return;
     }
-
     const userId = user.id;
-
     setLikesMap((prev) => {
       const updated = { ...prev };
       const currentSet = new Set(prev[idx] || []);
-
       if (currentSet.has(userId)) currentSet.delete(userId);
       else currentSet.add(userId);
-
       updated[idx] = currentSet;
       return updated;
     });
   };
-
   const visibleMessages = showAll ? messages : messages.slice(0, 8);
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-100 to-cyan-100 p-6">
       <BackButton className="md:hidden" />
       <div className="bg-white max-w-2xl w-full rounded-xl shadow-lg p-6 text-center">
         <h1 className="text-2xl font-bold text-gray-800 mb-2">💬 Recent Requests</h1>
         <p className="text-gray-600 mb-6">See what others want discounted!</p>
-
         {error && (
           <div className="bg-red-100 text-red-700 text-sm p-3 rounded mb-4 border border-red-300 transition-opacity duration-500">
             {error}
           </div>
         )}
-
         <div className="text-left">
           {messages.length === 0 ? (
             <p className="text-gray-500">No messages yet.</p>
@@ -72,7 +59,6 @@ const Notification = () => {
               {visibleMessages.map((msg, idx) => {
                 const currentLikes = likesMap[idx] || new Set();
                 const isLiked = isSignedIn && currentLikes.has(user?.id);
-
                 return (
                   <li
                     key={idx}

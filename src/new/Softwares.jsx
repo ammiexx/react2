@@ -18,7 +18,8 @@ const Software = () => {
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'software' &&(
+    product.category === 'software' &&
+    product.verified === True &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )

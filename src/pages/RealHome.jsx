@@ -14,14 +14,12 @@ const RealHome = () => {
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
   }, []);
-
   const toggleExpand = (productId) => {
     setExpandedProductId(expandedProductId === productId ? null : productId);
   };
-
   const filteredProducts = products.filter(product => 
- 
    product.category === 'homes' &&
+   product.verified === True &&
     (
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -170,5 +168,4 @@ const RealHome = () => {
     </div>
   );
 };
-
 export default RealHome;

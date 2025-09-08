@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import { useEffect } from 'react';
 import Select from "react-select";
-
 const Form = () => {
  const categoryOptions = [
   { value: "fashions", label: "Fashions" },
@@ -71,12 +70,8 @@ const Form = () => {
   { value: "admin", label: "Virtual Assistant & Admin Support" },
 ];
 
-
-
-
   const { user } = useUser();
 const [authWarning, setAuthWarning] = useState(false);
-
 useEffect(() => {
   if (user) {
     setFormData(prev => ({
@@ -85,7 +80,6 @@ useEffect(() => {
     }));
   }
 }, [user]);
-
   const [formData, setFormData] = useState({
     profile_photo:null,
     email: '',
@@ -102,18 +96,14 @@ useEffect(() => {
     contact_phone: '',
     product_photo: null,
     images: [],
-
   });
-
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-
  const handleImageChange = (e) => {
   const { name, files } = e.target;
   setFormData((prev) => ({
@@ -121,7 +111,6 @@ useEffect(() => {
     [name]: files[0],
   }));
 };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
   if (formData.images.length < 5 || formData.images.length > 10) {
@@ -134,11 +123,9 @@ if (!formData.email) {
   setLoading(false);
   return;
 }
-
     setLoading(true);
     setSuccessMsg('');
     setErrorMsg('');
-
     const form = new FormData();
  Object.entries(formData).forEach(([key, value]) => {
   if (key === 'images') {
@@ -159,14 +146,11 @@ if (!formData.email) {
   });
 
   if (!response.ok) {
-    // 🔎 Read JSON error message from Django
     const errorData = await response.json();
     console.error("Backend error:", errorData);
-
-    // Show a readable error to user
     setErrorMsg(
       "❌ Failed to submit: " +
-      JSON.stringify(errorData) // example: {"category":["Invalid choice"]}
+      JSON.stringify(errorData)
     );
     setTimeout(() => setErrorMsg(''), 4000);
     return;
@@ -175,7 +159,6 @@ if (!formData.email) {
   // ✅ Success
   setSuccessMsg('✅ Your post submitted successfully! Waiting for admin approval.');
   setTimeout(() => setSuccessMsg(''), 4000);
-
   setFormData({
     profile_photo: null,
     email: user?.emailAddresses[0]?.emailAddress || '', 
@@ -198,9 +181,7 @@ if (!formData.email) {
 } finally {
   setLoading(false);
 }
-
   };
-
   return (
     <div className="max-w-3xl mx-auto p-8 bg-gray-100 shadow-xl rounded-xl mt-10 border border-gray-200">
 

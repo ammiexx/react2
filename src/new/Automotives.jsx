@@ -18,7 +18,9 @@ const Automotive = () => {
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'automotives' &&(
+    product.category === 'automotives' &&
+    product.verified === True &&
+    (
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )

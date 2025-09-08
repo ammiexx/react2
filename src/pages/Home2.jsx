@@ -43,6 +43,7 @@ const Home = () => {
   // Filter products: only 'fashions' category and matching search term
   const filteredProducts = products.filter(product =>
     product.category === 'fashions' &&
+    product.verified === True &&
     (
       product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.company_name.toLowerCase().includes(searchTerm.toLowerCase())

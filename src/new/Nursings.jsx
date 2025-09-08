@@ -18,7 +18,8 @@ const Nursing = () => {
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'nursing' &&(
+    product.category === 'nursing' &&
+    product.verified === True &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )

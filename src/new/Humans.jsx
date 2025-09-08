@@ -18,7 +18,8 @@ const Human = () => {
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'human' &&(
+    product.category === 'human' &&
+    product.verified === True &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )

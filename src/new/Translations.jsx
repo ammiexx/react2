@@ -18,7 +18,8 @@ const Translation= () => {
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'translation' &&(
+    product.category === 'translation' &&
+    product.verified === True &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )

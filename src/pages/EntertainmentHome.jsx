@@ -20,6 +20,7 @@ const EntertainmentHome = () => {
 
   const filteredProducts = products.filter(product =>
     product.category === 'entertainments' &&
+    product.verified === True &&
     (
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())

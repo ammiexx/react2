@@ -187,24 +187,13 @@ const categories = [
   },
 ];
 
-// 10 brands
-const allBrands = [
-  // { id: 'b1', name: 'Ovid real estate (10% off)', logo: 'https://th.bing.com/th/id/ODLS.A2450BEC-5595-40BA-9F13-D9EC6AB74B9F?w=32&h=32&qlt=90&pcl=fffffa&o=6&cb=thwsc4&pid=1.2', website: 'https://ovid-realestates.com/' },
-  // { id: 'b2', name: 'Skyshine (20% off)', logo: 'https://assets.perfectdomain.com/_domainphoto/c/3/2/9/c3292bd0db3ac907585f47a0054182d5_l.jpg', website: 'https://www.samsung.com' },
-  // { id: 'b3', name: 'Nike (20% off)', logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg', website: 'https://www.nike.com' },
-  // { id: 'b4', name: 'Sony(10% off)', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/29/Sony_Logo.svg', website: 'https://www.sony.com' },
-  // { id: 'b5', name: 'Adidas(10% off)', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg', website: 'https://www.adidas.com' },
-
-];
 
 const Category1 = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
 
   const [firstRowIndex, setFirstRowIndex] = useState(0);
-  const firstRowBrands = allBrands.slice(firstRowIndex, firstRowIndex + 5);
-  const [secondRowIndex, setSecondRowIndex] = useState(5);
-  const secondRowBrands = allBrands.slice(secondRowIndex, secondRowIndex + 5);
+  
 
   const filteredCategories = categories.filter(cat =>
     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -238,7 +227,7 @@ console.log(theme);
                 <img
                   src={`${cat.image_url}?w=400&h=300&auto=format`}
                   alt={cat.name}
-                  className="w-full h-40 object-cover"
+                  className="w-full h-40 object-cover rounded-md mb-2 transform transition-transform duration-300 hover:scale-105"
                 />
                 <div className="p-4">
                   <h3 className="text-lg font-semibold text-gray-800">{cat.name}</h3>

@@ -18,7 +18,9 @@ const Architecture = () => {
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'architecture' &&(
+    product.category === 'architecture' &&
+    product.verified === True &&
+    (
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )

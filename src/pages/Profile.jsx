@@ -2,19 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useUser, SignOutButton } from '@clerk/clerk-react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
-
 import ThemeToggle from '../pages/ThemeToggle';
 const Profile = () => {
-
   const navigate = useNavigate();
   const [loadingRedirect, setLoadingRedirect] = useState(false); // ✅ New state
   const { user } = useUser();
   const [open, setOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const profileRef = useRef(null);
-
   useEffect(() => {
     function handleClickOutside(event) {
       if (profileRef.current && !profileRef.current.contains(event.target)) {
@@ -26,7 +22,6 @@ const Profile = () => {
     if (open) {
       document.addEventListener('mousedown', handleClickOutside);
     }
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };

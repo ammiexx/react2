@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import BackButton from '../components/BackButton';
-
 const MESSAGE_API = 'https://djanagobackend-5.onrender.com/api/cat';
-
 const Chat2 = () => {
   const { isSignedIn, user } = useUser();
-
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');

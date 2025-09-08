@@ -31,7 +31,6 @@ const FoodHome = () => {
       product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
-
   return (
     <div className="max-w-7xl mx-auto px-4 py-8" style={{backgroundColor: mytheme==='dark'?'black':'white', color: mytheme==='dark'?'white':'black'}}>
       <BackButton className="md:hidden" />

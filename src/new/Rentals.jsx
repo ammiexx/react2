@@ -18,7 +18,8 @@ const Rental = () => {
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'rental' &&(
+    product.category === 'rental' &&
+    product.verified === True &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )

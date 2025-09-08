@@ -18,7 +18,9 @@ const Elearning= () => {
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'elearning' &&(
+    product.category === 'elearning' &&
+    product.verified === True &&
+    (
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
     )
