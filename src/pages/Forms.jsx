@@ -474,7 +474,7 @@ if (!formData.email) {
         }
         setAuthWarning(false);
         setTimeout(() => {
-          navigate('/login');  // ✅ React Router navigation
+          navigate('/signup');  // ✅ React Router navigation
         }, 300);
       }}
       className="text-blue-600 underline hover:text-blue-800 transition duration-200"
