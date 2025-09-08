@@ -206,7 +206,7 @@ const handleBuyNow = async (product) => {
  const beginCheckout = async () => {
   const stripe = await stripePromise;
 
-  const response = await fetch("https://djanagobackend-5.onrender.com/api/api/create-checkout-session/", {
+  const response = await fetch("https://djanagobackend-5.onrender.com/api/create-checkout-session/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
