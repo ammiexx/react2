@@ -122,7 +122,7 @@ const Search = () => {
             <ul className="pl-4 list-disc text-sm space-y-1 text-gray-600">
               <li><Link to="/technologymethods" onClick={closeMenu} className="hover:text-blue-600">Technology Methods</Link></li>
               <li><Link to="/New Offers" onClick={closeMenu} className="hover:text-blue-600">New Products</Link></li>
-              <li><Link to="/New Offers" onClick={closeMenu} className="hover:text-blue-600">Holiday Discounts</Link></li>
+              <li><Link to="/holy day discounts" onClick={closeMenu} className="hover:text-blue-600">Holiday Discounts</Link></li>
               <li><Link to="/brands" onClick={closeMenu} className="hover:text-blue-600">Brands</Link></li>
             </ul>
           </div>

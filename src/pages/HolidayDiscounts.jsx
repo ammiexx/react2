@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BackButton from '../components/BackButton';
-const Week = () => {
+const Holiday= () => {
   const [products, setProducts] = useState([]);
   const [expandedProductId, setExpandedProductId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
 
   useEffect(() => {
-    fetch('https://djanagobackend-5.onrender.com/discounts/weeklydiscounts/')
+    fetch('https://djanagobackend-5.onrender.com/discounts/dailydiscounts/')
       .then(response => response.json())
       .then(data => setProducts(data))
       .catch(error => console.error('Error fetching products:', error));
@@ -19,23 +19,20 @@ const Week = () => {
   };
 
   const filteredProducts = products.filter(product =>
-    product.category === 'weekly' &&
-    product.verified === True &&
-    (
+   product.category === 'daily' &&
+    product.verified === true &&(
     product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+  )
   );
-
   return (
-    
     <div className="max-w-[1200px] mx-auto my-10 px-4 text-[#2c3e50] font-sans">
        <BackButton className="md:hidden" />
       {/* Search Section */}
       <section className="mb-12">
         <div className="flex flex-col items-center mb-6">
           <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
-            🎯 <strong>Only Here This Week – Discover New Picks:</strong>💡
+            🎯 <strong>New Arrivals Every Holy day – Shop the Latest Now</strong>💡
           </label>
           <input
             type="text"
@@ -171,4 +168,4 @@ const Week = () => {
   );
 };
 
-export default Week;
+export default Holiday;

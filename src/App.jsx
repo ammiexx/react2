@@ -98,6 +98,7 @@ import Notification from "./pages/Notifications";
 import Nearby from "./pages/Nearby";
 import Forsale from "./components/Forsale";
 import Welcome from "./pages/WellCome";
+import Holiday from "./pages/HolidayDiscounts";
 
 function App() {
   return (
@@ -106,6 +107,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/holyday discounts" element={<Holiday />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/success" element={<Success />} />
         <Route path="/cancel" element={<h1 className="p-10 text-center text-red-600">❌ Payment Cancelled</h1>} /> 
@@ -191,7 +193,6 @@ function App() {
          <Route path="/language" element={< Language/>} />
          <Route path="/brands" element={< Brands/>} />
          <Route path="/customerservices" element={< CustomerServices/>} />
-         <Route path="/send a message" element={< Chat2/>} />
          <Route path="/technologymethods" element={< TechnologyMethods/>} />
          <Route path="/new advantages" element={< Announcements/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
