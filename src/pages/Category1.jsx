@@ -180,11 +180,7 @@ const categories = [
     image_url: 'https://plus.unsplash.com/premium_photo-1661761197559-58493b11151b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVudGFsJTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D',
     path: '/Rental_Services',
   },
-  {
-    name: 'Event Planning & Decor materials',
-    image_url: 'https://images.unsplash.com/photo-1585733254318-9bcc6d81584a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGRlY29yYXRpb258ZW58MHx8MHx8fDA%3D',
-    path: '/Event_planning_And_Decore',
-  },
+  
 ];
 
 
