@@ -196,7 +196,24 @@ const Category1 = () => {
   );
 const {theme} = useTheme();
 console.log(theme);
+const [displayText, setDisplayText] = useState('');
+const message = "Welcome to our shopping marketplace";
+
+useEffect(() => {
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < message.length) {
+      setDisplayText((prev) => prev + message.charAt(i));
+      i++;
+    } else {
+      clearInterval(interval);
+    }
+  }, 100); // typing speed in ms
+  return () => clearInterval(interval);
+}, []);
+
   return (
+    
     
 <div className="min-h-screen p-6 " style={{backgroundColor: theme==="dark"?"black":"white",color: theme==="dark"?"black":"white"}}>
       

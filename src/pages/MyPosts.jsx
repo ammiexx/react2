@@ -99,6 +99,7 @@ const handleEdit = (product) => {
     category: product.category || '',
     condition: product.condition || '',
     location: product.location || '',
+    discount: product.discount || 'ended', 
     contact_telegram: product.contact_telegram || '',
     contact_tick: product.contact_tick || '',
     web_site: product.web_site || '',
@@ -155,7 +156,7 @@ const handleUpdateSubmit = async (e, productId) => {
       }
     });
 
-    const response = await fetch(`https://djanagobackend-5.onrender.com/api/delete/products/${productId}/`, {
+    const response = await fetch(`http://127.0.0.1:8000/api/delete/products/${productId}/`, {
       method: 'PATCH',
       body: formData,
     });
@@ -265,6 +266,37 @@ const handleUpdateSubmit = async (e, productId) => {
     </>
   )}
 </div>
+{/* Discount */}
+<div className="mb-1">
+  <strong>Discount:</strong>{' '}
+  {editingProduct === item.id && fieldEditing.discount ? (
+    <form onSubmit={(e) => handleUpdateSubmit(e, item.id)} className="inline">
+      <select
+        name="discount"
+        value={editFormData.discount}
+        onChange={handleEditChange}
+        className="border rounded px-1 py-0.5"
+      >
+        <option value="ended">Ended</option>
+        <option value="5">5%</option>
+        <option value="10">10%</option>
+        <option value="15">15%</option>
+        <option value="20">20%</option>
+      </select>
+    </form>
+  ) : (
+    <>
+      {item.discount}{' '}
+      <button
+        onClick={() => startEditingField(item.id, 'discount', item.discount)}
+        className="text-blue-600 text-sm ml-2"
+      >
+        ✏️ Edit
+      </button>
+    </>
+  )}
+</div>
+
 <div className="mb-1">
   <strong>Company Logo:</strong>{' '}
   <input
