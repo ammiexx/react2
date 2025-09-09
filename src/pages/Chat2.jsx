@@ -53,8 +53,7 @@ const Chat2 = () => {
   return (
     <div className="min-h-[40vh] flex items-center justify-center bg-gradient-to-r from-gray-100 to-cyan-100 p-6">
       <div className="bg-white max-w-2xl w-full rounded-xl shadow-lg p-6 text-center">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">💬Tell us what you want to Buy(Sell)</h1>
-        <p className="text-gray-600 mb-6">Tell us today, the bigger your chance will be</p>
+        <h1 className="text-2xl font-bold text-gray-800 mb-2">💬Right now! Tell us what you want to Buy (Sell)</h1>
         {submitted && (
           <div className="bg-green-100 text-green-800 text-sm font-medium p-3 rounded mb-4 border border-green-300 transition-opacity duration-500">
             ✅ Message submitted!

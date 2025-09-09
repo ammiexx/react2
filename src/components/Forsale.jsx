@@ -183,7 +183,7 @@ const Forsale = () => {
     console.log("🟡 Creating checkout session for:", product);
     const stripe = await stripePromise;
 
-    const response = await fetch("https://djanagobackend-5.onrender.com/api/create-checkout-session/", {
+    const response = await fetch("http://127.0.0.1:8000/api/create-checkout-session/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
