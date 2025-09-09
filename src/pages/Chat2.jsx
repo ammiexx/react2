@@ -80,7 +80,7 @@ const Chat2 = () => {
             disabled={loading}
             className="w-full bg-blue-600 text-white py-2 rounded-md font-semibold hover:bg-blue-700 transition"
           >
-            {loading ? 'Sending...' : 'Send Message'}
+            {loading ? 'Sending...' : 'Send'}
           </button>
         </form>
       </div>
