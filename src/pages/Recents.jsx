@@ -121,6 +121,7 @@ const Recents= () => {
                   <div className="text-sm text-gray-700 space-y-2">
                     <p><strong>📝 Description:</strong> {item.description}</p>
                     <p><strong>📅 Posted:</strong> {new Date(item.date_posted).toLocaleDateString()}</p>
+                    <p>📝 <strong>Discount:</strong> {item.discount}</p>
                     <div className="flex gap-4 mt-2">
                       {item.contact_telegram && (
                         <a

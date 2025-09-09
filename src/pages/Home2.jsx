@@ -143,6 +143,7 @@ const { mytheme } = useTheme();
                     <div className="text-sm text-gray-700 leading-relaxed mt-2 space-y-1">
                       <p>📝 <strong>Description:</strong> {item.description}</p>
                       <p><strong>Posted:</strong> {new Date(item.date_posted).toLocaleDateString()}</p>
+                      <p>📝 <strong>Discount:</strong> {item.discount}</p>
                       <div className="flex gap-4">
                         {item.contact_telegram && (
                           <a
