@@ -178,28 +178,44 @@ const Forsale = () => {
     setExpanded(expanded === id ? null : id);
   };
 
-  // Buy Now with Stripe
-// Buy Now with Stripe
-const handleBuyNow = async (product) => {
-  const stripe = await stripePromise;
+ const handleBuyNow = async (product) => {
+  try {
+    console.log("🟡 Creating checkout session for:", product);
+    const stripe = await stripePromise;
 
-  const response = await fetch("https://djanagobackend-5.onrender.com/api/create-checkout-session/", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      items: [
-        {
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          quantity: 1,
-        },
-      ],
-    }),
-  });
+    const response = await fetch("https://djanagobackend-5.onrender.com/api/create-checkout-session/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        items: [
+          {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            quantity: 1,
+          },
+        ],
+      }),
+    });
 
-  const session = await response.json();
-  await stripe.redirectToCheckout({ sessionId: session.id });
+    if (!response.ok) {
+      throw new Error(`Server error: ${response.status}`);
+    }
+
+    const session = await response.json();
+    console.log("✅ Session created:", session);
+
+    if (!session.id) {
+      throw new Error("No session ID returned");
+    }
+
+    const { error } = await stripe.redirectToCheckout({ sessionId: session.id });
+    if (error) {
+      console.error("❌ Stripe redirect error:", error);
+    }
+  } catch (err) {
+    console.error("❌ Checkout failed:", err);
+  }
 };
 
 

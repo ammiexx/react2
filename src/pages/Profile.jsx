@@ -65,8 +65,10 @@ if (!user) {
 
   className="text-blue-600 underline hover:text-blue-800 hover:underline transition duration-200"
 >
+
   sign up
 </button>
+ 
 
         {loadingRedirect && ( // ✅ Loading message
           <div className="mt-2 text-gray-500 text-xs animate-pulse"></div>
