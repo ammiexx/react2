@@ -196,8 +196,8 @@ function App() {
          <Route path="/technologymethods" element={< TechnologyMethods/>} />
          <Route path="/new advantages" element={< Announcements/>} />
         <Route path="/aboutus" element={<AboutUs/>} />
+        <Route path="/chat" element={<Chat2/>} />
       </Routes>
-      <Chat2 />
       <Back/>
       <Footer />
     </Router>

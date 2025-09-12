@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuickLinks from './QuickLinks';
 import { useTheme } from './ThemeContext';
+import Chat2 from './Chat2';
+import Nearby from './Nearby';
 const categories = [
   {
     name: 'Fashions',
@@ -224,6 +226,7 @@ useEffect(() => {
 <div className="text-center mt-4 mb-2">
  <section className="p-6 bg-gray-100 text-black">
   <p>Discover shops near your location.</p>
+  <Nearby />
 </section>
 
   <h2 className="text-base font-medium text-gray-700">Explore More Products</h2>
@@ -255,6 +258,11 @@ useEffect(() => {
             <p className="text-center text-gray-500 col-span-full">No categories found.</p>
           )}
         </div>
+      </div>
+      <div>
+      <section className="mt-1">
+  <Chat2 />
+        </section>
       </div>
     </div>
   );

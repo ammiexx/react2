@@ -9,6 +9,8 @@ import { useScrollDirection } from './UseScrollDirection'; // ← import the hoo
 
 const navigation = [
   { name: 'Order Now', href: '/forsale' },
+  { name: 'Nearby shops', href: '/nearby-shops' },
+  { name: 'All In one', href: '/' },
 ];
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -77,6 +79,13 @@ export default function Navigation() {
             >
               <PlusCircleIcon className="h-5 w-5" />
               Add Post
+            </Link>
+             <Link
+              to="/chat"
+              className="flex items-center gap-2 px-2 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
+            >
+              <PlusCircleIcon className="h-5 w-5" />
+              Chat
             </Link>
 
             <Profile />
