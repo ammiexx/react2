@@ -465,13 +465,15 @@ if (!user) {
 </div>
 
 
-{/* Messages near the submit button */}
-{successMsg && (
-  <p className="text-green-600 text-center mb-4">{successMsg}</p>
+
+{/* Fixed success/error message overlay */}
+{(successMsg || errorMsg) && (
+  <div className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded shadow text-center
+      ${successMsg ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}`}>
+    {successMsg || errorMsg}
+  </div>
 )}
-{errorMsg && (
-  <p className="text-red-600 text-center mb-4">{errorMsg}</p>
-)}
+
 
 {authWarning && (
   <div className="text-red-600 text-center text-sm mb-4 bg-red-50 border border-red-300 rounded p-2 relative">
