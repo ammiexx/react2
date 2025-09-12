@@ -11,8 +11,8 @@ const Nearby = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [zoomedImage, setZoomedImage] = useState(null);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true); // ← Loading state
 
-  // Fetch car products based on user location
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -22,28 +22,31 @@ const Nearby = () => {
 
           try {
             const response = await fetch(
-              `https://djanagobackend-5.onrender.com/api/products/nearby/?lat=${lat}&lng=${lng}&radius=2` // 2km radius
+              `https://djanagobackend-5.onrender.com/api/products/nearby/?lat=${lat}&lng=${lng}&radius=2`
             );
-            if (!response.ok) throw new Error('Failed to fetch nearby shops');
+            if (!response.ok) throw new Error('No internet connection nearby shops');
             const data = await response.json();
             setProducts(data);
           } catch (err) {
             setError(err.message);
+          } finally {
+            setLoading(false); // ← Stop loading after fetch
           }
         },
         () => {
           setError('❌ Location access denied. Showing no products.');
+          setLoading(false);
         }
       );
     } else {
       setError('❌ Geolocation not supported by this browser.');
+      setLoading(false);
     }
   }, []);
 
   // Handle Stripe checkout
   const handleCheckout = async (product) => {
     const stripe = await stripePromise;
-
     const response = await fetch(
       'https://djanagobackend-5.onrender.com/backend/create-checkout-session/',
       {
@@ -52,139 +55,142 @@ const Nearby = () => {
         body: JSON.stringify({ name: product.product_name, price: product.price }),
       }
     );
-
     const session = await response.json();
     const result = await stripe.redirectToCheckout({ sessionId: session.id });
     if (result.error) console.error(result.error.message);
   };
 
-  // Toggle extra images
   const toggleExpand = (productId) => {
     setExpandedProductId(expandedProductId === productId ? null : productId);
   };
 
-  // Filtered list
- const filteredProducts = products.filter(product =>
-  product.verified === true &&
-  product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-  product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
-);
-
+  const filteredProducts = products.filter(
+    (product) =>
+      product.verified === true &&
+      (product.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.company_name.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
 
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans">
       <BackButton className="md:hidden" />
       <section className="mb-12">
-        {/* Search */}
-        {/* Error */}
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
-        {/* Product Grid */}
-        <div className="grid gap-8 md:grid-cols-2 auto-rows-auto">
-          {filteredProducts.map((item) => {
-            const allImages = [item.product_photo, ...(item.images || []).map((img) => img.image)];
-            const firstFourImages = allImages.slice(0, 4);
-            const remainingImages = allImages.slice(4);
+        {/* Loader / Product Grid */}
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="flex space-x-2">
+              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce"></span>
+              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-150"></span>
+              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-300"></span>
+            </div>
+          </div>
+        ) : filteredProducts.length === 0 ? (
+          <p className="text-center text-gray-500">No nearby shops found.</p>
+        ) : (
+          <div className="grid gap-8 md:grid-cols-2 auto-rows-auto">
+            {filteredProducts.map((item) => {
+              const allImages = [item.product_photo, ...(item.images || []).map((img) => img.image)];
+              const firstFourImages = allImages.slice(0, 4);
+              const remainingImages = allImages.slice(4);
 
-            return (
-              <div
-                key={item.id}
-                className="bg-white p-4 rounded-lg shadow transition-transform hover:scale-[1.01] flex flex-col self-start"
-              >
-                {/* Poster Info */}
-                <div className="flex flex-wrap items-center justify-between gap-1.5 mb-2 p-2 bg-gray-100 border-b border-gray-200 rounded-md">
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={item.profile_photo || 'https://via.placeholder.com/60'}
-                      alt={`${item.first_name} ${item.last_name}`}
-                      className="w-9 h-9 rounded-full object-cover border border-gray-300"
-                    />
-                    <p className="text-sm font-semibold text-[#2c3e50]">{item.company_name}</p>
-                  </div>
-                  {item.contact_phone && (
-                    <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
-                  )}
-                  <p className="text-xs text-gray-600">
-                    📍 <strong>Location:</strong> {item.location}
-                  </p>
-                </div>
-
-                {/* Product Images */}
-                <div className="grid grid-cols-2 gap-1 mt-2 max-w-[700px]">
-                  {firstFourImages.map(
-                    (src, idx) =>
-                      src && (
-                        <img
-                          key={idx}
-                          src={src}
-                          alt={`Image ${idx}`}
-                          className="w-[150px] h-[100px] object-cover border border-gray-300 rounded cursor-pointer hover:scale-105 transition-transform"
-                          onClick={() => setZoomedImage(src)}
-                        />
-                      )
-                  )}
-                </div>
-
-                {/* Title */}
-                <h6 className="text-lg font-bold text-center text-[#2c3e50] mt-2 mb-2">
-                  {item.product_name}
-                </h6>
-
-                {/* View More */}
-                {remainingImages.length > 0 && (
-                  <button
-                    className="mt-3 px-4 py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full text-sm font-semibold shadow hover:from-blue-700 hover:to-blue-800 transition"
-                    onClick={() => toggleExpand(item.id)}
-                  >
-                    {expandedProductId === item.id ? 'Hide' : 'More...'}
-                  </button>
-                )}
-
-                {/* Extra Images and Details */}
-                {expandedProductId === item.id && (
-                  <>
-                    <div className="w-full h-[200px] overflow-hidden rounded-md mb-4">
+              return (
+                <div
+                  key={item.id}
+                  className="bg-white p-4 rounded-lg shadow transition-transform hover:scale-[1.01] flex flex-col self-start"
+                >
+                  {/* Poster Info */}
+                  <div className="flex flex-wrap items-center justify-between gap-1.5 mb-2 p-2 bg-gray-100 border-b border-gray-200 rounded-md">
+                    <div className="flex items-center gap-2">
                       <img
-                        src={item.product_photo}
-                        alt={item.product_name}
-                        className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
-                        onClick={() => setZoomedImage(item.product_photo)}
+                        src={item.profile_photo || 'https://via.placeholder.com/60'}
+                        alt={`${item.first_name} ${item.last_name}`}
+                        className="w-9 h-9 rounded-full object-cover border border-gray-300"
                       />
+                      <p className="text-sm font-semibold text-[#2c3e50]">{item.company_name}</p>
                     </div>
+                    {item.contact_phone && <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>}
+                    <p className="text-xs text-gray-600">
+                      📍 <strong>Location:</strong> {item.location}
+                    </p>
+                  </div>
 
-                    <div className="text-sm text-gray-700 leading-relaxed mt-2 space-y-1">
-                      <p>📝 <strong>Description:</strong> {item.description}</p>
-                      <p><strong>Posted:</strong> {new Date(item.date_posted).toLocaleDateString()}</p>
-                      <p>📝 <strong>Discount:</strong> {item.discount}</p>
-                      <div className="flex gap-4">
-                        {item.contact_telegram && (
-                          <a
-                            href={item.contact_telegram}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline"
-                          >
-                            📲 Telegram
-                          </a>
-                        )}
-                        {item.contact_tick && (
-                          <a
-                            href={item.contact_tick}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-pink-600 hover:underline"
-                          >
-                            📲 Ticktalk
-                          </a>
-                        )}
+                  {/* Product Images */}
+                  <div className="grid grid-cols-2 gap-1 mt-2 max-w-[700px]">
+                    {firstFourImages.map(
+                      (src, idx) =>
+                        src && (
+                          <img
+                            key={idx}
+                            src={src}
+                            alt={`Image ${idx}`}
+                            className="w-[150px] h-[100px] object-cover border border-gray-300 rounded cursor-pointer hover:scale-105 transition-transform"
+                            onClick={() => setZoomedImage(src)}
+                          />
+                        )
+                    )}
+                  </div>
+
+                  {/* Title */}
+                  <h6 className="text-lg font-bold text-center text-[#2c3e50] mt-2 mb-2">{item.product_name}</h6>
+
+                  {/* View More */}
+                  {remainingImages.length > 0 && (
+                    <button
+                      className="mt-3 px-4 py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-full text-sm font-semibold shadow hover:from-blue-700 hover:to-blue-800 transition"
+                      onClick={() => toggleExpand(item.id)}
+                    >
+                      {expandedProductId === item.id ? 'Hide' : 'More...'}
+                    </button>
+                  )}
+
+                  {/* Extra Images and Details */}
+                  {expandedProductId === item.id && (
+                    <>
+                      <div className="w-full h-[200px] overflow-hidden rounded-md mb-4">
+                        <img
+                          src={item.product_photo}
+                          alt={item.product_name}
+                          className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
+                          onClick={() => setZoomedImage(item.product_photo)}
+                        />
                       </div>
-                    </div>
-                  </>
-                )}
-              </div>
-            );
-          })}
-        </div>
+
+                      <div className="text-sm text-gray-700 leading-relaxed mt-2 space-y-1">
+                        <p>📝 <strong>Description:</strong> {item.description}</p>
+                        <p><strong>Posted:</strong> {new Date(item.date_posted).toLocaleDateString()}</p>
+                        <p>📝 <strong>Discount:</strong> {item.discount}</p>
+                        <div className="flex gap-4">
+                          {item.contact_telegram && (
+                            <a
+                              href={item.contact_telegram}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:underline"
+                            >
+                              📲 Telegram
+                            </a>
+                          )}
+                          {item.contact_tick && (
+                            <a
+                              href={item.contact_tick}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-pink-600 hover:underline"
+                            >
+                              📲 Ticktalk
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
       </section>
 
       {/* Zoom Modal */}
