@@ -164,7 +164,7 @@ const postProduct = async (productData) => {
     }
 
     setSuccessMsg(
-      '✅ Your post submitted successfully! Waiting for admin approval.'
+      '✅ Your post submitted successfully! Waiting for verification.'
     );
     setTimeout(() => setSuccessMsg(''), 4000);
 
@@ -249,7 +249,7 @@ if (!user) {
 
         {/* Company Name */}
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">your company</label>
+          <label className="block text-gray-700 font-semibold mb-1">Name Your Company</label>
           <input
             type="text"
             name="company_name"
