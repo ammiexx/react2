@@ -40,10 +40,10 @@ const Nearby = () => {
   }, []);
 
   return (
-    <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans">
+    <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <BackButton className="md:hidden" />
 
-      <section className="mb-12">
+      <section className="mb-12 w-full">
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
         {loading ? (
@@ -57,32 +57,30 @@ const Nearby = () => {
         ) : products.length === 0 ? (
           <p className="text-center text-gray-500">No nearby shops found.</p>
         ) : (
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full">
             {products.map((item) => (
               <div
                 key={item.id}
-                className="bg-white px-2 py-2 rounded-lg shadow transition-transform hover:scale-[1.01] flex flex-col self-start cursor-pointer"
-                onCli
-                ck={() => navigate('/nearby-detail', { state: { product: item } })}
+                className="bg-white px-2 py-3 rounded-lg shadow transition-transform hover:scale-[1.01] flex items-center cursor-pointer w-full"
+                onClick={() => navigate('/nearby-detail', { state: { product: item } })}
               >
-                {/* Profile Row */}
-                <div className="flex items-center gap-4">
-                  <img
-                    src={item.profile_photo || 'https://via.placeholder.com/60'}
-                    alt={`${item.first_name} ${item.last_name}`}
-                    className="w-16 h-16 rounded-full object-cover border border-gray-300"
-                  />
+                {/* Profile photo */}
+                <img
+                  src={item.profile_photo || 'https://via.placeholder.com/60'}
+                  alt={`${item.first_name} ${item.last_name}`}
+                  className="w-16 h-16 rounded-full object-cover border border-gray-300"
+                />
 
-                  {/* Info Row: company name, location, phone */}
-                  <div className="flex-1 flex justify-between items-center">
-                    <div className="flex flex-wrap items-center gap-4">
-                      <p className="text-sm font-semibold">{item.company_name}</p>
-                      <p className="text-sm text-gray-600">📍 {item.location}</p>
-                      {item.contact_phone && <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>}
-                    </div>
+                {/* Info Row: stretch across screen */}
+                <div className="flex-1 flex justify-between items-center px-4">
+                  <div className="flex flex-wrap items-center gap-6">
+                    <p className="text-sm font-semibold">{item.company_name}</p>
+                    <p className="text-sm text-gray-600">📍 {item.location}</p>
+                    {item.contact_phone && (
+                      <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
+                    )}
                   </div>
-
-                  {/* Arrow */}
+                  {/* Arrow aligned to far right */}
                   <div className="text-blue-600 font-bold">&gt;</div>
                 </div>
               </div>
