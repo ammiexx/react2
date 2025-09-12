@@ -26,6 +26,18 @@ const NearbyDetail = () => {
           <p className="text-gray-600">🗓 Posted: {new Date(product.date_posted).toLocaleDateString()}</p>
         </div>
       </div>
+{/* Product Video */}
+{product.product_video && (
+  <div className="mb-6">
+    <video
+      src={product.video}
+      controls
+      className="w-full max-h-80 rounded shadow"
+    >
+      Your browser does not support the video tag.
+    </video>
+  </div>
+)}
 
       {/* Product Images */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
