@@ -225,7 +225,7 @@ useEffect(() => {
         {/* Explore More Products Heading */}
 <div className="text-center mt-4 mb-2">
  <section className="p-6 bg-gray-100 text-black">
-  <p>Discover shops near your location.</p>
+  <p>Your nearby shops</p>
   <Nearby />
 </section>
 
