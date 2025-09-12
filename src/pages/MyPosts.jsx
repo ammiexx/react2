@@ -23,9 +23,10 @@ const MyPosts = () => {
   const [editFormData, setEditFormData] = useState({});
 const startEditingField = (productId, fieldName, currentValue) => {
   setEditingProduct(productId);
-  setFieldEditing({ [fieldName]: true });
-  setEditFormData({ [fieldName]: currentValue });
+  setFieldEditing(prev => ({ ...prev, [fieldName]: true })); // preserve other editing fields
+  setEditFormData(prev => ({ ...prev, [fieldName]: currentValue })); // preserve other values
 };
+
 
 const cancelFieldEdit = () => {
   setEditingProduct(null);
@@ -244,20 +245,18 @@ const handleUpdateSubmit = async (e, productId) => {
   <div className="mb-1">
   <strong>Product Name:</strong>{' '}
   {editingProduct === item.id && fieldEditing.product_name ? (
-    
-    <form onSubmit={(e) => handleUpdateSubmit(e, item.id)} className="inline">
-      <input
-        type="text"
-        name="product_name"
-        value={editFormData.product_name}
-        onChange={handleEditChange}
-        className="border rounded px-1 py-0.5"
-      />
-    </form>
+    <input
+      type="text"
+      name="product_name"
+      value={editFormData.product_name}
+      onChange={handleEditChange}
+      className="border rounded px-1 py-0.5"
+    />
   ) : (
     <>
       {item.product_name}{' '}
       <button
+        type="button"
         onClick={() => startEditingField(item.id, 'product_name', item.product_name)}
         className="text-blue-600 text-sm ml-2"
       >
@@ -266,28 +265,28 @@ const handleUpdateSubmit = async (e, productId) => {
     </>
   )}
 </div>
+
 {/* Discount */}
 <div className="mb-1">
   <strong>Discount:</strong>{' '}
   {editingProduct === item.id && fieldEditing.discount ? (
-    <form onSubmit={(e) => handleUpdateSubmit(e, item.id)} className="inline">
-      <select
-        name="discount"
-        value={editFormData.discount}
-        onChange={handleEditChange}
-        className="border rounded px-1 py-0.5"
-      >
-        <option value="ended">Ended</option>
-        <option value="5">5%</option>
-        <option value="10">10%</option>
-        <option value="15">15%</option>
-        <option value="20">20%</option>
-      </select>
-    </form>
+    <select
+      name="discount"
+      value={editFormData.discount}
+      onChange={handleEditChange}
+      className="border rounded px-1 py-0.5"
+    >
+      <option value="ended">Ended</option>
+      <option value="5">5%</option>
+      <option value="10">10%</option>
+      <option value="15">15%</option>
+      <option value="20%">20%</option>
+    </select>
   ) : (
     <>
-      {item.discount}{' '}
+      {item.discount}{' '}%
       <button
+        type="button"
         onClick={() => startEditingField(item.id, 'discount', item.discount)}
         className="text-blue-600 text-sm ml-2"
       >
@@ -296,6 +295,7 @@ const handleUpdateSubmit = async (e, productId) => {
     </>
   )}
 </div>
+
 
 <div className="mb-1">
   <strong>Company Logo:</strong>{' '}

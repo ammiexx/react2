@@ -19,7 +19,7 @@ const Nearby = () => {
             const response = await fetch(
               `https://djanagobackend-5.onrender.com/api/products/`
             );
-            if (!response.ok) throw new Error('No internet connection nearby shops');
+            if (!response.ok) throw new Error('No internet connection');
             let data = await response.json();
 
             // Filter for category "fashions" and verified = true
