@@ -99,6 +99,7 @@ import Nearby from "./pages/Nearby";
 import Forsale from "./components/Forsale";
 import Welcome from "./pages/WellCome";
 import Holiday from "./pages/HolidayDiscounts";
+import NearbyDetail from "./pages/NearbyDetail";
 
 function App() {
   return (
@@ -107,6 +108,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/nearby-detail" element={<NearbyDetail/>} />
         <Route path="/holyday discounts" element={<Holiday />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/success" element={<Success />} />
