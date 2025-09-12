@@ -21,7 +21,6 @@ const CarHome = () => {
   // Handle Stripe checkout
   const handleCheckout = async (product) => {
     const stripe = await stripePromise;
-
     const response = await fetch('http://djanagobackend-5.onrender.com/backend/create-checkout-session/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

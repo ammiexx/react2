@@ -8,17 +8,13 @@ import Profile from '../pages/Profile';
 import { useScrollDirection } from './UseScrollDirection'; // ← import the hook
 
 const navigation = [
-  { name: 'All In one', href: '/discounts' },
   { name: 'Order Now', href: '/forsale' },
 ];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
-
 export default function Navigation() {
   const scrollDirection = useScrollDirection();
-
   return (
     <Disclosure
       as="nav"
@@ -73,12 +69,7 @@ export default function Navigation() {
 
           {/* RIGHT: Profile + Actions */}
           <div className="flex items-center gap-2">
-            <Link
-              to="/nearby-shops"
-              className="flex items-center gap-2 px-2 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
-            >
-              Nearby shops
-            </Link>
+           
 
             <Link
               to="/form"
