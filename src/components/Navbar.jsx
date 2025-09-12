@@ -84,7 +84,7 @@ export default function Navigation() {
               to="/chat"
               className="flex items-center gap-2 px-2 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
             >
-              <PlusCircleIcon className="h-5 w-5" />
+              <ChatBubbleLeftRightIcon className="h-5 w-5" />
               Chat
             </Link>
 
