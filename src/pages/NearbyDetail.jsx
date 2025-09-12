@@ -6,7 +6,6 @@ const NearbyDetail = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
   const product = state?.product;
-
   if (!product) return <p className="text-center mt-20">Product not found</p>;
 
   return (

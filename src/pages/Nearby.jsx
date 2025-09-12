@@ -62,7 +62,8 @@ const Nearby = () => {
               <div
                 key={item.id}
                 className="bg-white px-2 py-2 rounded-lg shadow transition-transform hover:scale-[1.01] flex flex-col self-start cursor-pointer"
-                onClick={() => navigate('/nearby-detail', { state: { product: item } })}
+                onCli
+                ck={() => navigate('/nearby-detail', { state: { product: item } })}
               >
                 {/* Profile Row */}
                 <div className="flex items-center gap-4">
