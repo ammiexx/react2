@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loadStripe } from '@stripe/stripe-js';
 import BackButton from '../components/BackButton';
-
-// Load Stripe
-const stripePromise = loadStripe('pk_test_51RxBXuC2J5esJHJB3deOeOQ3ZhxYhyM9TT4yjZvE7cSgCQGD3BW2CY0rFFTUmgvLZDgoLRA0QYUNPoWpVqweBgUh00jhNFUdVm');
 
 const Nearby = () => {
   const [products, setProducts] = useState([]);
@@ -43,13 +39,10 @@ const Nearby = () => {
     }
   }, []);
 
-  const handleItemClick = (product) => {
-    navigate(`/product/${product.id}`, { state: { product } }); // navigate to detail page
-  };
-
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans">
       <BackButton className="md:hidden" />
+
       <section className="mb-12">
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
@@ -68,30 +61,29 @@ const Nearby = () => {
             {products.map((item) => (
               <div
                 key={item.id}
-                onClick={() => handleItemClick(item)}
-                className="flex items-center justify-between bg-white p-4 rounded-lg shadow hover:shadow-md cursor-pointer transition"
+                className="bg-white px-2 py-2 rounded-lg shadow transition-transform hover:scale-[1.01] flex flex-col self-start cursor-pointer"
+                onClick={() => navigate('/nearby-detail', { state: { product: item } })}
               >
-                {/* Profile photo */}
-                <img
-                  src={item.profile_photo || 'https://via.placeholder.com/60'}
-                  alt={`${item.first_name} ${item.last_name}`}
-                  className="w-16 h-16 rounded-full object-cover border border-gray-300"
-                />
+                {/* Profile Row */}
+                <div className="flex items-center gap-4">
+                  <img
+                    src={item.profile_photo || 'https://via.placeholder.com/60'}
+                    alt={`${item.first_name} ${item.last_name}`}
+                    className="w-16 h-16 rounded-full object-cover border border-gray-300"
+                  />
 
-                {/* Info */}
-                <div className="flex-1 mx-4 flex flex-col sm:flex-row sm:justify-between gap-2 sm:gap-4">
-                  <p className="text-sm font-semibold">{item.company_name}</p>
-                  <p className="text-sm text-gray-600">📍 {item.location}</p>
-                  {item.contact_phone && (
-                    <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
-                  )}
-                  <p className="text-sm text-gray-600">
-                    🗓 {new Date(item.date_posted).toLocaleDateString()}
-                  </p>
+                  {/* Info Row: company name, location, phone */}
+                  <div className="flex-1 flex justify-between items-center">
+                    <div className="flex flex-wrap items-center gap-4">
+                      <p className="text-sm font-semibold">{item.company_name}</p>
+                      <p className="text-sm text-gray-600">📍 {item.location}</p>
+                      {item.contact_phone && <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>}
+                    </div>
+                  </div>
+
+                  {/* Arrow */}
+                  <div className="text-blue-600 font-bold">&gt;</div>
                 </div>
-
-                {/* Optional arrow icon */}
-                <div className="text-blue-600 font-bold">&gt;</div>
               </div>
             ))}
           </div>
