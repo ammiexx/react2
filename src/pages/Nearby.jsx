@@ -24,7 +24,7 @@ const Nearby = () => {
             const response = await fetch(
               `https://djanagobackend-5.onrender.com/api/products/nearby/?lat=${lat}&lng=${lng}&radius=2` // 2km radius
             );
-            if (!response.ok) throw new Error('Failed to fetch nearby products');
+            if (!response.ok) throw new Error('Failed to fetch nearby shops');
             const data = await response.json();
             setProducts(data);
           } catch (err) {
@@ -76,20 +76,6 @@ const Nearby = () => {
       <BackButton className="md:hidden" />
       <section className="mb-12">
         {/* Search */}
-        <div className="flex flex-col items-center mb-6">
-          <label htmlFor="search" className="text-xl mb-2 font-bold text-[#2c3e50]">
-            🎯 <strong> Access and shop on your nearby</strong> 👀 💡
-          </label>
-          <input
-            type="text"
-            id="search"
-            placeholder="Search what you want to buy..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-[60%] max-w-[400px] px-4 py-2 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-        </div>
-
         {/* Error */}
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
