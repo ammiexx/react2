@@ -68,7 +68,7 @@ const Nearby = () => {
                 <img
                   src={item.profile_photo || 'https://via.placeholder.com/60'}
                   alt={`${item.first_name} ${item.last_name}`}
-                  className="w-16 h-16 rounded-full object-cover border border-gray-300"
+                  className="w-9 h-9 rounded-full object-cover border border-gray-300"
                 />
 
                 {/* Info Row: stretch across screen */}
