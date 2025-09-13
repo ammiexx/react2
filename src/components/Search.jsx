@@ -112,10 +112,19 @@ const Search = () => {
               <li><Link to="/nearby-shops" onClick={closeMenu} className="hover:text-blue-600">Nearby Shops</Link></li>
               <li><Link to="/New Advantages" onClick={closeMenu} className="hover:text-blue-600">Announcements</Link></li>
               <li><Link to="/Weekly Discounts" onClick={closeMenu} className="hover:text-blue-600">Want Discounts?</Link></li>
-              <li><Link to="/orders" onClick={closeMenu} className="hover:text-blue-600">Orders</Link></li>
               <li><Link to="/logout" onClick={closeMenu} className="hover:text-red-600 font-medium">Sign Out</Link></li>
             </ul>
           </div>
+
+           <div>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Payments</h3>
+            <ul className="space-y-2 text-gray-700 text-sm">
+              <li><Link to="/aboutus" onClick={closeMenu} className="hover:text-blue-600">Payment Notification</Link></li>
+              <li><Link to="/nearby-shops" onClick={closeMenu} className="hover:text-blue-600">Pending Orders</Link></li>
+              <li><Link to="/New Advantages" onClick={closeMenu} className="hover:text-blue-600">orders</Link></li>
+            </ul>
+          </div>
+
 
           {/* Categories */}
           <div>

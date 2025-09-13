@@ -167,7 +167,7 @@ if (!user) {
     }}
     className="text-gray-600 hover:underline text-sm font-medium"
   >
-    Notifications
+   payment Notifications
   </button>
   {user && (
   <div className="flex justify-end mb-4">
