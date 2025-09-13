@@ -88,6 +88,11 @@ const Nearby = () => {
                     {item.contact_phone && (
                       <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
                     )}
+                                     <span>
+  <p className="text-sm font-semibold">
+    {item.discount === "ended" ? " Discount Ended" : `${item.discount}% off`}
+  </p>
+</span>
                   </div>
                   {/* Arrow aligned to far right */}
                   <div className="text-blue-600 font-bold">&gt;</div>
