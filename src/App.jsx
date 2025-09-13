@@ -100,6 +100,14 @@ import Forsale from "./components/Forsale";
 import Welcome from "./pages/WellCome";
 import Holiday from "./pages/HolidayDiscounts";
 import NearbyDetail from "./pages/NearbyDetail";
+import PaymentUpdates from "./pages/PaymentUpdates";
+import PendingOrders from "./pages/PendingOrders";
+import CompletedOrders from "./pages/CompletedOrders";
+import PaymentMethods from "./pages/PaymentMethods";
+import Wallet from "./pages/Wallet";
+import Subscriptions from "./pages/Subscriptions";
+import Refunds from "./pages/Refunds";
+
 
 function App() {
   return (
@@ -108,6 +116,13 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/payment-updates" element={<PaymentUpdates />} />
+        <Route path="/pending-orders" element={<PendingOrders />} />
+        <Route path="/completed-orders" element={<CompletedOrders />} />
+        <Route path="/payment-methods" element={<PaymentMethods />} />
+        <Route path="/wallet" element={<Wallet />} />
+        <Route path="/subscriptions" element={<Subscriptions />} />
+        <Route path="/refunds" element={<Refunds />} />
         <Route path="/nearby-detail" element={<NearbyDetail/>} />
         <Route path="/holyday discounts" element={<Holiday />} />
         <Route path="/welcome" element={<Welcome />} />

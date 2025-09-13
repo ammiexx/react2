@@ -119,9 +119,9 @@ const Search = () => {
            <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Payments</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
-              <li><Link to="/aboutus" onClick={closeMenu} className="hover:text-blue-600">Payment updates</Link></li>
-              <li><Link to="/nearby-shops" onClick={closeMenu} className="hover:text-blue-600">Pending Orders</Link></li>
-              <li><Link to="/New Advantages" onClick={closeMenu} className="hover:text-blue-600">Completed Orders</Link></li>
+              <li><Link to="/payment-updates" onClick={closeMenu} className="hover:text-blue-600">Payment updates</Link></li>
+              <li><Link to="/pending-orders" onClick={closeMenu} className="hover:text-blue-600">Pending Orders</Link></li>
+              <li><Link to="/completed-orders" onClick={closeMenu} className="hover:text-blue-600">Completed Orders</Link></li>
               <li><Link to="/payment-methods" onClick={closeMenu} className="hover:text-blue-600">Payment Methods</Link></li>
               <li><Link to="/wallet" onClick={closeMenu} className="hover:text-blue-600">Wallet Balance</Link></li>
               <li><Link to="/subscriptions" onClick={closeMenu} className="hover:text-blue-600">My Subscriptions</Link></li>

@@ -72,25 +72,24 @@ const Nearby = () => {
                 />
 
                 {/* Info Row: stretch across screen */}
-                <div className="flex-1 flex justify-between items-center px-4">
-                  <div className="flex flex-wrap items-center gap-6">
-                    <p className="text-sm font-semibold">{item.product_name}</p>
-                    <p className="text-sm font-semibold">{item.company_name}</p>
-                    <p className="text-sm text-gray-600">📍 {item.location}</p>
-                    {item.contact_phone && (
-                      <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
-                      
-                    )}
-                    <span>
-  <p className="text-sm font-semibold">
-    {item.discount === "ended" ? " Discount Ended" : `${item.discount}% off`}
-  </p>
-</span>
+  <div className="flex-1 flex justify-between items-center px-4">
+  <div className="flex items-center gap-6">
+    <p className="text-sm font-semibold truncate max-w-[120px]">{item.product_name}</p>
+    <p className="text-sm font-semibold truncate max-w-[120px]">{item.company_name}</p>
+    <p className="text-sm text-gray-600 truncate max-w-[150px]">📍 {item.location}</p>
+    {item.contact_phone && (
+      <p className="text-sm text-gray-600 truncate max-w-[120px]">📞 {item.contact_phone}</p>
+    )}
+    <span className="truncate max-w-[100px]">
+      <p className="text-sm font-semibold">
+        {item.discount === "ended" ? "Discount Ended" : `${item.discount}% off`}
+      </p>
+    </span>
+  </div>
+  <div className="text-blue-600 font-bold">&gt;</div>
+</div>
 
-                  </div>
-                  {/* Arrow aligned to far right */}
-                  <div className="text-blue-600 font-bold">&gt;</div>
-                </div>
+
               </div>
             ))}
           </div>
