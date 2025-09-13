@@ -42,7 +42,6 @@ const Notification = () => {
   const visibleMessages = showAll ? messages : messages.slice(0, 8);
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-100 to-cyan-100 p-6">
-      <BackButton className="md:hidden" />
       <div className="bg-white max-w-2xl w-full rounded-xl shadow-lg p-6 text-center">
         <h1 className="text-2xl font-bold text-gray-800 mb-2">💬 Recent Requests</h1>
         <p className="text-gray-600 mb-6">See what others want discounted!</p>

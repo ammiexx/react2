@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BackButton from '../components/BackButton';
+
 
 const Nearby = () => {
   const [products, setProducts] = useState([]);
@@ -47,7 +47,7 @@ const Nearby = () => {
 
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
-      <BackButton className="md:hidden" />
+    
  <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
         Only here this week-discover new picks!
       </h2>

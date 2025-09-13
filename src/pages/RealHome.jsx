@@ -47,7 +47,6 @@ const Nearby = () => {
 
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
-      <BackButton className="md:hidden" />
  <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
         Own a house by 25% initial payment!
       </h2>

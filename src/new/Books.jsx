@@ -47,7 +47,6 @@ const Nearby = () => {
 
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
-      <BackButton className="md:hidden" />
   <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
             🎯 <strong>Fuel your mind and organize your life — shop books & stationery that inspire 📖🖊️</strong> 👀 💡
           </label>

@@ -10,7 +10,6 @@ const NearbyDetail = () => {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <BackButton onClick={() => navigate(-1)} />
 
       {/* Main Row */}
       <div className="flex items-center gap-4 bg-white p-4 rounded shadow mb-6">

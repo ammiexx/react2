@@ -30,8 +30,6 @@ const TravelHome = () => {
   return (
     
     <div className="max-w-[1200px] mx-auto my-10 px-4 text-[#2c3e50] font-sans">
-       <BackButton className="md:hidden" />
-      {/* Search Section */}
       <section className="mb-12">
         <div className="flex flex-col items-center mb-6">
           <label htmlFor="search" className="text-xl font-bold mb-3 text-center">

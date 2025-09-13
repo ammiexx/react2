@@ -216,13 +216,12 @@ useEffect(() => {
 
   return (
     
-    
+  
 <div className="min-h-screen p-6 " style={{backgroundColor: theme==="dark"?"black":"white",color: theme==="dark"?"black":"white"}}>
+    
+    <div className="max-w-6xl mx-auto" >
       
-      <div className="max-w-6xl mx-auto" >
-       <QuickLinks/>
-       
-        {/* Explore More Products Heading */}
+      {/* Explore More Products Heading */}
 <div className="text-center mt-4 mb-2">
  <section className="p-6 bg-gray-100 text-black">
   <p>Your nearby shops</p>
