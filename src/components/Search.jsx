@@ -121,7 +121,11 @@ const Search = () => {
             <ul className="space-y-2 text-gray-700 text-sm">
               <li><Link to="/aboutus" onClick={closeMenu} className="hover:text-blue-600">Payment Notification</Link></li>
               <li><Link to="/nearby-shops" onClick={closeMenu} className="hover:text-blue-600">Pending Orders</Link></li>
-              <li><Link to="/New Advantages" onClick={closeMenu} className="hover:text-blue-600">orders</Link></li>
+              <li><Link to="/New Advantages" onClick={closeMenu} className="hover:text-blue-600">Completed Orders</Link></li>
+              <li><Link to="/payment-methods" onClick={closeMenu} className="hover:text-blue-600">Payment Methods</Link></li>
+              <li><Link to="/wallet" onClick={closeMenu} className="hover:text-blue-600">Wallet Balance</Link></li>
+              <li><Link to="/subscriptions" onClick={closeMenu} className="hover:text-blue-600">My Subscriptions</Link></li>
+              <li><Link to="/refunds" onClick={closeMenu} className="hover:text-blue-600">Refund Requests</Link></li>
             </ul>
           </div>
 
