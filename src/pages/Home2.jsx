@@ -51,7 +51,7 @@ const Nearby = () => {
           </div>
         ) : products.length === 0 ? (
           <p className="text-center text-gray-500">
-            No beauty and health materials.
+            No fashions found.
           </p>
         ) : (
           <div className="flex flex-col gap-4 w-full">
