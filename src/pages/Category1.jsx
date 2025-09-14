@@ -223,10 +223,10 @@ useEffect(() => {
       
       {/* Explore More Products Heading */}
 <div className="text-center mt-4 mb-2">
- <section className="p-6 bg-gray-100 text-black">
+ {/* <section className="p-6 bg-gray-100 text-black">
   <p>Your nearby shops</p>
   <Nearby />
-</section>
+</section> */}
 
   <h2 className="text-base font-medium text-gray-700">Explore More Products</h2>
 </div>

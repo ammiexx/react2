@@ -22,7 +22,6 @@ const Search = () => {
     navigate(`/${encodeURIComponent(category.toLowerCase())}`);
   };
 
-  // Lock scroll when menu is open and close on outside click
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
