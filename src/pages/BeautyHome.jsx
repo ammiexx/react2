@@ -18,7 +18,7 @@ const Nearby = () => {
 
         // Filter for category "beauty" and verified = true
         data = data.filter(
-          (item) => item.category === 'beauty' && item.verified === true
+          (item) => item.category === 'health' && item.verified === true
         );
 
         setProducts(data);

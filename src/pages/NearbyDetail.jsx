@@ -29,7 +29,7 @@ const NearbyDetail = () => {
 {product.product_video && (
   <div className="mb-6">
     <video
-      src={product.video}
+      src={product.product_video} // use the correct field
       controls
       className="w-full max-h-80 rounded shadow"
     >
@@ -37,6 +37,7 @@ const NearbyDetail = () => {
     </video>
   </div>
 )}
+
 
       {/* Product Images */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
