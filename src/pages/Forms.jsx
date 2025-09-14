@@ -21,6 +21,7 @@ const Form = () => {
   { value: "travels", label: "Travels" },
   { value: "daily", label: "Daily Discounts" },
   { value: "weekly", label: "Weekly Discounts" },
+  { value: "holyday", label: "Holyday Discounts"},
   { value: "new", label: "New Advantages" },
   { value: "newoffers", label: "New Offers" },
   { value: "upcomming", label: "Upcomming Services" },
