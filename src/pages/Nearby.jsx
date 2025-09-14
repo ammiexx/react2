@@ -72,7 +72,7 @@ const Nearby = () => {
                 {/* Info Row: stretch across screen */}
   <div className="flex-1 flex justify-between items-center px-4">
   <div className="flex items-center gap-6">
-    <p className="text-sm font-semibold truncate max-w-[120px]">{item.product_name}</p>
+    <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
     <p className="text-sm font-semibold truncate max-w-[120px]">{item.company_name}</p>
     <p className="text-sm text-gray-600 truncate max-w-[150px]">📍 {item.location}</p>
     {item.contact_phone && (
