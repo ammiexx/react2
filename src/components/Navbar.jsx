@@ -10,7 +10,9 @@ import { useScrollDirection } from './UseScrollDirection'; // ← import the hoo
 const navigation = [
   { name: 'Order Now', href: '/forsale' },
   { name: 'Nearby shops', href: '/nearby-shops' },
-  { name: 'All In one', href: '/' },
+  { name: 'Items For Sale', href: '/' },
+  { name: 'Services', href: '/services' },
+
 ];
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
