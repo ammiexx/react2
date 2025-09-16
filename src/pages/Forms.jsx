@@ -372,16 +372,7 @@ if (!user) {
               className="w-full border px-4 py-2 rounded"
             />
           </div>
-          {/* <div>
-            <label className="block text-gray-700 font-semibold mb-1">Website</label>
-            <input
-              type="url"
-              name="web_site"
-              value={formData.web_site}
-              onChange={handleChange}
-              className="w-full border px-4 py-2 rounded"
-            />
-          </div> */}
+          
           <div>
             <label className="block text-gray-700 font-semibold mb-1">Phone Number</label>
             <input
