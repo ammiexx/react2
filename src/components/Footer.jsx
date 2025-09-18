@@ -115,11 +115,7 @@ const Footer = () => {
       Upcoming Offers
     </Link>
   </li>
-  <li>
-    <Link to="/chat" className={linkClass}>
-      Send Messages
-    </Link>
-  </li>
+
 </ul>
           </div>
           <div>

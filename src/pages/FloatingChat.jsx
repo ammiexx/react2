@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useUser } from '@clerk/clerk-react';
+import React, { useState, useEffect } from "react";
+import { useUser } from "@clerk/clerk-react";
 
-const MESSAGE_API = 'https://djanagobackend-5.onrender.com/api/cat';
+const MESSAGE_API = "https://djanagobackend-5.onrender.com/api/cat";
 
-const Chat2 = ({ compact = false }) => {
+const FloatingChat = () => {
   const { isSignedIn, user } = useUser();
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -19,35 +19,35 @@ const Chat2 = ({ compact = false }) => {
 
   useEffect(() => {
     if (error) {
-      const timer = setTimeout(() => setError(''), 2000);
+      const timer = setTimeout(() => setError(""), 2000);
       return () => clearTimeout(timer);
     }
   }, [error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!message.trim()) return alert('Please enter a message.');
+    if (!message.trim()) return alert("Please enter a message.");
 
     const userName = isSignedIn
       ? user.fullName || user.username || user.primaryEmailAddress?.emailAddress
-      : 'Anonymous';
+      : "Anonymous";
 
     try {
       setLoading(true);
       const response = await fetch(MESSAGE_API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: userName, message }),
       });
 
       if (!response.ok) throw new Error(await response.text());
 
       setSubmitted(true);
-      setMessage('');
-      setError('');
+      setMessage("");
+      setError("");
     } catch (err) {
       console.error(err);
-      setError('There was a problem submitting your message.');
+      setError("There was a problem submitting your message.");
       setSubmitted(false);
     } finally {
       setLoading(false);
@@ -55,16 +55,8 @@ const Chat2 = ({ compact = false }) => {
   };
 
   return (
-    <div
-      className={`${
-        compact ? '' : 'min-h-[40vh] flex items-center justify-center'
-      } p-2`}
-    >
-      <div
-        className={`bg-white w-full rounded-xl shadow-lg p-4 text-center ${
-          compact ? 'max-w-xs' : 'max-w-2xl'
-        }`}
-      >
+    <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-md sm:max-w-sm">
+      <div className="bg-white rounded-xl shadow-lg p-4 text-center">
         <h2 className="text-lg font-bold text-gray-800 mb-2">
           💬 What do you want to Buy/Sell?
         </h2>
@@ -94,7 +86,7 @@ const Chat2 = ({ compact = false }) => {
             disabled={loading}
             className="w-full bg-blue-600 text-white py-1 rounded-md font-semibold hover:bg-blue-700 transition text-sm"
           >
-            {loading ? 'Sending...' : 'Send'}
+            {loading ? "Sending..." : "Send"}
           </button>
         </form>
       </div>
@@ -102,4 +94,4 @@ const Chat2 = ({ compact = false }) => {
   );
 };
 
-export default Chat2;
+export default FloatingChat;

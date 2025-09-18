@@ -174,11 +174,11 @@ useEffect(() => {
           )}
         </div>
       </div>
-      <div>
+      {/* <div>
       <section className="mt-1">
   <Chat2 />
         </section>
-      </div>
+      </div> */}
     </div>
   );
 };

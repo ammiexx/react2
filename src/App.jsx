@@ -109,6 +109,7 @@ import Subscriptions from "./pages/Subscriptions";
 import Refunds from "./pages/Refunds";
 import Category2 from "./pages/Category2";
 import MyProfile from "./pages/MyProfile";
+import FloatingChat from "./pages/FloatingChat";
 
 
 function App() {
@@ -118,6 +119,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+
         <Route path="/myprofile" element={<MyProfile/>} />
         <Route path="/services" element={<Category2/>} />
         <Route path="/payment-updates" element={<PaymentUpdates />} />
@@ -219,7 +221,8 @@ function App() {
         <Route path="/aboutus" element={<AboutUs/>} />
         <Route path="/chat" element={<Chat2/>} />
       </Routes>
-      <Back/>
+      <FloatingChat/>
+      {/* <Back/> */}
       <Footer />
     </Router>
     </div>
