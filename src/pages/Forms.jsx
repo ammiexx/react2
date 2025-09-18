@@ -8,22 +8,24 @@ const Form = () => {
   const navigate = useNavigate();
   const { signOut } = useClerk();
   const handleVideoChange = (e) => {
-  const file = e.target.files[0];
+  const file = e.target.files[0]; // get selected file
   if (file) {
-    const url = URL.createObjectURL(file);
-    const video = document.createElement('video');
+    const url = URL.createObjectURL(file); // create temporary URL
+    const video = document.createElement('video'); // create video element
     video.src = url;
     video.onloadedmetadata = () => {
-      if (video.duration > 30) {
+      if (video.duration > 30) { // check duration
         alert("Video must be 30 seconds or less.");
-        e.target.value = null; // Clear the input
-        setFormData(prev => ({ ...prev, product_video: null })); // Also reset state
+        e.target.value = null; // reset input
+        setFormData(prev => ({ ...prev, product_video: null })); // reset state
       } else {
-        setFormData(prev => ({ ...prev, product_video: file }));
+        setFormData(prev => ({ ...prev, product_video: file })); // store file
       }
+      URL.revokeObjectURL(url); // free memory
     };
   }
 };
+
 
   const discountOptions = [
     { value: '5', label: '5%' },
