@@ -202,7 +202,7 @@ function App() {
           <Route path="/daily discounts" element={<Daily/>} />
           <Route path="/weekly discounts" element={<Week/>} />
           <Route path="/new offers" element={<Newp/>} />
-          <Route path="/upcomming services" element={<Upcomming/>} />
+          <Route path="/upcomming offers" element={<Upcomming/>} />
          <Route path="/login" element={<Login />} />
          <Route path="/logout" element={<Logout />} />
          <Route path="/profile" element={<Profile />} />

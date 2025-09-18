@@ -16,7 +16,7 @@ const Nearby = () => {
         if (!response.ok) throw new Error('Failed to fetch products');
         let data = await response.json();
 
-        // Filter for category "beauty" and verified = true
+        // Filter for category "upcomming" and verified = true
         data = data.filter(
           (item) => item.category === 'upcomming' && item.verified === true
         );
@@ -35,7 +35,7 @@ const Nearby = () => {
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-        UPcommings this week!
+        UPcomming offers this week!
       </h2>
 
       <section className="mb-12 w-full">
@@ -77,8 +77,11 @@ const Nearby = () => {
                     <p className="text-sm font-semibold">{item.company_name}</p>
                     <p className="text-sm text-gray-600">📍 {item.location}</p>
                     {item.contact_phone && (
-                      <p className="text-sm text-gray-600">
-                        📞 {item.contact_phone}
+                      <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
+                    )}
+                    {item.discount === 'waiting' && (
+                      <p className="text-sm text-orange-500 font-semibold">
+                        💰 Waiting for discount...
                       </p>
                     )}
                   </div>

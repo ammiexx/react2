@@ -16,9 +16,16 @@ const Nearby = () => {
         if (!response.ok) throw new Error('Failed to fetch products');
         let data = await response.json();
 
-        // Filter for category "beauty" and verified = true
+        // Get current time
+        const now = new Date();
+        const oneWeekAgo = new Date(now.getTime() - 168 * 60 * 60 * 1000); // 168 hours
+
+        // Filter: numeric discount, posted in last week, category weekly, verified
         data = data.filter(
-          (item) => item.category === 'weekly' && item.verified === true
+          (item) =>
+            item.verified === true &&
+            !['waiting', 'ended'].includes(item.discount) &&
+            new Date(item.date_posted) >= oneWeekAgo
         );
 
         setProducts(data);
@@ -35,7 +42,7 @@ const Nearby = () => {
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-        Only this week-Discover new picks!
+        Only this week - Discover new picks!
       </h2>
 
       <section className="mb-12 w-full">
@@ -50,9 +57,7 @@ const Nearby = () => {
             </div>
           </div>
         ) : products.length === 0 ? (
-          <p className="text-center text-gray-500">
-            No weekly disoucns found.
-          </p>
+          <p className="text-center text-gray-500">No weekly discounts found.</p>
         ) : (
           <div className="flex flex-col gap-4 w-full">
             {products.map((item) => (
@@ -77,10 +82,11 @@ const Nearby = () => {
                     <p className="text-sm font-semibold">{item.company_name}</p>
                     <p className="text-sm text-gray-600">📍 {item.location}</p>
                     {item.contact_phone && (
-                      <p className="text-sm text-gray-600">
-                        📞 {item.contact_phone}
-                      </p>
+                      <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
                     )}
+                    <p className="text-sm text-green-600">
+                      💰 {item.discount}%
+                    </p>
                   </div>
                   <div className="text-blue-600 font-bold">&gt;</div>
                 </div>

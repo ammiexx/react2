@@ -111,12 +111,12 @@ const Footer = () => {
     </Link>
   </li>
   <li>
-    <Link to="/upcoming-services" className={linkClass}>
-      Upcoming Services
+    <Link to="/upcoming offers" className={linkClass}>
+      Upcoming Offers
     </Link>
   </li>
   <li>
-    <Link to="/send-messages" className={linkClass}>
+    <Link to="/chat" className={linkClass}>
       Send Messages
     </Link>
   </li>
@@ -126,22 +126,22 @@ const Footer = () => {
             <h4 className="text-white font-semibold mb-2">Quick Links</h4>
            <ul className={normalTextClass + " space-y-1"}>
   <li>
-    <Link to="/new-advantages" className={linkClass}>
-      New Advantages
+    <Link to="/new advantages" className={linkClass}>
+      New Offers
     </Link>
   </li>
   <li>
-    <Link to="/weekly-discounts" className={linkClass}>
+    <Link to="/weekly discounts" className={linkClass}>
       Weekly Discounts
     </Link>
   </li>
   <li>
-    <Link to="/daily-discounts" className={linkClass}>
+    <Link to="/daily discounts" className={linkClass}>
       Daily Discounts
     </Link>
   </li>
   <li>
-    <Link to="/holiday-discounts" className={linkClass}>
+    <Link to="/holiday discounts" className={linkClass}>
       Holiday Discounts
     </Link>
   </li>
