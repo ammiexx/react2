@@ -6,6 +6,8 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, Link } from 'react-router-dom';
 import Profile from '../pages/Profile';
 import { useScrollDirection } from './UseScrollDirection'; // ← import the hook
+import logo from '../assets/logo.png'; // adjust the path if needed
+
 
 const navigation = [
   { name: 'Order Now', href: '/forsale' },
@@ -44,10 +46,11 @@ export default function Navigation() {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
               <img
-                src="https://videos.openai.com/vg-assets/assets%2Ftask_01k4b6czxyfbe8qgcthwvqfhm5%2F1757017545_img_0.webp?st=2025-09-08T11%3A49%3A52Z&se=2025-09-14T12%3A49%3A52Z&sks=b&skt=2025-09-08T11%3A49%3A52Z&ske=2025-09-14T12%3A49%3A52Z&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skoid=fea36edb-a052-425e-a84a-436fdce0a7b4&skv=2019-02-02&sv=2018-11-09&sr=b&sp=r&spr=https%2Chttp&sig=WOmq7DmK%2FsAY0cEOiB4jbcj391X1tATdBZEi6IXC2wk%3D&az=oaivgprodscus"
-                alt="Kenash Logo"
-                className="h-9 w-30 rounded-full object-cover"
-              />
+  src={logo}
+  alt="Kenash Logo"
+  className="h-9 w-30 rounded-full object-cover"
+/>
+
             </Link>
           </div>
 
