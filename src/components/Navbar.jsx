@@ -6,7 +6,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, Link } from 'react-router-dom';
 import Profile from '../pages/Profile';
 import { useScrollDirection } from './UseScrollDirection'; // ← import the hook
-import knash from '../assets/logo.png'; // adjust the path if needed
+import knash from '../assets/newlogo.png'; // adjust the path if needed
 
 
 
@@ -49,7 +49,7 @@ export default function Navigation() {
               <img
   src={knash}
   alt="Kenash Logo"
-  className="h-9 w-30 rounded-full object-cover"
+  className="h-12 w-30 rounded-full object-cover"
 />
 
             </Link>
