@@ -126,7 +126,13 @@ useEffect(() => {
   return (
     
   
-<div className="min-h-screen p-6 " style={{backgroundColor: theme==="dark"?"black":"white",color: theme==="dark"?"black":"white"}}>
+<div
+  className="min-h-screen p-6"
+  style={{
+    backgroundColor: theme === "dark" ? "black" : "white",
+    color: theme === "dark" ? "white" : "black", // <- fix here
+  }}
+>
     
     <div className="max-w-6xl mx-auto" >
       
