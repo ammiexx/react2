@@ -12,7 +12,7 @@ const Footer = () => {
 
         {/* Logo */}
         <div className={`mb-10 ${normalTextClass}`}>
-          <h1 className="text-3xl font-bold text-[#6ec1e4]">Kenash</h1>
+          <h1 className="text-3xl font-bold text-[#6ec1e4]">Knash</h1>
         </div>
 
         {/* Mission */}
@@ -181,7 +181,7 @@ const Footer = () => {
 
         {/* Footer Bottom */}
         <div className={`mt-12 ${normalTextClass} space-y-1`}>
-          <p>© 2025 Kenash</p>
+          <p>© 2025 Knash</p>
         </div>
       </div>
     </footer>

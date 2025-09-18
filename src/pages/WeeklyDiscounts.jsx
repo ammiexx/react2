@@ -20,7 +20,7 @@ const Nearby = () => {
         const now = new Date();
         const oneWeekAgo = new Date(now.getTime() - 168 * 60 * 60 * 1000); // 168 hours
 
-        // Filter: numeric discount, posted in last week, category weekly, verified
+        // Filter: numeric discount, posted in last week, verified
         data = data.filter(
           (item) =>
             item.verified === true &&
@@ -49,12 +49,27 @@ const Nearby = () => {
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
         {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="flex space-x-2">
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce"></span>
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-150"></span>
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-300"></span>
-            </div>
+          // 🔹 Skeleton loader
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {Array(6).fill().map((_, idx) => (
+              <div
+                key={idx}
+                className="bg-white px-2 py-3 rounded-lg shadow animate-pulse flex items-center w-full"
+              >
+                {/* Skeleton avatar */}
+                <div className="w-16 h-16 bg-gray-300 rounded-full"></div>
+
+                {/* Skeleton text blocks */}
+                <div className="flex-1 flex justify-between items-center px-4">
+                  <div className="flex flex-col gap-2 w-full">
+                    <div className="h-4 bg-gray-300 rounded w-24"></div>
+                    <div className="h-4 bg-gray-200 rounded w-20"></div>
+                    <div className="h-3 bg-gray-200 rounded w-32"></div>
+                  </div>
+                  <div className="h-5 w-5 bg-gray-300 rounded"></div>
+                </div>
+              </div>
+            ))}
           </div>
         ) : products.length === 0 ? (
           <p className="text-center text-gray-500">No weekly discounts found.</p>

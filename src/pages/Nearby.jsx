@@ -45,12 +45,20 @@ const Nearby = () => {
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
         {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="flex space-x-2">
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce"></span>
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-150"></span>
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-300"></span>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            {[...Array(6)].map((_, idx) => (
+              <div
+                key={idx}
+                className="animate-pulse bg-gray-200 rounded-lg h-32 flex items-center justify-start p-4"
+              >
+                <div className="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
+                <div className="flex-1 space-y-2">
+                  <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+                  <div className="h-3 bg-gray-300 rounded w-1/2"></div>
+                  <div className="h-3 bg-gray-300 rounded w-1/3"></div>
+                </div>
+              </div>
+            ))}
           </div>
         ) : products.length === 0 ? (
           <p className="text-center text-gray-500">No nearby shops found.</p>
@@ -70,24 +78,22 @@ const Nearby = () => {
                 />
 
                 {/* Info Row: stretch across screen */}
-  <div className="flex-1 flex justify-between items-center px-4">
-  <div className="flex items-center gap-6">
-    <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
-    <p className="text-sm font-semibold truncate max-w-[120px]">{item.company_name}</p>
-    <p className="text-sm text-gray-600 truncate max-w-[150px]">📍 {item.location}</p>
-    {item.contact_phone && (
-      <p className="text-sm text-gray-600 truncate max-w-[120px]">📞 {item.contact_phone}</p>
-    )}
-    <span className="truncate max-w-[100px]">
-      <p className="text-sm font-semibold">
-        {item.discount === "ended" ? "Discount Ended" : `${item.discount}% off`}
-      </p>
-    </span>
-  </div>
-  <div className="text-blue-600 font-bold">&gt;</div>
-</div>
-
-
+                <div className="flex-1 flex justify-between items-center px-4">
+                  <div className="flex items-center gap-6">
+                    <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
+                    <p className="text-sm font-semibold truncate max-w-[120px]">{item.company_name}</p>
+                    <p className="text-sm text-gray-600 truncate max-w-[150px]">📍 {item.location}</p>
+                    {item.contact_phone && (
+                      <p className="text-sm text-gray-600 truncate max-w-[120px]">📞 {item.contact_phone}</p>
+                    )}
+                    <span className="truncate max-w-[100px]">
+                      <p className="text-sm font-semibold">
+                        {item.discount === "ended" ? "Discount Ended" : `${item.discount}% off`}
+                      </p>
+                    </span>
+                  </div>
+                  <div className="text-blue-600 font-bold">&gt;</div>
+                </div>
               </div>
             ))}
           </div>

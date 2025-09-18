@@ -13,7 +13,7 @@ const Nearby = () => {
         const response = await fetch(
           `https://djanagobackend-5.onrender.com/api/products/`
         );
-        if (!response.ok) throw new Error('Failed to fetch products');
+        if (!response.ok) throw new Error('Failed to fetch upcoming products');
         let data = await response.json();
 
         // Filter for category "upcomming" and verified = true
@@ -35,23 +35,31 @@ const Nearby = () => {
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-        UPcomming offers this week!
+        Upcoming offers this week!
       </h2>
 
       <section className="mb-12 w-full">
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
         {loading ? (
-          <div className="flex justify-center items-center py-20">
-            <div className="flex space-x-2">
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce"></span>
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-150"></span>
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-300"></span>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            {[...Array(6)].map((_, idx) => (
+              <div
+                key={idx}
+                className="animate-pulse bg-gray-200 rounded-lg h-32 flex items-center justify-start p-4"
+              >
+                <div className="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
+                <div className="flex-1 space-y-2">
+                  <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+                  <div className="h-3 bg-gray-300 rounded w-1/2"></div>
+                  <div className="h-3 bg-gray-300 rounded w-1/3"></div>
+                </div>
+              </div>
+            ))}
           </div>
         ) : products.length === 0 ? (
           <p className="text-center text-gray-500">
-            No upcomming services/products found.
+            No upcoming services/products found.
           </p>
         ) : (
           <div className="flex flex-col gap-4 w-full">

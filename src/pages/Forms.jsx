@@ -28,11 +28,11 @@ const Form = () => {
 
 
   const discountOptions = [
-    { value: '5', label: '5%' },
+  { value: 'waiting', label: 'Waiting' },
+  { value: '5', label: '5%' },
   { value: '10', label: '10%' },
   { value: '15', label: '15%' },
   { value: '20', label: '20%' },
-  { value: 'ended', label: 'Ended' },
   { value: 'waiting', label: 'Waiting' },
 
 ];

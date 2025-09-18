@@ -275,7 +275,7 @@ const handleUpdateSubmit = async (e, productId) => {
       onChange={handleEditChange}
       className="border rounded px-1 py-0.5"
     >
-      <option value="ended">Ended</option>
+      <option value="waiting">Ended</option>
       <option value="5">5%</option>
       <option value="10">10%</option>
       <option value="15">15%</option>
