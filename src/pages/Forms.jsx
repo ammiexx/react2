@@ -8,6 +8,17 @@ const Form = () => {
   const navigate = useNavigate();
   const { signOut } = useClerk();
 
+  const discountOptions = [
+    { value: '5', label: '5%' },
+  { value: '10', label: '10%' },
+  { value: '15', label: '15%' },
+  { value: '20', label: '20%' },
+  { value: 'ended', label: 'Ended' },
+  { value: 'waiting', label: 'Waiting' },
+
+];
+
+
  const categoryOptions = [
   { value: "fashions", label: "Fashions" },
   { value: "electronics", label: "Electronics" },
@@ -20,8 +31,6 @@ const Form = () => {
   { value: "entertainments", label: "Intertainments" },
   { value: "travels", label: "Travels" },
   { value: "holyday", label: "Holyday Discounts"},
-  { value: "new", label: "New Advantages" },
-  { value: "newoffers", label: "New Offers" },
   { value: "upcomming", label: "Upcomming Services" },
   { value: "repair", label: "Repair & Maintainance" },
   { value: "agricultural", label: "Agriculture & Livestock" },
@@ -100,6 +109,7 @@ useEffect(() => {
     profile_photo:null,
     email: '',
     product_name: '',
+    discount: '',
     company_name: '',
     description: '',
     category: '',
@@ -259,6 +269,21 @@ if (!user) {
             className="w-full border px-4 py-2 rounded focus:ring-2 ring-blue-300"
           />
         </div>
+        {/* Discount */}
+<div>
+  <label className="block text-gray-700 font-semibold mb-1">Discount</label>
+  <Select
+    options={discountOptions}
+    value={discountOptions.find(opt => opt.value === formData.discount)}
+    onChange={(selected) =>
+      setFormData(prev => ({ ...prev, discount: selected.value }))
+    }
+    placeholder="Select a discount..."
+    isSearchable
+    className="text-gray-700"
+  />
+</div>
+
         {/* Category */}
         <div>
           <label className="block text-gray-700 font-semibold mb-1">Category</label>
