@@ -95,7 +95,7 @@ export default function Navigation() {
             </Link>
 
 
-            <Profile />
+            {/* <Profile /> */}
           </div>
         </div>
       </div>

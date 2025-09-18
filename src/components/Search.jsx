@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Hamburger from './Hamburger';
-import Profile from '../pages/Profile';
+import Profile from '../pages/Profile';   // ✅ Clerk-based profile
+
 const categories = [
   "Daily Discounts",
   "Weekly Discounts",
@@ -10,12 +11,10 @@ const categories = [
 ];
 
 const Search = () => {
-  
-const [openProfile, setOpenProfile] = useState(false);
-
+  const [openProfile, setOpenProfile] = useState(false); // ✅ Profile popup toggle
   const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
   const menuRef = useRef(null);
+  const navigate = useNavigate();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
@@ -92,34 +91,58 @@ const [openProfile, setOpenProfile] = useState(false);
             className="text-gray-500 hover:text-gray-800 focus:outline-none"
             aria-label="Close menu"
           >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            ✕
           </button>
         </div>
 
         {/* Scrollable Menu Content */}
         <div className="flex-grow overflow-y-auto p-5 space-y-8">
+          {/* ✅ Account Section */}
+          <div>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Account</h3>
+            <ul className="space-y-2 text-gray-700 text-sm">
+              <li>
+                <button
+                  onClick={() => setOpenProfile(true)}
+                  className="w-full text-left hover:text-blue-600"
+                >
+                  My Profile
+                </button>
+              </li>
+              <li>
+                <Link
+                  to="/myposts"
+                  onClick={closeMenu}
+                  className="block w-full text-left hover:text-blue-600"
+                >
+                  My Posts
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/recents"
+                  onClick={closeMenu}
+                  className="block w-full text-left hover:text-blue-600"
+                >
+                  Recents
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           {/* Navigation */}
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Navigation</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
-            
               <li><Link to="/aboutus" onClick={closeMenu} className="hover:text-blue-600">About Us</Link></li>
               <li><Link to="/nearby-shops" onClick={closeMenu} className="hover:text-blue-600">Nearby Shops</Link></li>
               <li><Link to="/New Advantages" onClick={closeMenu} className="hover:text-blue-600">New Offers</Link></li>
               <li><Link to="/Weekly Discounts" onClick={closeMenu} className="hover:text-blue-600">Want Discounts?</Link></li>
-              {/* <li><Link to="/logout" onClick={closeMenu} className="hover:text-red-600 font-medium">Sign Out</Link></li> */}
             </ul>
           </div>
 
-           <div>
+          {/* Payments */}
+          <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Payments</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
               <li><Link to="/payment-updates" onClick={closeMenu} className="hover:text-blue-600">Payment updates</Link></li>
@@ -131,7 +154,6 @@ const [openProfile, setOpenProfile] = useState(false);
               <li><Link to="/refunds" onClick={closeMenu} className="hover:text-blue-600">Refund Requests</Link></li>
             </ul>
           </div>
-
 
           {/* Categories */}
           <div>
@@ -155,6 +177,24 @@ const [openProfile, setOpenProfile] = useState(false);
           </div>
         </div>
       </div>
+
+      {/* ✅ Profile Popup Modal */}
+      {openProfile && (
+        <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50">
+          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-xl p-6 w-96 relative">
+            {/* Close Button */}
+            <button
+              onClick={() => setOpenProfile(false)}
+              className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+            >
+              ✕
+            </button>
+
+            {/* ✅ Clerk Profile Component inside Modal */}
+            <Profile />
+          </div>
+        </div>
+      )}
     </>
   );
 };
