@@ -7,6 +7,23 @@ const Form = () => {
   const [pendingProduct, setPendingProduct] = useState(null);
   const navigate = useNavigate();
   const { signOut } = useClerk();
+  const handleVideoChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const url = URL.createObjectURL(file);
+    const video = document.createElement('video');
+    video.src = url;
+    video.onloadedmetadata = () => {
+      if (video.duration > 30) {
+        alert("Video must be 30 seconds or less.");
+        e.target.value = null; // Clear the input
+        setFormData(prev => ({ ...prev, product_video: null })); // Also reset state
+      } else {
+        setFormData(prev => ({ ...prev, product_video: file }));
+      }
+    };
+  }
+};
 
   const discountOptions = [
     { value: '5', label: '5%' },
@@ -114,6 +131,7 @@ useEffect(() => {
     description: '',
     category: '',
     location: '',
+    product_video: null,
     latitude: '',
     longitude: '',
     contact_telegram: '',
@@ -246,6 +264,16 @@ if (!user) {
             className="w-full border px-4 py-2 rounded"
           />
         </div>
+        <div>
+  <label className="block text-gray-700 font-semibold mb-1">Product Video (Max 30s)</label>
+  <input
+    type="file"
+    accept="video/*"
+    onChange={handleVideoChange}
+    className="w-full border px-4 py-2 rounded"
+  />
+</div>
+
 {/* Profile Photo */}
 <div>
   <label className="block text-gray-700 font-semibold mb-1">Capela/Your photo/Company Logo</label>
