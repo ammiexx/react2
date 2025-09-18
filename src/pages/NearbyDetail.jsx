@@ -49,12 +49,24 @@ const NearbyDetail = () => {
             className="w-full h-40 object-cover rounded cursor-pointer hover:scale-105 transition-transform"
           />
         ))}
-      </div>
+      </div> {product.discount && (
+  <p className="text-gray-800">
+    💰 <strong>Discount:</strong>{" "}
+    {product.discount === "waiting" ? (
+      <span className="text-yellow-500">Waiting for discount...</span>
+    ) : product.discount === "ended" ? (
+      <span className="text-red-500">Offer ended</span>
+    ) : (
+      <span className="text-green-500">{product.discount}%</span>
+    )}
+  </p>
+)}
+
 
       {/* Description & Discount */}
       <div className="bg-gray-100 p-4 rounded">
         <p className="text-gray-800 mb-2">📝 <strong>Description:</strong> {product.description}</p>
-        {product.discount && <p className="text-gray-800">💰 <strong>Discount:</strong> {product.discount}</p>}
+       
         <div className="flex gap-4 mt-2">
           {product.contact_telegram && (
             <a
