@@ -108,6 +108,7 @@ import Wallet from "./pages/Wallet";
 import Subscriptions from "./pages/Subscriptions";
 import Refunds from "./pages/Refunds";
 import Category2 from "./pages/Category2";
+import MyProfile from "./pages/MyProfile";
 
 
 function App() {
@@ -117,6 +118,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/myprofile" element={<MyProfile/>} />
         <Route path="/services" element={<Category2/>} />
         <Route path="/payment-updates" element={<PaymentUpdates />} />
         <Route path="/pending-orders" element={<PendingOrders />} />

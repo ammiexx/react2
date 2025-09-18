@@ -267,7 +267,7 @@ if (!user) {
           />
         </div>
         <div>
-  <label className="block text-gray-700 font-semibold mb-1">Product Video (Max 30s)</label>
+  <label className="block text-gray-700 font-semibold mb-1">Video less than 30 seconds</label>
   <input
     type="file"
     accept="video/*"
@@ -335,6 +335,7 @@ if (!user) {
           <label className="block text-gray-700 font-semibold mb-1">Description</label>
           <textarea
             name="description"
+            placeholder="Write your description about your product and service..."
             rows="2"
             value={formData.description}
             onChange={handleChange}

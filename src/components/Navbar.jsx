@@ -6,7 +6,8 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { NavLink, Link } from 'react-router-dom';
 import Profile from '../pages/Profile';
 import { useScrollDirection } from './UseScrollDirection'; // ← import the hook
-import logo from '../assets/logo.png'; // adjust the path if needed
+import knash from '../assets/logo.png'; // adjust the path if needed
+
 
 
 const navigation = [
@@ -46,7 +47,7 @@ export default function Navigation() {
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
               <img
-  src={logo}
+  src={knash}
   alt="Kenash Logo"
   className="h-9 w-30 rounded-full object-cover"
 />
@@ -92,6 +93,7 @@ export default function Navigation() {
               <ChatBubbleLeftRightIcon className="h-5 w-5" />
               Chat
             </Link>
+
 
             <Profile />
           </div>

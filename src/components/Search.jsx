@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Hamburger from './Hamburger';
-
+import Profile from '../pages/Profile';
 const categories = [
   "Daily Discounts",
   "Weekly Discounts",
@@ -10,6 +10,9 @@ const categories = [
 ];
 
 const Search = () => {
+  
+const [openProfile, setOpenProfile] = useState(false);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const menuRef = useRef(null);
@@ -107,6 +110,7 @@ const Search = () => {
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Navigation</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
+            
               <li><Link to="/aboutus" onClick={closeMenu} className="hover:text-blue-600">About Us</Link></li>
               <li><Link to="/nearby-shops" onClick={closeMenu} className="hover:text-blue-600">Nearby Shops</Link></li>
               <li><Link to="/New Advantages" onClick={closeMenu} className="hover:text-blue-600">New Offers</Link></li>
