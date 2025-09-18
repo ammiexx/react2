@@ -350,7 +350,6 @@ if (!user) {
   </button>
 </div>
 
-        {/* Contact Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label className="block text-gray-700 font-semibold mb-1">Telegram Link</label>
@@ -384,8 +383,6 @@ if (!user) {
             />
           </div>
         </div>
-
-        {/* Main Product Image */}
         <div>
           <label className="block text-gray-700 font-semibold mb-1">Main Product Image</label>
           <input
