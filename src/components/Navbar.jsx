@@ -12,9 +12,8 @@ import knash from '../assets/newlogo.png'; // adjust the path if needed
 
 const navigation = [
   { name: 'Order Now', href: '/forsale' },
-  { name: 'Nearby shops', href: '/nearby-shops' },
-  { name: 'Items For Sale', href: '/' },
-  { name: 'Services', href: '/services' },
+  // { name: 'Items For Sale', href: '/' },
+ 
 
 ];
 function classNames(...classes) {
@@ -77,13 +76,29 @@ export default function Navigation() {
 
           {/* RIGHT: Profile + Actions */}
           <div className="flex items-center gap-2">
+            <Link
+              to="/services"
+              className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
+            >
+              Shops
+            </Link>
+            <Link
+              to="/"
+              className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
+            >
+              Services
+            </Link>
            
-
+ <Link
+              to="/nearby-shops"
+              className="flex items-center gap-2 px-2 py-1  text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
+            >
+              Nearby Shops
+            </Link>
             <Link
               to="/form"
-              className="flex items-center gap-2 px-2 py-1 border border-white text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
+              className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm"
             >
-              <PlusCircleIcon className="h-5 w-5" />
               Add Post
             </Link>
             

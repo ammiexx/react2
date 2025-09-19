@@ -71,26 +71,25 @@ const FloatingChat = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="relative flex w-full">
-          <input
-            type="text"
-            placeholder="Write the item you want to buy/sell & phone number..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="flex-1 text-white placeholder-gray-400 bg-black rounded-full px-6 py-4 pr-16 border border-white focus:outline-none focus:ring-2 focus:ring-gray-700 shadow-inner w-full"
+      <form onSubmit={handleSubmit} className="relative flex w-full">
+  <textarea
+    placeholder="Write the item you want to buy/sell & phone number..."
+    value={message}
+    onChange={(e) => setMessage(e.target.value)}
+    rows={1} // start with one row
+    className="flex-1 text-white placeholder-gray-400 bg-black rounded-full px-6 py-3 pr-16 border border-white focus:outline-none focus:ring-2 focus:ring-gray-700 shadow-inner w-full resize-none overflow-y-auto"
+  />
 
-          />
+  <button
+    type="submit"
+    disabled={loading || !message.trim()}
+    className={`absolute right-3 top-1/2 transform -translate-y-1/2 rounded-full p-2 transition disabled:opacity-50
+      ${message.trim() ? "bg-white text-black hover:bg-gray-200" : "bg-gray-700 text-gray-400 hover:bg-gray-600"}`}
+  >
+    {loading ? <span className="animate-pulse">...</span> : <ArrowRight size={20} />}
+  </button>
+</form>
 
-          <button
-  type="submit"
-  disabled={loading || !message.trim()}
-  className={`absolute right-3 top-1/2 transform -translate-y-1/2 rounded-full p-2 transition disabled:opacity-50
-    ${message.trim() ? "bg-white text-black hover:bg-gray-200" : "bg-gray-700 text-gray-400 hover:bg-gray-600"}`}
->
-  {loading ? <span className="animate-pulse">...</span> : <ArrowRight size={20} />}
-</button>
-
-        </form>
       </div>
     </div>
   );
