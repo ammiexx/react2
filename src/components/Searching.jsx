@@ -36,7 +36,7 @@ const Searching = ({ products, onFilter }) => {
       <div className="relative flex w-full">
         <input
           type="text"
-          placeholder="Search"
+          placeholder="Search items to buy "
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
