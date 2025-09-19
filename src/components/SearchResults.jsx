@@ -52,7 +52,7 @@ const SearchResults = () => {
         // Skeleton loader
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[...Array(6)].map((_, idx) => (
-            <div key={idx} className="p-4 border rounded shadow">
+            <div key={idx} className="p-4">
               <SkeletonBox className="h-32 w-full mb-2" />
               <SkeletonBox className="h-5 w-3/4 mb-1" />
               <SkeletonBox className="h-4 w-1/2 mb-1" />
@@ -63,26 +63,32 @@ const SearchResults = () => {
       ) : filtered.length === 0 ? (
         <p>No products found.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {filtered.map((item) => (
-            <div
-              key={item.id}
-              className="p-4 border rounded shadow hover:shadow-md cursor-pointer"
-              onClick={() =>
-                navigate("/nearby-detail", { state: { product: item } })
-              }
-            >
-              <img
-                src={item.product_photo || "https://via.placeholder.com/150"}
-                alt={item.product_name}
-                className="h-32 w-full object-cover rounded"
-              />
-              <h3 className="mt-2 font-semibold">{item.product_name}</h3>
-              <p className="text-gray-600">{item.company_name}</p>
-              <p className="text-sm text-gray-500">📍 {item.location}</p>
-            </div>
-          ))}
-        </div>
+   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  {filtered.map((item) => (
+    <div
+      key={item.id}
+      className="p-4 rounded shadow hover:shadow-md cursor-pointer" 
+      onClick={() =>
+        navigate("/nearby-detail", { state: { product: item } })
+      }
+    >
+      <img
+        src={item.product_photo || "https://via.placeholder.com/150"}
+        alt={item.product_name}
+        className="h-32 w-full object-cover rounded"
+      />
+      <h3 className="mt-2 font-semibold">{item.product_name}</h3>
+      <p className="text-gray-600">{item.company_name}</p>
+      <p className="text-sm text-gray-500">📍 {item.location}</p>
+      
+      {/* View More text */}
+      <p className="mt-2 font-bold text-blue-600 hover:underline">
+        View More...
+      </p>
+    </div>
+  ))}
+</div>
+
       )}
     </div>
   );
