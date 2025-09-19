@@ -71,10 +71,10 @@ export default function Navigation({ products, onFilter }) {
 
           {/* RIGHT: Other Actions */}
           <div className="flex items-center gap-2">
-            <Link to="/services" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
+            <Link to="/" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
               Shops
             </Link>
-            <Link to="/" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
+            <Link to="/services" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
               Services
             </Link>
             <Link to="/nearby-shops" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
