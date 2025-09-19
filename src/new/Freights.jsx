@@ -9,47 +9,36 @@ const Nearby = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (pos) => {
-          const lat = pos.coords.latitude;
-          const lng = pos.coords.longitude;
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          `https://djanagobackend-5.onrender.com/api/products/`
+        );
+        if (!response.ok) throw new Error('Failed to fetch products');
+        let data = await response.json();
 
-          try {
-            const response = await fetch(
-              `https://djanagobackend-5.onrender.com/api/products/`
-            );
-            if (!response.ok) throw new Error('No internet connection nearby shops');
-            let data = await response.json();
+        // Filter for category "freight" and verified = true
+        data = data.filter(
+          (item) => item.category === 'freight' && item.verified === true
+        );
 
-            // Filter for category "fashions" and verified = true
-            data = data.filter(
-              (item) => item.category === 'freight' && item.verified === true
-            );
+        setProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-            setProducts(data);
-          } catch (err) {
-            setError(err.message);
-          } finally {
-            setLoading(false);
-          }
-        },
-        () => {
-          setError('❌ Location access denied. Showing no products.');
-          setLoading(false);
-        }
-      );
-    } else {
-      setError('❌ Geolocation not supported by this browser.');
-      setLoading(false);
-    }
+    fetchProducts();
   }, []);
 
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
- <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
-            🎯 <strong>Move more with confidence — shop reliable freight & cargo solutions 🚛📦</strong> 👀 💡
-          </label>
+      <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
+        🎯 <strong>Move more with confidence — shop reliable freight & cargo solutions 🚛📦</strong> 👀 💡
+      </label>
+
       <section className="mb-12 w-full">
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
@@ -78,22 +67,17 @@ const Nearby = () => {
                   className="w-16 h-16 rounded-full object-cover border border-gray-300"
                 />
 
-                {/* Info Row: stretch across screen */}
+                {/* Info Row */}
                 <div className="flex-1 flex justify-between items-center px-4">
                   <div className="flex flex-wrap items-center gap-6">
                     <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
                     <p className="text-sm font-semibold">{item.company_name}</p>
                     <p className="text-sm text-gray-600">📍 {item.location}</p>
-                    {item.contact_phone && (
-                      <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
-                    )}
-                                     <span>
-  <p className="text-sm font-semibold">
-    {item.discount === "ended" ? " Discount Ended" : `${item.discount}% off`}
-  </p>
-</span>
+                    {item.contact_phone && <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>}
+                    <p className="text-sm font-semibold text-green-600">
+                      {item.discount === 'ended' ? 'Discount Ended' : `${item.discount}% off`}
+                    </p>
                   </div>
-                  {/* Arrow aligned to far right */}
                   <div className="text-blue-600 font-bold">&gt;</div>
                 </div>
               </div>

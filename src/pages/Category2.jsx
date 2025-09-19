@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
-import Chat2 from './Chat2';
 const categories = [
   {
     name: 'Food & Beverages',
@@ -193,9 +192,6 @@ useEffect(() => {
         </div>
       </div>
       <div>
-      <section className="mt-1">
-  <Chat2 />
-        </section>
       </div>
     </div>
   );

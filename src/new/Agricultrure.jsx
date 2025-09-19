@@ -13,7 +13,7 @@ const Nearby = () => {
         const response = await fetch(
           `https://djanagobackend-5.onrender.com/api/products/`
         );
-        if (!response.ok) throw new Error('Failed to fetch products');
+        if (!response.ok) throw new Error('❌ Failed to fetch agricultural products');
         let data = await response.json();
 
         // Filter for category "agriculture" and verified = true
@@ -35,13 +35,14 @@ const Nearby = () => {
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-        Your agricultural product essentials!
+        🌾 Your agricultural product essentials!
       </h2>
 
       <section className="mb-12 w-full">
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
         {loading ? (
+          // Skeleton loader
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
             {[...Array(6)].map((_, idx) => (
               <div
@@ -79,13 +80,28 @@ const Nearby = () => {
                 {/* Info Row */}
                 <div className="flex-1 flex justify-between items-center px-4">
                   <div className="flex flex-wrap items-center gap-6">
-                    <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
+                    <p className="text-sm font-semibold text-blue-500">
+                      {item.product_name}
+                    </p>
                     <p className="text-sm font-semibold">{item.company_name}</p>
                     <p className="text-sm text-gray-600">📍 {item.location}</p>
                     {item.contact_phone && (
-                      <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
+                      <p className="text-sm text-gray-600">
+                        📞 {item.contact_phone}
+                      </p>
+                    )}
+                    {/* Discount info */}
+                    {item.discount && (
+                      <span>
+                        <p className="text-sm font-semibold">
+                          {item.discount === 'ended'
+                            ? ' Discount Ended'
+                            : `${item.discount}% off`}
+                        </p>
+                      </span>
                     )}
                   </div>
+                  {/* Arrow aligned to far right */}
                   <div className="text-blue-600 font-bold">&gt;</div>
                 </div>
               </div>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BackButton from '../components/BackButton';
 
 const Nearby = () => {
   const [products, setProducts] = useState([]);
@@ -9,52 +8,41 @@ const Nearby = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        async (pos) => {
-          const lat = pos.coords.latitude;
-          const lng = pos.coords.longitude;
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(
+          `https://djanagobackend-5.onrender.com/api/products/`
+        );
+        if (!response.ok) throw new Error('❌ Failed to fetch admins');
+        let data = await response.json();
 
-          try {
-            const response = await fetch(
-              `https://djanagobackend-5.onrender.com/api/products/`
-            );
-            if (!response.ok) throw new Error('No internet connection');
-            let data = await response.json();
+        // Filter for category "admin" and verified = true
+        data = data.filter(
+          (item) => item.category === 'admin' && item.verified === true
+        );
 
-            // Filter for category "admin" and verified = true
-            data = data.filter(
-              (item) => item.category === 'admin' && item.verified === true
-            );
+        setProducts(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-            setProducts(data);
-          } catch (err) {
-            setError(err.message);
-          } finally {
-            setLoading(false);
-          }
-        },
-        () => {
-          setError('❌ Location access denied. Showing no products.');
-          setLoading(false);
-        }
-      );
-    } else {
-      setError('❌ Geolocation not supported by this browser.');
-      setLoading(false);
-    }
+    fetchProducts();
   }, []);
 
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-        Your favorite admin supporters!
+        🙌 Your favorite admin supporters!
       </h2>
 
       <section className="mb-12 w-full">
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
         {loading ? (
+          // Skeleton loader
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
             {[...Array(6)].map((_, idx) => (
               <div
@@ -71,7 +59,7 @@ const Nearby = () => {
             ))}
           </div>
         ) : products.length === 0 ? (
-          <p className="text-center text-gray-500">No admin Found.</p>
+          <p className="text-center text-gray-500">No admins found.</p>
         ) : (
           <div className="flex flex-col gap-4 w-full">
             {products.map((item) => (
@@ -98,15 +86,20 @@ const Nearby = () => {
                     <p className="text-sm font-semibold">{item.company_name}</p>
                     <p className="text-sm text-gray-600">📍 {item.location}</p>
                     {item.contact_phone && (
-                      <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
-                    )}
-                    <span>
-                      <p className="text-sm font-semibold">
-                        {item.discount === 'ended'
-                          ? ' Discount Ended'
-                          : `${item.discount}% off`}
+                      <p className="text-sm text-gray-600">
+                        📞 {item.contact_phone}
                       </p>
-                    </span>
+                    )}
+                    {/* Discount info */}
+                    {item.discount && (
+                      <span>
+                        <p className="text-sm font-semibold">
+                          {item.discount === 'ended'
+                            ? ' Discount Ended'
+                            : `${item.discount}% off`}
+                        </p>
+                      </span>
+                    )}
                   </div>
                   {/* Arrow aligned to far right */}
                   <div className="text-blue-600 font-bold">&gt;</div>

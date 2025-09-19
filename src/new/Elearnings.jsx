@@ -16,7 +16,7 @@ const Nearby = () => {
         if (!response.ok) throw new Error('Failed to fetch products');
         let data = await response.json();
 
-        // Filter for category "beauty" and verified = true
+        // Filter for category "elearning" and verified = true
         data = data.filter(
           (item) => item.category === 'elearning' && item.verified === true
         );
@@ -35,7 +35,7 @@ const Nearby = () => {
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-        Elearning and online cources!
+        🎓 Elearning & Online Courses — Empower your knowledge from anywhere! 🌐📚
       </h2>
 
       <section className="mb-12 w-full">
@@ -51,7 +51,7 @@ const Nearby = () => {
           </div>
         ) : products.length === 0 ? (
           <p className="text-center text-gray-500">
-            No fashiions found.
+            No elearning courses found.
           </p>
         ) : (
           <div className="flex flex-col gap-4 w-full">
@@ -73,13 +73,11 @@ const Nearby = () => {
                 {/* Info Row */}
                 <div className="flex-1 flex justify-between items-center px-4">
                   <div className="flex flex-wrap items-center gap-6">
-                   <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
+                    <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
                     <p className="text-sm font-semibold">{item.company_name}</p>
                     <p className="text-sm text-gray-600">📍 {item.location}</p>
                     {item.contact_phone && (
-                      <p className="text-sm text-gray-600">
-                        📞 {item.contact_phone}
-                      </p>
+                      <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
                     )}
                   </div>
                   <div className="text-blue-600 font-bold">&gt;</div>

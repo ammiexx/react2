@@ -16,7 +16,7 @@ const Nearby = () => {
         if (!response.ok) throw new Error('Failed to fetch products');
         let data = await response.json();
 
-        // Filter for category "beauty" and verified = true
+        // Filter for category "fashions" and verified = true
         data = data.filter(
           (item) => item.category === 'fashions' && item.verified === true
         );
@@ -35,8 +35,9 @@ const Nearby = () => {
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
-            🎯 <strong>Unlock next-gen experiences — shop the ultimate gaming essentials 🎧💥</strong> 👀 💡
-          </label>
+        🎯 <strong>Unlock next-gen experiences — shop the ultimate gaming essentials 🎧💥</strong> 👀 💡
+      </label>
+
       <section className="mb-12 w-full">
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
@@ -50,7 +51,7 @@ const Nearby = () => {
           </div>
         ) : products.length === 0 ? (
           <p className="text-center text-gray-500">
-            No gamming essentials found.
+            No gaming essentials found.
           </p>
         ) : (
           <div className="flex flex-col gap-4 w-full">
@@ -76,9 +77,7 @@ const Nearby = () => {
                     <p className="text-sm font-semibold">{item.company_name}</p>
                     <p className="text-sm text-gray-600">📍 {item.location}</p>
                     {item.contact_phone && (
-                      <p className="text-sm text-gray-600">
-                        📞 {item.contact_phone}
-                      </p>
+                      <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
                     )}
                   </div>
                   <div className="text-blue-600 font-bold">&gt;</div>

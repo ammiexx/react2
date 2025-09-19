@@ -16,7 +16,7 @@ const Nearby = () => {
         if (!response.ok) throw new Error('Failed to fetch products');
         let data = await response.json();
 
-        // Filter for category "beauty" and verified = true
+        // Filter for category "fitness" and verified = true
         data = data.filter(
           (item) => item.category === 'fitness' && item.verified === true
         );
@@ -34,9 +34,9 @@ const Nearby = () => {
 
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
-       <label htmlFor="search" className="text-xl font-bold mb-3 text-center">
-            🎯 <strong>Power your world smarter — reliable, sustainable  at your service ⚡🌍</strong> 👀 💡
-          </label>
+      <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+        💪 Stay fit, stay strong — discover top fitness services and products today 🏋️‍♂️✨
+      </h2>
 
       <section className="mb-12 w-full">
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
@@ -51,7 +51,7 @@ const Nearby = () => {
           </div>
         ) : products.length === 0 ? (
           <p className="text-center text-gray-500">
-            No fashiions found.
+            No fitness services found.
           </p>
         ) : (
           <div className="flex flex-col gap-4 w-full">
@@ -73,13 +73,11 @@ const Nearby = () => {
                 {/* Info Row */}
                 <div className="flex-1 flex justify-between items-center px-4">
                   <div className="flex flex-wrap items-center gap-6">
-                   <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
+                    <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
                     <p className="text-sm font-semibold">{item.company_name}</p>
                     <p className="text-sm text-gray-600">📍 {item.location}</p>
                     {item.contact_phone && (
-                      <p className="text-sm text-gray-600">
-                        📞 {item.contact_phone}
-                      </p>
+                      <p className="text-sm text-gray-600">📞 {item.contact_phone}</p>
                     )}
                   </div>
                   <div className="text-blue-600 font-bold">&gt;</div>
