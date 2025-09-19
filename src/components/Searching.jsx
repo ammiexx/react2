@@ -1,115 +1,47 @@
-import React from 'react';
-import Searching from './Searching';
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { NavLink, Link } from 'react-router-dom';
-import { useScrollDirection } from './UseScrollDirection';
-import knash from '../assets/newlogo.png'; 
+import React, { useState } from "react";
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
-const navigation = [
-  { name: 'Order Now', href: '/forsale' },
-];
+const Searching = ({ products, onFilter }) => {
+  const [searchTerm, setSearchTerm] = useState("");
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
 
-export default function Navigation({ products, onFilter }) {
-  const scrollDirection = useScrollDirection();
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(value.toLowerCase())
+    );
+
+    onFilter(filtered);
+  };
+
+  const handleSearchClick = () => {
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    onFilter(filtered);
+  };
 
   return (
-    <>
-      {/* Mobile Search - always visible on small screens */}
-      <div className="sm:hidden fixed top-12 left-0 right-0 z-50 px-2 bg-gray-800">
-        <Searching products={products} onFilter={onFilter} />
+    <div className="w-full max-w-full sm:max-w-md mx-auto px-2">
+      <div className="relative flex w-full">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={handleChange}
+          className="flex-1 text-black placeholder-gray-500 bg-white rounded-full px-4 py-1.5 pr-12 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-sm w-full transition"
+        />
+        <button
+          type="button"
+          onClick={handleSearchClick}
+          className="absolute right-1 top-1/2 transform -translate-y-1/2 rounded-r-full bg-gray-200 hover:bg-gray-300 p-2 transition"
+        >
+          <MagnifyingGlassIcon className="h-5 w-5 text-gray-700" />
+        </button>
       </div>
-
-      {/* Main Navigation */}
-      <Disclosure
-        as="nav"
-        className={classNames(
-          'sticky top-0 z-40 transition-transform duration-300 bg-gray-800',
-          scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0'
-        )}
-      >
-        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <div className="flex h-12 items-center justify-between">
-
-            {/* LEFT: Hamburger + Logo */}
-            <div className="flex items-center">
-              <div className="sm:hidden mr-2">
-                <DisclosureButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white">
-                  <span className="sr-only">Open main menu</span>
-                  <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
-                  <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
-                </DisclosureButton>
-              </div>
-
-              <Link to="/" className="flex items-center space-x-2">
-                <img src={knash} alt="Kenash Logo" className="h-12 w-30 rounded-full object-cover" />
-              </Link>
-            </div>
-
-            {/* Desktop Navigation + Search */}
-            <div className="hidden sm:flex sm:items-center sm:space-x-2 flex-1">
-              {navigation.map((item) => (
-                <NavLink
-                  key={item.name}
-                  to={item.href}
-                  className={({ isActive }) =>
-                    classNames(
-                      isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white',
-                      'rounded-md px-3 py-2 text-sm font-medium'
-                    )
-                  }
-                >
-                  {item.name}
-                </NavLink>
-              ))}
-
-              {/* Desktop Search */}
-              <Searching products={products} onFilter={onFilter} />
-            </div>
-
-            {/* RIGHT: Actions */}
-            <div className="flex items-center gap-2">
-              <Link to="/services" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
-                Shops
-              </Link>
-              <Link to="/" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
-                Services
-              </Link>
-              <Link to="/nearby-shops" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
-                Nearby Shops
-              </Link>
-              <Link to="/form" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
-                Add Post
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Dropdown */}
-        <DisclosurePanel className="sm:hidden mt-12"> {/* Push down to avoid overlap */}
-          <div className="space-y-1 px-2 pt-2 pb-3">
-            {navigation.map((item) => (
-              <DisclosureButton
-                key={item.name}
-                as={NavLink}
-                to={item.href}
-                className={({ isActive }) =>
-                  classNames(
-                    isActive ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-white/5 hover:text-white',
-                    'block rounded-md px-3 py-2 text-base font-medium'
-                  )
-                }
-              >
-                {item.name}
-              </DisclosureButton>
-            ))}
-          </div>
-        </DisclosurePanel>
-      </Disclosure>
-    </>
+    </div>
   );
-}
+};
+
+export default Searching;
