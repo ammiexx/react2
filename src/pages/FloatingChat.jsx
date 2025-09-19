@@ -57,10 +57,7 @@ const FloatingChat = () => {
   return (
   <div className="fixed bottom-4 right-4 z-50 w-[95%] max-w-xs sm:max-w-sm">
     <div className="bg-white rounded-xl shadow-lg p-3 text-center max-h-[300px] overflow-auto">
-      <h2 className="text-md font-bold text-gray-800 mb-2">
-        💬 What do you want to Buy/Sell?
-      </h2>
-
+     
       {submitted && (
         <div className="bg-green-100 text-green-800 text-sm font-medium p-2 rounded mb-2 border border-green-300">
           ✅ Message submitted!
@@ -76,7 +73,7 @@ const FloatingChat = () => {
       <form onSubmit={handleSubmit} className="space-y-2">
         <textarea
           rows="1"
-          placeholder="Your item to buy/sell…"
+          placeholder="Write the item you want to buy/sell…"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className="w-full h-12 border border-gray-300 rounded-md px-2 py-1 text-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
