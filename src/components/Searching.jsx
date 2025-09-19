@@ -27,7 +27,7 @@ const Searching = ({ products, onFilter }) => {
       <div className="relative flex w-full">
         <input
           type="text"
-          placeholder="Search products..."
+          placeholder="Search"
           value={searchTerm}
           onChange={handleChange}
           className="flex-1 text-black placeholder-gray-500 bg-white rounded-full px-4 py-1.5 pr-12 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-sm w-full transition"
