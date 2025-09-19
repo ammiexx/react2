@@ -251,15 +251,7 @@ const Forsale = () => {
 
       {/* Search Bar */}
       {/* Search Bar */}
-<div className="flex justify-center mb-6">
-  <input
-    type="text"
-    placeholder="Search products..."
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-    className="w-full sm:w-1/2 md:w-1/3 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-  />
-</div>
+
 
 
       {/* Products Grid */}
