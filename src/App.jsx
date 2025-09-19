@@ -111,6 +111,7 @@ import Category2 from "./pages/Category2";
 import MyProfile from "./pages/MyProfile";
 import FloatingChat from "./pages/FloatingChat";
 import Searching from "./components/Searching";
+import SearchResults from "./components/SearchResults";
 
 
 function App() {
@@ -120,6 +121,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/search" element={<SearchResults />} />
         <Route path="/myprofile" element={<MyProfile/>} />
         <Route path="/services" element={<Category2/>} />
         <Route path="/payment-updates" element={<PaymentUpdates />} />

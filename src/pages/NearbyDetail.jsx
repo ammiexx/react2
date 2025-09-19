@@ -58,23 +58,32 @@ const NearbyDetail = () => {
       )}
 
       {/* Product Images */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
-        {[product.product_photo, ...(product.images || []).map((img) => img.image)].map(
-          (src, idx) => (
-            <div key={idx} className="relative w-full h-40">
-              {!imgLoaded[idx] && <SkeletonBox className="w-full h-40" />}
-              <img
-                src={src}
-                alt={`Product ${idx}`}
-                className={`w-full h-40 object-cover rounded cursor-pointer hover:scale-105 transition-transform transition-opacity duration-500 ${
-                  imgLoaded[idx] ? "opacity-100" : "opacity-0 absolute"
-                }`}
-                onLoad={() => setImgLoaded((prev) => ({ ...prev, [idx]: true }))}
-              />
-            </div>
-          )
+      {/* Product Images */}
+<div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
+  {[product.product_photo, ...(product.images || []).map((img) => img.image)].map(
+    (src, idx) => (
+      <div key={idx} className="relative w-full h-40">
+        {!imgLoaded[idx] && <SkeletonBox className="w-full h-40" />}
+        <img
+          src={src}
+          alt={`Product ${idx}`}
+          className={`w-full h-40 object-cover rounded cursor-pointer hover:scale-105 transition-transform transition-opacity duration-500 ${
+            imgLoaded[idx] ? "opacity-100" : "opacity-0 absolute"
+          }`}
+          onLoad={() => setImgLoaded((prev) => ({ ...prev, [idx]: true }))}
+        />
+
+        {/* Price Overlay */}
+        {product.price && (
+          <span className="absolute bottom-2 right-2 bg-green-600 text-white text-sm font-semibold px-2 py-1 rounded-lg shadow">
+            ${product.price}
+          </span>
         )}
       </div>
+    )
+  )}
+</div>
+
 
       {/* Discount */}
       {product.discount && (
