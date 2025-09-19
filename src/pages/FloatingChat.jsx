@@ -74,7 +74,7 @@ const FloatingChat = () => {
         <form onSubmit={handleSubmit} className="relative flex w-full">
           <input
             type="text"
-            placeholder="Write item you to buy/see & phone number..."
+            placeholder="Write the item you want to buy/sell & phone number..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             className="flex-1 text-white placeholder-gray-400 bg-black rounded-full px-6 py-4 pr-16 border border-white focus:outline-none focus:ring-2 focus:ring-gray-700 shadow-inner w-full"
