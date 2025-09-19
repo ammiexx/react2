@@ -83,7 +83,7 @@ const SearchResults = () => {
       
       {/* View More text */}
       <p className="mt-2 font-bold text-blue-600 hover:underline">
-        View More...
+        see more...
       </p>
     </div>
   ))}
