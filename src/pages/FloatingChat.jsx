@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "@clerk/clerk-react";
+import { ArrowRight } from "lucide-react";
 
 const MESSAGE_API = "https://djanagobackend-5.onrender.com/api/cat";
 
@@ -19,14 +20,14 @@ const FloatingChat = () => {
 
   useEffect(() => {
     if (error) {
-      const timer = setTimeout(() => setError(""), 2000);
+      const timer = setTimeout(() => setError(""), 3000);
       return () => clearTimeout(timer);
     }
   }, [error]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!message.trim()) return alert("Please enter a message.");
+    if (!message.trim()) return;
 
     const userName = isSignedIn
       ? user.fullName || user.username || user.primaryEmailAddress?.emailAddress
@@ -55,41 +56,44 @@ const FloatingChat = () => {
   };
 
   return (
-  <div className="fixed bottom-4 right-4 z-50 w-[95%] max-w-xs sm:max-w-sm">
-    <div className="bg-white rounded-xl shadow-lg p-3 text-center max-h-[300px] overflow-auto">
-     
-      {submitted && (
-        <div className="bg-green-100 text-green-800 text-sm font-medium p-2 rounded mb-2 border border-green-300">
-          ✅ Message submitted!
-        </div>
-      )}
+    <div className="fixed bottom-3 left-0 right-0 z-50 w-full max-w-full flex justify-center">
 
-      {error && (
-        <div className="bg-red-100 text-red-700 text-sm p-2 rounded mb-2 border border-red-300">
-          {error}
-        </div>
-      )}
+     <div className="w-full max-w-lg bg-black rounded-t-xl shadow-lg border-t border-gray-800">
 
-      <form onSubmit={handleSubmit} className="space-y-2">
-        <textarea
-          rows="1"
-          placeholder="Write the item you want to buy/sell…"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          className="w-full h-12 border border-gray-300 rounded-md px-2 py-1 text-sm shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-        />
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-blue-600 text-white py-1 rounded-md font-semibold hover:bg-blue-700 transition text-sm"
-        >
-          {loading ? "Sending..." : "Send"}
-        </button>
-      </form>
+        {submitted && (
+          <div className="bg-green-800 text-green-100 text-sm font-medium p-2 rounded mb-2 text-center">
+            ✅ Message submitted!
+          </div>
+        )}
+        {error && (
+          <div className="bg-red-800 text-red-100 text-sm p-2 rounded mb-2 text-center">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="relative flex w-full">
+          <input
+            type="text"
+            placeholder="Write item you to buy/see & phone number..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="flex-1 text-white placeholder-gray-400 bg-black rounded-full px-6 py-4 pr-16 border border-white focus:outline-none focus:ring-2 focus:ring-gray-700 shadow-inner w-full"
+
+          />
+
+          <button
+  type="submit"
+  disabled={loading || !message.trim()}
+  className={`absolute right-3 top-1/2 transform -translate-y-1/2 rounded-full p-2 transition disabled:opacity-50
+    ${message.trim() ? "bg-white text-black hover:bg-gray-200" : "bg-gray-700 text-gray-400 hover:bg-gray-600"}`}
+>
+  {loading ? <span className="animate-pulse">...</span> : <ArrowRight size={20} />}
+</button>
+
+        </form>
+      </div>
     </div>
-  </div>
-);
-
+  );
 };
 
 export default FloatingChat;
