@@ -32,25 +32,27 @@ const Searching = ({ products, onFilter }) => {
   };
 
   return (
-    <div className="w-full max-w-full sm:max-w-md mx-auto px-2">
-      <div className="relative flex w-full">
-        <input
-          type="text"
-          placeholder="Search items to buy "
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="flex-1 text-black placeholder-gray-500 bg-white rounded-full px-4 py-1.5 pr-12 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-sm w-full transition"
-        />
-        <button
-          type="button"
-          onClick={handleSearch}
-          className="absolute right-1 top-1/2 transform -translate-y-1/2 rounded-r-full bg-gray-200 hover:bg-gray-300 p-2 transition"
-        >
-          <MagnifyingGlassIcon className="h-5 w-5 text-gray-700" />
-        </button>
-      </div>
-    </div>
+  <div className="w-80">
+
+  <div className="relative flex w-full">
+    <input
+      type="text"
+      placeholder="Search items to buy"
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      onKeyDown={handleKeyDown}
+      className="flex-1 h-8 text-sm text-black placeholder-gray-500 bg-white rounded-full px-3 pr-10 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-sm"
+    />
+    <button
+      type="button"
+      onClick={handleSearch}
+      className="absolute right-1 top-1/2 transform -translate-y-1/2 rounded-full bg-gray-200 hover:bg-gray-300 p-1.5"
+    >
+      <MagnifyingGlassIcon className="h-4 w-4 text-gray-700" />
+    </button>
+  </div>
+</div>
+
   );
 };
 

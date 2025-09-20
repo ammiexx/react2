@@ -46,7 +46,7 @@ export default function Navigation({ products, onFilter }) {
           </div>
 
           {/* CENTER: Order Now + Search */}
-          <div className="hidden sm:flex items-center gap-4">
+          <div className="hidden sm:flex items-center gap-1">
             {navigation.map((item) => (
               <NavLink
                 key={item.name}
@@ -65,9 +65,9 @@ export default function Navigation({ products, onFilter }) {
             ))}
 
             {/* Search bar next to button */}
-            <div className="w-64">
-              <Searching products={products} onFilter={onFilter} />
-            </div>
+            <div className="ml-2 w-48">
+    <Searching products={products} onFilter={onFilter} />
+  </div>
           </div>
 
           {/* RIGHT: Other Actions */}
