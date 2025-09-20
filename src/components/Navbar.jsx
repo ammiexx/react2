@@ -15,7 +15,7 @@ const navigation = [
 ];
 
 // Links always visible on mobile next to search icon
-const mobileVisibleLinks = ['Nearby Shops', 'Add Post'];
+const mobileVisibleLinks = ['Nearby Shops','Services'];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
