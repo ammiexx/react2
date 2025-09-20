@@ -4,7 +4,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react
 import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { NavLink, Link } from 'react-router-dom';
 import { useScrollDirection } from './UseScrollDirection';
-import knash from '../assets/newlogo.png'; // adjust path
+import knash from '../assets/lgo.png'; // adjust path
 
 const navigation = [
   { name: 'Order Now', href: '/forsale' },
@@ -52,7 +52,7 @@ export default function Navigation({ products, onFilter }) {
             </div>
 
             <Link to="/" className="flex items-center">
-              <img src={knash} alt="Kenash Logo" className="h-12 w-30 rounded-full object-cover" />
+              <img src={knash} alt="Kenash Logo" className="h-10 w-23 rounded-full object-cover" />
             </Link>
           </div>
 
