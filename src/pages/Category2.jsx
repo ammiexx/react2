@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
+import { Heading6 } from 'lucide-react';
 
 const categories = [
   {
@@ -153,8 +154,8 @@ const Category2 = () => {
     >
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
-        <div className="text-center mt-4 mb-4">
-          <h2 className="text-base font-medium text-gray-700">Explore More Products</h2>
+        <div className="text-center mt-1 mb-1">
+          <h6 className="text-base font-medium text-gray-700">Explore More Products</h6>
         </div>
 
         {/* Category Cards */}
