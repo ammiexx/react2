@@ -8,6 +8,7 @@ import knash from '../assets/newlogo.png'; // adjust path
 
 const navigation = [
   { name: 'Order Now', href: '/forsale' },
+ 
   // add more nav items if needed
 ];
 
