@@ -145,9 +145,10 @@ const Category1 = () => {
                   alt={cat.name}
                   className="w-full h-40 object-cover rounded-md transform transition-transform duration-300 hover:scale-105"
                 />
-                <div className="px-2">
-                  <h3 className="text-md font-semibold text-gray-800">{cat.name}</h3>
-                </div>
+                <div className="px-2 py-0">
+  <h6 className="text-md font-semibold text-gray-800 m-0">{cat.name}</h6>
+</div>
+
               </div>
             ))
           ) : (

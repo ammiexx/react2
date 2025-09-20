@@ -56,15 +56,15 @@ const FloatingChat = () => {
   };
 
   return (
-    <div className="fixed bottom-3 left-0 right-0 z-50 w-full max-w-full flex justify-center">
+    <div className="fixed bottom-1 left-0 right-0 z-50 w-full max-w-full flex justify-center">
       <div className="w-full max-w-lg bg-white rounded-t-xl shadow-lg border-t border-gray-200">
         {submitted && (
-          <div className="bg-green-100 text-green-700 text-sm font-medium p-2 rounded mb-2 text-center">
+          <div className="bg-green-100 text-green-700 text-sm font-medium p-2 rounded mb-1 text-center">
             ✅ Message submitted!
           </div>
         )}
         {error && (
-          <div className="bg-red-100 text-red-700 text-sm p-2 rounded mb-2 text-center">
+          <div className="bg-red-100 text-red-700 text-sm p-2 rounded mb-1 text-center">
             {error}
           </div>
         )}
@@ -75,7 +75,7 @@ const FloatingChat = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={1}
-            className="flex-1 text-black placeholder-gray-500 bg-white rounded-full px-6 py-3 pr-16 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-inner w-full resize-none overflow-y-auto"
+            className="flex-1 text-black placeholder-gray-500 bg-white rounded-full px-6 py-1 pr-16 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-inner w-full resize-none overflow-y-auto"
           />
 
           <button
