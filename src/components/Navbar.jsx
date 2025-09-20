@@ -8,8 +8,10 @@ import knash from '../assets/newlogo.png'; // adjust path
 
 const navigation = [
   { name: 'Order Now', href: '/forsale' },
- 
-  // add more nav items if needed
+  { name: 'Shops', href: '/' },
+  { name: 'Services', href: '/services' },
+  { name: 'Nearby Shops', href: '/nearby-shops' },
+  { name: 'Add Post', href: '/form' },
 ];
 
 function classNames(...classes) {
@@ -28,11 +30,11 @@ export default function Navigation({ products, onFilter }) {
       )}
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="flex h-12 items-center justify-between">
+        <div className="flex h-12 items-center justify-between gap-2">
 
           {/* LEFT: Hamburger + Logo */}
-          <div className="flex items-center">
-            <div className="sm:hidden mr-2">
+          <div className="flex items-center gap-2">
+            <div className="sm:hidden">
               <DisclosureButton className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white">
                 <span className="sr-only">Open main menu</span>
                 <Bars3Icon aria-hidden="true" className="block size-6 group-data-open:hidden" />
@@ -40,13 +42,22 @@ export default function Navigation({ products, onFilter }) {
               </DisclosureButton>
             </div>
 
-            <Link to="/" className="flex items-center space-x-2">
-              <img src={knash} alt="Kenash Logo" className="h-12 w-30 rounded-full object-cover" />
+            <Link to="/" className="flex items-center">
+              <img
+                src={knash}
+                alt="Kenash Logo"
+                className="h-12 w-11 rounded-full object-cover"
+              />
             </Link>
           </div>
 
-          {/* CENTER: Order Now + Search */}
-          <div className="hidden sm:flex items-center gap-1">
+          {/* CENTER: Search bar always visible */}
+          <div className="flex-1 px-2">
+            <Searching products={products} onFilter={onFilter} />
+          </div>
+
+          {/* RIGHT: Links (only on larger screens) */}
+          <div className="hidden sm:flex items-center gap-2">
             {navigation.map((item) => (
               <NavLink
                 key={item.name}
@@ -63,27 +74,6 @@ export default function Navigation({ products, onFilter }) {
                 {item.name}
               </NavLink>
             ))}
-
-            {/* Search bar next to button */}
-            <div className="ml-2 w-48">
-    <Searching products={products} onFilter={onFilter} />
-  </div>
-          </div>
-
-          {/* RIGHT: Other Actions */}
-          <div className="flex items-center gap-2">
-            <Link to="/" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
-              Shops
-            </Link>
-            <Link to="/services" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
-              Services
-            </Link>
-            <Link to="/nearby-shops" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
-              Nearby Shops
-            </Link>
-            <Link to="/form" className="flex items-center gap-2 px-2 py-1 text-white rounded-md hover:bg-white hover:text-gray-800 transition duration-200 text-sm">
-              Add Post
-            </Link>
           </div>
         </div>
       </div>
