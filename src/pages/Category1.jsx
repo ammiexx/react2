@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import QuickLinks from './QuickLinks';
 import { useTheme } from './ThemeContext';
-import Chat2 from './Chat2';
 import Nearby from './Nearby';
+
 const categories = [
   {
     name: 'Fashions',
@@ -91,67 +90,49 @@ const categories = [
     image_url: 'https://plus.unsplash.com/premium_photo-1682145489846-081721a9b272?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJpbnRpbmclMjBhbmQlMjBwdWJsaXNoaW5nfGVufDB8fDB8fHww',
     path: '/Printing_And_Publishing',
   },
-  
 ];
-
 
 const Category1 = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
-
-  const [firstRowIndex, setFirstRowIndex] = useState(0);
-  
+  const { theme } = useTheme();
 
   const filteredCategories = categories.filter(cat =>
     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-const {theme} = useTheme();
-console.log(theme);
-const [displayText, setDisplayText] = useState('');
-const message = "Welcome to our shopping marketplace";
 
-useEffect(() => {
-  let i = 0;
-  const interval = setInterval(() => {
-    if (i < message.length) {
-      setDisplayText((prev) => prev + message.charAt(i));
-      i++;
-    } else {
-      clearInterval(interval);
-    }
-  }, 100); // typing speed in ms
-  return () => clearInterval(interval);
-}, []);
+  const [displayText, setDisplayText] = useState('');
+  const message = "Welcome to our shopping marketplace";
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < message.length) {
+        setDisplayText((prev) => prev + message.charAt(i));
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 100);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    
-  
-<div
-  className="min-h-screen p-6"
-  style={{
-    backgroundColor: theme === "dark" ? "black" : "white",
-    color: theme === "dark" ? "white" : "black", // <- fix here
-  }}
->
-    
-    <div className="max-w-6xl mx-auto" >
-      
-      {/* Explore More Products Heading */}
-<div className="text-center mt-4 mb-2">
- {/* <section className="p-6 bg-gray-100 text-black">
-  <p>Your nearby shops</p>
-  <Nearby />
-</section> */}
-
-
-  <h2 className="text-base font-medium text-gray-700">Explore More Products</h2>
-</div>
-
-
+    <div
+      className="min-h-screen p-6"
+      style={{
+        backgroundColor: theme === "dark" ? "black" : "white",
+        color: theme === "dark" ? "white" : "black",
+      }}
+    >
+      <div className="max-w-6xl mx-auto">
+        {/* Heading */}
+        <div className="text-center mt-4 mb-4">
+          <h2 className="text-base font-medium text-gray-700">Explore More Products</h2>
+        </div>
 
         {/* Category Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-
           {filteredCategories.length > 0 ? (
             filteredCategories.map((cat, idx) => (
               <div
@@ -162,10 +143,10 @@ useEffect(() => {
                 <img
                   src={`${cat.image_url}?w=400&h=300&auto=format`}
                   alt={cat.name}
-                  className="w-full h-40 object-cover rounded-md mb-2 transform transition-transform duration-300 hover:scale-105"
+                  className="w-full h-40 object-cover rounded-md transform transition-transform duration-300 hover:scale-105"
                 />
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-gray-800">{cat.name}</h3>
+                <div className="px-2">
+                  <h3 className="text-md font-semibold text-gray-800">{cat.name}</h3>
                 </div>
               </div>
             ))
@@ -174,11 +155,6 @@ useEffect(() => {
           )}
         </div>
       </div>
-      {/* <div>
-      <section className="mt-1">
-  <Chat2 />
-        </section>
-      </div> */}
     </div>
   );
 };
