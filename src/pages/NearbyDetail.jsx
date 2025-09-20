@@ -117,95 +117,63 @@ const NearbyDetail = () => {
       )}
 
       {/* Product Images */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-6">
-        {[product.product_photo, ...(product.images || []).map((img) => img.image)].map(
-          (src, idx) => (
-            <div key={idx} className="relative w-full bg-white rounded shadow p-2">
-              {!imgLoaded[idx] && <SkeletonBox className="w-full h-40" />}
-              <img
-                src={src}
-                alt={`Product ${idx}`}
-                className={`w-full h-40 object-cover rounded transition-opacity duration-500 ${
-                  imgLoaded[idx] ? "opacity-100" : "opacity-0 absolute"
-                }`}
-                onLoad={() => setImgLoaded((prev) => ({ ...prev, [idx]: true }))}
-              />
+      {/* Product Images */}
+<div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
+  {[product.product_photo, ...(product.images || []).map((img) => img.image)].map(
+    (src, idx) => (
+      <div key={idx} className="relative w-full bg-white rounded shadow p-2">
+        {!imgLoaded[idx] && <SkeletonBox className="w-full h-40" />}
+        <img
+          src={src}
+          alt={`Product ${idx}`}
+          className={`w-full h-40 object-cover rounded transition-opacity duration-500 ${
+            imgLoaded[idx] ? "opacity-100" : "opacity-0 absolute"
+          }`}
+          onLoad={() => setImgLoaded((prev) => ({ ...prev, [idx]: true }))}
+        />
 
-              {/* Price Overlay */}
-              {product.price && (
-                <span className="absolute bottom-2 right-2 bg-green-600 text-white text-sm font-semibold px-2 py-1 rounded-lg shadow">
-                  ${product.price}
-                </span>
-              )}
-
-              {/* Like / Comment / Share */}
-              <div className="flex justify-around items-center text-sm text-gray-700 mt-2 border-t pt-1">
-                {/* Like Button */}
-                <button
-                  onClick={() => handleLike(idx)}
-                  className={`flex items-center gap-1 ${
-                    imgLoaded[`likes-${idx}`]?.includes(
-                      user?.primaryEmailAddress?.emailAddress
-                    )
-                      ? "text-blue-600 font-semibold"
-                      : "hover:text-blue-600"
-                  }`}
-                >
-                  <ThumbsUp size={16} /> {imgLoaded[`likes-${idx}`]?.length || 0}
-                </button>
-
-                {/* Comment Button */}
-    {/* Comment Button */}
-<button
-  onClick={() => navigate("/comments", { state: { product } })}
-  className="p-1 rounded-full hover:bg-gray-200 transition"
->
-  <MessageCircle size={18} />
-</button>
-
-
-
-                {/* Share Button */}
-                <button
-                  onClick={() => handleShare(idx)}
-                  className="hover:text-green-600 flex items-center gap-1"
-                >
-                  <Share2 size={16} /> 
-                </button>
-              </div>
-
-              {/* Comment Box */}
-              {imgLoaded[`showComment-${idx}`] && (
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    placeholder="Write a comment..."
-                    className="w-full border rounded px-2 py-1 text-xs"
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        const val = e.target.value.trim();
-                        if (!val) return;
-                        handleComment(idx, val);
-                        e.target.value = "";
-                      }
-                    }}
-                  />
-                  <div className="space-y-1 mt-1 max-h-32 overflow-y-auto">
-                    {(imgLoaded[`comments-${idx}`] || []).map((c, i) => (
-                      <p
-                        key={i}
-                        className="text-xs text-gray-700 bg-gray-100 px-2 py-1 rounded"
-                      >
-                        <span className="font-semibold">{c.email}:</span> {c.text}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )
+        {/* Price Overlay */}
+        {product.price && (
+          <span className="absolute bottom-2 right-2 bg-green-600 text-white text-sm font-semibold px-2 py-1 rounded-lg shadow">
+            ${product.price}
+          </span>
         )}
       </div>
+    )
+  )}
+</div>
+
+{/* Single Like / Comment / Share Row for the whole post */}
+<div className="flex justify-around items-center text-gray-700 mb-4 border-t pt-2">
+  {/* Like */}
+  <button
+    onClick={() => handleLike("post")}
+    className={`flex items-center gap-1 ${
+      imgLoaded["likes-post"]?.includes(user?.primaryEmailAddress?.emailAddress)
+        ? "text-blue-600 font-semibold"
+        : "hover:text-blue-600"
+    }`}
+  >
+    <ThumbsUp size={16} /> {imgLoaded["likes-post"]?.length || 0}
+  </button>
+
+  {/* Comment */}
+  <button
+    onClick={() => navigate("/comments", { state: { product } })}
+    className="p-1 rounded-full hover:bg-gray-200 transition"
+  >
+    <MessageCircle size={18} />
+  </button>
+
+  {/* Share */}
+  <button
+    onClick={() => handleShare("post")}
+    className="flex items-center gap-1 hover:text-green-600"
+  >
+    <Share2 size={16} />
+  </button>
+</div>
+
 
       {/* Discount */}
       {product.discount && (
