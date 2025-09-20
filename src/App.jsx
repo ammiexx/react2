@@ -112,6 +112,7 @@ import MyProfile from "./pages/MyProfile";
 import FloatingChat from "./pages/FloatingChat";
 import Searching from "./components/Searching";
 import SearchResults from "./components/SearchResults";
+import CommentsPage from "./pages/CommentsPage";
 
 
 function App() {
@@ -121,6 +122,7 @@ function App() {
       <Navbar />
       <Search/>
       <Routes>
+        <Route path="/comments" element={<CommentsPage />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/myprofile" element={<MyProfile/>} />
         <Route path="/services" element={<Category2/>} />
