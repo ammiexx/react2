@@ -33,30 +33,34 @@ const Nearby = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-[calc(100vh-150px)] max-w-[1200px] mx-auto py-10 px-5 w-full">
+    <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
         💪 Stay fit, stay strong — discover top fitness services and products today 🏋️‍♂️✨
       </h2>
 
-      <section className="flex flex-col w-full flex-grow">
+      <section className="mb-12 w-full">
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
         {loading ? (
-          <div className="flex justify-center items-center py-20 flex-grow">
-            <div className="flex space-x-2">
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce"></span>
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-150"></span>
-              <span className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-300"></span>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+            {[...Array(6)].map((_, idx) => (
+              <div
+                key={idx}
+                className="animate-pulse bg-gray-200 rounded-lg h-32 flex items-center justify-start p-4"
+              >
+                <div className="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
+                <div className="flex-1 space-y-2">
+                  <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+                  <div className="h-3 bg-gray-300 rounded w-1/2"></div>
+                  <div className="h-3 bg-gray-300 rounded w-1/3"></div>
+                </div>
+              </div>
+            ))}
           </div>
         ) : products.length === 0 ? (
-          <div className="flex flex-col justify-center items-center flex-grow">
-            <p className="text-center text-gray-500 text-lg">
-              No fitness services found.
-            </p>
-          </div>
+          <p className="text-center text-gray-500">No fitness services found.</p>
         ) : (
-          <div className="flex flex-col gap-4 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
             {products.map((item) => (
               <div
                 key={item.id}
@@ -65,14 +69,16 @@ const Nearby = () => {
                   navigate('/nearby-detail', { state: { product: item } })
                 }
               >
+                {/* Profile photo */}
                 <img
                   src={item.profile_photo || 'https://via.placeholder.com/60'}
                   alt={`${item.first_name} ${item.last_name}`}
                   className="w-16 h-16 rounded-full object-cover border border-gray-300"
                 />
 
+                {/* Info Row */}
                 <div className="flex-1 flex justify-between items-center px-4">
-                  <div className="flex flex-wrap items-center gap-6">
+                  <div className="flex flex-col gap-1">
                     <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
                     <p className="text-sm font-semibold">{item.company_name}</p>
                     <p className="text-sm text-gray-600">📍 {item.location}</p>
