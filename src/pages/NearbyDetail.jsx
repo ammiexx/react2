@@ -11,74 +11,86 @@ const SkeletonBox = ({ className }) => (
 const NearbyDetail = () => {
   const { state } = useLocation();
   const product = state?.product;
+  const { isSignedIn, user } = useUser();
+
+  const [imgLoaded, setImgLoaded] = useState({});
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [likes, setLikes] = useState([]);
+  const [shares, setShares] = useState(0);
+  const [showCommentInput, setShowCommentInput] = useState(false);
 
   if (!product) return <p className="text-center mt-20">Product not found</p>;
 
-  const { isSignedIn, user } = useUser();
-  const [imgLoaded, setImgLoaded] = useState({});
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  // Fetch existing likes, comments, shares from API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`/api/products/${product.id}/`); // Assuming your DRF endpoint
+        const data = await res.json();
+        setComments(data.comments || []);
+        setLikes(data.likes || []);
+        setShares(data.shares || 0);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchData();
+  }, [product.id]);
 
-  // Comments
-  const [showCommentInput, setShowCommentInput] = useState(false);
-  const [newComment, setNewComment] = useState("");
-  const [comments, setComments] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  // Likes
-  const handleLike = () => {
-    if (!isSignedIn) {
-      alert("Please sign in to like this post.");
-      return;
-    }
+  // Handle like
+  const handleLike = async () => {
+    if (!isSignedIn) return alert("Please sign in to like this post.");
     const email = user.primaryEmailAddress?.emailAddress;
-    setImgLoaded((prev) => {
-      const likes = prev.likes || [];
-      const hasLiked = likes.includes(email);
-      return {
-        ...prev,
-        likes: hasLiked ? likes.filter((e) => e !== email) : [...likes, email],
-      };
+    let updatedLikes = likes.includes(email)
+      ? likes.filter((e) => e !== email)
+      : [...likes, email];
+
+    setLikes(updatedLikes);
+
+    // Send to backend
+    await fetch(`/api/products/${product.id}/like/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
     });
   };
 
-  // Share
-  const handleShare = () => {
-    if (!isSignedIn) {
-      alert("Please sign in to share.");
-      return;
-    }
-    const shareUrl = `${window.location.origin}/nearby-detail?id=${product.id}`;
-    navigator.clipboard.writeText(shareUrl);
+  // Handle share
+  const handleShare = async () => {
+    if (!isSignedIn) return alert("Please sign in to share.");
+    navigator.clipboard.writeText(`${window.location.origin}/nearby-detail?id=${product.id}`);
     alert("Link copied!");
+    
+    setShares((prev) => prev + 1);
+    await fetch(`/api/products/${product.id}/share/`, { method: "POST" });
   };
 
-  // Submit comment
+  // Handle comment
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!isSignedIn || !newComment.trim()) return;
 
-    try {
-      setLoading(true);
-      const name = `${user.firstName || ""} ${user.lastName || ""}`.trim() || "Anonymous";
+    const commentData = {
+      name: `${user.firstName || ""} ${user.lastName || ""}`.trim() || "Anonymous",
+      text: newComment.trim(),
+    };
 
-      setComments((prev) => [
-        ...prev,
-        { name, text: newComment.trim(), timestamp: new Date().toISOString() },
-      ]);
+    setComments((prev) => [...prev, commentData]);
+    setNewComment("");
+    setSubmitted(true);
 
-      setNewComment("");
-      setSubmitted(true);
-      setError("");
-      setTimeout(() => setSubmitted(false), 2000);
-    } catch (err) {
-      console.error(err);
-      setError("There was a problem submitting your comment.");
-      setSubmitted(false);
-    } finally {
-      setLoading(false);
-    }
+    // Send to backend
+    await fetch(`/api/products/${product.id}/comment/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(commentData),
+    });
+
+    setTimeout(() => setSubmitted(false), 2000);
   };
 
   return (
@@ -106,10 +118,9 @@ const NearbyDetail = () => {
         </div>
       </div>
 
-      {/* If Video exists */}
-      {product.product_video ? (
+      {/* Product Video */}
+      {product.product_video && (
         <div className="mb-6">
-          {/* Product Video */}
           <div className="relative w-full max-h-80 mb-2">
             {!videoLoaded && <SkeletonBox className="w-full h-80" />}
             <video
@@ -122,45 +133,19 @@ const NearbyDetail = () => {
             />
           </div>
 
-          {/* Action buttons for Video */}
+          {/* Action buttons */}
           <div className="flex justify-around items-center text-gray-700 mb-4 border-t pt-2">
-            {/* Like */}
-            <button
-              onClick={handleLike}
-              className={`flex items-center gap-1 ${
-                imgLoaded.likes?.includes(user?.primaryEmailAddress?.emailAddress)
-                  ? "text-blue-600 font-semibold"
-                  : "hover:text-blue-600"
-              }`}
-            >
-              <ThumbsUp size={16} /> {imgLoaded.likes?.length || 0}
-            </button>
+           
 
-            {/* Comment */}
-            <button
-              onClick={() => setShowCommentInput((prev) => !prev)}
-              className="flex items-center gap-1 p-1 rounded-full hover:bg-gray-200 transition"
-            >
-              <MessageCircle size={18} /> {comments.length}
-            </button>
-
-            {/* Share */}
-            <button onClick={handleShare} className="flex items-center gap-1 hover:text-green-600">
-              <Share2 size={16} /> Share
-            </button>
+           
           </div>
 
-          {/* Inline Comment Box for Video */}
+          {/* Comment input */}
           {showCommentInput && (
             <div className="w-full bg-white rounded-t-xl shadow-lg border-t border-gray-200 mb-4 p-2">
               {submitted && (
                 <div className="bg-green-100 text-green-700 text-sm font-medium p-2 rounded mb-1 text-center">
                   ✅ Comment submitted!
-                </div>
-              )}
-              {error && (
-                <div className="bg-red-100 text-red-700 text-sm p-2 rounded mb-1 text-center">
-                  {error}
                 </div>
               )}
               <form onSubmit={handleCommentSubmit} className="relative flex w-full mb-2">
@@ -178,7 +163,6 @@ const NearbyDetail = () => {
                     }
                   }}
                 />
-
                 <button
                   type="submit"
                   disabled={loading || !newComment.trim()}
@@ -192,7 +176,7 @@ const NearbyDetail = () => {
                 </button>
               </form>
 
-              {/* Comments List */}
+              {/* Comments list */}
               <div className="space-y-2 max-h-48 overflow-y-auto">
                 {comments.map((c, idx) => (
                   <div key={idx} className="bg-gray-100 p-2 rounded shadow">
@@ -203,33 +187,31 @@ const NearbyDetail = () => {
             </div>
           )}
         </div>
-      ) : (
-        <>
-          {/* Product Images (if no video) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
-            {[product.product_photo, ...(product.images || []).map((img) => img.image)].map(
-              (src, idx) => (
-                <div key={idx} className="relative w-full bg-white rounded shadow p-2">
-                  {!imgLoaded[idx] && <SkeletonBox className="w-full h-40" />}
-                  <img
-                    src={src}
-                    alt={`Product ${idx}`}
-                    className={`w-full h-40 object-cover rounded transition-opacity duration-500 ${
-                      imgLoaded[idx] ? "opacity-100" : "opacity-0 absolute"
-                    }`}
-                    onLoad={() => setImgLoaded((prev) => ({ ...prev, [idx]: true }))}
-                  />
-                  {product.price && (
-                    <span className="absolute bottom-2 right-2 bg-green-600 text-white text-sm font-semibold px-2 py-1 rounded-lg shadow">
-                      ${product.price}
-                    </span>
-                  )}
-                </div>
-              )
-            )}
-          </div>
-        </>
       )}
+
+      {/* Product Images */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
+        {[product.product_photo, ...(product.images || []).map((img) => img.image)].map(
+          (src, idx) => (
+            <div key={idx} className="relative w-full bg-white rounded shadow p-2">
+              {!imgLoaded[idx] && <SkeletonBox className="w-full h-40" />}
+              <img
+                src={src}
+                alt={`Product ${idx}`}
+                className={`w-full h-40 object-cover rounded transition-opacity duration-500 ${
+                  imgLoaded[idx] ? "opacity-100" : "opacity-0 absolute"
+                }`}
+                onLoad={() => setImgLoaded((prev) => ({ ...prev, [idx]: true }))}
+              />
+              {product.price && (
+                <span className="absolute bottom-2 right-2 bg-green-600 text-white text-sm font-semibold px-2 py-1 rounded-lg shadow">
+                  ${product.price}
+                </span>
+              )}
+            </div>
+          )
+        )}
+      </div>
 
       {/* Discount */}
       {product.discount && (
