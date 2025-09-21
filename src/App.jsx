@@ -117,10 +117,12 @@ import CommentsPage from "./pages/CommentsPage";
 
 function App() {
   return (
-    <div >
+     
     <Router>
+      <div className="flex flex-col min-h-screen"> {/* ✅ main layout wrapper */}
       <Navbar />
       <Search/>
+      <main className="flex-grow">
       <Routes>
         <Route path="/comments" element={<CommentsPage />} />
         <Route path="/search" element={<SearchResults />} />
@@ -225,10 +227,12 @@ function App() {
         <Route path="/aboutus" element={<AboutUs/>} />
         <Route path="/chat" element={<Chat2/>} />
       </Routes>
+      </main>
       <FloatingChat/>
       <Footer />
+      </div>
     </Router>
-    </div>
+    
   );
 }
 export default App;
