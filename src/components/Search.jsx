@@ -83,17 +83,19 @@ const Search = () => {
           menuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between h-16 px-5 border-b border-gray-200 bg-gray-100">
-          <h2 className="text-lg font-semibold text-gray-800">Menu</h2>
-          <button
-            onClick={closeMenu}
-            className="text-gray-500 hover:text-gray-800 focus:outline-none"
-            aria-label="Close menu"
-          >
-            ✕
-          </button>
-        </div>
+       {/* Header */}
+<div className="flex items-center justify-between h-16 px-5 border-b border-gray-200 bg-gray-100">
+  <h2 className="text-lg font-semibold text-gray-900">Menu</h2>
+
+  <button
+    onClick={closeMenu}
+    className="w-8 h-8 flex items-center justify-center border border-gray-400 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition"
+    aria-label="Close menu"
+  >
+    ✕
+  </button>
+</div>
+
 
         {/* Scrollable Menu Content */}
         <div className="flex-grow overflow-y-auto p-5 space-y-8">
