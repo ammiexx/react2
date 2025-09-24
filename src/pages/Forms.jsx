@@ -40,7 +40,7 @@ const Form = () => {
 
  const categoryOptions = [
   { value: "Men Shoes", label: "Fashions" },
-  { value: "Men Clothes", label: "Electronics" },
+  { value: "fashion Clothes", label: "Electronics" },
   { value: "homes", label: "Homes" },
   { value: "carbrands", label: "Car Brands" },
   { value: "foods", label: "Foods & Beverages" },
@@ -77,7 +77,7 @@ const Form = () => {
   { value: "human", label: "Human Resources & Staffing" },
   { value: "energy", label: "Energy & Utilities" },
   { value: "gaming", label: "Gaming & eSports" },
-  { value: "tatue", label: "Tattoo And Piercing Studios" }, // backend typo
+  { value: "tatue", label: "Female fashions" }, // backend typo
   { value: "nursing", label: "Elderly Care & Nursing Services" },
   { value: "rental", label: "Rental Services" },
   { value: "decor", label: "Event Planning & Decor" },

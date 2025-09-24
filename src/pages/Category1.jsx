@@ -4,6 +4,7 @@ import { useTheme } from './ThemeContext';
 import Nearby from './Nearby';
 // fashion was replaced by Men Shoes
 // electronic-materials was replaced by Men Clothes
+//tatue and piercing changed to womens clothes
 const categories = [
   {
     name: 'Men Shoes',
@@ -11,7 +12,7 @@ const categories = [
     path: '/fashions',
   },
   {
-    name: ' Men Clothes',
+    name: ' Men Fashions',
     image_url: 'https://images.unsplash.com/photo-1549037173-e3b717902c57?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWVuJTIwY2xvdGhlc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/electronic-materials',
   },
@@ -31,10 +32,14 @@ const categories = [
     image_url: 'https://plus.unsplash.com/premium_photo-1670950413316-f501402ef0a7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnVybml0dXJlJTIwYW5kJTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D',
     path: '/Furniture_And_Interior_design',
   },
- 
+  {
+    name: 'Women Fashions',
+    image_url: 'https://plus.unsplash.com/premium_photo-1665454931497-1355f79c5f4d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dGF0dWVzfGVufDB8fDB8fHww',
+    path: '/Tatue_And_Piercing_Studios',
+  },
   {
     name: 'Fitness essentials',
-    image_url: 'https://images.unsplash.com/photo-1600026453239-1d702d3e5e19?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJvZHklMjBidWlsZGluZ3xlbnwwfHwwfHx8MA%3D%3D',
+    image_url: 'https://images.unsplash.com/photo-1563387061879-ba036b025216?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Z3ltJTIwbWF0ZXJpYWxzfGVufDB8fDB8fHww',
     path: '/fitness_And_Sports_servies',
   },
   
