@@ -27,6 +27,14 @@ const categories = [
     path: '/Babies_And_Kids_Products',
   },
   {
+    name: 'Furniture & Interior Design materials',
+    image_url: 'https://plus.unsplash.com/premium_photo-1670950413316-f501402ef0a7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnVybml0dXJlJTIwYW5kJTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D',
+    path: '/Furniture_And_Interior_design',
+  },
+ 
+ 
+  
+  {
     name: 'Homes',
     image_url: 'https://plus.unsplash.com/premium_photo-1680300960892-bd11b59b469b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aG9tZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/homes',
@@ -80,13 +88,6 @@ const categories = [
     image_url: 'https://plus.unsplash.com/premium_photo-1684783848153-970ef340c10b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dmlkZW8lMjBhbmQlMjBwaG90b2dyYXBoaWVzfGVufDB8fDB8fHww',
     path: '/Video_And_Photography',
   },
-  {
-    name: 'Furniture & Interior Design materials',
-    image_url: 'https://plus.unsplash.com/premium_photo-1670950413316-f501402ef0a7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnVybml0dXJlJTIwYW5kJTIwaW50ZXJpb3IlMjBkZXNpZ258ZW58MHx8MHx8fDA%3D',
-    path: '/Furniture_And_Interior_design',
-  },
- 
- 
   
   {
     name: 'Printing & Publishing materials',
