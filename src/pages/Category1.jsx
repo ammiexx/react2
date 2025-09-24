@@ -5,6 +5,7 @@ import Nearby from './Nearby';
 // fashion was replaced by Men Shoes
 // electronic-materials was replaced by Men Clothes
 //tatue and piercing changed to womens clothes
+//book and sanitation deleted
 const categories = [
   {
     name: 'Men Shoes',
@@ -69,23 +70,10 @@ const categories = [
   
   {
     name: 'Farm products',
-    image_url: 'https://plus.unsplash.com/premium_photo-1667860234741-0e500d0e5ba5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YWdyaWN1bHR1cmUlMjBhbmQlMjBsaXZlc3RvY2slMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D',
+    image_url: 'https://plus.unsplash.com/premium_photo-1700695638084-5f46e469e223?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZmFybSUyMHByb2R1Y3RzfGVufDB8fDB8fHww',
     path: '/Agriculture_And_Livestock',
   },
-  {
-    name: 'Book',
-    image_url: 'https://plus.unsplash.com/premium_photo-1733864775808-c7c1ccbe5422?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3MlMjBhbmQlMjBzdGF0aW9uYXJpZXN8ZW58MHx8MHx8fDA%3D',
-    path: '/Books_And_Stationaries',
-  },
  
- 
- 
- 
-  {
-    name: 'Sanitation essentials',
-    image_url: 'https://images.unsplash.com/photo-1579141132886-e86d831034ac?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2xlYW5pbmclMjBhbmQlMjBzYW5pdGF0aW9uJTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D',
-    path: '/Cleaning_And_Sanitation_Services',
-  },
  
   {
     name: 'Art & Handicrafts',
