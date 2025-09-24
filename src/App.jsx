@@ -190,7 +190,7 @@ function App() {
         <Route path="/Security_Services" element={<Security />} />
         <Route path="/SoftWare_And_IT_Services" element={<Software/>} />
         <Route path="/Stationary_And_Office_Supplies" element={<Stationary />} />
-        <Route path="/Tatue_And_Piercing_Studios" element={<Tatue/>} />
+        <Route path="/women_fashions" element={<Tatue/>} />
         <Route path="/Telecome_Services" element={<Telecom />} />
         <Route path="/Waste_Management_And_Recycling" element={<Waste />} />
         <Route path="/Virtual_Events_And_Webbinaries" element={<Virtual/>} />
@@ -199,9 +199,9 @@ function App() {
         <Route path="/discounts" element={<Category1 />} />
         <Route path="/cancel" element={<Cancel />} />
         <Route path="/" element={<Category1 />} />
-        <Route path="/fashions" element={<Home/>} />
+        <Route path="/men_shoes" element={<Home/>} />
           <Route path="/homes" element={<RealHome/>} />
-          <Route path="/electronic-materials" element={<Electronicmaterial/>} />
+          <Route path="/men_fashions" element={<Electronicmaterial/>} />
           <Route path="/car-brands" element={<CarHome/>} />
           <Route path="/food-and-beverages" element={<FoodHome/>} />
           <Route path="/home-appliances" element={<ApplianceHome/>} />

@@ -10,12 +10,12 @@ const categories = [
   {
     name: 'Men Shoes',
     image_url: 'https://plus.unsplash.com/premium_photo-1723575625757-0fe66372fd0a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bWVuJTIwc2hvZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
-    path: '/fashions',
+    path: '/men_shoes',
   },
   {
     name: ' Men Fashions',
     image_url: 'https://images.unsplash.com/photo-1549037173-e3b717902c57?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWVuJTIwY2xvdGhlc3xlbnwwfHwwfHx8MA%3D%3D',
-    path: '/electronic-materials',
+    path: '/men_fashions',
   },
    {
     name: 'Wathes & Jewelries',
@@ -36,7 +36,7 @@ const categories = [
   {
     name: 'Women Fashions',
     image_url: 'https://plus.unsplash.com/premium_photo-1665454931497-1355f79c5f4d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dGF0dWVzfGVufDB8fDB8fHww',
-    path: '/Tatue_And_Piercing_Studios',
+    path: '/women_fashions',
   },
   {
     name: 'Fitness essentials',
@@ -87,7 +87,7 @@ const categories = [
   },
   
   {
-    name: 'Printing & Publishing materials',
+    name: 'Printing & Publishing essentials',
     image_url: 'https://plus.unsplash.com/premium_photo-1682145489846-081721a9b272?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJpbnRpbmclMjBhbmQlMjBwdWJsaXNoaW5nfGVufDB8fDB8fHww',
     path: '/Printing_And_Publishing',
   },

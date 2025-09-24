@@ -35,7 +35,7 @@ const Nearby = () => {
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-        Your modernized fashions!
+        Your modernized shoes for men!
       </h2>
 
       <section className="mb-12 w-full">
@@ -59,7 +59,7 @@ const Nearby = () => {
           </div>
         ) : products.length === 0 ? (
           <p className="text-center text-gray-500">
-            No fashions found.
+            No shoes found.
           </p>
         ) : (
           <div className="flex flex-col gap-4 w-full">
