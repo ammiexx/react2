@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
 import Nearby from './Nearby';
-
+// fashion was replaced by Men Shoes
+// electronic-materials was replaced by Men Clothes
 const categories = [
   {
     name: 'Men Shoes',
@@ -13,6 +14,11 @@ const categories = [
     name: ' Men Clothes',
     image_url: 'https://images.unsplash.com/photo-1549037173-e3b717902c57?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWVuJTIwY2xvdGhlc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/electronic-materials',
+  },
+   {
+    name: 'Baby & Kids esentials',
+    image_url: 'https://images.unsplash.com/photo-1744424751775-63a0bae32a21?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJhYnklMjBhbmQlMjBraWRzJTIwcHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D',
+    path: '/Babies_And_Kids_Products',
   },
   {
     name: 'Homes',
@@ -55,11 +61,7 @@ const categories = [
     path: '/Jewelries',
   },
   
-  {
-    name: 'Baby & Kids Products',
-    image_url: 'https://images.unsplash.com/photo-1744424751775-63a0bae32a21?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJhYnklMjBhbmQlMjBraWRzJTIwcHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D',
-    path: '/Babies_And_Kids_Products',
-  },
+ 
  
   {
     name: 'Cleaning And Sanitation materials',
