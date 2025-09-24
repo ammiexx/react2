@@ -78,11 +78,7 @@ const categories = [
   },
  
  
-  {
-    name: 'Fitness & Sports Services',
-    image_url: 'https://images.unsplash.com/photo-1600026453239-1d702d3e5e19?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJvZHklMjBidWlsZGluZ3xlbnwwfHwwfHx8MA%3D%3D',
-    path: '/fitness_And_Sports_servies',
-  },
+ 
   {
     name: 'Software & IT Services',
     image_url: 'https://images.unsplash.com/photo-1598316560453-0246d4611979?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8c29mdHdhcmUlMjBkZXZlbG9wZXJzfGVufDB8fDB8fHww',
