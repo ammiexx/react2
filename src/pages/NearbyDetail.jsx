@@ -1,104 +1,134 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { ThumbsUp, MessageCircle, Share2, ArrowRight } from "lucide-react";
 import { useUser } from "@clerk/clerk-react";
+import { ArrowRight } from "lucide-react";
 
 // Skeleton loader
 const SkeletonBox = ({ className }) => (
   <div className={`bg-gray-200 animate-pulse rounded ${className}`} />
 );
 
+const MESSAGE_API = "https://djanagobackend-5.onrender.com/api/cat";
+
+// ------------------- FloatingChat -------------------
+const FloatingChat = ({ isImageZoomed }) => {
+  const { isSignedIn, user } = useUser();
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => setSubmitted(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitted]);
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(""), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!message.trim()) return;
+
+    const userName = isSignedIn
+      ? user.fullName || user.username || user.primaryEmailAddress?.emailAddress
+      : "Anonymous";
+
+    try {
+      setLoading(true);
+      const response = await fetch(MESSAGE_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: userName, message }),
+      });
+
+      if (!response.ok) throw new Error(await response.text());
+
+      setSubmitted(true);
+      setMessage("");
+      setError("");
+    } catch (err) {
+      console.error(err);
+      setError("There was a problem submitting your message.");
+      setSubmitted(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Option A: Completely hide FloatingChat when image is zoomed
+  if (isImageZoomed) return null;
+
+  return (
+    <div className="fixed bottom-1 left-0 right-0 z-50 w-full max-w-full flex justify-center">
+      <div className="w-full max-w-lg bg-white rounded-t-xl shadow-lg border-t border-gray-200">
+        {submitted && (
+          <div className="bg-green-100 text-green-700 text-sm font-medium p-2 rounded mb-1 text-center">
+            ✅ Message submitted!
+          </div>
+        )}
+        {error && (
+          <div className="bg-red-100 text-red-700 text-sm p-2 rounded mb-1 text-center">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="relative flex w-full">
+          <textarea
+            placeholder="Write the item you want to buy/sell & phone number..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            rows={1}
+            className="flex-1 text-black placeholder-gray-500 bg-white rounded-full px-6 py-1 pr-16 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-inner w-full resize-none overflow-y-auto"
+          />
+
+          <button
+            type="submit"
+            disabled={loading || !message.trim()}
+            className={`absolute right-3 top-1/2 transform -translate-y-1/2 rounded-full p-2 transition disabled:opacity-50
+              ${
+                message.trim()
+                  ? "bg-black text-white hover:bg-gray-800"
+                  : "bg-gray-300 text-gray-500"
+              }`}
+          >
+            {loading ? (
+              <span className="animate-pulse">...</span>
+            ) : (
+              <ArrowRight size={20} />
+            )}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+// ------------------- NearbyDetail -------------------
 const NearbyDetail = () => {
   const { state } = useLocation();
   const product = state?.product;
-  const { isSignedIn, user } = useUser();
 
   const [imgLoaded, setImgLoaded] = useState({});
   const [videoLoaded, setVideoLoaded] = useState(false);
-  const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [likes, setLikes] = useState([]);
-  const [shares, setShares] = useState(0);
-  const [showCommentInput, setShowCommentInput] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   if (!product) return <p className="text-center mt-20">Product not found</p>;
-
-  // Fetch existing likes, comments, shares from API
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(`/api/products/${product.id}/`); // Assuming your DRF endpoint
-        const data = await res.json();
-        setComments(data.comments || []);
-        setLikes(data.likes || []);
-        setShares(data.shares || 0);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchData();
-  }, [product.id]);
-
-  // Handle like
-  const handleLike = async () => {
-    if (!isSignedIn) return alert("Please sign in to like this post.");
-    const email = user.primaryEmailAddress?.emailAddress;
-    let updatedLikes = likes.includes(email)
-      ? likes.filter((e) => e !== email)
-      : [...likes, email];
-
-    setLikes(updatedLikes);
-
-    // Send to backend
-    await fetch(`/api/products/${product.id}/like/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
-  };
-
-  // Handle share
-  const handleShare = async () => {
-    if (!isSignedIn) return alert("Please sign in to share.");
-    navigator.clipboard.writeText(`${window.location.origin}/nearby-detail?id=${product.id}`);
-    alert("Link copied!");
-    
-    setShares((prev) => prev + 1);
-    await fetch(`/api/products/${product.id}/share/`, { method: "POST" });
-  };
-
-  // Handle comment
-  const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-    if (!isSignedIn || !newComment.trim()) return;
-
-    const commentData = {
-      name: `${user.firstName || ""} ${user.lastName || ""}`.trim() || "Anonymous",
-      text: newComment.trim(),
-    };
-
-    setComments((prev) => [...prev, commentData]);
-    setNewComment("");
-    setSubmitted(true);
-
-    // Send to backend
-    await fetch(`/api/products/${product.id}/comment/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(commentData),
-    });
-
-    setTimeout(() => setSubmitted(false), 2000);
-  };
 
   return (
     <div className="max-w-4xl mx-auto p-6">
       {/* Product Details */}
       <div className="flex items-center gap-4 bg-white p-4 rounded shadow mb-4">
         <div className="relative w-16 h-16">
-          {!imgLoaded.profile && <SkeletonBox className="w-16 h-16 rounded-full" />}
+          {!imgLoaded.profile && (
+            <SkeletonBox className="w-16 h-16 rounded-full" />
+          )}
           <img
             src={product.profile_photo || "https://via.placeholder.com/60"}
             alt={`${product.first_name} ${product.last_name}`}
@@ -109,9 +139,13 @@ const NearbyDetail = () => {
           />
         </div>
         <div className="flex-1">
-          <h2 className="text-xl font-bold text-gray-800">{product.company_name}</h2>
+          <h2 className="text-xl font-bold text-gray-800">
+            {product.company_name}
+          </h2>
           <p className="text-gray-600">📍 Location: {product.location}</p>
-          {product.contact_phone && <p className="text-gray-600">📞 {product.contact_phone}</p>}
+          {product.contact_phone && (
+            <p className="text-gray-600">📞 {product.contact_phone}</p>
+          )}
           <p className="text-gray-600">
             🗓 Posted: {new Date(product.date_posted).toLocaleDateString()}
           </p>
@@ -132,60 +166,6 @@ const NearbyDetail = () => {
               onLoadedData={() => setVideoLoaded(true)}
             />
           </div>
-
-          {/* Action buttons */}
-          <div className="flex justify-around items-center text-gray-700 mb-4 border-t pt-2">
-           
-
-           
-          </div>
-
-          {/* Comment input */}
-          {showCommentInput && (
-            <div className="w-full bg-white rounded-t-xl shadow-lg border-t border-gray-200 mb-4 p-2">
-              {submitted && (
-                <div className="bg-green-100 text-green-700 text-sm font-medium p-2 rounded mb-1 text-center">
-                  ✅ Comment submitted!
-                </div>
-              )}
-              <form onSubmit={handleCommentSubmit} className="relative flex w-full mb-2">
-                <textarea
-                  placeholder={isSignedIn ? "Write a comment..." : "Sign in to comment"}
-                  value={newComment}
-                  onChange={(e) => setNewComment(e.target.value)}
-                  rows={1}
-                  className="flex-1 text-black placeholder-gray-500 bg-white rounded-full px-6 py-1 pr-16 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-inner w-full resize-none overflow-y-auto"
-                  disabled={!isSignedIn}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey) {
-                      e.preventDefault();
-                      handleCommentSubmit(e);
-                    }
-                  }}
-                />
-                <button
-                  type="submit"
-                  disabled={loading || !newComment.trim()}
-                  className={`absolute right-3 top-1/2 transform -translate-y-1/2 rounded-full p-2 transition disabled:opacity-50 ${
-                    newComment.trim()
-                      ? "bg-black text-white hover:bg-gray-800"
-                      : "bg-gray-300 text-gray-500"
-                  }`}
-                >
-                  {loading ? <span className="animate-pulse">...</span> : <ArrowRight size={20} />}
-                </button>
-              </form>
-
-              {/* Comments list */}
-              <div className="space-y-2 max-h-48 overflow-y-auto">
-                {comments.map((c, idx) => (
-                  <div key={idx} className="bg-gray-100 p-2 rounded shadow">
-                    <span className="font-semibold text-blue-600">{c.name}</span>: {c.text}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       )}
 
@@ -193,7 +173,11 @@ const NearbyDetail = () => {
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
         {[product.product_photo, ...(product.images || []).map((img) => img.image)].map(
           (src, idx) => (
-            <div key={idx} className="relative w-full bg-white rounded shadow p-2">
+            <div
+              key={idx}
+              className="relative w-full bg-white rounded shadow p-2 cursor-pointer"
+              onClick={() => setSelectedImage(src)}
+            >
               {!imgLoaded[idx] && <SkeletonBox className="w-full h-40" />}
               <img
                 src={src}
@@ -204,7 +188,7 @@ const NearbyDetail = () => {
                 onLoad={() => setImgLoaded((prev) => ({ ...prev, [idx]: true }))}
               />
               {product.price && (
-                <span className="absolute bottom-2 right-2 bg-green-600 text-white text-sm font-semibold px-2 py-1 rounded-lg shadow">
+                <span className="absolute bottom-2 right-2 bg-green-600 text-white text-sm font-semibold px-2 py-1 rounded-lg shadow z-10">
                   ${product.price}
                 </span>
               )}
@@ -213,18 +197,25 @@ const NearbyDetail = () => {
         )}
       </div>
 
-      {/* Discount */}
-      {product.discount && (
-        <p className="text-gray-800 mb-2">
-          💰 <strong>Discount:</strong>{" "}
-          {product.discount === "waiting" ? (
-            <span className="text-yellow-500">Waiting for discount...</span>
-          ) : product.discount === "ended" ? (
-            <span className="text-red-500">Offer ended</span>
-          ) : (
-            <span className="text-green-500">{product.discount}%</span>
-          )}
-        </p>
+      {/* Fullscreen Modal for Zoomed Image */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[9999]"
+          onClick={() => setSelectedImage(null)}
+        >
+          <img
+            src={selectedImage}
+            alt="Zoomed product"
+            className="max-w-full max-h-full object-contain transform transition-transform duration-300 hover:scale-110"
+            onClick={(e) => e.stopPropagation()} // prevent closing when clicking the image
+          />
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white text-3xl"
+          >
+            ✕
+          </button>
+        </div>
       )}
 
       {/* Description & Contact */}
@@ -255,6 +246,9 @@ const NearbyDetail = () => {
           )}
         </div>
       </div>
+
+      {/* Floating Chat (hidden when zoomed) */}
+      <FloatingChat isImageZoomed={!!selectedImage} />
     </div>
   );
 };
