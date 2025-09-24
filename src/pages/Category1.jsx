@@ -25,7 +25,7 @@ const categories = [
   
    {
     name: 'Baby & Kids essentials',
-    image_url: 'https://images.unsplash.com/photo-1744424751775-63a0bae32a21?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJhYnklMjBhbmQlMjBraWRzJTIwcHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D',
+    image_url: 'https://images.unsplash.com/photo-1601925240970-98447486fcdb?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJhYnklMjBhbmQlMjBraWQlMjBwcm9kdWN0c3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/Babies_And_Kids_Products',
   },
   {
@@ -35,7 +35,7 @@ const categories = [
   },
   {
     name: 'Women Fashions',
-    image_url: 'https://plus.unsplash.com/premium_photo-1665454931497-1355f79c5f4d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dGF0dWVzfGVufDB8fDB8fHww',
+    image_url: 'https://images.unsplash.com/photo-1627577279497-4b24bf1021b6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBmYXNoaW9uc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/women_fashions',
   },
   {
@@ -62,7 +62,7 @@ const categories = [
   },
   {
     name: 'Health & Beauty',
-    image_url: 'https://images.unsplash.com/photo-1742201949674-a5084b01418c',
+    image_url: 'https://images.unsplash.com/photo-1625154253125-5d89afab6c7c?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWF0ZXJpYWxzJTIwZm9yJTIwYm9keSUyMGhlYWx0aHxlbnwwfHwwfHx8MA%3D%3D',
     path: '/health-and-beauties',
   },
  
