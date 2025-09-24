@@ -16,7 +16,7 @@ const categories = [
     path: '/electronic-materials',
   },
    {
-    name: 'Baby & Kids esentials',
+    name: 'Baby & Kids essentials',
     image_url: 'https://images.unsplash.com/photo-1744424751775-63a0bae32a21?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGJhYnklMjBhbmQlMjBraWRzJTIwcHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D',
     path: '/Babies_And_Kids_Products',
   },
@@ -32,7 +32,7 @@ const categories = [
   },
   
   {
-    name: 'Home and Appliances',
+    name: 'Home Appliances',
     image_url: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZSUyMGFwcGxpYW5jZXN8ZW58MHx8MHx8fDA%3D',
     path: '/home-appliances',
   },
@@ -45,18 +45,18 @@ const categories = [
  
   
   {
-    name: 'Agriculture And Livestock products',
+    name: 'Farm products',
     image_url: 'https://plus.unsplash.com/premium_photo-1667860234741-0e500d0e5ba5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YWdyaWN1bHR1cmUlMjBhbmQlMjBsaXZlc3RvY2slMjBpbWFnZXN8ZW58MHx8MHx8fDA%3D',
     path: '/Agriculture_And_Livestock',
   },
   {
-    name: 'Books & Stationaries materials',
+    name: 'Book',
     image_url: 'https://plus.unsplash.com/premium_photo-1733864775808-c7c1ccbe5422?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Ym9va3MlMjBhbmQlMjBzdGF0aW9uYXJpZXN8ZW58MHx8MHx8fDA%3D',
     path: '/Books_And_Stationaries',
   },
  
   {
-    name: 'Jewelry products',
+    name: 'Jewelries',
     image_url: 'https://images.unsplash.com/photo-1631698532383-97ffe7c223c7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8amV3ZWxlcmllc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/Jewelries',
   },
@@ -64,7 +64,7 @@ const categories = [
  
  
   {
-    name: 'Cleaning And Sanitation materials',
+    name: 'Sanitation essentials',
     image_url: 'https://images.unsplash.com/photo-1579141132886-e86d831034ac?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y2xlYW5pbmclMjBhbmQlMjBzYW5pdGF0aW9uJTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D',
     path: '/Cleaning_And_Sanitation_Services',
   },
@@ -75,7 +75,7 @@ const categories = [
     path: '/Art_And_Handicrafts',
   },
   {
-    name: 'Video & Photography materials',
+    name: 'Video & Photography essentials',
     image_url: 'https://plus.unsplash.com/premium_photo-1684783848153-970ef340c10b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8dmlkZW8lMjBhbmQlMjBwaG90b2dyYXBoaWVzfGVufDB8fDB8fHww',
     path: '/Video_And_Photography',
   },
