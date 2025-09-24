@@ -278,7 +278,7 @@ if (!user) {
 
 {/* Profile Photo */}
 <div>
-  <label className="block text-gray-700 font-semibold mb-1">Capela/Your photo/Company Logo</label>
+  <label className="block text-gray-700 font-semibold mb-1">Logo</label>
   <input
   type="file"
   accept="image/*"
