@@ -5,13 +5,13 @@ import Nearby from './Nearby';
 
 const categories = [
   {
-    name: 'Fashions',
-    image_url: 'https://images.unsplash.com/photo-1605581494291-317cf1f77ddf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmFzaGlvbiUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
+    name: 'Men Shoes',
+    image_url: 'https://plus.unsplash.com/premium_photo-1723575625757-0fe66372fd0a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8bWVuJTIwc2hvZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/fashions',
   },
   {
-    name: 'Computers & Electronics',
-    image_url: 'https://images.unsplash.com/photo-1518770660439-4636190af475',
+    name: ' Men Clothes',
+    image_url: 'https://images.unsplash.com/photo-1549037173-e3b717902c57?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWVuJTIwY2xvdGhlc3xlbnwwfHwwfHx8MA%3D%3D',
     path: '/electronic-materials',
   },
   {
