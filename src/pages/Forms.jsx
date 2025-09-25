@@ -267,7 +267,7 @@ if (!user) {
           />
         </div>
         <div>
-  <label className="block text-gray-700 font-semibold mb-1">Video less than 30 seconds</label>
+  <label className="block text-gray-700 font-semibold mb-1">Video less than 30 seconds (optional)</label>
   <input
     type="file"
     accept="video/*"
@@ -416,7 +416,7 @@ if (!user) {
             />
           </div>
           <div>
-            <label className="block text-gray-700 font-semibold mb-1">TikTok Link</label>
+            <label className="block text-gray-700 font-semibold mb-1">TikTok Link (optional)</label>
             <input
               type="url"
               name="contact_tick"
@@ -425,7 +425,16 @@ if (!user) {
               className="w-full border px-4 py-2 rounded"
             />
           </div>
-          
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">website (optional)</label>
+            <input
+              type="url"
+              name="web_site"
+              value={formData.web_site}
+              onChange={handleChange}
+              className="w-full border px-4 py-2 rounded"
+            />
+          </div>
           <div>
             <label className="block text-gray-700 font-semibold mb-1">Phone Number</label>
             <input
@@ -438,7 +447,7 @@ if (!user) {
           </div>
         </div>
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Main Product Image</label>
+          <label className="block text-gray-700 font-semibold mb-1">Product Image</label>
           <input
   type="file"
   name="product_photo"
@@ -450,10 +459,9 @@ if (!user) {
 
         </div>
 
-{/* Additional Images (Dynamic) */}
 <div>
   <label className="block text-gray-700 font-semibold mb-1">
-    Additional Images (Min: 5, Max: 10)
+    Additional Images (Min: 4, Max: 10)
   </label>
 
  <div className="flex flex-col space-y-4">
