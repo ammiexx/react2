@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SignIn, useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,13 +9,10 @@ const Login = () => {
 
   useEffect(() => {
     if (isSignedIn && user) {
-      // Show popup
       setShowSuccessPopup(true);
-
-      // Hide after 3 seconds and navigate
       const timer = setTimeout(() => {
         setShowSuccessPopup(false);
-        navigate("/"); // or wherever you want to redirect
+        navigate("/"); // redirect after login
       }, 3000);
 
       return () => clearTimeout(timer);
@@ -24,38 +20,38 @@ const Login = () => {
   }, [isSignedIn, user, navigate]);
 
   return (
-    <div className="auth-container relative">
-      <h2>Welcome back</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+      <SignIn
+        path="/login"
+        routing="path"
+        signUpUrl="/signup"
+        afterSignUpUrl="/welcome"
+        appearance={{
+          layout: {
+            // Center the card
+            card: {
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              minWidth: "350px",
+            },
+          },
+          elements: {
+            footer: "hidden",
+            card: "rounded-lg shadow-lg bg-gray-800 p-6", // style card
+            formButtonPrimary: "bg-blue-600 hover:bg-blue-700 text-white",
+          },
+        }}
+      />
 
-      {/* Clerk's sign-in component */}
-   <SignIn
-  path="/login"
-  routing="path"
-  signUpUrl="/signup"
-  afterSignUpUrl="/welcome"
-  appearance={{
-    elements: {
-      footer: 'hidden',
-    },
-  }}
-/>
-
-
-      {/* Pop-up success message */}
+      {/* Optional success popup */}
       {showSuccessPopup && (
         <div className="fixed top-6 right-6 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded shadow z-50 transition-opacity duration-300">
-          <strong className="font-semibold">✅ Sign-up Successful!</strong>
+          <strong className="font-semibold">✅ Sign-in Successful!</strong>
           <p>Redirecting...</p>
         </div>
       )}
-
-      {/* Custom sign up link below the component */}
-      <p className="signin-footer">
-        you have an account?
-        <button className="signup-link-button" onClick={() => navigate("/signup")}>
-          Sign In
-        </button>
-      </p>
     </div>
   );
 };
