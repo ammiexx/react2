@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "@clerk/clerk-react";
-import { ArrowRight} from "lucide-react"; // changed icon
+import { ArrowRight} from "lucide-react"; 
 
 const MESSAGE_API = "https://djanagobackend-5.onrender.com/api/cat";
 
