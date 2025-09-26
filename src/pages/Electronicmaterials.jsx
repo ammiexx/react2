@@ -76,7 +76,6 @@ const Nearby = () => {
                   className="w-16 h-16 rounded-full object-cover border border-gray-300"
                 />
 
-                {/* Info Row */}
                 <div className="flex-1 flex justify-between items-center px-4">
                   <div className="flex flex-wrap items-center gap-6">
                     <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
