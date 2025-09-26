@@ -252,5 +252,9 @@ const NearbyDetail = () => {
     </div>
   );
 };
-
 export default NearbyDetail;
+
+
+
+
+
