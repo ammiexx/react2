@@ -11,19 +11,19 @@ const Footer = () => {
 
 
         {/* Logo */}
-        <div className={`mb-10 ${normalTextClass}`}>
+        <div className={`mb-2 ${normalTextClass}`}>
           <h1 className="text-3xl font-bold text-[#6ec1e4]">Knash</h1>
         </div>
 
         {/* Mission */}
-        <div className={`mb-10 max-w-3xl ${normalTextClass} leading-relaxed`}>
+        <div className={`mb-3 max-w-3xl ${normalTextClass} leading-relaxed`}>
           <p>
         Creating a shopping platform that helps customers to purchase what they need at the best value!
         </p>
         </div>
 
         {/* Social Icons */}
-        <div className={`flex gap-8 mb-10 ${normalTextClass}`}>
+        <div className={`flex gap-11 mb-3 ${normalTextClass}`}>
           {/* Facebook */}
           <a
             href="https://facebook.com/animutalemneh"
