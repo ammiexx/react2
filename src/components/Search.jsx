@@ -48,25 +48,31 @@ const Search = () => {
   return (
     <>
       {/* Top Navigation */}
-      <nav className="w-full bg-gray-600 border-y border-gray-300 flex items-center px-5 py-1 gap-5 font-sans whitespace-nowrap overflow-x-hidden">
-        {/* Hamburger Icon */}
-        <div className="flex items-center flex-shrink-0 mr-4">
-          <Hamburger isOpen={menuOpen} toggle={toggleMenu} />
-        </div>
+   {/* Top Navigation */}
+<nav className="w-full bg-white border-b border-gray-200 text-gray-800 shadow-sm flex items-center px-5 py-2 gap-5 font-sans whitespace-nowrap overflow-x-hidden">
+  {/* Hamburger Icon */}
+  <div className="flex items-center flex-shrink-0 mr-4">
+    <Hamburger isOpen={menuOpen} toggle={toggleMenu} color="#374151" /> 
+    {/* Pass dark color (Tailwind gray-700) so it's visible */}
+  </div>
 
-        {/* Category Buttons */}
-        <div className="flex gap-3 flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-white/50 scrollbar-track-transparent">
-          {categories.map((cat, index) => (
-            <button
-              key={index}
-              onClick={() => handleCategoryClick(cat)}
-              className="flex-shrink-0 px-3 py-1.5 text-sm rounded-full border border-transparent bg-transparent text-white hover:bg-white hover:text-gray-700 hover:border-white transition whitespace-nowrap"
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </nav>
+  {/* Category Buttons */}
+  <div className="flex gap-3 flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400/50 scrollbar-track-transparent">
+    {categories.map((cat, index) => (
+      <button
+        key={index}
+        onClick={() => handleCategoryClick(cat)}
+        className="flex-shrink-0 px-3 py-1.5 text-sm rounded-full 
+                   bg-gray-100 text-gray-800 border border-gray-300
+                   hover:bg-blue-600 hover:text-white hover:border-blue-600 
+                   transition whitespace-nowrap shadow-sm"
+      >
+        {cat}
+      </button>
+    ))}
+  </div>
+</nav>
+
 
       {/* Backdrop Overlay */}
       {menuOpen && (
