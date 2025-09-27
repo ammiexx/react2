@@ -8,7 +8,6 @@ const Logout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Show the confirmation popup as soon as the component mounts
     setConfirmOpen(true);
   }, []);
 
