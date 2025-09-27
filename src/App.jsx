@@ -119,9 +119,11 @@ function App() {
   return (
      
     <Router>
-      <div className="flex flex-col min-h-screen"> {/* ✅ main layout wrapper */}
-      <Navbar />
-      <Search/>
+      <div className="flex flex-col min-h-screen"> 
+      <div className="bg-gray-800"> 
+    <Navbar />
+    <Search />
+  </div>
       <main className="flex-grow">
       <Routes>
         <Route path="/comments" element={<CommentsPage />} />
