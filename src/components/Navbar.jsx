@@ -39,7 +39,7 @@ export default function Navigation({ products, onFilter }) {
       )}
     >
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div className="flex h-12 items-center justify-between gap-2">
+        <div className="flex h-15 items-center justify-between gap-2">
 
           {/* LEFT: Hamburger + Logo */}
           <div className="flex items-center gap-2">
@@ -52,7 +52,7 @@ export default function Navigation({ products, onFilter }) {
             </div>
 
             <Link to="/" className="flex items-center">
-              <img src={knash} alt="Kenash Logo" className="h-10 w-23 rounded-full object-cover" />
+              <img src={knash} alt="Kenash Logo" className="h-11 w-25 rounded-full object-cover" />
             </Link>
           </div>
 
