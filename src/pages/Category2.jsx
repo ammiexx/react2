@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
-import { Heading6 } from 'lucide-react';
 
 const categories = [
   {
@@ -108,33 +107,30 @@ const categories = [
     image_url: 'https://plus.unsplash.com/premium_photo-1661761197559-58493b11151b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVudGFsJTIwc2VydmljZXN8ZW58MHx8MHx8fDA%3D',
     path: '/Rental_Services',
   },
-  
 ];
 
 const Category2 = () => {
   const navigate = useNavigate();
-  const [searchTerm, setSearchTerm] = useState('');
   const { theme } = useTheme();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Pick 5 random slider images from categories
+  const sliderImages = categories.sort(() => 0.5 - Math.random()).slice(0, 5);
 
   const filteredCategories = categories.filter(cat =>
     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const [displayText, setDisplayText] = useState('');
-  const message = "Welcome to our shopping marketplace";
-
   useEffect(() => {
-    let i = 0;
     const interval = setInterval(() => {
-      if (i < message.length) {
-        setDisplayText((prev) => prev + message.charAt(i));
-        i++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 100);
+      setCurrentSlide(prev => (prev + 1) % sliderImages.length);
+    }, 7000); // auto-slide every 8s
     return () => clearInterval(interval);
-  }, []);
+  }, [sliderImages.length]);
+
+  const prevSlide = () => setCurrentSlide((currentSlide - 1 + sliderImages.length) % sliderImages.length);
+  const nextSlide = () => setCurrentSlide((currentSlide + 1) % sliderImages.length);
 
   return (
     <div
@@ -145,12 +141,34 @@ const Category2 = () => {
       }}
     >
       <div className="max-w-6xl mx-auto">
-        {/* Heading */}
-        <div className="text-center mt-1 mb-1">
-          <h6 className="text-base font-medium text-gray-700">Explore More Products</h6>
+        <div className="relative w-full h-60 -mt-6 mb-6 overflow-hidden rounded-lg shadow-lg">
+          {sliderImages.map((cat, idx) => (
+            <img
+              key={idx}
+              src={`${cat.image_url}?w=1200&h=400&auto=format`}
+              alt={cat.name}
+              onClick={() => navigate(cat.path)}
+              className={`absolute top-0 left-0 w-full h-full object-cover cursor-pointer transition-opacity duration-1000 ease-in-out
+                ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            />
+          ))}
+
+          {/* Left & Right Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white text-4xl p-4 rounded-full hover:bg-black/70 shadow-lg z-20"
+          >
+            ‹
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white text-4xl p-4 rounded-full hover:bg-black/70 shadow-lg z-20"
+          >
+            ›
+          </button>
         </div>
 
-        {/* Category Cards */}
+        {/* Service Category Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
           {filteredCategories.length > 0 ? (
             filteredCategories.map((cat, idx) => (
@@ -170,7 +188,7 @@ const Category2 = () => {
               </div>
             ))
           ) : (
-            <p className="text-center text-gray-500 col-span-full">No categories found.</p>
+            <p className="text-center text-gray-500 col-span-full">No services found.</p>
           )}
         </div>
       </div>
