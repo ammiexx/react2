@@ -59,16 +59,27 @@ const Category1 = () => {
         {/* Slider */}
         <div className="relative w-full h-60 -mt-7 mb-6 overflow-hidden rounded-lg shadow-lg">
 
-          {sliderImages.map((cat, idx) => (
-            <img
-              key={idx}
-              src={`${cat.image_url}?w=1200&h=400&auto=format`}
-              alt={cat.name}
-              onClick={() => navigate(cat.path)}
-              className={`absolute top-1 left-0 w-full h-full object-cover cursor-pointer transition-opacity duration-1000 ease-in-out
-                ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-            />
-          ))}
+         {sliderImages.map((cat, idx) => (
+  <div
+    key={idx}
+    onClick={() => navigate(cat.path)}
+    className={`absolute inset-0 w-full h-full cursor-pointer transition-opacity duration-1000 ease-in-out
+      ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+  >
+    {/* Image */}
+    <img
+      src={`${cat.image_url}?w=1200&h=400&auto=format`}
+      alt={cat.name}
+      className="w-full h-full object-cover"
+    />
+
+    {/* Floating text overlay */}
+    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white text-3xl sm:text-4xl font-bold tracking-wider drop-shadow-lg">
+      {cat.name}
+    </div>
+  </div>
+))}
+
 
           {/* Left and Right Arrows - Bigger icons */}
           <button
