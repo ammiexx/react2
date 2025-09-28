@@ -5,12 +5,11 @@ const Footer = () => {
   const linkClass = "hover:text-[#6ec1e4] transition-colors";
 
   return (
-    <footer id="footer" className="bg-gray-900 text-white py-8 text-center mt-20">
-      {/* Inner content container */}
-     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 sm:text-center md:text-left md:ml-10 lg:ml-20">
+    <footer id="footer" className="bg-gray-900 text-white py-2 text-center mt-1">
+     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 sm:text-center md:text-left md:ml-10 lg:ml-20">
 
 
-        {/* Logo */}
+        {/* Logo 5xl → ~ 64rem (1024px).*/}
         <div className={`mb-2 ${normalTextClass}`}>
           <h1 className="text-3xl font-bold text-[#6ec1e4]">Knash</h1>
         </div>
