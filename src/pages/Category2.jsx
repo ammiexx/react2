@@ -125,7 +125,7 @@ const Category2 = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % sliderImages.length);
-    }, 3000); // auto-slide every 8s
+    }, 2000); // auto-slide every 8s
     return () => clearInterval(interval);
   }, [sliderImages.length]);
 
