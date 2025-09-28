@@ -128,9 +128,7 @@ const Category1 = () => {
     >
       <div className="max-w-6xl mx-auto">
         {/* Heading */}
-        <div className="text-center mt-2 mb-1">
-          <h6 className="text-base font-medium text-gray-700">Explore More Products</h6>
-        </div>
+        
 
         {/* Category Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
