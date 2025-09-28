@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
 
@@ -24,20 +24,22 @@ const Category1 = () => {
   const navigate = useNavigate();
   const { theme } = useTheme();
   const [searchTerm, setSearchTerm] = useState('');
-  const [displayText, setDisplayText] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Pick 5 random slider images without removing categories
-  const sliderImages = categories.sort(() => 0.5 - Math.random()).slice(0, 5);
+  // Generate slider images only once
+  const sliderImages = useMemo(() => {
+    const shuffled = [...categories].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 5);
+  }, []);
+
   const filteredCategories = categories.filter(cat =>
     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % sliderImages.length);
-    }, 2000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [sliderImages.length]);
 
@@ -53,64 +55,56 @@ const Category1 = () => {
       }}
     >
       <div className="max-w-6xl mx-auto">
-        {/* Typewriter Heading */}
-      
-
         {/* Slider */}
         <div className="relative w-full h-60 -mt-7 mb-6 overflow-hidden rounded-lg shadow-lg">
+          {sliderImages.map((cat, idx) => (
+            <div
+              key={idx}
+              onClick={() => navigate(cat.path)}
+              className={`absolute inset-0 w-full h-full cursor-pointer transition-all duration-1000 ease-in-out transform
+                ${idx === currentSlide ? 'opacity-100 z-50 scale-105' : 'opacity-0 z-0 scale-95'}`}
+            >
+              <img
+                src={`${cat.image_url}?w=1200&h=400&auto=format`}
+                alt={cat.name}
+                className="w-full h-full object-cover shadow-2xl rounded-lg"
+              />
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white text-3xl sm:text-4xl font-bold tracking-wider drop-shadow-2xl">
+                {cat.name}
+              </div>
+            </div>
+          ))}
 
-         {sliderImages.map((cat, idx) => (
-  <div
-    key={idx}
-    onClick={() => navigate(cat.path)}
-    className={`absolute inset-0 w-full h-full cursor-pointer transition-opacity duration-1000 ease-in-out
-      ${idx === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-  >
-    {/* Image */}
-    <img
-      src={`${cat.image_url}?w=1200&h=400&auto=format`}
-      alt={cat.name}
-      className="w-full h-full object-cover"
-    />
-
-    {/* Floating text overlay */}
-    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white text-3xl sm:text-4xl font-bold tracking-wider drop-shadow-lg">
-      {cat.name}
-    </div>
-  </div>
-))}
-
-
-          {/* Left and Right Arrows - Bigger icons */}
+          {/* Slider Controls */}
           <button
             onClick={prevSlide}
-            className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white text-4xl p-4 rounded-full hover:bg-black/70 shadow-lg z-20"
+            className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white text-4xl p-4 rounded-full hover:bg-black/70 shadow-lg z-60"
           >
             ‹
           </button>
           <button
             onClick={nextSlide}
-            className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white text-4xl p-4 rounded-full hover:bg-black/70 shadow-lg z-20"
+            className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white text-4xl p-4 rounded-full hover:bg-black/70 shadow-lg z-60"
           >
             ›
           </button>
         </div>
 
         {/* Category Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
           {filteredCategories.length > 0 ? (
             filteredCategories.map((cat, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-lg shadow hover:shadow-md cursor-pointer overflow-hidden transition"
+                className="bg-white rounded-lg shadow-2xl cursor-pointer overflow-hidden transform transition-transform duration-300 hover:scale-105 z-40"
                 onClick={() => navigate(cat.path)}
               >
                 <img
                   src={`${cat.image_url}?w=400&h=300&auto=format`}
                   alt={cat.name}
-                  className="w-full h-40 object-cover rounded-md transform transition-transform duration-300 hover:scale-105"
+                  className="w-full h-40 object-cover rounded-md"
                 />
-                <div className="px-2 py-0">
+                <div className="px-2 py-1">
                   <h6 className="text-md font-semibold text-gray-800 m-0">{cat.name}</h6>
                 </div>
               </div>
