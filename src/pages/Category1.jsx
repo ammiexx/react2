@@ -37,7 +37,7 @@ const Category1 = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % sliderImages.length);
-    }, 7000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [sliderImages.length]);
 
