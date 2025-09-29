@@ -150,14 +150,7 @@ export default function Navigation({ products, onFilter }) {
           drawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Drawer Header */}
-        <div className="flex items-center justify-between h-16 px-4 border-b border-gray-700">
-          <span className="text-lg font-semibold">Menu</span>
-          <button onClick={closeDrawer}>
-            <XMarkIcon className="h-6 w-6 text-gray-300" />
-          </button>
-        </div>
-
+       
         {/* Drawer Links */}
         <div className="p-4 space-y-2">
           {navigation.map((item) => (
