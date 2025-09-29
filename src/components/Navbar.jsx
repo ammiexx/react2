@@ -76,7 +76,7 @@ export default function Navigation({ products, onFilter }) {
                 to="/discounts"
                 className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
               >
-                shops
+                Shops
               </NavLink>
               <NavLink
                 to="/nearby-shops"
@@ -150,8 +150,8 @@ export default function Navigation({ products, onFilter }) {
       )}
       <div
         ref={drawerRef}
-        className={`fixed top-0 left-0 h-screen w-72 bg-gray-900 text-white z-50 shadow-xl transform transition-transform duration-300 ease-in-out ${
-          drawerOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 right-0 h-screen w-72 bg-gray-900 text-white z-50 shadow-xl transform transition-transform duration-300 ease-in-out ${
+          drawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Drawer Header */}
