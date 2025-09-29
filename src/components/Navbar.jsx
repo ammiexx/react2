@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Disclosure, DisclosureButton } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { NavLink, Link } from "react-router-dom";
 import { useScrollDirection } from "./UseScrollDirection";
@@ -23,7 +22,7 @@ export default function Navigation({ products, onFilter }) {
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
   const closeDrawer = () => setDrawerOpen(false);
 
-  // close drawer on outside click
+  // Close drawer on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (drawerRef.current && !drawerRef.current.contains(e.target)) {
@@ -53,21 +52,8 @@ export default function Navigation({ products, onFilter }) {
       >
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="flex h-15 items-center justify-between gap-2">
-            {/* LEFT: Hamburger + Logo */}
+            {/* LEFT: Logo */}
             <div className="flex items-center gap-2">
-              <div className="sm:hidden">
-                <button
-                  onClick={toggleDrawer}
-                  className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white"
-                >
-                  {drawerOpen ? (
-                    <XMarkIcon className="h-6 w-6" />
-                  ) : (
-                    <Bars3Icon className="h-6 w-6" />
-                  )}
-                </button>
-              </div>
-
               <Link to="/" className="flex items-center">
                 <img
                   src={knash}
@@ -77,31 +63,51 @@ export default function Navigation({ products, onFilter }) {
               </Link>
             </div>
 
-            {/* CENTER: Search */}
-            <div className="flex-1 px-2 flex items-center justify-end">
-              <div className="sm:hidden">
-                {!mobileSearchOpen ? (
-                  <button
-                    onClick={() => setMobileSearchOpen(true)}
-                    className="p-2 text-gray-200 hover:text-white"
-                  >
-                    <MagnifyingGlassIcon className="h-6 w-6" />
-                  </button>
-                ) : (
-                  <div className="w-full">
-                    <Searching
-                      products={products}
-                      onFilter={onFilter}
-                      onSubmit={() => setMobileSearchOpen(false)}
-                    />
-                  </div>
-                )}
-              </div>
+            {/* CENTER: Mobile search + services */}
+            <div className="flex-1 flex items-center justify-end gap-2 sm:hidden">
+              {/* Services and Nearby Shops for mobile */}
+              <NavLink
+                to="/services"
+                className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
+              >
+                Services
+              </NavLink>
+              <NavLink
+                to="/nearby-shops"
+                className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
+              >
+                Nearby
+              </NavLink>
 
-              {/* Desktop search */}
-              <div className="hidden sm:block flex-1">
-                <Searching products={products} onFilter={onFilter} />
-              </div>
+              {/* Search button */}
+              {!mobileSearchOpen ? (
+                <button
+                  onClick={() => setMobileSearchOpen(true)}
+                  className="p-2 text-gray-200 hover:text-white"
+                >
+                  <MagnifyingGlassIcon className="h-6 w-6" />
+                </button>
+              ) : (
+                <div className="absolute top-16 left-0 w-full px-2 z-50">
+                  <Searching
+                    products={products}
+                    onFilter={onFilter}
+                    onSubmit={() => setMobileSearchOpen(false)}
+                  />
+                </div>
+              )}
+
+              {/* Hamburger */}
+              <button
+                onClick={toggleDrawer}
+                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white"
+              >
+                {drawerOpen ? (
+                  <XMarkIcon className="h-6 w-6" />
+                ) : (
+                  <Bars3Icon className="h-6 w-6" />
+                )}
+              </button>
             </div>
 
             {/* RIGHT: Desktop links */}
@@ -119,6 +125,11 @@ export default function Navigation({ products, onFilter }) {
                   {item.name}
                 </NavLink>
               ))}
+            </div>
+
+            {/* Desktop search */}
+            <div className="hidden sm:block flex-1">
+              <Searching products={products} onFilter={onFilter} />
             </div>
           </div>
         </div>
