@@ -54,7 +54,7 @@ export default function Navigation({ products, onFilter }) {
           <div className="flex h-15 items-center justify-between gap-2">
             {/* LEFT: Logo */}
             <div className="flex items-center gap-2">
-              <Link to="/" className="flex items-center">
+              <Link to="/category1" className="flex items-center">
                 <img
                   src={knash}
                   alt="Kenash Logo"
@@ -71,6 +71,12 @@ export default function Navigation({ products, onFilter }) {
                 className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
               >
                 Services
+              </NavLink>
+              <NavLink
+                to="/discounts"
+                className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
+              >
+                shops
               </NavLink>
               <NavLink
                 to="/nearby-shops"
