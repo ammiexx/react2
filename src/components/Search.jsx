@@ -137,19 +137,6 @@ const Search = () => {
               </li>
             </ul>
           </div>
-
-          {/* Navigation */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Navigation</h3>
-            <ul className="space-y-2 text-gray-700 text-sm">
-              <li><Link to="/aboutus" onClick={closeMenu} className="hover:text-blue-600">About Us</Link></li>
-              <li><Link to="/nearby-shops" onClick={closeMenu} className="hover:text-blue-600">Nearby Shops</Link></li>
-              <li><Link to="/New Advantages" onClick={closeMenu} className="hover:text-blue-600">New Offers</Link></li>
-              <li><Link to="/Weekly Discounts" onClick={closeMenu} className="hover:text-blue-600">Want Discounts?</Link></li>
-            </ul>
-          </div>
-
-          {/* Payments */}
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Payments</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
@@ -164,20 +151,12 @@ const Search = () => {
           </div>
 
           {/* Categories */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Categories</h3>
-            <ul className="pl-4 list-disc text-sm space-y-1 text-gray-600">
-              <li><Link to="/technologymethods" onClick={closeMenu} className="hover:text-blue-600">Technology Methods</Link></li>
-              <li><Link to="/New Offers" onClick={closeMenu} className="hover:text-blue-600">New Products</Link></li>
-              <li><Link to="/holy day discounts" onClick={closeMenu} className="hover:text-blue-600">Holiday Discounts</Link></li>
-              <li><Link to="/brands" onClick={closeMenu} className="hover:text-blue-600">Brands</Link></li>
-            </ul>
-          </div>
-
+        
           {/* Support */}
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Support</h3>
             <ul className="space-y-1 text-sm text-gray-600">
+                            <li><Link to="/aboutus" onClick={closeMenu} className="hover:text-blue-600">About Us</Link></li>
               <li><Link to="/helpcenter" onClick={closeMenu} className="hover:text-blue-600">Help Center</Link></li>
               <li><Link to="/terms" onClick={closeMenu} className="hover:text-blue-600">Terms & Conditions</Link></li>
               <li><Link to="/privacy" onClick={closeMenu} className="hover:text-blue-600">Privacy Policy</Link></li>
