@@ -73,12 +73,7 @@ export default function Navigation({ products, onFilter }) {
               >
                 Services
               </NavLink>
-              <NavLink
-                to="/discounts"
-                className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
-              >
-                Shops
-              </NavLink>
+             
               <NavLink
                 to="/nearby-shops"
                 className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
