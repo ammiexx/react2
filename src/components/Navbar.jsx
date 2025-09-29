@@ -52,9 +52,10 @@ export default function Navigation({ products, onFilter }) {
       >
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="flex h-15 items-center justify-between gap-2">
+            
             {/* LEFT: Logo */}
             <div className="flex items-center gap-2">
-              <Link to="/category1" className="flex items-center">
+              <Link to="/" className="flex items-center">
                 <img
                   src={knash}
                   alt="Kenash Logo"
@@ -85,7 +86,7 @@ export default function Navigation({ products, onFilter }) {
                 Nearby
               </NavLink>
 
-              {/* Search button */}
+              {/* Search button or inline input */}
               {!mobileSearchOpen ? (
                 <button
                   onClick={() => setMobileSearchOpen(true)}
@@ -94,7 +95,7 @@ export default function Navigation({ products, onFilter }) {
                   <MagnifyingGlassIcon className="h-6 w-6" />
                 </button>
               ) : (
-                <div className="absolute top-16 left-0 w-full px-2 z-50">
+                <div className="flex-1">
                   <Searching
                     products={products}
                     onFilter={onFilter}
