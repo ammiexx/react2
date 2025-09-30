@@ -174,10 +174,13 @@ const NearbyDetail = () => {
         {[product.product_photo, ...(product.images || []).map((img) => img.image)].map(
           (src, idx) => (
             <div
-              key={idx}
-              className="relative w-full bg-white rounded shadow p-2 cursor-pointer"
-              onClick={() => setSelectedImage(src)}
-            >
+  key={idx}
+  className="relative w-full bg-white rounded shadow p-2 cursor-pointer 
+             transform transition-all duration-300 ease-in-out
+             hover:scale-110 hover:shadow-2xl hover:z-30"
+  onClick={() => setSelectedImage(src)}
+>
+
               {!imgLoaded[idx] && <SkeletonBox className="w-full h-40" />}
               <img
                 src={src}
