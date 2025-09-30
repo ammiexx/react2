@@ -1,25 +1,38 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
-export function useScrollDirection() {
-  const [scrollDirection, setScrollDirection] = useState('up');
+/**
+ * useScrollDirection - returns "up" or "down"
+ * Reacts immediately to scroll changes and is debounced via rAF for performance.
+ */
+export function useScrollDirection({ thresholdPixels = 0 } = {}) {
+  const [scrollDirection, setScrollDirection] = useState("up");
+  const lastScrollYRef = useRef(typeof window !== "undefined" ? window.scrollY : 0);
+  const tickingRef = useRef(false);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    const onScroll = () => {
+      if (tickingRef.current) return;
+      tickingRef.current = true;
+      window.requestAnimationFrame(() => {
+        const currentY = window.scrollY;
+        const direction = currentY > lastScrollYRef.current ? "down" : "up";
 
-    const updateScrollDirection = () => {
-      const currentScrollY = window.scrollY;
-      const direction = currentScrollY > lastScrollY ? 'down' : 'up';
+        setScrollDirection((prev) => {
+          // update only if direction changed and movement passes threshold
+          if (direction !== prev && Math.abs(currentY - lastScrollYRef.current) > thresholdPixels) {
+            return direction;
+          }
+          return prev;
+        });
 
-      if (direction !== scrollDirection) {
-        setScrollDirection(direction);
-      }
-
-      lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
+        lastScrollYRef.current = currentY > 0 ? currentY : 0;
+        tickingRef.current = false;
+      });
     };
 
-    window.addEventListener('scroll', updateScrollDirection);
-    return () => window.removeEventListener('scroll', updateScrollDirection);
-  }, [scrollDirection]);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [thresholdPixels]);
 
   return scrollDirection;
 }

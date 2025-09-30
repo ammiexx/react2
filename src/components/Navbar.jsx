@@ -21,6 +21,7 @@ export default function Navigation({ products, onFilter }) {
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
   const closeDrawer = () => setDrawerOpen(false);
+  const isHidden = scrollDirection === "down" && !drawerOpen && !mobileSearchOpen;
 
   // Close drawer on outside click
   useEffect(() => {
@@ -44,12 +45,10 @@ export default function Navigation({ products, onFilter }) {
 
   return (
     <>
-      {/* TOP NAV */}
-      <nav
-        className={`sticky top-0 z-50 transition-transform duration-300 bg-gray-800 ${
-          scrollDirection === "down" ? "-translate-y-full" : "translate-y-0"
-        }`}
-      >
+     <nav
+  className={`sticky top-0 z-50 bg-gray-800 will-change-transform transition-transform
+    ${isHidden ? "-translate-y-full pointer-events-none duration-300" : "translate-y-0 pointer-events-auto duration-150"}`}
+>
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="flex h-15 items-center justify-between gap-2">
             
