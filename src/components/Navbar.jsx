@@ -45,15 +45,16 @@ export default function Navigation({ products, onFilter }) {
 
   return (
     <>
-     <nav
-  className={`sticky top-0 z-50 bg-gray-800 will-change-transform transition-transform
-    ${isHidden ? "-translate-y-full pointer-events-none duration-300" : "translate-y-0 pointer-events-auto duration-150"}`}
->
+      {/* NAVBAR */}
+      <nav
+        className={`sticky top-0 z-50 bg-gray-800 will-change-transform transition-transform
+        ${isHidden ? "-translate-y-full pointer-events-none duration-300" : "translate-y-0 pointer-events-auto duration-150"}`}
+      >
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="flex h-15 items-center justify-between gap-2">
             
-            {/* LEFT: Logo */}
-            <div className="flex items-center gap-2">
+            {/* LEFT: Logo (Desktop only) */}
+            <div className="hidden sm:flex items-center gap-2">
               <Link to="/" className="flex items-center">
                 <img
                   src={knash}
@@ -65,50 +66,67 @@ export default function Navigation({ products, onFilter }) {
 
             {/* CENTER: Mobile search + services */}
             <div className="flex-1 flex items-center justify-end gap-2 sm:hidden">
-              {/* Services and Nearby Shops for mobile */}
-              <NavLink
-                to="/services"
-                className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
-              >
-                Services
-              </NavLink>
-             
-              <NavLink
-                to="/nearby-shops"
-                className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
-              >
-                Nearby
-              </NavLink>
+              {!mobileSearchOpen && (
+                <>
+                  {/* Logo */}
+                  <Link to="/" className="flex items-center">
+                    <img
+                      src={knash}
+                      alt="Kenash Logo"
+                      className="h-11 w-25 rounded-full object-cover"
+                    />
+                  </Link>
 
-              {/* Search button or inline input */}
-              {!mobileSearchOpen ? (
-                <button
-                  onClick={() => setMobileSearchOpen(true)}
-                  className="p-2 text-gray-200 hover:text-white"
-                >
-                  <MagnifyingGlassIcon className="h-6 w-6" />
-                </button>
-              ) : (
-                <div className="flex-1">
-                  <Searching
-                    products={products}
-                    onFilter={onFilter}
-                    onSubmit={() => setMobileSearchOpen(false)}
-                  />
-                </div>
+                  {/* Services & Nearby */}
+                  <NavLink
+                    to="/services"
+                    className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
+                  >
+                    Services
+                  </NavLink>
+
+                  <NavLink
+                    to="/nearby-shops"
+                    className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
+                  >
+                    Nearby
+                  </NavLink>
+
+                  {/* Hamburger */}
+                  <button
+                    onClick={toggleDrawer}
+                    className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white"
+                  >
+                    {drawerOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+                  </button>
+
+                  {/* Search icon */}
+                  <button
+                    onClick={() => setMobileSearchOpen(true)}
+                    className="p-2 text-gray-200 hover:text-white"
+                  >
+                    <MagnifyingGlassIcon className="h-6 w-6" />
+                  </button>
+                </>
               )}
 
-              {/* Hamburger */}
-              <button
-                onClick={toggleDrawer}
-                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white"
-              >
-                {drawerOpen ? (
-                  <XMarkIcon className="h-6 w-6" />
-                ) : (
-                  <Bars3Icon className="h-6 w-6" />
-                )}
-              </button>
+             {mobileSearchOpen && (
+  <div className="flex-1 flex items-center gap-2">
+    <Searching
+      products={products}
+      onFilter={onFilter}
+      onSubmit={() => setMobileSearchOpen(false)}
+    />
+    {/* Close button */}
+    <button
+      onClick={() => setMobileSearchOpen(false)}
+      className="p-2 text-gray-200 hover:text-white"
+    >
+      <XMarkIcon className="h-6 w-6" />
+    </button>
+  </div>
+)}
+
             </div>
 
             {/* RIGHT: Desktop links */}
@@ -149,7 +167,6 @@ export default function Navigation({ products, onFilter }) {
           drawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-       
         {/* Drawer Links */}
         <div className="p-4 space-y-2">
           {navigation.map((item) => (
