@@ -9,9 +9,11 @@ export function useScrollDirection() {
     const updateScrollDirection = () => {
       const currentScrollY = window.scrollY;
       const direction = currentScrollY > lastScrollY ? 'down' : 'up';
-      if (direction !== scrollDirection && Math.abs(currentScrollY - lastScrollY) > 10) {
+
+      if (direction !== scrollDirection) {
         setScrollDirection(direction);
       }
+
       lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
     };
 
