@@ -9,7 +9,6 @@ const Footer = () => {
 >
      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 sm:text-center md:text-left md:ml-10 lg:ml-20">
 
-
         {/* Logo 5xl → ~ 64rem (1024px).*/}
         <div className={`mb-2 ${normalTextClass}`}>
           <h1 className="text-3xl font-bold text-[#6ec1e4]">Knash</h1>
@@ -137,9 +136,7 @@ const Footer = () => {
     </Link>
   </li>
   <li>
-    <Link to="/holiday discounts" className={linkClass}>
-      Holiday Discounts
-    </Link>
+   
   </li>
 </ul>
           </div>
@@ -152,6 +149,12 @@ const Footer = () => {
     New Offers
   </Link>
 </li>
+<li>
+   <Link to="/holiday discounts" className={linkClass}>
+      Holiday Discounts
+    </Link>
+</li>
+
 <li>
   <Link to="/helpcenter" className={linkClass}>
     Help Center
