@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "@clerk/clerk-react";
-import { ArrowRight} from "lucide-react"; 
+import { ArrowRight } from "lucide-react";
 
 const MESSAGE_API = "https://djanagobackend-5.onrender.com/api/cat";
 
@@ -56,8 +56,8 @@ const FloatingChat = () => {
   };
 
   return (
-    <div className="fixed bottom-1 left-0 right-0 z-50 w-full max-w-full flex justify-center">
-      <div className="w-full max-w-lg bg-white rounded-t-xl shadow-lg border-t border-gray-200">
+    <div className="fixed bottom-1 left-0 right-0 z-50 w-full max-w-full flex justify-center pointer-events-none">
+      <div className="w-full max-w-lg bg-white rounded-t-xl shadow-lg border-t border-gray-200 pointer-events-auto">
         {submitted && (
           <div className="bg-green-100 text-green-700 text-sm font-medium p-2 rounded mb-1 text-center">
             ✅ Message submitted!
