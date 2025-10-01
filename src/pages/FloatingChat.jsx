@@ -26,7 +26,7 @@ const FloatingChat = () => {
   }, [error]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     if (!message.trim()) return;
 
     const userName = isSignedIn
@@ -55,9 +55,18 @@ const FloatingChat = () => {
     }
   };
 
+  // ✅ Handle Enter key press
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault(); // prevent new line
+      handleSubmit();
+    }
+  };
+
   return (
     <div className="fixed bottom-1 left-0 right-0 z-50 w-full max-w-full flex justify-center pointer-events-none">
-      <div className="w-full max-w-lg bg-white rounded-t-xl shadow-lg border-t border-gray-200 pointer-events-auto">
+ <div className="w-full max-w-lg mx-4 bg-white rounded-t-xl shadow-lg border-t border-gray-200 pointer-events-auto">
+
         {submitted && (
           <div className="bg-green-100 text-green-700 text-sm font-medium p-2 rounded mb-1 text-center">
             ✅ Message submitted!
@@ -74,6 +83,7 @@ const FloatingChat = () => {
             placeholder="Write the item you want to buy/sell & phone number..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown} // ✅ Added
             rows={1}
             className="flex-1 text-black placeholder-gray-500 bg-white rounded-full px-6 py-1 pr-16 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400 shadow-inner w-full resize-none overflow-y-auto"
           />
