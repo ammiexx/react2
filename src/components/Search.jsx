@@ -157,7 +157,7 @@ const Search = () => {
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Support</h3>
             <ul className="space-y-1 text-sm text-gray-600">
               <li><Link to="/helpcenter" onClick={closeMenu} className="hover:text-blue-600">Help Center</Link></li>
-              <li><Link to="/terms" onClick={closeMenu} className="hover:text-blue-600">Terms & Conditions</Link></li>
+             
             </ul>
           </div>
         </div>
