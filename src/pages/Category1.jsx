@@ -58,7 +58,7 @@ const Category1 = () => {
     >
       <div className="max-w-6xl mx-auto">
         {/* Slider */}
-        <div className="relative w-full h-60 -mt-7 mb-6 overflow-hidden rounded-lg shadow-lg">
+        <div className="relative w-full h-60 -mt-6 mb-6 overflow-hidden rounded-lg shadow-lg">
           {sliderImages.map((cat, idx) => (
             <div
               key={idx}
