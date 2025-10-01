@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "./ThemeContext";
 
 const categories = [
-  { name: "Men Shoes", image_url: "https://plus.unsplash.com/premium_photo-1723575625757-0fe66372fd0a?w=600&auto=format&fit=crop&q=60", path: "/men_shoes" },
-  { name: "Men Fashions", image_url: "https://images.unsplash.com/photo-1549037173-e3b717902c57?w=600&auto=format&fit=crop&q=60", path: "/men_fashions" },
+  { name: "Men Fashions", image_url: "https://plus.unsplash.com/premium_photo-1723575625757-0fe66372fd0a?w=600&auto=format&fit=crop&q=60", path: "/men_shoes" },
   { name: "Wathes & Jewelries", image_url: "https://images.unsplash.com/photo-1755621123433-688f13a2471f?q=80&w=870&auto=format&fit=crop", path: "/Jewelries" },
   { name: "Baby & Kids essentials", image_url: "https://images.unsplash.com/photo-1601925240970-98447486fcdb?w=600&auto=format&fit=crop&q=60", path: "/Babies_And_Kids_Products" },
   { name: "Furniture & Interior Design materials", image_url: "https://plus.unsplash.com/premium_photo-1670950413316-f501402ef0a7?w=600&auto=format&fit=crop&q=60", path: "/Furniture_And_Interior_design" },
