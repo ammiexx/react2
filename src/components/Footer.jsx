@@ -146,11 +146,7 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-2">Company</h4>
             <ul className={normalTextClass + " space-y-1"}>
-              <li>
-  <Link to="/aboutus" className={linkClass}>
-    About Us
-  </Link>
-</li>
+ 
 <li>
   <Link to="/newoffers" className={linkClass}>
     New Offers
@@ -168,16 +164,9 @@ const Footer = () => {
             <ul className={normalTextClass + " space-y-1"}>
               <li><Link to="/signup" className={linkClass}>Sign in</Link></li>
               <li><Link to="/login" className={linkClass}>Sign Up</Link></li>
-              <li><Link to="/privacy" className={linkClass}>Privacy Policy</Link></li>
               
             </ul>
           </div>
-
-        </div>
-
-        {/* Footer Bottom */}
-        <div className={`mt-12 ${normalTextClass} space-y-1`}>
-          <p>© 2025 Knash</p>
         </div>
       </div>
     </footer>

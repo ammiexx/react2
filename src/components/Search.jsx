@@ -156,10 +156,8 @@ const Search = () => {
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Support</h3>
             <ul className="space-y-1 text-sm text-gray-600">
-                            <li><Link to="/aboutus" onClick={closeMenu} className="hover:text-blue-600">About Us</Link></li>
               <li><Link to="/helpcenter" onClick={closeMenu} className="hover:text-blue-600">Help Center</Link></li>
               <li><Link to="/terms" onClick={closeMenu} className="hover:text-blue-600">Terms & Conditions</Link></li>
-              <li><Link to="/privacy" onClick={closeMenu} className="hover:text-blue-600">Privacy Policy</Link></li>
             </ul>
           </div>
         </div>

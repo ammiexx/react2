@@ -113,6 +113,7 @@ import FloatingChat from "./pages/FloatingChat";
 import Searching from "./components/Searching";
 import SearchResults from "./components/SearchResults";
 import CommentsPage from "./pages/CommentsPage";
+import CopyRight from "./components/CopyRight";
 
 
 function App() {
@@ -232,6 +233,7 @@ function App() {
       </main>
       <FloatingChat/>
       <Footer />
+      <CopyRight />
       </div>
     </Router>
     
