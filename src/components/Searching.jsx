@@ -32,7 +32,7 @@ const Searching = ({ products, onFilter, onSubmit }) => {
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="Search (e.g Item, location, building, company)"
-       className="flex-1 h-8 sm:h-10 text-sm text-gray-900 placeholder-gray-500 bg-white rounded-full pl-4 pr-12 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 shadow-md transition-all"
+       className="flex-1 h-11 sm:h-11 text-sm text-gray-900 placeholder-gray-500 bg-white rounded-full pl-4 pr-12 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 shadow-md transition-all"
       />
       <button
         type="button"

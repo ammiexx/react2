@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
-
 const categories = [
   { name: 'Food & Beverages', image_url: 'https://images.unsplash.com/photo-1614207279966-a46c93c0fbc2?w=600&auto=format&fit=crop&q=60', path: '/food-and-beverages' },
   { name: 'Events & Weddings services', image_url: 'https://images.unsplash.com/photo-1754149155224-24d7042ec22e', path: '/events-and-weddings' },

@@ -49,10 +49,10 @@ const Search = () => {
     <>
       {/* Top Navigation */}
    {/* Top Navigation */}
-<nav className="w-full bg-white border-b border-gray-200 text-gray-800 shadow-sm flex items-center px-1 py-1 gap-5 font-sans whitespace-nowrap overflow-x-hidden">
+<nav className="w-full bg-gray-800 border-b border-gray-200 text-gray-800 shadow-sm flex items-center px-1 py-1 gap-5 font-sans whitespace-nowrap overflow-x-hidden">
   {/* Hamburger Icon */}
   <div className="flex items-center flex-shrink-0 mr-4">
-    <Hamburger isOpen={menuOpen} toggle={toggleMenu} color="#374151" /> 
+    <Hamburger isOpen={menuOpen} toggle={toggleMenu} color="white" /> 
     {/* Pass dark color (Tailwind gray-700) so it's visible */}
   </div>
 

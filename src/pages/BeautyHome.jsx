@@ -16,7 +16,7 @@ const Nearby = () => {
         if (!response.ok) throw new Error('Failed to fetch products');
         let data = await response.json();
 
-        // Filter for category "health" and verified = true
+        // Filter for category "health" and verified = true axios
         data = data.filter(
           (item) => item.category === 'health' && item.verified === true
         );
