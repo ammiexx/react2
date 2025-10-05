@@ -36,8 +36,6 @@ import Daily from "./pages/DailyDiscounts";
 import Week from "./pages/WeeklyDiscounts";
 import Newp from "./pages/New";
 import Upcomming from "./pages/Upcomming";
-
-// new imports from the new folder
 import Admin from "./new/Admins";
 import Agriculture from "./new/Agricultrure";
 import Architecture from "./new/Architectures";
