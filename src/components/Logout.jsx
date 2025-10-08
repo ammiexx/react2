@@ -13,7 +13,7 @@ const Logout = () => {
 
   const handleCancel = () => {
     setConfirmOpen(false);
-    navigate(-1); // Go back to previous page
+    navigate(-1); 
   };
 
   const handleConfirmLogout = () => {
