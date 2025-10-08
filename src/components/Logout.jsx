@@ -11,6 +11,8 @@ const Logout = () => {
     setConfirmOpen(true);
   }, []);
 
+
+  
   const handleCancel = () => {
     setConfirmOpen(false);
     navigate(-1); 
