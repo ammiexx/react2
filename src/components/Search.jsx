@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'; 
 import { useNavigate, Link } from 'react-router-dom';
-import { useClerk } from '@clerk/clerk-react';   // ✅ Clerk
+import { useClerk, useUser } from '@clerk/clerk-react';
 import Hamburger from './Hamburger';
 import Profile from '../pages/Profile';
+import { UserIcon, DocumentTextIcon, ClockIcon, ArrowRightOnRectangleIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 
 const categories = [
   "Daily Discounts",
@@ -11,13 +12,21 @@ const categories = [
   "Upcomming Offers",
 ];
 
+const accountLinks = (setOpenProfile, setShowLogoutConfirm, isSignedIn) => [
+  { name: 'My Profile', icon: UserIcon, onClick: () => setOpenProfile(true) },
+  { name: 'My Posts', icon: DocumentTextIcon, href: '/myposts' },
+  { name: 'Recents', icon: ClockIcon, href: '/recents' },
+  { name: 'Logout', icon: ArrowRightOnRectangleIcon, onClick: () => setShowLogoutConfirm(true), requiresSignIn: true },
+];
+
 const Search = () => {
   const [openProfile, setOpenProfile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false); 
   const menuRef = useRef(null);
   const navigate = useNavigate();
-  const { signOut, isSignedIn } = useClerk(); // ✅ Get signed-in state
+  const { signOut, isSignedIn } = useClerk();
+  const { user } = useUser();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
@@ -80,7 +89,7 @@ const Search = () => {
           ))}
         </div>
 
-        {/* 🔹 Floating Sign Up button */}
+        {/* Floating Sign Up button */}
         {!isSignedIn && (
           <div className="absolute top-3 right-4">
             <Link
@@ -109,8 +118,29 @@ const Search = () => {
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between h-16 px-5 border-b border-gray-200 bg-gray-100">
-          <h2 className="text-lg font-semibold text-gray-900">Menu</h2>
+        <div className="flex items-center justify-between h-20 px-5 border-b border-gray-200 bg-gray-100">
+          {isSignedIn && user ? (
+            <div className="flex items-center gap-3">
+            
+              <h2 className="text-lg font-semibold text-gray-900">
+  Hi {user.firstName} {user.lastName}
+</h2>
+
+            </div>
+          ) : (
+            <div className="flex items-center justify-between h-16 px-5 border-b border-gray-200 bg-gray-100">
+  <Link
+    to="/login"
+    className="px-4 py-2 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition"
+  >
+    Sign Up
+  </Link>
+
+ 
+</div>
+
+          )}
+
           <button
             onClick={closeMenu}
             className="w-8 h-8 flex items-center justify-center border border-gray-400 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition"
@@ -126,64 +156,42 @@ const Search = () => {
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Account</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
-              <li>
-                <button
-                  onClick={() => setOpenProfile(true)}
-                  className="w-full text-left hover:text-blue-600"
-                >
-                  My Profile
-                </button>
-              </li>
-              <li>
-                <Link
-                  to="/myposts"
-                  onClick={closeMenu}
-                  className="block w-full text-left hover:text-blue-600"
-                >
-                  My Posts
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/recents"
-                  onClick={closeMenu}
-                  className="block w-full text-left hover:text-blue-600"
-                >
-                  Recents
-                </Link>
-              </li>
-              {isSignedIn && (
-                <li>
-                  <button
-                    onClick={() => setShowLogoutConfirm(true)}
-                    className="w-full text-left text-red-600 hover:text-red-800 font-medium"
-                  >
-                    Logout
-                  </button>
-                </li>
-              )}
+              {accountLinks(setOpenProfile, setShowLogoutConfirm, isSignedIn).map((link, index) => {
+                if (link.requiresSignIn && !isSignedIn) return null;
+                const IconComponent = link.icon || QuestionMarkCircleIcon;
+                return (
+                  <li key={index}>
+                    {link.href ? (
+                      <Link
+                        to={link.href}
+                        onClick={closeMenu}
+                        className="flex items-center gap-2 hover:text-blue-600"
+                      >
+                        <IconComponent className="h-5 w-5" />
+                        {link.name}
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={link.onClick}
+                        className="flex items-center gap-2 w-full text-left hover:text-blue-600"
+                      >
+                        <IconComponent className="h-5 w-5" />
+                        {link.name}
+                      </button>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
-          {/* Payments */}
-          {/* <div>
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Payments</h3>
-            <ul className="space-y-2 text-gray-700 text-sm">
-              <li><Link to="/payment-updates" onClick={closeMenu} className="hover:text-blue-600">Payment updates</Link></li>
-              <li><Link to="/pending-orders" onClick={closeMenu} className="hover:text-blue-600">Pending Orders</Link></li>
-              <li><Link to="/completed-orders" onClick={closeMenu} className="hover:text-blue-600">Completed Orders</Link></li>
-              <li><Link to="/payment-methods" onClick={closeMenu} className="hover:text-blue-600">Payment Methods</Link></li>
-              <li><Link to="/wallet" onClick={closeMenu} className="hover:text-blue-600">Wallet Balance</Link></li>
-              <li><Link to="/subscriptions" onClick={closeMenu} className="hover:text-blue-600">My Subscriptions</Link></li>
-              <li><Link to="/refunds" onClick={closeMenu} className="hover:text-blue-600">Refund Requests</Link></li>
-            </ul>
-          </div> */}
-
-          {/* Support */}
+          {/* Support Section */}
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Support</h3>
             <ul className="space-y-1 text-sm text-gray-600">
-              <li><Link to="/helpcenter" onClick={closeMenu} className="hover:text-blue-600">Help Center</Link></li>
+              <li><Link to="/helpcenter" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
+                <QuestionMarkCircleIcon className="h-5 w-5" /> Help Center
+              </Link></li>
             </ul>
           </div>
         </div>
