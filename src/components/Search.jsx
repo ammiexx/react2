@@ -68,10 +68,10 @@ const Search = () => {
     <>
       {/* Top Navigation */}
       <nav className="w-full bg-white border-b border-gray-200 text-gray-800 shadow-sm flex items-center px-1 py-1 gap-5 font-sans whitespace-nowrap overflow-x-hidden relative">
-        {/* Hamburger Icon */}
-        <div className="flex items-center flex-shrink-0 mr-4">
-          <Hamburger isOpen={menuOpen} toggle={toggleMenu} color="gray" />
-        </div>
+       <div className="flex items-center flex-shrink-0 mr-4 cursor-pointer hover:bg-gray-200 rounded-full p-1 transition">
+  <Hamburger isOpen={menuOpen} toggle={toggleMenu} color="gray" />
+</div>
+
 
         {/* Category Buttons */}
         <div className="flex gap-3 flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400/50 scrollbar-track-transparent">
