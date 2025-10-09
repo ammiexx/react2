@@ -211,9 +211,9 @@ const Search = () => {
               </button>
               <button
                 onClick={confirmLogout}
-                className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
+                 className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100"
               >
-                Logout
+                OK
               </button>
             </div>
           </div>
