@@ -1,11 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 
+// Haversine formula to calculate distance in km
+const getDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371; // Earth radius in km
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+};
+
 const Nearby = () => {
   const [products, setProducts] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(6); // Initial products to show
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [userLocation, setUserLocation] = useState({ lat: null, lng: null });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,13 +30,22 @@ const Nearby = () => {
         async (pos) => {
           const lat = pos.coords.latitude;
           const lng = pos.coords.longitude;
+          setUserLocation({ lat, lng });
 
           try {
             const response = await fetch(
               `https://djanagobackend-5.onrender.com/api/products/nearby/?lat=${lat}&lng=${lng}&radius=2`
             );
             if (!response.ok) throw new Error('No internet connection nearby shops');
-            const data = await response.json();
+            let data = await response.json();
+
+            // Sort products by distance
+            data.sort((a, b) => {
+              const distA = getDistance(lat, lng, a.lat, a.lng);
+              const distB = getDistance(lat, lng, b.lat, b.lng);
+              return distA - distB;
+            });
+
             setProducts(data);
           } catch (err) {
             setError(err.message);
@@ -38,6 +63,12 @@ const Nearby = () => {
       setLoading(false);
     }
   }, []);
+
+  const handleViewMore = () => {
+    setVisibleCount((prev) => prev + 10);
+  };
+
+  const visibleProducts = products.slice(0, visibleCount);
 
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
@@ -60,43 +91,57 @@ const Nearby = () => {
               </div>
             ))}
           </div>
-        ) : products.length === 0 ? (
+        ) : visibleProducts.length === 0 ? (
           <p className="text-center text-gray-500">No nearby shops found.</p>
         ) : (
-          <div className="flex flex-col gap-4 w-full">
-            {products.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white px-2 py-3 rounded-lg shadow transition-transform hover:scale-[1.01] flex items-center cursor-pointer w-full"
-                onClick={() => navigate('/nearby-detail', { state: { product: item } })}
-              >
-                {/* Profile photo */}
-                <img
-                  src={item.profile_photo || 'https://via.placeholder.com/60'}
-                  alt={`${item.first_name} ${item.last_name}`}
-                  className="w-9 h-9 rounded-full object-cover border border-gray-300"
-                />
+          <>
+            <div className="flex flex-col gap-4 w-full">
+              {visibleProducts.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white px-2 py-3 rounded-lg shadow transition-transform hover:scale-[1.01] flex items-center cursor-pointer w-full"
+                  onClick={() => navigate('/nearby-detail', { state: { product: item } })}
+                >
+                  {/* Profile photo */}
+                  <img
+                    src={item.profile_photo || 'https://via.placeholder.com/60'}
+                    alt={`${item.first_name} ${item.last_name}`}
+                    className="w-9 h-9 rounded-full object-cover border border-gray-300"
+                  />
 
-                {/* Info Row: stretch across screen */}
-                <div className="flex-1 flex justify-between items-center px-4">
-                  <div className="flex items-center gap-6">
-                    <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
-                    <p className="text-sm font-semibold truncate max-w-[120px]">{item.company_name}</p>
-                    <p className="text-sm text-gray-600 truncate max-w-[150px]">📍 {item.location}</p>
-                    {item.contact_phone && (
-                      <p className="text-sm text-gray-600 truncate max-w-[120px]">📞 {item.contact_phone}</p>
-                    )}
-                    <span className="truncate max-w-[100px]">
-                      <p className="text-sm font-semibold">
-                        {item.discount === "ended" ? "Discount Ended" : `${item.discount}% off`}
-                      </p>
-                    </span>
+                  {/* Info Row */}
+                  <div className="flex-1 flex justify-between items-center px-4">
+                    <div className="flex items-center gap-6">
+                      <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
+                      <p className="text-sm font-semibold truncate max-w-[120px]">{item.company_name}</p>
+                      <p className="text-sm text-gray-600 truncate max-w-[150px]">📍 {item.location}</p>
+                      {item.contact_phone && (
+                        <p className="text-sm text-gray-600 truncate max-w-[120px]">📞 {item.contact_phone}</p>
+                      )}
+                      <span className="truncate max-w-[100px]">
+                        <p className="text-sm font-semibold">
+                          {item.discount === "ended" ? "Discount Ended" : `${item.discount}% off`}
+                        </p>
+                      </span>
+                    </div>
+                    <div className="text-blue-600 font-bold">&gt;</div>
                   </div>
-                  <div className="text-blue-600 font-bold">&gt;</div>
                 </div>
+              ))}
+            </div>
+
+            {/* View More Button */}
+            {visibleCount < products.length && (
+              <div className="text-center mt-6">
+                <button
+                  onClick={handleViewMore}
+                  className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
+                >
+                  Browse More
+                </button>
               </div>
-            ))}
-          </div>
+            )}
+          </>
         )}
       </section>
     </div>
