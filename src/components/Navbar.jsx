@@ -6,7 +6,7 @@ import Searching from "./Searching";
 import knash from "../assets/lgo.png";
 
 const navigation = [
-  { name: "Order Now", href: "/forsale" },
+  // { name: "Order Now", href: "/forsale" },
   { name: "Shops", href: "/" },
   { name: "Services", href: "/services" },
   { name: "Nearby Shops", href: "/nearby-shops" },

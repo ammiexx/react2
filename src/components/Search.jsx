@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react'; 
 import { useNavigate, Link } from 'react-router-dom';
+import { useClerk } from '@clerk/clerk-react';   // ✅ Clerk
 import Hamburger from './Hamburger';
-import Profile from '../pages/Profile';   // ✅ Clerk-based profile
+import Profile from '../pages/Profile';
 
 const categories = [
   "Daily Discounts",
@@ -11,10 +12,12 @@ const categories = [
 ];
 
 const Search = () => {
-  const [openProfile, setOpenProfile] = useState(false); // ✅ Profile popup toggle
+  const [openProfile, setOpenProfile] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false); 
   const menuRef = useRef(null);
   const navigate = useNavigate();
+  const { signOut, isSignedIn } = useClerk(); // ✅ Get signed-in state
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
@@ -22,6 +25,13 @@ const Search = () => {
   const handleCategoryClick = (category) => {
     closeMenu();
     navigate(`/${encodeURIComponent(category.toLowerCase())}`);
+  };
+
+  const confirmLogout = async () => {
+    await signOut();
+    setShowLogoutConfirm(false);
+    closeMenu();
+    navigate('/');
   };
 
   useEffect(() => {
@@ -48,31 +58,40 @@ const Search = () => {
   return (
     <>
       {/* Top Navigation */}
-   {/* Top Navigation */}
-<nav className="w-full bg-gray-800 border-b border-gray-200 text-gray-800 shadow-sm flex items-center px-1 py-1 gap-5 font-sans whitespace-nowrap overflow-x-hidden">
-  {/* Hamburger Icon */}
-  <div className="flex items-center flex-shrink-0 mr-4">
-    <Hamburger isOpen={menuOpen} toggle={toggleMenu} color="white" /> 
-    {/* Pass dark color (Tailwind gray-700) so it's visible */}
-  </div>
+      <nav className="w-full bg-white border-b border-gray-200 text-gray-800 shadow-sm flex items-center px-1 py-1 gap-5 font-sans whitespace-nowrap overflow-x-hidden relative">
+        {/* Hamburger Icon */}
+        <div className="flex items-center flex-shrink-0 mr-4">
+          <Hamburger isOpen={menuOpen} toggle={toggleMenu} color="gray" />
+        </div>
 
-  {/* Category Buttons */}
-  <div className="flex gap-3 flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400/50 scrollbar-track-transparent">
-    {categories.map((cat, index) => (
-      <button
-        key={index}
-        onClick={() => handleCategoryClick(cat)}
-        className="flex-shrink-0 px-3 py-1.5 text-sm rounded-full 
-                   bg-gray-100 text-gray-800 border border-gray-300
-                   hover:bg-blue-600 hover:text-white hover:border-blue-600 
-                   transition whitespace-nowrap shadow-sm"
-      >
-        {cat}
-      </button>
-    ))}
-  </div>
-</nav>
+        {/* Category Buttons */}
+        <div className="flex gap-3 flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400/50 scrollbar-track-transparent">
+          {categories.map((cat, index) => (
+            <button
+              key={index}
+              onClick={() => handleCategoryClick(cat)}
+              className="flex-shrink-0 px-3 py-1.5 text-sm rounded-full 
+                         bg-gray-100 text-gray-800 border border-gray-300
+                         hover:bg-blue-600 hover:text-white hover:border-blue-600 
+                         transition whitespace-nowrap shadow-sm"
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
 
+        {/* 🔹 Floating Sign Up button */}
+        {!isSignedIn && (
+          <div className="absolute top-3 right-4">
+            <Link
+              to="/login"
+              className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition"
+            >
+              Sign Up
+            </Link>
+          </div>
+        )}
+      </nav>
 
       {/* Backdrop Overlay */}
       {menuOpen && (
@@ -89,23 +108,21 @@ const Search = () => {
           menuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-       {/* Header */}
-<div className="flex items-center justify-between h-16 px-5 border-b border-gray-200 bg-gray-100">
-  <h2 className="text-lg font-semibold text-gray-900">Menu</h2>
-
-  <button
-    onClick={closeMenu}
-    className="w-8 h-8 flex items-center justify-center border border-gray-400 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition"
-    aria-label="Close menu"
-  >
-    ✕
-  </button>
-</div>
-
+        {/* Header */}
+        <div className="flex items-center justify-between h-16 px-5 border-b border-gray-200 bg-gray-100">
+          <h2 className="text-lg font-semibold text-gray-900">Menu</h2>
+          <button
+            onClick={closeMenu}
+            className="w-8 h-8 flex items-center justify-center border border-gray-400 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition"
+            aria-label="Close menu"
+          >
+            ✕
+          </button>
+        </div>
 
         {/* Scrollable Menu Content */}
         <div className="flex-grow overflow-y-auto p-5 space-y-8">
-          {/* ✅ Account Section */}
+          {/* Account Section */}
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Account</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
@@ -135,9 +152,21 @@ const Search = () => {
                   Recents
                 </Link>
               </li>
+              {isSignedIn && (
+                <li>
+                  <button
+                    onClick={() => setShowLogoutConfirm(true)}
+                    className="w-full text-left text-red-600 hover:text-red-800 font-medium"
+                  >
+                    Logout
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
-          <div>
+
+          {/* Payments */}
+          {/* <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Payments</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
               <li><Link to="/payment-updates" onClick={closeMenu} className="hover:text-blue-600">Payment updates</Link></li>
@@ -148,34 +177,51 @@ const Search = () => {
               <li><Link to="/subscriptions" onClick={closeMenu} className="hover:text-blue-600">My Subscriptions</Link></li>
               <li><Link to="/refunds" onClick={closeMenu} className="hover:text-blue-600">Refund Requests</Link></li>
             </ul>
-          </div>
+          </div> */}
 
-          {/* Categories */}
-        
           {/* Support */}
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Support</h3>
             <ul className="space-y-1 text-sm text-gray-600">
               <li><Link to="/helpcenter" onClick={closeMenu} className="hover:text-blue-600">Help Center</Link></li>
-             
             </ul>
           </div>
         </div>
       </div>
 
-      {/* ✅ Profile Popup Modal */}
+      {/* Logout Confirmation Modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50">
+          <div className="bg-white rounded-lg shadow-xl p-6 w-80 text-center">
+            <h2 className="text-lg font-semibold text-gray-900 mb-4">Are you sure you want to logout?</h2>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => setShowLogoutConfirm(false)}
+                className="px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-100"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmLogout}
+                className="px-4 py-2 rounded-lg bg-red-600 text-white hover:bg-red-700"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Profile Popup Modal */}
       {openProfile && (
         <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50">
           <div className="bg-white dark:bg-gray-900 rounded-xl shadow-xl p-6 w-96 relative">
-            {/* Close Button */}
             <button
               onClick={() => setOpenProfile(false)}
               className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
             >
               ✕
             </button>
-
-            {/* ✅ Clerk Profile Component inside Modal */}
             <Profile />
           </div>
         </div>
