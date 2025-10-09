@@ -39,7 +39,7 @@ const Form = () => {
 
 
  const categoryOptions = [
-  { value: "Men Shoes", label: "Fashions" },
+  { value: "Men", label: "Men Fashions" },
   { value: "fashion Clothes", label: "Electronics" },
   { value: "homes", label: "Homes" },
   { value: "carbrands", label: "Car Brands" },
