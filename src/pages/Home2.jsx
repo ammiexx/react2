@@ -18,7 +18,7 @@ const Nearby = () => {
 
         // Filter for category "fashions" and verified = true
         data = data.filter(
-          (item) => item.category === 'fashions' && item.verified === true
+          (item) => item.category === 'men' && item.verified === true
         );
 
         setProducts(data);
@@ -35,7 +35,7 @@ const Nearby = () => {
   return (
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-        Your modernized shoes for men!
+        Your modernized fashions for men!
       </h2>
 
       <section className="mb-12 w-full">
