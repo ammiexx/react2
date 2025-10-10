@@ -51,7 +51,7 @@ export default function Navigation({ products, onFilter }) {
         ${isHidden ? "-translate-y-full pointer-events-none duration-300" : "translate-y-0 pointer-events-auto duration-150"}`}
       >
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <div className="flex h-15 items-center justify-between gap-2">
+          <div className="flex h-12 items-center justify-between gap-2">
             
             {/* LEFT: Logo (Desktop only) */}
             <div className="hidden sm:flex items-center gap-2">
