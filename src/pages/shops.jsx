@@ -13,7 +13,7 @@ const Shops = ({ category, title }) => {
         const response = await fetch(
           `https://djanagobackend-5.onrender.com/api/products/`
         );
-        if (!response.ok) throw new Error("Failed to fetch products");
+        if (!response.ok) throw new Error("Conect to the internet");
         let data = await response.json();
         data = data.filter(
           (item) => item.category === category && item.verified === true
@@ -56,7 +56,7 @@ const Shops = ({ category, title }) => {
             ))}
           </div>
         ) : products.length === 0 ? (
-          <p className="text-center text-gray-500">No {category} products found.</p>
+          <p className="text-center text-gray-500">Be the first to advertise {category}</p>
         ) : (
           <div className="flex flex-col gap-4 w-full">
             {products.map((item) => (
