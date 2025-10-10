@@ -13,7 +13,7 @@ import medical from "../assets/images/medical.png";
 import supply from "../assets/images/supply.png";
 import consultancy from "../assets/images/consultancy.png";
 import sanitation from "../assets/images/sanitation.png";
-import telecom from "../assets/images/Telecom.png";
+import telecom from "../assets/images/telecom.png";
 import software from "../assets/images/software.png";
 import security from "../assets/images/security.png";
 import automotive from "../assets/images/automotive.png";
