@@ -237,6 +237,12 @@ const NearbyDetail = () => {
               📲 Telegram
             </a>
           )}
+            {/* ✅ Discount Section */}
+  {product.discount && (
+    <p className="text-green font-bold mb-2">
+      🎉 Discount: {product.discount}%
+    </p>
+  )}
           {product.contact_tick && (
             <a
               href={product.contact_tick}

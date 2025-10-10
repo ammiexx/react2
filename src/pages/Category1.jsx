@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "./ThemeContext";
 
-// ✅ Import all assets
 import appliance from "../assets/images/appliances.png";
 import men from "../assets/images/men.png";
 import women from "../assets/images/women.png";
@@ -16,9 +15,8 @@ import farm from "../assets/images/farm.png";
 import art from "../assets/images/art.png";
 import photo from "../assets/images/photo.png";
 import print from "../assets/images/printing.png";
-import jewelries from "../assets/images/watches.png"; // example for watches/jewelries
+import jewelries from "../assets/images/watches.png";
 
-// ✅ Use only local images in categories
 const categories = [
   { name: "Men Fashions", image_url: men, path: "/men_shoes" },
   { name: "Watches & Jewelries", image_url: jewelries, path: "/jewelries" },
