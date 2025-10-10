@@ -1,35 +1,49 @@
 import React, { useState, useEffect,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from './ThemeContext';
+import food from "../assets/images/food.png";
+import wedding from "../assets/images/wedding.png";
+import entertainment from "../assets/images/entertainment.png";
+import travel from "../assets/images/travel.png";
+import repair from "../assets/images/repair.png";
+import video from "../assets/images/video games.png";
+import finance from "../assets/images/finance.png";
+import pet from "../assets/images/pet.png";
+import medical from "../assets/images/medical.png";
+import supply from "../assets/images/supply.png";
+import consultancy from "../assets/images/consultancy.png";
+import sanitation from "../assets/images/sanitation.png";
+import telecom from "../assets/images/Telecom.png";
+import software from "../assets/images/software.png";
+import security from "../assets/images/security.png";
+import automotive from "../assets/images/automotive.png";
+import nursing from "../assets/images/nursing.png";
+
 const categories = [
-  { name: 'Food & Beverages', image_url: 'https://images.unsplash.com/photo-1614207279966-a46c93c0fbc2?w=600&auto=format&fit=crop&q=60', path: '/food-and-beverages' },
-  { name: 'Events & Weddings services', image_url: 'https://images.unsplash.com/photo-1754149155224-24d7042ec22e', path: '/events-and-weddings' },
-  { name: 'Entertainments', image_url: 'https://plus.unsplash.com/premium_photo-1683129679874-15966b2c1fdc?w=600&auto=format&fit=crop&q=60', path: '/entertainments' },
-  { name: 'Travel services', image_url: 'https://images.unsplash.com/photo-1754244774117-a27304d47959', path: '/travels' },
-  { name: 'Repair And Maintenance products', image_url: 'https://plus.unsplash.com/premium_photo-1750449864279-341157c41bc8?q=80&w=870&auto=format', path: '/Repair_and_maintenace' },
-  { name: 'Vidoes & Games products', image_url: 'https://plus.unsplash.com/premium_photo-1664910795422-527440cfce2d?w=600&auto=format&fit=crop&q=60', path: '/Toys_And_Games' },
-  { name: 'Finance & Insurances services', image_url: 'https://plus.unsplash.com/premium_photo-1661436432458-f7ca1a171410?w=600&auto=format&fit=crop&q=60', path: '/Finance_And_Insurances' },
-  { name: 'Pet Supplies And Services', image_url: 'https://plus.unsplash.com/premium_photo-1663133568320-97c8c0d0c4ba?w=600&auto=format&fit=crop&q=60', path: '/Pet_Supplies_And_Services' },
-  { name: 'Medical And Pharmaceutical services', image_url: 'https://plus.unsplash.com/premium_photo-1666299175827-59ca81fb2666?w=600&auto=format&fit=crop&q=60', path: '/Medical_And_Pharmaceuticals' },
-  { name: 'Logistics And Delivery Services', image_url: 'https://images.unsplash.com/photo-1754765542024-c1320f23b75a?w=600&auto=format&fit=crop&q=60', path: '/Logistics_And_Delivery_Services' },
-  { name: 'Consultancy Services', image_url: 'https://images.unsplash.com/photo-1565688527174-775059ac429c?w=600&auto=format&fit=crop&q=60', path: '/legal_And_Consultancy_Services' },
-  { name: 'Cleaning And Sanitation materials', image_url: 'https://images.unsplash.com/photo-1579141132886-e86d831034ac?w=600&auto=format&fit=crop&q=60', path: '/Cleaning_And_Sanitation_Services' },
-  { name: 'Telecom Services', image_url: 'https://images.unsplash.com/photo-1697097156924-de4efa72afc8?w=600&auto=format&fit=crop&q=60', path: '/Telecome_Services' },
-  { name: 'Software & IT Services', image_url: 'https://images.unsplash.com/photo-1598316560453-0246d4611979?w=600&auto=format&fit=crop&q=60', path: '/SoftWare_And_IT_Services' },
-  { name: 'Digital Security services', image_url: 'https://images.unsplash.com/photo-1639503547276-90230c4a4198?w=600&auto=format&fit=crop&q=60', path: '/Security_Services' },
-  { name: 'Automotive Services', image_url: 'https://plus.unsplash.com/premium_photo-1661299233465-ad4268ddb448?w=600&auto=format&fit=crop&q=60', path: '/Automotive_Services' },
-  { name: 'Elderly & Nursing Services', image_url: 'https://images.unsplash.com/photo-1581056771107-24ca5f033842?w=600&auto=format&fit=crop&q=60', path: '/Elderly_And_Nursing_Services' },
-  { name: 'Rental Services', image_url: 'https://plus.unsplash.com/premium_photo-1661761197559-58493b11151b?w=600&auto=format&fit=crop&q=60', path: '/Rental_Services' },
+  { name: 'Food & Beverages', image_url: food, path: '/food-and-beverages' },
+  { name: 'Events & Weddings services', image_url: wedding, path: '/events-and-weddings' },
+  { name: 'Entertainments', image_url: entertainment, path: '/entertainments' },
+  { name: 'Travel services', image_url: travel, path: '/travels' },
+  { name: 'Repair And Maintenance products', image_url: repair, path: '/Repair_and_maintenace' },
+  { name: 'Videos & Games products', image_url: video, path: '/Toys_And_Games' },
+  { name: 'Finance & Insurances services', image_url: finance, path: '/Finance_And_Insurances' },
+  { name: 'Pet Supplies And Services', image_url: pet, path: '/Pet_Supplies_And_Services' },
+  { name: 'Medical And Pharmaceutical services', image_url: medical, path: '/Medical_And_Pharmaceuticals' },
+  { name: 'Logistics And Delivery Services', image_url: supply, path: '/Logistics_And_Delivery_Services' },
+  { name: 'Consultancy Services', image_url: consultancy, path: '/legal_And_Consultancy_Services' },
+  { name: 'Cleaning And Sanitation materials', image_url: sanitation, path: '/Cleaning_And_Sanitation_Services' },
+  { name: 'Telecom Services', image_url: telecom, path: '/Telecome_Services' },
+  { name: 'Software & IT Services', image_url: software, path: '/SoftWare_And_IT_Services' },
+  { name: 'Digital Security services', image_url: security, path: '/Security_Services' },
+  { name: 'Automotive Services', image_url: automotive, path: '/Automotive_Services' },
+  { name: 'Elderly & Nursing Services', image_url: nursing, path: '/Elderly_And_Nursing_Services' },
 ];
 const Category2 = () => {
   const navigate = useNavigate();
   const { theme } = useTheme();
   const [searchTerm, setSearchTerm] = useState('');
   const [currentSlide, setCurrentSlide] = useState(0);
-
-  // Pick 5 random slider images once
   const [sliderImages] = useState(categories.sort(() => 0.5 - Math.random()).slice(0, 5));
-
   const filteredCategories = categories.filter(cat =>
     cat.name.toLowerCase().includes(searchTerm.toLowerCase())
   );

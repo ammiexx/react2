@@ -2,21 +2,38 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "./ThemeContext";
 
+// ✅ Import all assets
+import appliance from "../assets/images/appliances.png";
+import men from "../assets/images/men.png";
+import women from "../assets/images/women.png";
+import kids from "../assets/images/kids.png";
+import furniture from "../assets/images/furniture.png";
+import fitness from "../assets/images/fitness.png";
+import home from "../assets/images/home.png";
+import car from "../assets/images/car.png";
+import beauty from "../assets/images/beauty.png";
+import farm from "../assets/images/farm.png";
+import art from "../assets/images/art.png";
+import photo from "../assets/images/photo.png";
+import print from "../assets/images/printing.png";
+import jewelries from "../assets/images/watches.png"; // example for watches/jewelries
+
+// ✅ Use only local images in categories
 const categories = [
-  { name: "Men Fashions", image_url: "https://plus.unsplash.com/premium_photo-1723575625757-0fe66372fd0a?w=600&auto=format&fit=crop&q=60", path: "/men_shoes" },
-  { name: "Wathes & Jewelries", image_url: "https://images.unsplash.com/photo-1755621123433-688f13a2471f?q=80&w=870&auto=format&fit=crop", path: "/Jewelries" },
-  { name: "Baby & Kids essentials", image_url: "https://images.unsplash.com/photo-1601925240970-98447486fcdb?w=600&auto=format&fit=crop&q=60", path: "/Babies_And_Kids_Products" },
-  { name: "Furniture & Interior Design materials", image_url: "https://plus.unsplash.com/premium_photo-1670950413316-f501402ef0a7?w=600&auto=format&fit=crop&q=60", path: "/Furniture_And_Interior_design" },
-  { name: "Women Fashions", image_url: "https://images.unsplash.com/photo-1627577279497-4b24bf1021b6?w=600&auto=format&fit=crop&q=60", path: "/women_fashions" },
-  { name: "Fitness essentials", image_url: "https://images.unsplash.com/photo-1563387061879-ba036b025216?w=600&auto=format&fit=crop&q=60", path: "/fitness_And_Sports_servies" },
-  { name: "Homes", image_url: "https://plus.unsplash.com/premium_photo-1680300960892-bd11b59b469b?w=600&auto=format&fit=crop&q=60", path: "/homes" },
-  { name: "Car Brands", image_url: "https://images.unsplash.com/photo-1503376780353-7e6692767b70", path: "/car-brands" },
-  { name: "Home Appliances", image_url: "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&auto=format&fit=crop&q=60", path: "/home-appliances" },
-  { name: "Health & Beauty", image_url: "https://images.unsplash.com/photo-1625154253125-5d89afab6c7c?w=600&auto=format&fit=crop&q=60", path: "/health-and-beauties" },
-  { name: "Farm products", image_url: "https://plus.unsplash.com/premium_photo-1700695638084-5f46e469e223?w=600&auto=format&fit=crop&q=60", path: "/Agriculture_And_Livestock" },
-  { name: "Art & Handicrafts", image_url: "https://images.unsplash.com/photo-1695747001769-15ac88863f90?w=600&auto=format&fit=crop&q=60", path: "/Art_And_Handicrafts" },
-  { name: "Video & Photography essentials", image_url: "https://plus.unsplash.com/premium_photo-1684783848153-970ef340c10b?w=600&auto=format&fit=crop&q=60", path: "/Video_And_Photography" },
-  { name: "Printing & Publishing essentials", image_url: "https://plus.unsplash.com/premium_photo-1682145489846-081721a9b272?w=600&auto=format&fit=crop&q=60", path: "/Printing_And_Publishing" },
+  { name: "Men Fashions", image_url: men, path: "/men_shoes" },
+  { name: "Watches & Jewelries", image_url: jewelries, path: "/jewelries" },
+  { name: "Baby & Kids essentials", image_url: kids, path: "/Babies_And_Kids_Products" },
+  { name: "Furniture & Interior Design materials", image_url: furniture, path: "/Furniture_And_Interior_design" },
+  { name: "Women Fashions", image_url: women, path: "/women_fashions" },
+  { name: "Fitness essentials", image_url: fitness, path: "/fitness_And_Sports_servies" },
+  { name: "Homes", image_url: home, path: "/homes" },
+  { name: "Car Brands", image_url: car, path: "/car-brands" },
+  { name: "Home Appliances", image_url: appliance, path: "/home-appliances" },
+  { name: "Health & Beauty", image_url: beauty, path: "/health-and-beauties" },
+  { name: "Farm products", image_url: farm, path: "/Agriculture_And_Livestock" },
+  { name: "Art & Handicrafts", image_url: art, path: "/Art_And_Handicrafts" },
+  { name: "Video & Photography essentials", image_url: photo, path: "/Video_And_Photography" },
+  { name: "Printing & Publishing essentials", image_url: print, path: "/Printing_And_Publishing" },
 ];
 
 const Category1 = () => {
@@ -25,7 +42,7 @@ const Category1 = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Generate slider images only once
+  // Generate slider images once
   const sliderImages = useMemo(() => {
     const shuffled = [...categories].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 5);
@@ -66,7 +83,7 @@ const Category1 = () => {
                 ${idx === currentSlide ? "opacity-100 z-10 scale-105" : "opacity-0 z-0 scale-95"}`}
             >
               <img
-                src={`${cat.image_url}?w=1200&h=400&auto=format`}
+                src={cat.image_url}
                 alt={cat.name}
                 className="w-full h-full object-cover shadow-2xl rounded-lg"
               />
@@ -101,7 +118,7 @@ const Category1 = () => {
                 onClick={() => navigate(cat.path)}
               >
                 <img
-                  src={`${cat.image_url}?w=400&h=300&auto=format`}
+                  src={cat.image_url}
                   alt={cat.name}
                   className="w-full h-40 object-cover rounded-md"
                 />

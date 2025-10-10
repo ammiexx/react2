@@ -36,7 +36,7 @@ const Nearby = () => {
     <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       {/* Heading */}
       <h2 className="text-2xl font-bold text-center mb-6">
-        🎯 Tatueing materials 👀 💡
+        🎯 women fashions 👀 💡
       </h2>
 
       <section className="mb-12 w-full">
