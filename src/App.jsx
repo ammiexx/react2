@@ -47,7 +47,6 @@ import FloatingChat from "./pages/FloatingChat";
 import SearchResults from "./components/SearchResults";
 import CommentsPage from "./pages/CommentsPage";
 import CopyRight from "./components/CopyRight";
-// the new generic file
 import Shops from "./pages/Shops";
 function App() {
   return (
