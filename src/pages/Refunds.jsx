@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 const Refunds = () => {
-  const [refunds, setRefunds] = useState([]);
-
+const [refunds, setRefunds] = useState([]);
   useEffect(() => {
     fetch("https://djanagobackend-5.onrender.com/api/refunds/")
       .then((res) => res.json())

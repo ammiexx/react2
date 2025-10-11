@@ -1,6 +1,5 @@
 
 import React from "react";
-
 import { useTheme } from "./ThemeContext";
 import { MoonIcon,SunIcon } from "@heroicons/react/24/solid";
 export default function ThemeToggle() {
