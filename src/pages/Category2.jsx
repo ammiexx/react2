@@ -24,7 +24,7 @@ const categories = [
   { name: 'Events & Weddings services', image_url: wedding, path: '/events-and-weddings' },
   { name: 'Entertainments', image_url: entertainment, path: '/entertainments' },
   { name: 'Travel services', image_url: travel, path: '/travels' },
-  { name: 'Repair And Maintenance products', image_url: repair, path: '/Repair_and_maintenace' },
+  { name: 'Repair And Maintenance products', image_url: repair, path: '/Repair_and_maintenance' },
   { name: 'Videos & Games products', image_url: video, path: '/Toys_And_Games' },
   { name: 'Finance & Insurances services', image_url: finance, path: '/Finance_And_Insurances' },
   { name: 'Pet Supplies And Services', image_url: pet, path: '/Pet_Supplies_And_Services' },

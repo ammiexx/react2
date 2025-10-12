@@ -122,10 +122,10 @@ function App() {
 <Route path="/Printing_And_Publishing" element={<Shops category="printing" title="Bring Your Ideas to Life – Explore Printing & Publishing!" />} />
 <Route path="/Podcasting_And_Audio_production" element={<Shops category="podcasting" title="Podcast & Audio Production – Make Your Voice Heard!" />} />
 <Route path="/Video_And_Photography" element={<Shops category="photography" title="Capture Every Moment – Shop Video & Photography Essentials!" />} />
-<Route path="/Bauty_Sallons_BarberShops" element={<Shops category="sallons" title="Enhance Your Natural Glow – Health & Beauty Essentials!" />} />
+<Route path="/health-and-beauties" element={<Shops category="sallons" title="Enhance Your Natural Glow – Health & Beauty Essentials!" />} />
 <Route path="/SoftWare_And_IT_Services" element={<Shops category="software" title="Software & IT Services – Tech Solutions for You!" />} />
 <Route path="/Stationary_And_Office_Supplies" element={<Shops category="stationary" title="Stationary & Office Supplies – Everything You Need!" />} />
-<Route path="/women_fashions" element={<Shops category="women_fashions" title="Tatto & Piercing Studios – Express Your Style!" />} />
+<Route path="/women_fashions" element={<Shops category="women_fashions" title="Express Your Style!" />} />
 <Route path="/Telecome_Services" element={<Shops category="telecom" title="Telecommunication Services – Stay Connected!" />} />
 <Route path="/Waste_Management_And_Recycling" element={<Shops category="waste" title="Waste Management & Recycling – Sustainable Solutions!" />} />
 <Route path="/Virtual_Events_And_Webbinaries" element={<Shops category="virtual" title="Virtual Events & Webinars – Connect Anywhere!" />} />
@@ -140,6 +140,7 @@ function App() {
 <Route path="/events-and-weddings" element={<Shops category="events" title="Plan Your Perfect Event – Explore Weddings & Event Services!" />} />
 <Route path="/entertainments" element={<Shops category="entertainments" title="Fun Awaits – Shop Entertainment & Leisure Services!" />} />
 <Route path="/travels" element={<Shops category="travels" title="Adventure Awaits – Discover Top Travel Services!" />} />
+<Route path="/Agriculture_And_Livestock" element={<Shops category="agricultural" title="Adventure Awaits – Discover Top Travel Services!" />} />
 
           
 
