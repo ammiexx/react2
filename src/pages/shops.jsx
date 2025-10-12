@@ -8,9 +8,8 @@ const Shops = ({ category, title }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(
-          `https://djanagobackend-5.onrender.com/api/products/`
-        );
+        const response = await fetch( `https://djanagobackend-5.onrender.com/api/products/`
+ );
         if (!response.ok) throw new Error("Conect to the internet");
         let data = await response.json();
         data = data.filter(
