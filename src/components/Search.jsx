@@ -92,12 +92,7 @@ const Search = () => {
         {/* Floating Sign Up button */}
         {!isSignedIn && (
           <div className="absolute top-3 right-4">
-            <Link
-              to="/login"
-              className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition"
-            >
-              Sign Up
-            </Link>
+           
           </div>
         )}
       </nav>
