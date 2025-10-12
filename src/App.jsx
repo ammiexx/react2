@@ -48,6 +48,7 @@ import SearchResults from "./components/SearchResults";
 import CommentsPage from "./pages/CommentsPage";
 import CopyRight from "./components/CopyRight";
 import Shops from "./pages/Shops";
+import Footer2 from "./components/Footer2";
 function App() {
   return (
     <Router>
@@ -165,7 +166,7 @@ function App() {
       </Routes>
       </main>
       <FloatingChat/>
-      <Footer />
+      <Footer/>
       <CopyRight />
       </div>
     </Router>
