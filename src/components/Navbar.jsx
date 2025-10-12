@@ -71,19 +71,11 @@ export default function Navigation({ products, onFilter }) {
             </div>
 
             {/* CENTER: Mobile search + services */}
-            <div className="flex-1 flex items-center justify-end gap-2 sm:hidden">
+            <div className="flex flex-1 items-center justify-between sm:hidden px-2">
+
               {!mobileSearchOpen && (
                 <>
-                  {/* Logo */}
-                  <Link to="/" className="flex items-center">
-                    <img
-                      src={knash}
-                      alt="Kenash Logo"
-                      className="h-11 w-25 rounded-full object-cover"
-                    />
-                  </Link>
-
-                  {/* Services & Nearby */}
+                  
                   <NavLink
                     to="/services"
                     className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
