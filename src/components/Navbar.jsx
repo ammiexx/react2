@@ -59,20 +59,10 @@ export default function Navigation({ products, onFilter }) {
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="flex h-13 items-center justify-between gap-2">
             
-            {/* LEFT: Logo (Desktop only) */}
-            <div className="hidden sm:flex items-center gap-2">
-              <Link to="/" className="flex items-center">
-                <img
-                  src={knash}
-                  alt="Kenash Logo"
-                  className="h-11 w-25 rounded-full object-cover"
-                />
-              </Link>
-            </div>
+          
 
             {/* CENTER: Mobile search + services */}
-            <div className="flex flex-1 items-center justify-between sm:hidden px-2">
-
+            <div className="flex-1 flex items-center justify-between sm:hidden px-2">
               {!mobileSearchOpen && (
                 <>
                   
