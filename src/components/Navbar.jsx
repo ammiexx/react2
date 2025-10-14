@@ -5,10 +5,7 @@ import { useScrollDirection } from "./UseScrollDirection";
 import Searching from "./Searching";
 import knash from "../assets/lgo.png";
 import { useClerk, useUser } from "@clerk/clerk-react";
-
-
 const navigation = [
-  // { name: "Order Now", href: "/forsale" },
   { name: "Shops", href: "/" },
   { name: "Services", href: "/services" },
   { name: "Nearby Shops", href: "/nearby-shops" },
@@ -66,9 +63,6 @@ export default function Navigation({ products, onFilter }) {
 
   </Link>
 </div>
-
-
-            {/* CENTER: Mobile search + services */}
             <div className="flex-1 flex items-center justify-between sm:hidden px-2">
               {!mobileSearchOpen && (
                 <>
@@ -124,8 +118,6 @@ export default function Navigation({ products, onFilter }) {
 )}
 
             </div>
-
-            {/* RIGHT: Desktop links */}
             <div className="hidden sm:flex items-center gap-2">
               {navigation.map((item) => (
                 <NavLink

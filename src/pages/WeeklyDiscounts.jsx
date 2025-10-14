@@ -15,12 +15,8 @@ const Nearby = () => {
         );
         if (!response.ok) throw new Error('Failed to fetch products');
         let data = await response.json();
-
-        // Get current time
         const now = new Date();
         const oneWeekAgo = new Date(now.getTime() - 168 * 60 * 60 * 1000); // 168 hours
-
-        // Filter: numeric discount, posted in last week, verified
         data = data.filter(
           (item) =>
             item.verified === true &&
@@ -30,7 +26,7 @@ const Nearby = () => {
 
         setProducts(data);
       } catch (err) {
-        setError(err.message);
+        setError("No internet connection!");
       } finally {
         setLoading(false);
       }

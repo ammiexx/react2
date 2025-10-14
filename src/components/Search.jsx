@@ -92,6 +92,7 @@ const Search = () => {
         {/* Floating Sign Up button */}
         {!isSignedIn && (
           <div className="absolute top-3 right-4">
+            
            
           </div>
         )}

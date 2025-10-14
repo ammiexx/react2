@@ -242,7 +242,7 @@ if (!user) {
 };
 
   return (
-    <div className="max-w-3xl mx-auto p-8 bg-gray-100 shadow-xl rounded-xl mt-10 border border-gray-200 relative">
+    <div className="max-w-3xl mx-auto py-25 p-8 bg-gray-100 shadow-xl rounded-xl mt-10 border border-gray-200 relative">
 
 
       <div className="text-center mb-8">

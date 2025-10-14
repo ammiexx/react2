@@ -20,7 +20,7 @@ const Login = () => {
   }, [isSignedIn, user, navigate]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+    <div className="min-h-screen py-25 flex items-center justify-center bg-gray-900">
       <SignIn
         path="/login"
         routing="path"

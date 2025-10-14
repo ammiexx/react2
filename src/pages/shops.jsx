@@ -18,7 +18,7 @@ const Shops = ({ category, title }) => {
 
         setProducts(data);
       } catch (err) {
-        setError(err.message);
+        setError("No internet connection!");
       } finally {
         setLoading(false);
       }
@@ -28,7 +28,7 @@ const Shops = ({ category, title }) => {
   }, [category]);
 
   return (
-    <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
+    <div className="max-w-[1200px] mx-auto 1pt-5 my-10 px-5 text-[#2c3e50] font-sans w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
         {title}
       </h2>
@@ -53,7 +53,7 @@ const Shops = ({ category, title }) => {
             ))}
           </div>
         ) : products.length === 0 ? (
-          <p className="text-center text-gray-500">Be the first to advertise {category}</p>
+          <p className="text-center text-gray-500"></p>
         ) : (
           <div className="flex flex-col gap-4 w-full">
             {products.map((item) => (

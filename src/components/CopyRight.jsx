@@ -6,8 +6,9 @@ const Copyright = () => {
       <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-sm px-1">
         {/* Left side */}
         <p className="mb-2 sm:mb-0">
-          © 2025 <span className="font-semibold">CBN Solutions</span>. All Rights Reserved.
+         &copy; {new Date().getFullYear()} supreme technology solutions. All rights reserved.
         </p>
+        
         <div className="flex space-x-6">
           <Link to="/aboutus" className="hover:text-white transition">  About Us</Link>
           <Link to="/privacy" className="hover:text-white transition">  Privacy </Link>

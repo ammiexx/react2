@@ -29,7 +29,7 @@ const Nearby = () => {
 
         setProducts(data);
       } catch (err) {
-        setError(err.message);
+        setError("No internet connection!");
       } finally {
         setLoading(false);
       }

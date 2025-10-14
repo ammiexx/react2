@@ -5,25 +5,19 @@ const Footer = () => {
   const linkClass = "hover:text-[#6ec1e4] transition-colors";
 
   return (
-    <footer id="footer" className="bg-gray-900 text-white py-2 text-center"
+    <footer id="footer" className="bg-gray-900 mt-60 text-white py-2 text-center"
 >
      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 sm:text-center md:text-left md:ml-10 lg:ml-20">
-
-        {/* Logo 5xl → ~ 64rem (1024px).*/}
         <div className={`mb-2 ${normalTextClass}`}>
           <h1 className="text-3xl font-bold text-[#6ec1e4]">Knash</h1>
         </div>
-
-        {/* Mission */}
         <div className={`mb-3 max-w-3xl ${normalTextClass} leading-relaxed`}>
           <p>
         Creating a shopping platform that helps customers to purchase what they need at the best value!
         </p>
         </div>
 
-        {/* Social Icons */}
         <div className={`flex gap-11 mb-3 ${normalTextClass}`}>
-          {/* Facebook */}
           <a
             href="https://facebook.com/animutalemneh"
             target="_blank"
@@ -37,7 +31,6 @@ const Footer = () => {
                 d="M22 12a10 10 0 1 0-11.5 9.87v-7h-2v-3h2v-2.3c0-2 1.2-3 3-3 .9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.3 3h-1.9v7A10 10 0 0 0 22 12Z" />
             </svg>
           </a>
-          {/* Instagram */}
           <a
             href="https://instagram.com/alemnehanimut"
             target="_blank"
@@ -52,7 +45,6 @@ const Footer = () => {
               <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
             </svg>
           </a>
-          {/* Telegram */}
           <a
             href="https://t.me/@ammiex"
             target="_blank"
@@ -65,7 +57,6 @@ const Footer = () => {
               <path d="M21.04 3.5 3.88 10.42l4.54 1.56 1.75 5.38 2.93-4.6 4.92 3.6z" />
             </svg>
           </a>
-          {/* TikTok */}
           <a
             href="https://www.tiktok.com/@alemnehanimut"
             target="_blank"
