@@ -225,7 +225,7 @@ const postProduct = async (productData) => {
   e.preventDefault();
 
   if (formData.images.length < 5 || formData.images.length > 10) {
-    setErrorMsg('❌ You must upload between 5 and 10 additional images.');
+    setErrorMsg('❌ You must upload between 2 and 10 additional images.');
     setLoading(false);
     return;
   }
@@ -461,7 +461,7 @@ if (!user) {
 
 <div>
   <label className="block text-gray-700 font-semibold mb-1">
-    Additional Images (Min: 4, Max: 10)
+    Additional Images (Min: 1, Max: 10)
   </label>
 
  <div className="flex flex-col space-y-4">
