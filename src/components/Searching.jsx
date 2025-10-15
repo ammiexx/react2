@@ -25,7 +25,7 @@ const Searching = ({ products, onFilter, onSubmit }) => {
     }
   };
   return (
-    <div className="relative w-72 sm:w-78 flex items-center">
+    <div className="relative w-72 sm:w-90 flex items-center">
 
       <input
         type="text"
