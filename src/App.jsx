@@ -48,7 +48,7 @@ import SearchResults from "./components/SearchResults";
 import CommentsPage from "./pages/CommentsPage";
 import CopyRight from "./components/CopyRight";
 import Shops from "./pages/Shops";
-import Footer2 from "./components/Footer2";
+import Videos from "./pages/Videos";
 function App() {
   return (
     <Router>
@@ -59,6 +59,7 @@ function App() {
   </div>
       <main className="flex-grow">
       <Routes>
+        <Route path="/videos" element={<Videos/>} />
         <Route path="/comments" element={<CommentsPage />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/myprofile" element={<MyProfile/>} />
