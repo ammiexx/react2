@@ -454,9 +454,7 @@ if (!user) {
   accept="image/*"
   onChange={handleImageChange}
   className="w-full"
-  required
-/>
-
+  required/>
         </div>
 
 <div>
