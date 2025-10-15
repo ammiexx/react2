@@ -9,7 +9,6 @@ import { useClerk, useUser } from "@clerk/clerk-react";
 const navigation = [
   { name: "Shops", href: "/" },
   { name: "Services", href: "/services" },
-  { name: "Videos", href: "/videos" },
   { name: "Nearby", href: "/nearby-shops" },
 ];
 
