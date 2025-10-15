@@ -138,19 +138,23 @@ export default function Navigation({ products, onFilter }) {
             <div className="hidden sm:block flex-1">
               <Searching products={products} onFilter={onFilter} />
             </div>
-            {!isSignedIn ? (
-  <Link
-    to="/login"
-    className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition"
-  >
-    Sign Up
-  </Link>
-) : (
-  <div className="flex items-center gap-2">
-    <span className="text-sm">Hi, {user.firstName}</span>
-   
-  </div>
+  {!mobileSearchOpen && (
+  <>
+    {!isSignedIn ? (
+      <Link
+        to="/login"
+        className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition"
+      >
+        Sign Up
+      </Link>
+    ) : (
+      <div className="flex items-center gap-2">
+        <span className="text-sm">Hi, {user.firstName}</span>
+      </div>
+    )}
+  </>
 )}
+
 
           </div>
         </div>
