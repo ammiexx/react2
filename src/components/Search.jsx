@@ -13,6 +13,7 @@ const categories = [
 ];
 
 const accountLinks = (setOpenProfile, setShowLogoutConfirm, isSignedIn) => [
+   { name: 'Add post', icon: ClockIcon, href: '/form' },
   { name: 'My Profile', icon: UserIcon, onClick: () => setOpenProfile(true) },
   { name: 'My Posts', icon: DocumentTextIcon, href: '/myposts' },
   { name: 'Recents', icon: ClockIcon, href: '/recents' },

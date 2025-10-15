@@ -5,11 +5,11 @@ import { useScrollDirection } from "./UseScrollDirection";
 import Searching from "./Searching";
 import knash from "../assets/lgo.png";
 import { useClerk, useUser } from "@clerk/clerk-react";
+
 const navigation = [
   { name: "Shops", href: "/" },
   { name: "Services", href: "/services" },
-  { name: "Nearby Shops", href: "/nearby-shops" },
-  { name: "Add Post", href: "/form" },
+  { name: "Nearby", href: "/nearby-shops" },
 ];
 
 export default function Navigation({ products, onFilter }) {
@@ -25,8 +25,7 @@ export default function Navigation({ products, onFilter }) {
   const { signOut, isSignedIn } = useClerk();
   const { user } = useUser();
 
-
-  // Close drawer on outside click
+  // Close drawer when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (drawerRef.current && !drawerRef.current.contains(e.target)) {
@@ -54,19 +53,23 @@ export default function Navigation({ products, onFilter }) {
         ${isHidden ? "-translate-y-full pointer-events-none duration-300" : "translate-y-0 pointer-events-auto duration-150"}`}
       >
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-          <div className="flex h-13 items-center justify-between gap-2">
+          <div className="flex h-13 items-center justify-between">
             
-          <div className="hidden sm:flex items-center flex-shrink-0">
-  <Link to="/">
-   <img src={knash} alt="Knash Logo" className="h-[50px] w-[100px]" />
+            {/* Logo */}
+            <div className="hidden sm:flex items-center flex-shrink-0">
+              <Link to="/">
+                <img
+                  src={knash}
+                  alt="Knash Logo"
+                  className="h-[50px] w-[110px] md:w-[90px] sm:w-[75px]"
+                />
+              </Link>
+            </div>
 
-
-  </Link>
-</div>
+            {/* MOBILE SECTION */}
             <div className="flex-1 flex items-center justify-between sm:hidden px-2">
               {!mobileSearchOpen && (
                 <>
-                  
                   <NavLink
                     to="/services"
                     className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
@@ -81,8 +84,6 @@ export default function Navigation({ products, onFilter }) {
                     Nearby
                   </NavLink>
 
-                 
-
                   {/* Search icon */}
                   <button
                     onClick={() => setMobileSearchOpen(true)}
@@ -90,7 +91,8 @@ export default function Navigation({ products, onFilter }) {
                   >
                     <MagnifyingGlassIcon className="h-6 w-6" />
                   </button>
-                   {/* Hamburger */}
+
+                  {/* Hamburger */}
                   <button
                     onClick={toggleDrawer}
                     className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white"
@@ -100,33 +102,34 @@ export default function Navigation({ products, onFilter }) {
                 </>
               )}
 
-             {mobileSearchOpen && (
-  <div className="flex-1 flex items-center gap-2">
-    <Searching
-      products={products}
-      onFilter={onFilter}
-      onSubmit={() => setMobileSearchOpen(false)}
-    />
-    {/* Close button */}
-    <button
-      onClick={() => setMobileSearchOpen(false)}
-      className="p-2 text-gray-200 hover:text-white"
-    >
-      <XMarkIcon className="h-6 w-6" />
-    </button>
-  </div>
-)}
-
+              {mobileSearchOpen && (
+                <div className="flex-1 flex items-center gap-2">
+                  <Searching
+                    products={products}
+                    onFilter={onFilter}
+                    onSubmit={() => setMobileSearchOpen(false)}
+                  />
+                  {/* Close button */}
+                  <button
+                    onClick={() => setMobileSearchOpen(false)}
+                    className="p-2 text-gray-200 hover:text-white"
+                  >
+                    <XMarkIcon className="h-6 w-6" />
+                  </button>
+                </div>
+              )}
             </div>
-            <div className="hidden sm:flex items-center gap-2">
+
+            {/* DESKTOP NAV LINKS */}
+            <div className="hidden sm:flex items-center gap-8 md:gap-6 sm:gap-4">
               {navigation.map((item) => (
                 <NavLink
                   key={item.name}
                   to={item.href}
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                      : "text-gray-300 hover:bg-white/5 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                      ? "bg-gray-900 text-white rounded-md px-3 md:px-2 sm:px-1 py-2 text-sm font-medium"
+                      : "text-gray-300 hover:bg-white/5 hover:text-white rounded-md px-3 md:px-2 sm:px-1 py-2 text-sm font-medium"
                   }
                 >
                   {item.name}
@@ -134,28 +137,30 @@ export default function Navigation({ products, onFilter }) {
               ))}
             </div>
 
-            {/* Desktop search */}
-            <div className="hidden sm:block flex-1">
-              <Searching products={products} onFilter={onFilter} />
+            {/* DESKTOP SEARCH BAR */}
+            <div className="hidden sm:flex flex-1 justify-center">
+              <div className="w-full max-w-[600px] md:max-w-[500px] sm:max-w-[400px]">
+                <Searching products={products} onFilter={onFilter} />
+              </div>
             </div>
-  {!mobileSearchOpen && (
-  <>
-    {!isSignedIn ? (
-      <Link
-        to="/login"
-        className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition"
-      >
-        Sign Up
-      </Link>
-    ) : (
-      <div className="flex items-center gap-2">
-        <span className="text-sm">Hi, {user.firstName}</span>
-      </div>
-    )}
-  </>
-)}
 
-
+            {/* SIGNUP / USER SECTION */}
+            {!mobileSearchOpen && (
+              <>
+                {!isSignedIn ? (
+                  <Link
+                    to="/login"
+                    className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition"
+                  >
+                    Sign Up
+                  </Link>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-white">Hi, {user.firstName}</span>
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
       </nav>
@@ -173,7 +178,6 @@ export default function Navigation({ products, onFilter }) {
           drawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {/* Drawer Links */}
         <div className="p-4 space-y-2">
           {navigation.map((item) => (
             <NavLink
