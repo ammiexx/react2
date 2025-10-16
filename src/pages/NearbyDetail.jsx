@@ -153,7 +153,7 @@ const NearbyDetail = () => {
         </div>
       )}
 
-      {/* Product Images */}
+   
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">
         {[product.product_photo, ...(product.images || []).map((img) => img.image)].map(
           (src, idx) => (
