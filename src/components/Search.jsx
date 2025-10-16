@@ -232,13 +232,18 @@ const Search = () => {
       {user && (
         <div className="flex flex-col items-center gap-3 mb-6">
           <div className="w-20 h-20 rounded-full overflow-hidden border border-gray-300">
-            {/* Optional: user profile photo */}
-            {/* <img src={user.profileImageUrl} alt="Profile" className="w-full h-full object-cover" /> */}
+            <img
+              src={user.profileImageUrl || 'https://via.placeholder.com/80'}
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
           </div>
           <h2 className="text-lg font-semibold text-gray-900">
             {user.firstName} {user.lastName}
           </h2>
-          <p className="text-sm text-gray-600">{user.primaryEmailAddress?.emailAddress}</p>
+          <p className="text-sm text-gray-600">
+            {user.primaryEmailAddress?.emailAddress || 'No email provided'}
+          </p>
         </div>
       )}
 
