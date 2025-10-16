@@ -224,7 +224,13 @@ const postProduct = async (productData) => {
  const handleSubmit = async (e) => {
   e.preventDefault();
 
-  // Only show warning if additional images are less than 5
+
+  //    if (!formData.product_video) {
+  //   setErrorMsg('❌ You must upload a product video (max 30 seconds).');
+  //   setTimeout(() => setErrorMsg(''), 2000);
+  //   return; // Stop form submission
+  // }
+  
   if (formData.images.length < 1) {
     setErrorMsg('❌ You must upload between 1 and 10 additional images.');
     
