@@ -146,29 +146,22 @@ export default function Navigation({ products, onFilter }) {
             </div>
 
             {/* SIGNUP / USER SECTION */}
-           {/* SIGNUP / USER SECTION */}
-{!mobileSearchOpen && (
-  <>
-    {!clerkLoaded ? (
-      // Show a small loading spinner while Clerk initializes
-      <div className="flex items-center justify-center text-gray-200">
-        <div className="animate-spin h-5 w-5 border-2 border-t-transparent border-white rounded-full"></div>
-      </div>
-    ) : !isSignedIn ? (
-      <Link
-        to="/login"
-        className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition"
-      >
-        Sign Up
-      </Link>
-    ) : (
-      <div className="flex items-center gap-2">
-        <span className="text-sm text-white">Hi, {user.firstName || "User"}</span>
-      </div>
-    )}
-  </>
-)}
-
+            {!mobileSearchOpen && (
+              <>
+                {!isSignedIn ? (
+                  <Link
+                    to="/login"
+                    className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition"
+                  >
+                    Sign Up
+                  </Link>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-white">Hi, {user.firstName}</span>
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
       </nav>
