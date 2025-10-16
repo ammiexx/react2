@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 const Shops = ({ category, title }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch( `https://djanagobackend-5.onrender.com/api/products/`
- );
-        if (!response.ok) throw new Error("Conect to the internet");
+        const response = await fetch(
+          `https://djanagobackend-5.onrender.com/api/products/`
+        );
+        if (!response.ok) throw new Error("Connect to the internet");
         let data = await response.json();
         data = data.filter(
           (item) => item.category === category && item.verified === true
         );
-
         setProducts(data);
       } catch (err) {
         setError("No internet connection!");
@@ -28,7 +30,7 @@ const Shops = ({ category, title }) => {
   }, [category]);
 
   return (
-    <div className="max-w-[1200px] mx-auto 1pt-5 my-10 px-5 text-[#2c3e50] font-sans w-full">
+    <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
         {title}
       </h2>
@@ -53,7 +55,9 @@ const Shops = ({ category, title }) => {
             ))}
           </div>
         ) : products.length === 0 ? (
-          <p className="text-center text-gray-500"></p>
+          <p className="text-center text-gray-500 text-lg font-semibold">
+            Be the first to advertise here!
+          </p>
         ) : (
           <div className="flex flex-col gap-4 w-full">
             {products.map((item) => (
