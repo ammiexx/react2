@@ -37,7 +37,7 @@ const Login = () => {
       <SignIn
         path="/login"
         routing="path"
-        signUpUrl="/signup"
+     
         afterSignUpUrl="/welcome"
         appearance={{
           layout: {
