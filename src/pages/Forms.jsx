@@ -233,11 +233,7 @@ const postProduct = async (productData) => {
   
   if (formData.images.length < 1) {
     setErrorMsg('❌ You must upload between 1 and 10 additional images.');
-    
-    // Clear the error after 2 seconds
     setTimeout(() => setErrorMsg(''), 2000);
-    
-    // Stop submission temporarily, user can add more images
     return;
   }
 
