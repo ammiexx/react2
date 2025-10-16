@@ -217,20 +217,55 @@ const Search = () => {
         </div>
       )}
 
-      {/* Profile Popup Modal */}
-      {openProfile && (
-        <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50">
-          <div className="bg-white dark:bg-gray-900 rounded-xl shadow-xl p-6 w-96 relative">
-            <button
-              onClick={() => setOpenProfile(false)}
-              className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
-            >
-              ✕
-            </button>
-            <Profile />
+     {/* Profile Popup Modal */}
+{openProfile && (
+  <div className="fixed inset-0 flex items-center justify-center z-[9999] bg-black/50">
+    <div className="bg-white dark:bg-gray-900 rounded-xl shadow-xl p-6 w-96 relative">
+      <button
+        onClick={() => setOpenProfile(false)}
+        className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+      >
+        ✕
+      </button>
+
+      {/* Profile Info */}
+      {user && (
+        <div className="flex flex-col items-center gap-3 mb-6">
+          <div className="w-20 h-20 rounded-full overflow-hidden border border-gray-300">
+            {/* Optional: user profile photo */}
+            {/* <img src={user.profileImageUrl} alt="Profile" className="w-full h-full object-cover" /> */}
           </div>
+          <h2 className="text-lg font-semibold text-gray-900">
+            {user.firstName} {user.lastName}
+          </h2>
+          <p className="text-sm text-gray-600">{user.primaryEmailAddress?.emailAddress}</p>
         </div>
       )}
+
+      {/* Action Buttons */}
+      <div className="flex flex-col gap-3">
+        <Link
+          to="/myposts"
+          onClick={() => setOpenProfile(false)}
+          className="px-4 py-2 text-white bg-blue-600 rounded-lg text-center hover:bg-blue-700 transition"
+        >
+          My Posts
+        </Link>
+
+        <Link
+          to="/form"
+          onClick={() => setOpenProfile(false)}
+          className="px-4 py-2 text-white bg-green-600 rounded-lg text-center hover:bg-green-700 transition"
+        >
+          Add Post
+        </Link>
+      </div>
+    </div>
+  </div>
+)}
+
+      
+
     </>
   );
 };
