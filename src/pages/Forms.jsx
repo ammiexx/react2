@@ -224,22 +224,34 @@ const postProduct = async (productData) => {
  const handleSubmit = async (e) => {
   e.preventDefault();
 
-  if (formData.images.length < 5 || formData.images.length > 10) {
-    setErrorMsg('❌ You must upload between 2 and 10 additional images.');
-    setLoading(false);
+  // Only show warning if additional images are less than 5
+  if (formData.images.length < 5) {
+    setErrorMsg('❌ You must upload between 5 and 10 additional images.');
+    
+    // Clear the error after 2 seconds
+    setTimeout(() => setErrorMsg(''), 2000);
+    
+    // Stop submission temporarily, user can add more images
     return;
   }
-if (!user) {
-  setPendingProduct(formData);  
-  localStorage.setItem('pendingProduct', JSON.stringify(formData)); // ✅ persist
-  setAuthWarning(true);
-  return;
-}
 
+  if (formData.images.length > 10) {
+    setErrorMsg('❌ You can upload a maximum of 10 additional images.');
+    setTimeout(() => setErrorMsg(''), 2000);
+    return;
+  }
+
+  if (!user) {
+    setPendingProduct(formData);  
+    localStorage.setItem('pendingProduct', JSON.stringify(formData));
+    setAuthWarning(true);
+    return;
+  }
 
   // Post directly if user exists
   await postProduct(formData);
 };
+
 
   return (
     <div className="max-w-3xl mx-auto py-25 p-8 bg-gray-100 shadow-xl rounded-xl mt-10 border border-gray-200 relative">
@@ -459,7 +471,7 @@ if (!user) {
 
 <div>
   <label className="block text-gray-700 font-semibold mb-1">
-    Additional Images (Min: 1, Max: 10)
+    Additional Images (Min: 5, Max: 10)
   </label>
 
  <div className="flex flex-col space-y-4">

@@ -56,7 +56,7 @@ const Shops = ({ category, title }) => {
           </div>
         ) : products.length === 0 ? (
           <p className="text-center text-gray-500 text-lg font-semibold">
-            Be the first to advertise here!
+            OPen for advertisement!
           </p>
         ) : (
           <div className="flex flex-col gap-4 w-full">
