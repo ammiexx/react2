@@ -267,7 +267,7 @@ if (!user) {
           />
         </div>
         <div>
-  <label className="block text-gray-700 font-semibold mb-1">Video less than 30 seconds (optional)</label>
+  <label className="block text-gray-700 font-semibold mb-1">Video less than 30 seconds</label>
   <input
     type="file"
     accept="video/*"
