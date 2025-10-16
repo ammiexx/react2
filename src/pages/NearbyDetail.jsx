@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 import { ArrowRight } from "lucide-react";
+import { FaTelegramPlane, FaTiktok } from "react-icons/fa";
 
 // Skeleton loader
 const SkeletonBox = ({ className }) => (
@@ -10,7 +11,6 @@ const SkeletonBox = ({ className }) => (
 
 const MESSAGE_API = "https://djanagobackend-5.onrender.com/api/cat";
 
-// ------------------- FloatingChat -------------------
 const FloatingChat = ({ isImageZoomed }) => {
   const { isSignedIn, user } = useUser();
   const [message, setMessage] = useState("");
@@ -62,7 +62,6 @@ const FloatingChat = ({ isImageZoomed }) => {
     }
   };
 
-  // Option A: Completely hide FloatingChat when image is zoomed
   if (isImageZoomed) return null;
 
   return (
@@ -98,11 +97,7 @@ const FloatingChat = ({ isImageZoomed }) => {
                   : "bg-gray-300 text-gray-500"
               }`}
           >
-            {loading ? (
-              <span className="animate-pulse">...</span>
-            ) : (
-              <ArrowRight size={20} />
-            )}
+            {loading ? <span className="animate-pulse">...</span> : <ArrowRight size={20} />}
           </button>
         </form>
       </div>
@@ -110,7 +105,6 @@ const FloatingChat = ({ isImageZoomed }) => {
   );
 };
 
-// ------------------- NearbyDetail -------------------
 const NearbyDetail = () => {
   const { state } = useLocation();
   const product = state?.product;
@@ -122,13 +116,11 @@ const NearbyDetail = () => {
   if (!product) return <p className="text-center mt-20">Product not found</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      {/* Product Details */}
-      <div className="flex items-center gap-4 bg-white p-4 rounded shadow mb-4">
+    <div className="max-w-4xl mx-auto p-6 space-y-6">
+      {/* Product Header */}
+      <div className="flex items-center gap-4 bg-white p-4 rounded shadow">
         <div className="relative w-16 h-16">
-          {!imgLoaded.profile && (
-            <SkeletonBox className="w-16 h-16 rounded-full" />
-          )}
+          {!imgLoaded.profile && <SkeletonBox className="w-16 h-16 rounded-full" />}
           <img
             src={product.profile_photo || "https://via.placeholder.com/60"}
             alt={`${product.first_name} ${product.last_name}`}
@@ -139,33 +131,25 @@ const NearbyDetail = () => {
           />
         </div>
         <div className="flex-1">
-          <h2 className="text-xl font-bold text-gray-800">
-            {product.company_name}
-          </h2>
+          <h2 className="text-xl font-bold text-gray-800">{product.company_name}</h2>
           <p className="text-gray-600">📍 Location: {product.location}</p>
-          {product.contact_phone && (
-            <p className="text-gray-600">📞 {product.contact_phone}</p>
-          )}
-          <p className="text-gray-600">
-            🗓 Posted: {new Date(product.date_posted).toLocaleDateString()}
-          </p>
+          {product.contact_phone && <p className="text-gray-600">📞 {product.contact_phone}</p>}
+          <p className="text-gray-600">🗓 Posted: {new Date(product.date_posted).toLocaleDateString()}</p>
         </div>
       </div>
 
       {/* Product Video */}
       {product.product_video && (
         <div className="mb-6">
-          <div className="relative w-full max-h-80 mb-2">
-            {!videoLoaded && <SkeletonBox className="w-full h-80" />}
-            <video
-              src={product.product_video}
-              controls
-              className={`w-full max-h-80 rounded shadow transition-opacity duration-500 ${
-                videoLoaded ? "opacity-100" : "opacity-0 absolute"
-              }`}
-              onLoadedData={() => setVideoLoaded(true)}
-            />
-          </div>
+          {!videoLoaded && <SkeletonBox className="w-full h-80 mb-2" />}
+          <video
+            src={product.product_video}
+            controls
+            className={`w-full max-h-80 rounded shadow transition-opacity duration-500 ${
+              videoLoaded ? "opacity-100" : "opacity-0 absolute"
+            }`}
+            onLoadedData={() => setVideoLoaded(true)}
+          />
         </div>
       )}
 
@@ -174,13 +158,10 @@ const NearbyDetail = () => {
         {[product.product_photo, ...(product.images || []).map((img) => img.image)].map(
           (src, idx) => (
             <div
-  key={idx}
-  className="relative w-full bg-white rounded shadow p-2 cursor-pointer 
-             transform transition-all duration-300 ease-in-out
-             hover:scale-110 hover:shadow-2xl hover:z-30"
-  onClick={() => setSelectedImage(src)}
->
-
+              key={idx}
+              className="relative w-full bg-white rounded shadow p-2 cursor-pointer transform transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-2xl hover:z-30"
+              onClick={() => setSelectedImage(src)}
+            >
               {!imgLoaded[idx] && <SkeletonBox className="w-full h-40" />}
               <img
                 src={src}
@@ -200,7 +181,7 @@ const NearbyDetail = () => {
         )}
       </div>
 
-      {/* Fullscreen Modal for Zoomed Image */}
+      {/* Fullscreen Modal */}
       {selectedImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[9999]"
@@ -210,7 +191,7 @@ const NearbyDetail = () => {
             src={selectedImage}
             alt="Zoomed product"
             className="max-w-full max-h-full object-contain transform transition-transform duration-300 hover:scale-110"
-            onClick={(e) => e.stopPropagation()} // prevent closing when clicking the image
+            onClick={(e) => e.stopPropagation()}
           />
           <button
             onClick={() => setSelectedImage(null)}
@@ -222,48 +203,51 @@ const NearbyDetail = () => {
       )}
 
       {/* Description & Contact */}
-      <div className="bg-gray-100 p-4 rounded mt-2">
-        <p className="text-gray-800 mb-2">
+      <div className="bg-gray-50 p-6 rounded shadow space-y-3">
+        <p className="text-gray-800">
           📝 <strong>Description:</strong> {product.description}
         </p>
-        <div className="flex gap-4 mt-2">
+
+        <div className="flex flex-wrap gap-4 items-center">
           {product.contact_telegram && (
             <a
               href={product.contact_telegram}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
+              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow transition"
             >
-              📲 Telegram
+              <FaTelegramPlane /> Visit Telegram
             </a>
           )}
-            
-  {product.discount && (
-    <p className="text-green font-bold mb-2">
-      🎉 Discount: {product.discount}%
-    </p>
-  )}
+
           {product.contact_tick && (
             <a
               href={product.contact_tick}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-pink-600 hover:underline"
+              className="flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded shadow transition"
             >
-              📲 TikTok
+              <FaTiktok /> TikTok
             </a>
           )}
+
+          {product.discount && (
+            <span className="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full shadow">
+              🎉 Discount: {product.discount}%
+            </span>
+          )}
         </div>
+
+        {product.contact_telegram && (
+          <p className="text-gray-600 mt-2 text-sm">
+            ℹ️ Visit our Telegram to see the price.
+          </p>
+        )}
       </div>
 
-      {/* Floating Chat (hidden when zoomed) */}
       <FloatingChat isImageZoomed={!!selectedImage} />
     </div>
   );
 };
+
 export default NearbyDetail;
-
-
-
-
-
