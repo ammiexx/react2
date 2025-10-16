@@ -230,12 +230,8 @@ const postProduct = async (productData) => {
   //   setTimeout(() => setErrorMsg(''), 2000);
   //   return; // Stop form submission
   // }
-  
-  if (formData.images.length < 1) {
-    setErrorMsg('❌ You must upload between 1 and 10 additional images.');
-    setTimeout(() => setErrorMsg(''), 2000);
-    return;
-  }
+ 
+ 
 
   if (formData.images.length > 10) {
     setErrorMsg('❌ You can upload a maximum of 10 additional images.');
@@ -473,7 +469,7 @@ const postProduct = async (productData) => {
 
 <div>
   <label className="block text-gray-700 font-semibold mb-1">
-    Additional Images (Min: 1, Max: 10)
+    Additional Images (optional)
   </label>
 
  <div className="flex flex-col space-y-4">
