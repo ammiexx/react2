@@ -55,16 +55,16 @@ const FloatingChat = () => {
     }
   };
 
-  // ✅ Handle Enter key press
+ 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault(); // prevent new line
+      e.preventDefault(); 
       handleSubmit();
     }
   };
 
   return (
-    <div className="fixed bottom-1 left-0 right-0 z-50 w-full max-w-full flex justify-center pointer-events-none">
+    <div className="fixed -bottom-1 left-0 right-0 z-50 w-full max-w-full flex justify-center pointer-events-none">
  <div className="w-full max-w-lg mx-4 bg-white rounded-t-xl shadow-lg border-t border-gray-200 pointer-events-auto">
 
         {submitted && (
