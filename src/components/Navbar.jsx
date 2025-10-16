@@ -68,9 +68,16 @@ export default function Navigation({ products, onFilter }) {
             </div>
 
             {/* MOBILE SECTION */}
-            <div className="flex-1 flex items-center justify-between sm:hidden px-2">
+            <div className="flex-1 flex items-center justify-between sm:hidden px-2 ">
               {!mobileSearchOpen && (
                 <>
+                 {/* Hamburger */}
+                  <button
+                    onClick={toggleDrawer}
+                    className="inline-flex items-center justify-center rounded-md p-2 -ml-4 text-gray-400 hover:bg-white/5 hover:text-white"
+                  >
+                    {drawerOpen ? <XMarkIcon className="h-9 w-9" /> : <Bars3Icon className="h-6 w-6" />}
+                  </button>
                   <NavLink
                     to="/services"
                     className="text-gray-200 hover:text-white px-2 py-1 text-sm font-medium rounded-md"
@@ -93,18 +100,12 @@ export default function Navigation({ products, onFilter }) {
                     <MagnifyingGlassIcon className="h-6 w-6" />
                   </button>
 
-                  {/* Hamburger */}
-                  <button
-                    onClick={toggleDrawer}
-                    className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-white/5 hover:text-white"
-                  >
-                    {drawerOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
-                  </button>
+                 
                 </>
               )}
 
               {mobileSearchOpen && (
-                <div className="flex-1 flex items-center gap-2">
+                <div className="flex-1 flex items-center gap-2 sm:">
                   <Searching
                     products={products}
                     onFilter={onFilter}
@@ -175,8 +176,8 @@ export default function Navigation({ products, onFilter }) {
       )}
       <div
         ref={drawerRef}
-        className={`fixed top-0 right-0 h-screen w-72 bg-gray-900 text-white z-50 shadow-xl transform transition-transform duration-300 ease-in-out ${
-          drawerOpen ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 left-0 h-screen w-72 bg-gray-900 text-white z-50 shadow-xl transform transition-transform duration-300 ease-in-out ${
+          drawerOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="p-4 space-y-2">
