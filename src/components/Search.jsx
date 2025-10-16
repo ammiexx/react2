@@ -207,7 +207,7 @@ const toggleDarkMode = () => {
                 <QuestionMarkCircleIcon className="h-5 w-5" /> Help Center
               </Link></li>
             </ul>
-            <div className="flex justify-end mb-4">
+            {/* <div className="flex justify-end mb-4">
   <button
     onClick={toggleDarkMode}
     className="p-2 rounded-full border border-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
@@ -219,7 +219,7 @@ const toggleDarkMode = () => {
       <MoonIcon className="h-5 w-5 text-gray-700" />
     )}
   </button>
-</div>
+</div> */}
 
           </div>
         </div>

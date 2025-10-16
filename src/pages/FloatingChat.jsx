@@ -80,7 +80,7 @@ const FloatingChat = () => {
 
         <form onSubmit={handleSubmit} className="relative flex w-full">
           <textarea
-            placeholder="Write Name,phone & item to sell/buy"
+            placeholder="Write your Name,phone & item to sell/buy"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown} 
