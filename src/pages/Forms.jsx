@@ -324,7 +324,7 @@ const postProduct = async (productData) => {
   />
 </div>
 
-        {/* Category */}
+      
         <div>
           <label className="block text-gray-700 font-semibold mb-1">Category</label>
        <Select
