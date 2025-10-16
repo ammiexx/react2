@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useClerk, useUser } from '@clerk/clerk-react';
 import Hamburger from './Hamburger';
+import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
+
 import Profile from '../pages/Profile';
 import { UserIcon, DocumentTextIcon, ClockIcon, ArrowRightOnRectangleIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 
@@ -28,9 +30,18 @@ const Search = () => {
   const navigate = useNavigate();
   const { signOut, isSignedIn } = useClerk();
   const { user } = useUser();
-
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenu = () => setMenuOpen(false);
+  const [darkMode, setDarkMode] = useState(false);
+
+const toggleDarkMode = () => {
+  setDarkMode(!darkMode);
+  if (!darkMode) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+};
 
   const handleCategoryClick = (category) => {
     closeMenu();
@@ -108,14 +119,18 @@ const Search = () => {
       )}
 
       {/* Side Drawer */}
-      <div
-        ref={menuRef}
-        className={`fixed top-0 left-0 h-screen w-80 bg-white z-50 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${
-          menuOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
-      >
+<div
+  ref={menuRef}
+  className={`fixed top-0 left-0 h-screen w-80 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 z-50 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${
+    menuOpen ? 'translate-x-0' : '-translate-x-full'
+  }`}
+>
+
+
+
         {/* Header */}
-        <div className="flex items-center justify-between h-20 px-5 border-b border-gray-200 bg-gray-100">
+        <div className="flex items-center justify-between h-20 px-5 border-b border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700">
+
           {isSignedIn && user ? (
             <div className="flex items-center gap-3">
             
@@ -124,6 +139,7 @@ const Search = () => {
 </h2>
 
             </div>
+            
           ) : (
             <div className="flex items-center justify-between h-16 px-5 border-b border-gray-200 bg-gray-100">
   <Link
@@ -152,7 +168,8 @@ const Search = () => {
           {/* Account Section */}
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Account</h3>
-            <ul className="space-y-2 text-gray-700 text-sm">
+            <ul className="space-y-2 text-gray-700 dark:text-gray-200 text-sm">
+
               {accountLinks(setOpenProfile, setShowLogoutConfirm, isSignedIn).map((link, index) => {
                 if (link.requiresSignIn && !isSignedIn) return null;
                 const IconComponent = link.icon || QuestionMarkCircleIcon;
@@ -190,6 +207,20 @@ const Search = () => {
                 <QuestionMarkCircleIcon className="h-5 w-5" /> Help Center
               </Link></li>
             </ul>
+            {/* <div className="flex justify-end mb-4">
+  <button
+    onClick={toggleDarkMode}
+    className="p-2 rounded-full border border-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+    aria-label="Toggle Dark Mode"
+  >
+    {darkMode ? (
+      <SunIcon className="h-5 w-5 text-yellow-400" />
+    ) : (
+      <MoonIcon className="h-5 w-5 text-gray-700" />
+    )}
+  </button>
+</div> */}
+
           </div>
         </div>
       </div>
