@@ -1,27 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import BackButton from '../components/BackButton';
-
-// Haversine formula to calculate distance in km
-const getDistance = (lat1, lon1, lat2, lon2) => {
-  const R = 6371; // Earth radius in km
-  const dLat = ((lat2 - lat1) * Math.PI) / 180;
-  const dLon = ((lon2 - lon1) * Math.PI) / 180;
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos((lat1 * Math.PI) / 180) *
-      Math.cos((lat2 * Math.PI) / 180) *
-      Math.sin(dLon / 2) ** 2;
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c;
-};
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaTelegramPlane, FaTiktok } from "react-icons/fa";
 
 const Nearby = () => {
   const [products, setProducts] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(6); // Initial products to show
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [userLocation, setUserLocation] = useState({ lat: null, lng: null });
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,21 +14,13 @@ const Nearby = () => {
         async (pos) => {
           const lat = pos.coords.latitude;
           const lng = pos.coords.longitude;
-          setUserLocation({ lat, lng });
 
           try {
             const response = await fetch(
               `https://djanagobackend-5.onrender.com/api/products/nearby/?lat=${lat}&lng=${lng}&radius=2`
             );
-            if (!response.ok) throw new Error('No internet connection nearby shops');
+            if (!response.ok) throw new Error("No internet connection nearby shops");
             let data = await response.json();
-
-            // Sort products by distance
-            data.sort((a, b) => {
-              const distA = getDistance(lat, lng, a.lat, a.lng);
-              const distB = getDistance(lat, lng, b.lat, b.lng);
-              return distA - distB;
-            });
 
             setProducts(data);
           } catch (err) {
@@ -54,33 +30,31 @@ const Nearby = () => {
           }
         },
         () => {
-          setError('❌ Location access denied. Showing no products.');
+          setError("❌ Location access denied. Showing no products.");
           setLoading(false);
         }
       );
     } else {
-      setError('❌ Geolocation not supported by this browser.');
+      setError("❌ Geolocation not supported by this browser.");
       setLoading(false);
     }
   }, []);
 
-  const handleViewMore = () => {
-    setVisibleCount((prev) => prev + 10);
-  };
-
-  const visibleProducts = products.slice(0, visibleCount);
-
   return (
-    <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
+    <div className="max-w-[1200px] mx-auto my-10 px-5 w-full">
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+        Nearby Shops and Services
+      </h2>
+
       <section className="mb-12 w-full">
         {error && <p className="text-red-600 text-center mb-4">{error}</p>}
 
         {loading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, idx) => (
               <div
                 key={idx}
-                className="animate-pulse bg-gray-200 rounded-lg h-32 flex items-center justify-start p-4"
+                className="animate-pulse bg-gray-200 rounded-lg h-40 flex items-center p-4"
               >
                 <div className="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
                 <div className="flex-1 space-y-2">
@@ -91,57 +65,70 @@ const Nearby = () => {
               </div>
             ))}
           </div>
-        ) : visibleProducts.length === 0 ? (
-          <p className="text-center text-gray-500">No nearby shops found.</p>
+        ) : products.length === 0 ? (
+          <p className="text-center text-gray-500 text-lg font-semibold">
+            No nearby shops found.
+          </p>
         ) : (
-          <>
-            <div className="flex flex-col gap-4 w-full">
-              {visibleProducts.map((item) => (
-                <div
-                  key={item.id}
-                  className="bg-white px-2 py-3 rounded-lg shadow transition-transform hover:scale-[1.01] flex items-center cursor-pointer w-full"
-                  onClick={() => navigate('/nearby-detail', { state: { product: item } })}
-                >
-                  {/* Profile photo */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.map((item) => (
+              <div
+                key={item.id}
+                className="bg-white rounded-lg shadow hover:shadow-lg transition-transform hover:scale-[1.02] p-4 cursor-pointer flex flex-col"
+                onClick={() => navigate("/nearby-detail", { state: { product: item } })}
+              >
+                {/* Product & Company Info */}
+                <div className="flex items-center gap-4 mb-3">
                   <img
-                    src={item.profile_photo || 'https://via.placeholder.com/60'}
-                    alt={`${item.first_name} ${item.last_name}`}
-                    className="w-9 h-9 rounded-full object-cover border border-gray-300"
+                    src={item.profile_photo || "https://via.placeholder.com/60"}
+                    alt={item.company_name}
+                    className="w-16 h-16 rounded-full object-cover border border-gray-300"
                   />
-
-                  {/* Info Row */}
-                  <div className="flex-1 flex justify-between items-center px-4">
-                    <div className="flex items-center gap-6">
-                      <p className="text-sm font-semibold text-blue-500">{item.product_name}</p>
-                      <p className="text-sm font-semibold truncate max-w-[120px]">{item.company_name}</p>
-                      <p className="text-sm text-gray-600 truncate max-w-[150px]">📍 {item.location}</p>
-                      {item.contact_phone && (
-                        <p className="text-sm text-gray-600 truncate max-w-[120px]">📞 {item.contact_phone}</p>
-                      )}
-                      <span className="truncate max-w-[100px]">
-                        <p className="text-sm font-semibold">
-                          {item.discount === "ended" ? "Discount Ended" : `${item.discount}% off`}
-                        </p>
-                      </span>
-                    </div>
-                    <div className="text-blue-600 font-bold">&gt;</div>
+                  <div className="flex-1">
+                    <p className="text-lg font-semibold text-blue-600">{item.product_name}</p>
+                    <p className="text-sm font-medium text-gray-700">{item.company_name}</p>
+                    <p className="text-sm text-gray-500">📍 {item.location}</p>
                   </div>
                 </div>
-              ))}
-            </div>
 
-            {/* View More Button */}
-            {visibleCount < products.length && (
-              <div className="text-center mt-6">
-                <button
-                  onClick={handleViewMore}
-                  className="px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition"
-                >
-                  Browse More
-                </button>
+                {/* Contact & Links */}
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  {item.contact_telegram && (
+                    <a
+                      href={item.contact_telegram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-white bg-blue-500 px-2 py-1 rounded hover:bg-blue-600 transition text-sm"
+                    >
+                      <FaTelegramPlane /> Telegram
+                    </a>
+                  )}
+                  {item.contact_tick && (
+                    <a
+                      href={item.contact_tick}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-white bg-black px-2 py-1 rounded hover:bg-gray-800 transition text-sm"
+                    >
+                      <FaTiktok /> TikTok
+                    </a>
+                  )}
+                  {item.discount && (
+                    <span className="text-sm font-semibold bg-green-100 text-green-800 px-2 py-1 rounded">
+                      {item.discount}% OFF
+                    </span>
+                  )}
+                </div>
+
+                {/* Call to action */}
+                <p className="text-sm text-gray-600 mt-auto">
+                  💬 Visit our Telegram to see the price
+                </p>
+
+                <div className="mt-2 text-blue-600 font-bold text-right">&gt;</div>
               </div>
-            )}
-          </>
+            ))}
+          </div>
         )}
       </section>
     </div>
