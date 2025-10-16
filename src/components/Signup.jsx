@@ -47,11 +47,7 @@ const Signup = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <div className="text-center mb-6">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
-            alt="Logo"
-            className="mx-auto h-12 w-12"
-          />
+          
           <h2 className="text-xl font-semibold mt-4">Create Account</h2>
           <p className="text-gray-600 text-sm">Join us to explore and post your offerings.</p>
         </div>
