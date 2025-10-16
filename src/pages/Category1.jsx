@@ -40,7 +40,7 @@ const Category1 = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Generate slider images once
+  
   const sliderImages = useMemo(() => {
     const shuffled = [...categories].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 5);
