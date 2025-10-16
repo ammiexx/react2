@@ -91,7 +91,7 @@ const Category1 = () => {
             </div>
           ))}
 
-          {/* Slider Controls */}
+          
           <button
             onClick={prevSlide}
             className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white text-4xl p-4 rounded-full hover:bg-black/70 shadow-lg z-20"
