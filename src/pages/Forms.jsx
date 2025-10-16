@@ -225,8 +225,8 @@ const postProduct = async (productData) => {
   e.preventDefault();
 
   // Only show warning if additional images are less than 5
-  if (formData.images.length < 5) {
-    setErrorMsg('❌ You must upload between 5 and 10 additional images.');
+  if (formData.images.length < 1) {
+    setErrorMsg('❌ You must upload between 1 and 10 additional images.');
     
     // Clear the error after 2 seconds
     setTimeout(() => setErrorMsg(''), 2000);
@@ -471,7 +471,7 @@ const postProduct = async (productData) => {
 
 <div>
   <label className="block text-gray-700 font-semibold mb-1">
-    Additional Images (Min: 5, Max: 10)
+    Additional Images (Min: 1, Max: 10)
   </label>
 
  <div className="flex flex-col space-y-4">
