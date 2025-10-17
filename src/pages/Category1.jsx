@@ -27,7 +27,7 @@ const categories = [
   { name: "Homes", image_url: home, path: "/homes" },
   { name: "Car Brands", image_url: car, path: "/car-brands" },
   { name: "Home Appliances", image_url: appliance, path: "/home-appliances" },
-  { name: "Health & Beauty", image_url: beauty, path: "/health-and-beauties" },
+  { name: " Dental Clinicis & Health and Beauty", image_url: beauty, path: "/health-and-beauties" },
   { name: "Farm products", image_url: farm, path: "/Agriculture_And_Livestock" },
   { name: "Art & Handicrafts", image_url: art, path: "/Art_And_Handicrafts" },
   { name: "Video & Photography essentials", image_url: photo, path: "/Video_And_Photography" },
