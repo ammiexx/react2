@@ -98,16 +98,7 @@ const Shops = ({ category, title }) => {
                       <FaTelegramPlane /> Telegram
                     </a>
                   )}
-                  {item.contact_tick && (
-                    <a
-                      href={item.contact_tick}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-white bg-black px-2 py-1 rounded hover:bg-gray-800 transition text-sm"
-                    >
-                      <FaTiktok /> TikTok
-                    </a>
-                  )}
+                
                   {item.discount && (
                     <span className="text-sm font-semibold bg-green-100 text-green-800 px-2 py-1 rounded">
                       {item.discount}% OFF

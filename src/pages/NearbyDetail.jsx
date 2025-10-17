@@ -220,17 +220,7 @@ const NearbyDetail = () => {
             </a>
           )}
 
-          {product.contact_tick && (
-            <a
-              href={product.contact_tick}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded shadow transition"
-            >
-              <FaTiktok /> TikTok
-            </a>
-          )}
-
+         
           {product.discount && (
             <span className="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full shadow">
               🎉 Discount: {product.discount}%
