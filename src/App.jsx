@@ -134,7 +134,7 @@ function App() {
 <Route path="/Toys_And_Games" element={<Shops category="toys" title="Fun & Games – Discover Toys & Play Essentials!" />} />
 <Route path="/home-appliances" element={<Shops category="appliances" title="Beautify your homes!" />} />
 <Route path="/men_shoes" element={<Shops category="men" title="Step Up Your Style – Shop the Latest Men’s Fashion!" />} />
-<Route path="/homes" element={<Shops category="homes" title="Beautify Your Homes – Shop the Best Home Essentials!" />} />
+<Route path="/homes" element={<Shops category="homes" title="The source Your beautiful homel –!" />} />
 <Route path="/men_fashions" element={<Shops category="men" title="Step Up Your Style – Explore the Latest Men’s Fashions!" />} />
 <Route path="/car-brands" element={<Shops category="carbrands" title="Drive in Style – Shop Top Car Brands & Accessories!" />} />
 <Route path="/food-and-beverages" element={<Shops category="foods" title="Delicious & Fresh – Discover Foods & Beverages!" />} />
