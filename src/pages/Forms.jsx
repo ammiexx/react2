@@ -307,7 +307,7 @@ if (!formData.contact_phone) {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Product Name */}
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Item for sale</label>
+          <label className="block text-gray-700 font-semibold mb-1">Item for sale/Service</label>
           <input
             type="text"
             name="product_name"
