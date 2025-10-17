@@ -513,60 +513,10 @@ if (!formData.contact_phone) {
         </div>
 
 <div>
-  <label className="block text-gray-700 font-semibold mb-1">
-    Additional Images (optional)
-  </label>
-
- <div className="flex flex-col space-y-4">
-
-  {formData.images.map((image, index) => (
-    <div key={index} className="flex-shrink-0 w-32">
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => {
-          const file = e.target.files[0];
-          const updatedImages = [...formData.images];
-          updatedImages[index] = file;
-          setFormData(prev => ({
-            ...prev,
-            images: updatedImages,
-          }));
-        }}
-        className="w-full"
-      />
-      {/* Optional: preview thumbnail of selected image */}
-      {image && typeof image !== 'string' && (
-        <img
-          src={URL.createObjectURL(image)}
-          alt={`preview-${index}`}
-          className="mt-2 w-full h-20 object-contain rounded"
-          onLoad={e => URL.revokeObjectURL(e.target.src)} // Clean up memory
-        />
-      )}
-    </div>
-  ))}
-</div>
+  
 
 
-  {formData.images.length < 10 && (
-    <button
-      type="button"
-      onClick={() =>
-        setFormData(prev => ({
-          ...prev,
-          images: [...prev.images, null],
-        }))
-      }
-      className="mt-2 px-4 py-1 bg-gray-200 rounded hover:bg-gray-300"
-    >
-      ➕ Add More
-    </button>
-  )}
-
-  <p className="text-sm text-gray-600 mt-1">
-    {formData.images.filter(Boolean).length} image(s) selected out of {formData.images.length}
-  </p>
+ 
 </div>
 {(successMsg || errorMsg) && (
   <div className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded shadow text-center

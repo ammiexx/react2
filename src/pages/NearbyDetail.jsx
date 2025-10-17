@@ -112,15 +112,17 @@ const NearbyDetail = () => {
   const images = [product.product_photo, ...(product.images || []).map((img) => img.image)].filter(Boolean);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
+    <div className="max-w-5xl mx-auto p-6">
       {/* Product Header */}
-      <div className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-md">
+      <div className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-md mb-6">
         <div className="relative w-16 h-16">
           {!imgLoaded.profile && <SkeletonBox className="w-16 h-16 rounded-full" />}
           <img
             src={product.profile_photo || "https://via.placeholder.com/60"}
             alt={`${product.first_name} ${product.last_name}`}
-            className={`w-16 h-16 rounded-full border border-gray-300 object-cover transition-opacity duration-500 ${imgLoaded.profile ? "opacity-100" : "opacity-0 absolute"}`}
+            className={`w-16 h-16 rounded-full border border-gray-300 object-cover transition-opacity duration-500 ${
+              imgLoaded.profile ? "opacity-100" : "opacity-0 absolute"
+            }`}
             onLoad={() => setImgLoaded((prev) => ({ ...prev, profile: true }))}
           />
         </div>
@@ -132,43 +134,74 @@ const NearbyDetail = () => {
         </div>
       </div>
 
-      {/* Product Video */}
-      {product.product_video && (
-        <div className="mb-6 rounded overflow-hidden shadow-lg">
-          {!videoLoaded && <SkeletonBox className="w-full h-80 mb-2" />}
-          <video
-            src={product.product_video}
-            controls
-            className={`w-full max-h-80 rounded transition-opacity duration-500 ${videoLoaded ? "opacity-100" : "opacity-0 absolute"}`}
-            onLoadedData={() => setVideoLoaded(true)}
-          />
-        </div>
-      )}
+      {/* Main content: Images + Description */}
+      <div className="flex flex-col lg:flex-row gap-6">
+        {/* Images */}
+        <div className="flex-1">
+          {product.product_video && (
+            <div className="mb-4 rounded overflow-hidden shadow-lg">
+              {!videoLoaded && <SkeletonBox className="w-full h-80 mb-2" />}
+              <video
+                src={product.product_video}
+                controls
+                className={`w-full max-h-80 rounded transition-opacity duration-500 ${videoLoaded ? "opacity-100" : "opacity-0 absolute"}`}
+                onLoadedData={() => setVideoLoaded(true)}
+              />
+            </div>
+          )}
 
-      {/* Product Images */}
-      <div className={`${images.length > 1 ? "grid grid-cols-2 sm:grid-cols-3 gap-4" : "flex justify-center"}`}>
-        {images.map((src, idx) => (
-          <div
-            key={idx}
-            className={`relative bg-white rounded-xl shadow-md p-2 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              images.length === 1 ? "w-full sm:w-2/3" : ""
-            }`}
-            onClick={() => setSelectedImage(src)}
-          >
-            {!imgLoaded[idx] && <SkeletonBox className={images.length === 1 ? "w-full h-96" : "w-full h-40"} />}
-            <img
-              src={src}
-              alt={`Product ${idx}`}
-              className={`rounded-xl object-cover transition-opacity duration-500 ${imgLoaded[idx] ? "opacity-100" : "opacity-0 absolute"} ${images.length === 1 ? "w-full h-96" : "w-full h-40"}`}
-              onLoad={() => setImgLoaded((prev) => ({ ...prev, [idx]: true }))}
-            />
-            {product.price && (
-              <span className="absolute bottom-2 right-2 bg-green-600 text-white text-sm font-semibold px-3 py-1 rounded-lg shadow">
-                ${product.price}
+          <div className={`${images.length > 1 ? "grid grid-cols-2 sm:grid-cols-3 gap-4" : "flex justify-center"}`}>
+            {images.map((src, idx) => (
+              <div
+                key={idx}
+                className={`relative bg-white rounded-xl shadow-md p-2 cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+                  images.length === 1 ? "w-full sm:w-2/3" : ""
+                }`}
+                onClick={() => setSelectedImage(src)}
+              >
+                {!imgLoaded[idx] && <SkeletonBox className={images.length === 1 ? "w-full h-96" : "w-full h-40"} />}
+                <img
+                  src={src}
+                  alt={`Product ${idx}`}
+                  className={`rounded-xl object-cover transition-opacity duration-500 ${
+                    imgLoaded[idx] ? "opacity-100" : "opacity-0 absolute"
+                  } ${images.length === 1 ? "w-full h-96" : "w-full h-40"}`}
+                  onLoad={() => setImgLoaded((prev) => ({ ...prev, [idx]: true }))}
+                />
+                {product.price && (
+                  <span className="absolute bottom-2 right-2 bg-green-600 text-white text-sm font-semibold px-3 py-1 rounded-lg shadow">
+                    ${product.price}
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Description & Contact to the right */}
+        <div className="flex-1 bg-white p-6 rounded-xl shadow-md space-y-4">
+          <p className="text-gray-800">
+            📝 <strong>Description:</strong> {product.description}
+          </p>
+
+          <div className="flex flex-col gap-4">
+            {product.contact_telegram && (
+              <a
+                href={product.contact_telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl shadow transition w-max"
+              >
+                <FaTelegramPlane /> Visit Telegram
+              </a>
+            )}
+            {product.discount && (
+              <span className="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full shadow w-max">
+                🎉 Discount: {product.discount}%
               </span>
             )}
           </div>
-        ))}
+        </div>
       </div>
 
       {/* Fullscreen Modal */}
@@ -192,32 +225,7 @@ const NearbyDetail = () => {
         </div>
       )}
 
-      {/* Description & Contact */}
-      <div className="bg-white p-6 rounded-xl shadow-md space-y-4">
-        <p className="text-gray-800">
-          📝 <strong>Description:</strong> {product.description}
-        </p>
-
-        <div className="flex flex-wrap gap-4 items-center">
-          {product.contact_telegram && (
-            <a
-              href={product.contact_telegram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl shadow transition"
-            >
-              <FaTelegramPlane /> Visit Telegram
-            </a>
-          )}
-          {product.discount && (
-            <span className="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full shadow">
-              🎉 Discount: {product.discount}%
-            </span>
-          )}
-        </div>
-      </div>
-
-    
+      <FloatingChat isImageZoomed={!!selectedImage} />
     </div>
   );
 };
