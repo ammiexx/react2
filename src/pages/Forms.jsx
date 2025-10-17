@@ -502,7 +502,7 @@ if (!formData.contact_phone) {
           </div>
         </div>
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Product Image</label>
+          <label className="block text-gray-700 font-semibold mb-1">Product/Service Image</label>
           <input
   type="file"
   name="product_photo"
