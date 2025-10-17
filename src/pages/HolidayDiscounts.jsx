@@ -19,7 +19,7 @@ const Nearby = () => {
 
         // Filter for category "weekly" and verified = true
         data = data.filter(
-          (item) => item.category === 'weekly' && item.verified === true
+          (item) => item.category === 'holyday' && item.verified === true
         );
 
         setProducts(data);
