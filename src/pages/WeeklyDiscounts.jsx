@@ -18,7 +18,7 @@ const Nearby = () => {
         let data = await response.json();
 
         const now = new Date();
-        const oneWeekAgo = new Date(now.getTime() - 168 * 60 * 60 * 1000); // 1 week
+        const oneWeekAgo = new Date(now.getTime() - 336 * 60 * 60 * 1000); // 1 week
 
         data = data.filter(
           (item) =>

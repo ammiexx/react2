@@ -18,7 +18,7 @@ const Nearby = () => {
         let data = await response.json();
 
         const now = new Date();
-        const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000); // 24 hours
+        const oneDayAgo = new Date(now.getTime() - 96 * 60 * 60 * 1000); // 24 hours
 
         // Filter: verified, numeric discount, posted in last 24h
         data = data.filter(
