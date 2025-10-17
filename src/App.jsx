@@ -123,7 +123,7 @@ function App() {
 <Route path="/Printing_And_Publishing" element={<Shops category="printing" title="Bring Your Ideas to Life – Explore Printing & Publishing!" />} />
 <Route path="/Podcasting_And_Audio_production" element={<Shops category="podcasting" title="Podcast & Audio Production – Make Your Voice Heard!" />} />
 <Route path="/Video_And_Photography" element={<Shops category="photography" title="Capture Every Moment – Shop Video & Photography Essentials!" />} />
-<Route path="/health-and-beauties" element={<Shops category="sallons" title="Enhance Your Natural Glow – Health & Beauty Essentials!" />} />
+<Route path="/health-and-beauties" element={<Shops category="health" title="Enhance Your Natural Glow – Health & Beauty Essentials!" />} />
 <Route path="/SoftWare_And_IT_Services" element={<Shops category="software" title="Software & IT Services – Tech Solutions for You!" />} />
 <Route path="/Stationary_And_Office_Supplies" element={<Shops category="stationary" title="Stationary & Office Supplies – Everything You Need!" />} />
 <Route path="/women_fashions" element={<Shops category="women_fashions" title="Express Your Style!" />} />
