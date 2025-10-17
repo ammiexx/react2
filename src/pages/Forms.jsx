@@ -230,8 +230,49 @@ const postProduct = async (productData) => {
   //   setTimeout(() => setErrorMsg(''), 2000);
   //   return; // Stop form submission
   // }
- 
- 
+
+  if (!formData.category) {
+  setErrorMsg("❌ Please select a category.");
+  setTimeout(() => setErrorMsg(""), 3000);
+  return;
+}
+
+if (!formData.discount) {
+  setErrorMsg("❌ Please select a discount.");
+  setTimeout(() => setErrorMsg(""), 3000);
+  return;
+}
+
+if (!formData.latitude || !formData.longitude) {
+  setErrorMsg("❌ Please provide the precise location (latitude & longitude).");
+  setTimeout(() => setErrorMsg(""), 3000);
+  return;
+}
+
+ if (!formData.description) {
+  setErrorMsg("❌ Please provide a description for your product.");
+  setTimeout(() => setErrorMsg(""), 3000);
+  return;
+}
+
+if (!formData.location) {
+  setErrorMsg("❌ Please provide a location.");
+  setTimeout(() => setErrorMsg(""), 3000);
+  return;
+}
+
+ if (!formData.contact_telegram) {
+  setErrorMsg("❌ Please provide a Telegram link.");
+  setTimeout(() => setErrorMsg(""), 3000);
+  return;
+}
+
+if (!formData.contact_phone) {
+  setErrorMsg("❌ Please provide a phone number.");
+  setTimeout(() => setErrorMsg(""), 3000);
+  return;
+}
+
 
   if (formData.images.length > 10) {
     setErrorMsg('❌ You can upload a maximum of 10 additional images.');
@@ -289,12 +330,14 @@ const postProduct = async (productData) => {
 {/* Profile Photo */}
 <div>
   <label className="block text-gray-700 font-semibold mb-1">Logo</label>
-  <input
+ <input
   type="file"
   accept="image/*"
   name="profile_photo"
   onChange={handleImageChange}
+  required
 />
+
 </div>
 
         {/* Company Name */}
@@ -425,7 +468,7 @@ const postProduct = async (productData) => {
               className="w-full border px-4 py-2 rounded"
             />
           </div>
-          <div>
+          {/* <div>
             <label className="block text-gray-700 font-semibold mb-1">TikTok Link (optional)</label>
             <input
               type="url"
@@ -434,8 +477,8 @@ const postProduct = async (productData) => {
               onChange={handleChange}
               className="w-full border px-4 py-2 rounded"
             />
-          </div>
-          <div>
+          </div> */}
+          {/* <div>
             <label className="block text-gray-700 font-semibold mb-1">website (optional)</label>
             <input
               type="url"
@@ -444,7 +487,7 @@ const postProduct = async (productData) => {
               onChange={handleChange}
               className="w-full border px-4 py-2 rounded"
             />
-          </div>
+          </div> */}
           <div>
             <label className="block text-gray-700 font-semibold mb-1">Phone Number</label>
             <input
