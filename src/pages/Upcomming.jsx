@@ -16,10 +16,8 @@ const Nearby = () => {
         );
         if (!response.ok) throw new Error('Failed to fetch upcoming products');
         let data = await response.json();
-
-        // Filter: upcoming and verified
         data = data.filter(
-          (item) => item.category === 'upcomming' && item.verified === true
+          (item) => item.category === 'upcommings' && item.verified === true
         );
 
         setProducts(data);
