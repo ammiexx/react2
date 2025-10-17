@@ -17,7 +17,7 @@ const Nearby = () => {
         if (!response.ok) throw new Error('Failed to fetch products');
         let data = await response.json();
 
-        // Filter for category "weekly" and verified = true
+        
         data = data.filter(
           (item) => item.category === 'holyday' && item.verified === true
         );
