@@ -87,7 +87,7 @@ const MyPosts = () => {
                   </div>
                 </div>
 
-                {/* Contact Buttons */}
+                
                 <div className="flex flex-wrap items-center gap-2 mb-2">
                   {item.contact_telegram && (
                     <a
