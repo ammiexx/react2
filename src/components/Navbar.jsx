@@ -74,7 +74,7 @@ export default function Navigation({ products, onFilter }) {
               </Link>
             </div>
 
-            {/* ===================== MOBILE SECTION ===================== */}
+            {/* MOBILE NAV */}
             <div className="flex-1 flex items-center justify-between sm:hidden px-2">
               {!mobileSearchOpen ? (
                 <>
@@ -114,14 +114,15 @@ export default function Navigation({ products, onFilter }) {
                     >
                       <MagnifyingGlassIcon className="h-6 w-6" />
                     </button>
-                    {!isSignedIn ? (
+                    {!isSignedIn && (
                       <Link
                         to="/login"
                         className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-md shadow hover:bg-blue-700 transition"
                       >
                         Sign Up
                       </Link>
-                    ) : (
+                    )}
+                    {isSignedIn && (
                       <span className="text-xs text-white">
                         Hi, {user.firstName}
                       </span>
@@ -143,24 +144,12 @@ export default function Navigation({ products, onFilter }) {
                   >
                     <XMarkIcon className="h-6 w-6" />
                   </button>
-                  {/* Show signup/user even during search */}
-                  {!isSignedIn ? (
-                    <Link
-                      to="/login"
-                      className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-md shadow hover:bg-blue-700 transition"
-                    >
-                      Sign Up
-                    </Link>
-                  ) : (
-                    <span className="text-xs text-white">
-                      Hi, {user.firstName}
-                    </span>
-                  )}
+                  {/* Sign Up / User hidden while search is open */}
                 </div>
               )}
             </div>
 
-            {/* ===================== DESKTOP NAVIGATION ===================== */}
+            {/* DESKTOP NAV */}
             <div className="hidden sm:flex items-center gap-8 md:gap-6 sm:gap-4">
               {navigation.map((item) => (
                 <NavLink
@@ -177,14 +166,14 @@ export default function Navigation({ products, onFilter }) {
               ))}
             </div>
 
-            {/* ===================== DESKTOP SEARCH ===================== */}
+            {/* DESKTOP SEARCH */}
             <div className="hidden sm:flex flex-1 justify-center">
               <div className="w-full max-w-[600px] md:max-w-[500px] sm:max-w-[400px]">
                 <Searching products={products} onFilter={onFilter} />
               </div>
             </div>
 
-            {/* ===================== DESKTOP SIGN UP / USER ===================== */}
+            {/* DESKTOP SIGN UP / USER */}
             <div className="hidden sm:flex items-center gap-2">
               {!isSignedIn ? (
                 <Link
@@ -194,16 +183,14 @@ export default function Navigation({ products, onFilter }) {
                   Sign Up
                 </Link>
               ) : (
-                <span className="text-sm text-white">
-                  Hi, {user.firstName}
-                </span>
+                <span className="text-sm text-white">Hi, {user.firstName}</span>
               )}
             </div>
           </div>
         </div>
       </nav>
 
-      {/* ===================== MOBILE DRAWER MENU ===================== */}
+      {/* MOBILE DRAWER */}
       {drawerOpen && (
         <div
           className="fixed inset-0 bg-black/30 z-40 transition-opacity"

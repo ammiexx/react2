@@ -25,14 +25,14 @@ const Searching = ({ products, onFilter, onSubmit }) => {
     }
   };
   return (
-    <div className="relative w-72 sm:w-90 flex items-center">
+    <div className="relative w-73 sm:w-90 flex items-center">
 
       <input
         type="text"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Search Item ,Location, Building,Co."
+        placeholder="Search Item ,Location, Building,Company"
        className="flex-1 h-11 sm:h-11 text-sm text-gray-900 placeholder-gray-500 bg-white rounded-full pl-4 pr-12 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 shadow-md transition-all"
       />
       <button
