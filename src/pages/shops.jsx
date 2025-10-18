@@ -57,7 +57,7 @@ const Shops = ({ category, title }) => {
           </div>
         ) : products.length === 0 ? (
           <p className="text-center text-gray-500 text-lg font-semibold">
-            Sell and purchase your favorite product and service!
+            Sell and Purchase your favorite product and service!
           </p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -54,7 +54,7 @@ export default function Navigation({ products, onFilter }) {
     <>
       {/* NAVBAR */}
       <nav
-        className={`sticky top-0 z-50 bg-gray-800 will-change-transform transition-transform
+        className={`sticky top-0 z-50 bg-gradient-to-r from-gray-900 via-purple-800 to-indigo-900 text-white shadow-m will-change-transform transition-transform
         ${
           isHidden
             ? "-translate-y-full pointer-events-none duration-300"
