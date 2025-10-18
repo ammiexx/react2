@@ -3,6 +3,9 @@ import {
   Bars3Icon,
   XMarkIcon,
   MagnifyingGlassIcon,
+  BuildingStorefrontIcon,
+  WrenchScrewdriverIcon,
+  MapPinIcon,
 } from "@heroicons/react/24/outline";
 import { NavLink, Link } from "react-router-dom";
 import { useScrollDirection } from "./UseScrollDirection";
@@ -10,10 +13,11 @@ import Searching from "./Searching";
 import knash from "../assets/lgo.png";
 import { useClerk, useUser } from "@clerk/clerk-react";
 
+// ✅ Navigation items with icons
 const navigation = [
-  { name: "Shops", href: "/" },
-  { name: "Services", href: "/services" },
-  { name: "Nearby", href: "/nearby-shops" },
+  { name: "Shops", href: "/", icon: BuildingStorefrontIcon },
+  { name: "Services", href: "/services", icon: WrenchScrewdriverIcon },
+  { name: "Nearby", href: "/nearby-shops", icon: MapPinIcon },
 ];
 
 export default function Navigation({ products, onFilter }) {
@@ -30,7 +34,7 @@ export default function Navigation({ products, onFilter }) {
   const { isSignedIn } = useClerk();
   const { user } = useUser();
 
-  // Close drawer when clicking outside
+  // ✅ Close drawer when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (drawerRef.current && !drawerRef.current.contains(e.target)) {
@@ -52,9 +56,9 @@ export default function Navigation({ products, onFilter }) {
 
   return (
     <>
-      {/* NAVBAR */}
+      {/* ✅ NAVBAR */}
       <nav
-        className={`sticky top-0 z-50 bg-gradient-to-r from-gray-900 via-purple-800 to-indigo-900 text-white shadow-m will-change-transform transition-transform
+        className={`sticky top-0 z-50 bg-gradient-to-r from-gray-900 via-purple-800 to-indigo-900 text-white shadow-md will-change-transform transition-transform
         ${
           isHidden
             ? "-translate-y-full pointer-events-none duration-300"
@@ -63,7 +67,7 @@ export default function Navigation({ products, onFilter }) {
       >
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="flex h-13 items-center justify-between">
-            {/* LOGO */}
+            {/* ✅ LOGO */}
             <div className="hidden sm:flex items-center flex-shrink-0">
               <Link to="/">
                 <img
@@ -74,7 +78,7 @@ export default function Navigation({ products, onFilter }) {
               </Link>
             </div>
 
-            {/* MOBILE NAV */}
+            {/* ✅ MOBILE NAV */}
             <div className="flex-1 flex items-center justify-between sm:hidden px-2">
               {!mobileSearchOpen ? (
                 <>
@@ -89,6 +93,7 @@ export default function Navigation({ products, onFilter }) {
                       <Bars3Icon className="h-6 w-6" />
                     )}
                   </button>
+
                   <div className="flex items-center gap-12">
                     <NavLink
                       to="/services"
@@ -128,7 +133,7 @@ export default function Navigation({ products, onFilter }) {
                   </div>
                 </>
               ) : (
-                // Mobile Search Open
+                // ✅ Mobile Search Open
                 <div className="flex-1 flex items-center gap-2">
                   <Searching
                     products={products}
@@ -142,12 +147,11 @@ export default function Navigation({ products, onFilter }) {
                   >
                     <XMarkIcon className="h-6 w-6" />
                   </button>
-                  {/* Sign Up / User hidden while search is open */}
                 </div>
               )}
             </div>
 
-            {/* DESKTOP NAV */}
+            {/* ✅ DESKTOP NAV */}
             <div className="hidden sm:flex items-center gap-8 md:gap-6 sm:gap-4">
               {navigation.map((item) => (
                 <NavLink
@@ -164,14 +168,14 @@ export default function Navigation({ products, onFilter }) {
               ))}
             </div>
 
-            {/* DESKTOP SEARCH */}
+            {/* ✅ DESKTOP SEARCH */}
             <div className="hidden sm:flex flex-1 justify-center">
               <div className="w-full max-w-[600px] md:max-w-[500px] sm:max-w-[400px]">
                 <Searching products={products} onFilter={onFilter} />
               </div>
             </div>
 
-            {/* DESKTOP SIGN UP / USER */}
+            {/* ✅ DESKTOP SIGN UP / USER */}
             <div className="hidden sm:flex items-center gap-2">
               {!isSignedIn ? (
                 <Link
@@ -188,13 +192,15 @@ export default function Navigation({ products, onFilter }) {
         </div>
       </nav>
 
-      {/* MOBILE DRAWER */}
+      {/* ✅ MOBILE DRAWER BACKDROP */}
       {drawerOpen && (
         <div
           className="fixed inset-0 bg-black/30 z-40 transition-opacity"
           onClick={closeDrawer}
         />
       )}
+
+      {/* ✅ MOBILE DRAWER WITH ICONS */}
       <div
         ref={drawerRef}
         className={`fixed top-0 left-0 h-screen w-72 bg-white text-gray-900 z-50 shadow-xl transform transition-transform duration-300 ease-in-out ${
@@ -207,8 +213,9 @@ export default function Navigation({ products, onFilter }) {
               key={item.name}
               to={item.href}
               onClick={closeDrawer}
-              className="block rounded-md px-3 py-2 text-base font-medium hover:bg-blue-100 hover:text-white"
+              className="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium hover:bg-blue-100 hover:text-blue-700 transition"
             >
+              <item.icon className="h-5 w-5 text-blue-600" />
               {item.name}
             </NavLink>
           ))}
