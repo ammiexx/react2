@@ -156,5 +156,4 @@ const Nearby = () => {
     </div>
   );
 };
-
 export default Nearby;

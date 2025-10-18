@@ -81,7 +81,7 @@ export default function Navigation({ products, onFilter }) {
                   {/* Hamburger Button */}
                   <button
                     onClick={toggleDrawer}
-                    className="inline-flex items-center justify-center rounded-md p-2 -ml-2 text-gray-400 hover:bg-white/5 hover:text-white"
+                    className="inline-flex items-center justify-center rounded-md p-2 -ml-4 text-gray-400 hover:bg-white/5 hover:text-white"
                   >
                     {drawerOpen ? (
                       <XMarkIcon className="h-9 w-9" />
@@ -89,8 +89,6 @@ export default function Navigation({ products, onFilter }) {
                       <Bars3Icon className="h-6 w-6" />
                     )}
                   </button>
-
-                  {/* Center Links */}
                   <div className="flex items-center gap-12">
                     <NavLink
                       to="/services"
@@ -199,7 +197,7 @@ export default function Navigation({ products, onFilter }) {
       )}
       <div
         ref={drawerRef}
-        className={`fixed top-0 left-0 h-screen w-72 bg-gray-900 text-white z-50 shadow-xl transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 h-screen w-72 bg-white text-gray-900 z-50 shadow-xl transform transition-transform duration-300 ease-in-out ${
           drawerOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -209,7 +207,7 @@ export default function Navigation({ products, onFilter }) {
               key={item.name}
               to={item.href}
               onClick={closeDrawer}
-              className="block rounded-md px-3 py-2 text-base font-medium hover:bg-gray-800 hover:text-white"
+              className="block rounded-md px-3 py-2 text-base font-medium hover:bg-blue-100 hover:text-white"
             >
               {item.name}
             </NavLink>
