@@ -237,11 +237,38 @@ const NearbyDetail = () => {
       <FaTelegramPlane /> Telegram
     </a>
   )}
-  {product.discount && (
-    <span className="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full shadow">
+ {product.discount && (
+  <div className="flex flex-col">
+    <span className="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full shadow mb-1">
       🎉 {product.discount}% OFF
     </span>
-  )}
+
+    {/* Calculate days left */}
+    {product.discount_duration && product.date_posted && (() => {
+      const startDate = new Date(product.date_posted);
+      const now = new Date();
+      const deadline = new Date(startDate);
+      deadline.setDate(startDate.getDate() + Number(product.discount_duration));
+
+      const timeLeft = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24));
+
+      if (timeLeft > 0) {
+        return (
+          <p className="text-sm text-red-600 font-semibold">
+            ⏳ {timeLeft} day{timeLeft !== 1 ? "s" : ""} left
+          </p>
+        );
+      } else {
+        return (
+          <p className="text-sm text-gray-500 font-semibold">
+            ❌ Discount expired
+          </p>
+        );
+      }
+    })()}
+  </div>
+)}
+
 </div>
 
         </div>
