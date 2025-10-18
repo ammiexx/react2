@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaTelegramPlane, FaTiktok } from "react-icons/fa";
+import { FaTelegramPlane } from "react-icons/fa";
 
 const Shops = ({ category, title }) => {
   const [products, setProducts] = useState([]);
@@ -16,9 +16,28 @@ const Shops = ({ category, title }) => {
         );
         if (!response.ok) throw new Error("Connect to the internet");
         let data = await response.json();
+
+        // Filter verified products by category
         data = data.filter(
           (item) => item.category === category && item.verified === true
         );
+
+        // Add remaining_days field
+        data = data.map((item) => {
+          if (item.discount_duration && item.date_posted) {
+            const postedDate = new Date(item.date_posted);
+            const deadline = new Date(
+              postedDate.getTime() + item.discount_duration * 24 * 60 * 60 * 1000
+            );
+            const now = new Date();
+            const remaining = Math.ceil(
+              (deadline - now) / (1000 * 60 * 60 * 24)
+            );
+            return { ...item, remaining_days: remaining > 0 ? remaining : 0 };
+          }
+          return { ...item, remaining_days: null };
+        });
+
         setProducts(data);
       } catch (err) {
         setError("No internet connection!");
@@ -77,13 +96,44 @@ const Shops = ({ category, title }) => {
                     className="w-16 h-16 rounded-full object-cover border border-gray-300"
                   />
                   <div className="flex-1">
-                    <p className="text-lg font-semibold text-blue-600">{item.product_name}</p>
-                    <p className="text-sm font-medium text-gray-700">{item.company_name}</p>
+                    <p className="text-lg font-semibold text-blue-600">
+                      {item.product_name}
+                    </p>
+                    <p className="text-sm font-medium text-gray-700">
+                      {item.company_name}
+                    </p>
                     {item.contact_phone && (
-                      <p className="text-sm text-gray-500">📞 {item.contact_phone}</p>
+                      <p className="text-sm text-gray-500">
+                        📞 {item.contact_phone}
+                      </p>
                     )}
                     <p className="text-sm text-gray-500">📍 {item.location}</p>
                   </div>
+                </div>
+
+                {/* Discount and countdown */}
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  {item.discount && (
+                    <span className="text-sm font-semibold bg-green-100 text-green-800 px-2 py-1 rounded">
+                      {item.discount}% OFF
+                    </span>
+                  )}
+
+                  {item.remaining_days !== null && (
+                    <span
+                      className={`text-sm font-semibold px-2 py-1 rounded ${
+                        item.remaining_days > 0
+                          ? "bg-yellow-100 text-yellow-800"
+                          : "bg-gray-200 text-gray-600"
+                      }`}
+                    >
+                      {item.remaining_days > 0
+                        ? `${item.remaining_days} day${
+                            item.remaining_days > 1 ? "s" : ""
+                          } left`
+                        : "Expired"}
+                    </span>
+                  )}
                 </div>
 
                 {/* Contact & Links */}
@@ -97,12 +147,6 @@ const Shops = ({ category, title }) => {
                     >
                       <FaTelegramPlane /> Telegram
                     </a>
-                  )}
-                
-                  {item.discount && (
-                    <span className="text-sm font-semibold bg-green-100 text-green-800 px-2 py-1 rounded">
-                      {item.discount}% OFF
-                    </span>
                   )}
                 </div>
 
