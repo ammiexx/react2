@@ -4,7 +4,7 @@ import {
   XMarkIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useScrollDirection } from "./UseScrollDirection";
 import Searching from "./Searching";
 import knash from "../assets/lgo.png";
@@ -20,45 +20,47 @@ export default function Navigation({ products, onFilter }) {
   const scrollDirection = useScrollDirection();
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [update, setUpdate] = useState(false); // force rerender
   const drawerRef = useRef(null);
+  const navigate = useNavigate();
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
   const closeDrawer = () => setDrawerOpen(false);
-  const isHidden =
-    scrollDirection === "down" && !drawerOpen && !mobileSearchOpen;
+  const isHidden = scrollDirection === "down" && !drawerOpen && !mobileSearchOpen;
 
-  const { isSignedIn } = useClerk();
-  const { user } = useUser();
+  const { clerk, isLoaded: clerkLoaded } = useClerk();
+  const { user, isSignedIn } = useUser();
+
+  // Force rerender when user signs in
+  useEffect(() => {
+    if (!clerk) return;
+    const unsubscribe = clerk.addListener("userSignedIn", () => setUpdate((prev) => !prev));
+    return () => unsubscribe();
+  }, [clerk]);
+
+  // Redirect if signed in on mobile
+  useEffect(() => {
+    if (isSignedIn && user) {
+      navigate("/"); // redirect to home
+    }
+  }, [isSignedIn, user, navigate]);
 
   // Close drawer when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (drawerRef.current && !drawerRef.current.contains(e.target)) {
-        closeDrawer();
-      }
+      if (drawerRef.current && !drawerRef.current.contains(e.target)) closeDrawer();
     };
-    if (drawerOpen) {
-      document.body.style.overflow = "hidden";
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.body.style.overflow = "";
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-    return () => {
-      document.body.style.overflow = "";
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    if (drawerOpen) document.addEventListener("mousedown", handleClickOutside);
+    else document.removeEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [drawerOpen]);
 
   return (
     <>
-      {/* NAVBAR */}
       <nav
-        className={`sticky top-0 z-50 bg-gray-800 will-change-transform transition-transform
-        ${
-          isHidden
-            ? "-translate-y-full pointer-events-none duration-300"
-            : "translate-y-0 pointer-events-auto duration-150"
+        className={`sticky top-0 z-50 bg-gray-800 transition-transform ${
+          isHidden ? "-translate-y-full pointer-events-none duration-300" : "translate-y-0 pointer-events-auto duration-150"
         }`}
       >
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -78,35 +80,28 @@ export default function Navigation({ products, onFilter }) {
             <div className="flex-1 flex items-center justify-between sm:hidden px-2">
               {!mobileSearchOpen ? (
                 <>
-                  {/* Hamburger Button */}
+                  {/* Hamburger */}
                   <button
                     onClick={toggleDrawer}
                     className="inline-flex items-center justify-center rounded-md p-2 -ml-2 text-gray-400 hover:bg-white/5 hover:text-white"
                   >
-                    {drawerOpen ? (
-                      <XMarkIcon className="h-9 w-9" />
-                    ) : (
-                      <Bars3Icon className="h-6 w-6" />
-                    )}
+                    {drawerOpen ? <XMarkIcon className="h-9 w-9" /> : <Bars3Icon className="h-6 w-6" />}
                   </button>
 
-                  {/* Center Links */}
+                  {/* Links */}
                   <div className="flex items-center gap-12">
-                    <NavLink
-                      to="/services"
-                      className="text-gray-200 hover:text-white text-sm font-medium"
-                    >
-                      Services
-                    </NavLink>
-                    <NavLink
-                      to="/nearby-shops"
-                      className="text-gray-200 hover:text-white text-sm font-medium"
-                    >
-                      Nearby
-                    </NavLink>
+                    {navigation.map((item) => (
+                      <NavLink
+                        key={item.name}
+                        to={item.href}
+                        className="text-gray-200 hover:text-white text-sm font-medium"
+                      >
+                        {item.name}
+                      </NavLink>
+                    ))}
                   </div>
 
-                  {/* Right Side: Search + SignUp */}
+                  {/* Right Side */}
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setMobileSearchOpen(true)}
@@ -114,7 +109,8 @@ export default function Navigation({ products, onFilter }) {
                     >
                       <MagnifyingGlassIcon className="h-6 w-6" />
                     </button>
-                    {!isSignedIn && (
+
+                    {!mobileSearchOpen && (!isSignedIn || !user) && (
                       <Link
                         to="/login"
                         className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-md shadow hover:bg-blue-700 transition"
@@ -122,34 +118,32 @@ export default function Navigation({ products, onFilter }) {
                         Sign Up
                       </Link>
                     )}
-                    {isSignedIn && (
-                      <span className="text-xs text-white">
-                        Hi, {user.firstName}
-                      </span>
+
+                    {!mobileSearchOpen && isSignedIn && user && (
+                      <span className="text-xs text-white">Hi, {user.firstName}</span>
                     )}
                   </div>
                 </>
               ) : (
-                // Mobile Search Open
+                // Search Open
                 <div className="flex-1 flex items-center gap-2">
                   <Searching
                     products={products}
                     onFilter={onFilter}
                     onSubmit={() => setMobileSearchOpen(false)}
                   />
-                  {/* Close Search */}
                   <button
                     onClick={() => setMobileSearchOpen(false)}
                     className="p-2 text-gray-200 hover:text-white"
                   >
                     <XMarkIcon className="h-6 w-6" />
                   </button>
-                  {/* Sign Up / User hidden while search is open */}
+                  {/* Hide SignUp/User during search */}
                 </div>
               )}
             </div>
 
-            {/* DESKTOP NAV */}
+            {/* DESKTOP */}
             <div className="hidden sm:flex items-center gap-8 md:gap-6 sm:gap-4">
               {navigation.map((item) => (
                 <NavLink
@@ -183,7 +177,7 @@ export default function Navigation({ products, onFilter }) {
                   Sign Up
                 </Link>
               ) : (
-                <span className="text-sm text-white">Hi, {user.firstName}</span>
+                <span className="text-sm text-white">Hi, {user?.firstName}</span>
               )}
             </div>
           </div>
@@ -191,12 +185,7 @@ export default function Navigation({ products, onFilter }) {
       </nav>
 
       {/* MOBILE DRAWER */}
-      {drawerOpen && (
-        <div
-          className="fixed inset-0 bg-black/30 z-40 transition-opacity"
-          onClick={closeDrawer}
-        />
-      )}
+      {drawerOpen && <div className="fixed inset-0 bg-black/30 z-40 transition-opacity" onClick={closeDrawer} />}
       <div
         ref={drawerRef}
         className={`fixed top-0 left-0 h-screen w-72 bg-gray-900 text-white z-50 shadow-xl transform transition-transform duration-300 ease-in-out ${
