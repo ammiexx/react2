@@ -133,6 +133,7 @@ const NearbyDetail = () => {
           {!imgLoaded.profile && <SkeletonBox className="w-16 h-16 rounded-full" />}
           <img
             src={product.profile_photo || "https://via.placeholder.com/60"}
+            
             alt={`${product.first_name} ${product.last_name}`}
             className={`w-16 h-16 rounded-full border border-gray-300 object-cover transition-opacity duration-500 ${
               imgLoaded.profile ? "opacity-100" : "opacity-0 absolute"
