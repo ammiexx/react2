@@ -10,6 +10,98 @@ const SkeletonBox = ({ className }) => (
   <div className={`bg-gray-200 animate-pulse rounded ${className}`} />
 );
 
+const MESSAGE_API = "https://djanagobackend-5.onrender.com/api/cat";
+
+// Floating chat box
+const FloatingChat = ({ isImageZoomed }) => {
+  const { isSignedIn, user } = useUser();
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => setSubmitted(false), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitted]);
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(""), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!message.trim()) return;
+
+    const userName = isSignedIn
+      ? user.fullName || user.username || user.primaryEmailAddress?.emailAddress
+      : "Anonymous";
+
+    try {
+      setLoading(true);
+      const response = await fetch(MESSAGE_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: userName, message }),
+      });
+
+      if (!response.ok) throw new Error(await response.text());
+
+      setSubmitted(true);
+      setMessage("");
+      setError("");
+    } catch (err) {
+      console.error(err);
+      setError("There was a problem submitting your message.");
+      setSubmitted(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (isImageZoomed) return null;
+
+  return (
+    <div className="fixed bottom-4 left-0 right-0 z-50 flex justify-center">
+      <div className="w-full max-w-lg bg-white rounded-xl shadow-lg border border-gray-200 p-3">
+        {submitted && (
+          <div className="bg-green-100 text-green-700 text-sm font-medium p-2 rounded mb-1 text-center">
+            ✅ Message submitted!
+          </div>
+        )}
+        {error && (
+          <div className="bg-red-100 text-red-700 text-sm p-2 rounded mb-1 text-center">
+            {error}
+          </div>
+        )}
+        <form onSubmit={handleSubmit} className="relative flex w-full">
+          <textarea
+            placeholder="Write what you want to buy/sell & your phone number..."
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            rows={1}
+            className="flex-1 text-black placeholder-gray-500 bg-gray-50 rounded-full px-6 py-2 pr-16 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm resize-none w-full"
+          />
+          <button
+            type="submit"
+            disabled={loading || !message.trim()}
+            className={`absolute right-3 top-1/2 transform -translate-y-1/2 rounded-full p-2 transition disabled:opacity-50
+              ${message.trim() ? "bg-blue-600 text-white hover:bg-blue-700" : "bg-gray-300 text-gray-500"}`}
+          >
+            {loading ? <span className="animate-pulse">...</span> : <ArrowRight size={20} />}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+// Main Product Detail Page
 const NearbyDetail = () => {
   const { state } = useLocation();
   const product = state?.product;
@@ -25,19 +117,18 @@ const NearbyDetail = () => {
   const handleNext = () => setCurrentIndex((prev) => (prev + 1) % images.length);
   const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  // Auto-slide every 5 seconds
+  // Optional auto-slide every 5 seconds
   useEffect(() => {
     if (images.length > 1) {
-      const interval = setInterval(() => handleNext(), 5000);
+      const interval = setInterval(() => handleNext(), 3000);
       return () => clearInterval(interval);
     }
   }, [images.length]);
 
   return (
-    <div className="max-w-5xl mx-auto p-6 space-y-8">
-
-      {/* Header Section */}
-      <div className="flex items-center gap-4 p-5 rounded-xl shadow-md bg-gradient-to-r from-blue-100 to-blue-200">
+    <div className="max-w-5xl mx-auto p-6">
+      {/* Product Header */}
+      <div className="flex items-center gap-4 bg-white p-4 rounded-xl shadow-md mb-6">
         <div className="relative w-16 h-16">
           {!imgLoaded.profile && <SkeletonBox className="w-16 h-16 rounded-full" />}
           <img
@@ -49,32 +140,35 @@ const NearbyDetail = () => {
             onLoad={() => setImgLoaded((prev) => ({ ...prev, profile: true }))}
           />
         </div>
-        <div className="flex-1 flex flex-col justify-center">
+        <div className="flex-1">
           <h2 className="text-2xl font-bold text-gray-800">{product.company_name}</h2>
-          <p className="text-gray-700">📍 {product.location}</p>
-          {product.contact_phone && <p className="text-gray-700">📞 {product.contact_phone}</p>}
-          <p className="text-gray-700">🗓 Posted: {new Date(product.date_posted).toLocaleDateString()}</p>
+          <p className="text-gray-600">📍 Location: {product.location}</p>
+          {product.contact_phone && <p className="text-gray-600">📞 {product.contact_phone}</p>}
+          <p className="text-gray-600">🗓 Posted: {new Date(product.date_posted).toLocaleDateString()}</p>
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Main content: Video + Image Slider + Description */}
       <div className="flex flex-col lg:flex-row gap-6">
-
-        {/* Left Section: Video + Image Slider */}
-        <div className="flex-1 space-y-4">
+        {/* Left section: Video + Image Slider */}
+        <div className="flex-1">
+          {/* Product Video */}
           {product.product_video && (
-            <div className="rounded-xl overflow-hidden shadow-lg bg-gray-50">
-              {!videoLoaded && <SkeletonBox className="w-full h-80" />}
+            <div className="mb-4 rounded overflow-hidden shadow-lg">
+              {!videoLoaded && <SkeletonBox className="w-full h-80 mb-2" />}
               <video
                 src={product.product_video}
                 controls
-                className={`w-full max-h-80 rounded transition-opacity duration-500 ${videoLoaded ? "opacity-100" : "opacity-0 absolute"}`}
+                className={`w-full max-h-80 rounded transition-opacity duration-500 ${
+                  videoLoaded ? "opacity-100" : "opacity-0 absolute"
+                }`}
                 onLoadedData={() => setVideoLoaded(true)}
               />
             </div>
           )}
 
-          <div className="relative w-full rounded-xl shadow-lg overflow-hidden bg-gradient-to-b from-purple-100 to-purple-200">
+          {/* Image Slider */}
+          <div className="relative w-full flex flex-col items-center justify-center overflow-hidden rounded-xl shadow-lg bg-white">
             {images.length > 0 && (
               <AnimatePresence mode="wait">
                 <motion.img
@@ -84,8 +178,8 @@ const NearbyDetail = () => {
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="w-full h-[450px] object-cover cursor-pointer rounded-xl"
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="w-full h-[450px] object-cover rounded-xl cursor-pointer"
                   onClick={() => setSelectedImage(images[currentIndex])}
                 />
               </AnimatePresence>
@@ -96,26 +190,28 @@ const NearbyDetail = () => {
               <>
                 <button
                   onClick={handlePrev}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 text-white p-2 rounded-full hover:bg-opacity-70 transition"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-80 transition"
                 >
-                  <ChevronLeft size={28} />
+                  <ChevronLeft size={24} />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 bg-black bg-opacity-40 text-white p-2 rounded-full hover:bg-opacity-70 transition"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-80 transition"
                 >
-                  <ChevronRight size={28} />
+                  <ChevronRight size={24} />
                 </button>
               </>
             )}
 
             {/* Dots */}
             {images.length > 1 && (
-              <div className="absolute bottom-4 flex space-x-2 justify-center w-full">
+              <div className="absolute bottom-3 flex space-x-2">
                 {images.map((_, idx) => (
                   <div
                     key={idx}
-                    className={`w-3 h-3 rounded-full transition-all ${idx === currentIndex ? "bg-purple-700 scale-125" : "bg-purple-300"}`}
+                    className={`w-2.5 h-2.5 rounded-full transition-all ${
+                      idx === currentIndex ? "bg-blue-600 scale-125" : "bg-gray-300"
+                    }`}
                   />
                 ))}
               </div>
@@ -123,41 +219,34 @@ const NearbyDetail = () => {
           </div>
         </div>
 
-        {/* Right Section: Description + Contact */}
-        <div className="flex-1 bg-gradient-to-b from-green-50 to-green-100 p-6 rounded-xl shadow-md space-y-5">
-          <p className="text-gray-800 leading-relaxed text-lg">
+        {/* Right section: Description + Contact */}
+        <div className="flex-1 bg-white p-6 rounded-xl shadow-md space-y-4">
+          <p className="text-gray-800 leading-relaxed">
             📝 <strong>Description:</strong> {product.description}
           </p>
 
-          <p className="text-gray-700 font-medium italic">
-            💡 Looking to buy or sell? Reach out directly to the seller!
-          </p>
+         <div className="flex flex-wrap items-center gap-3">
+  {product.contact_telegram && (
+    <a
+      href={product.contact_telegram}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl shadow transition"
+    >
+      <FaTelegramPlane /> Telegram
+    </a>
+  )}
+  {product.discount && (
+    <span className="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full shadow">
+      🎉 {product.discount}% OFF
+    </span>
+  )}
+</div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            {product.contact_telegram && (
-              <a
-                href={product.contact_telegram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-xl shadow transition font-semibold"
-              >
-                <FaTelegramPlane /> Telegram
-              </a>
-            )}
-            {product.discount && (
-              <span className="bg-yellow-100 text-yellow-800 font-bold px-3 py-1 rounded-full shadow-md">
-                🎉 {product.discount}% OFF
-              </span>
-            )}
-          </div>
-
-          <p className="text-gray-700 font-medium">
-            🛒 Don't miss this amazing opportunity! Contact now before it's gone.
-          </p>
         </div>
       </div>
 
-      {/* Fullscreen Image Modal */}
+      {/* Fullscreen Modal for Image */}
       {selectedImage && (
         <div
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[9999]"
@@ -177,6 +266,8 @@ const NearbyDetail = () => {
           </button>
         </div>
       )}
+
+   
     </div>
   );
 };
