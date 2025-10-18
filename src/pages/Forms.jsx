@@ -511,6 +511,59 @@ if (!formData.contact_phone) {
   className="w-full"
   required/>
         </div>
+        <div>
+  <label className="block text-gray-700 font-semibold mb-1">
+    Additional Images (optional, up to 6)
+  </label>
+  <input
+    type="file"
+    name="images"
+    accept="image/*"
+    multiple
+    onChange={(e) => {
+      const files = Array.from(e.target.files);
+
+      setFormData((prev) => {
+        const combined = [...prev.images, ...files];
+        if (combined.length > 6) {
+          alert("❌ You can upload a maximum of 6 images.");
+          return { ...prev }; // don’t update if limit exceeded
+        }
+        return { ...prev, images: combined };
+      });
+    }}
+    className="w-full border px-4 py-2 rounded"
+  />
+
+  {/* Optional preview of selected images */}
+  {formData.images.length > 0 && (
+    <div className="mt-3 grid grid-cols-3 gap-2">
+      {formData.images.map((file, idx) => (
+        <div key={idx} className="relative">
+          <img
+            src={URL.createObjectURL(file)}
+            alt={`preview-${idx}`}
+            className="h-24 w-full object-cover rounded"
+            onLoad={(e) => URL.revokeObjectURL(e.target.src)} // cleanup memory
+          />
+          <button
+            type="button"
+            onClick={() =>
+              setFormData((prev) => ({
+                ...prev,
+                images: prev.images.filter((_, i) => i !== idx),
+              }))
+            }
+            className="absolute top-0 right-0 bg-red-500 text-white text-xs px-1 rounded-full"
+          >
+            ✕
+          </button>
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
 
 <div>
   
