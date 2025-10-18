@@ -38,7 +38,7 @@ const Login = () => {
         path="/login"
         routing="path"
      
-        afterSignUpUrl="/welcome"
+        afterSignUpUrl="/"
         appearance={{
           layout: {
             card: {

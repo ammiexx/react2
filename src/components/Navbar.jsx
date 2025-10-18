@@ -4,7 +4,7 @@ import {
   XMarkIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useScrollDirection } from "./UseScrollDirection";
 import Searching from "./Searching";
 import knash from "../assets/lgo.png";
@@ -20,15 +20,32 @@ export default function Navigation({ products, onFilter }) {
   const scrollDirection = useScrollDirection();
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [userUpdated, setUserUpdated] = useState(false); // force rerender
   const drawerRef = useRef(null);
+  const navigate = useNavigate();
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
   const closeDrawer = () => setDrawerOpen(false);
-  const isHidden =
-    scrollDirection === "down" && !drawerOpen && !mobileSearchOpen;
+  const isHidden = scrollDirection === "down" && !drawerOpen && !mobileSearchOpen;
 
-  const { isSignedIn } = useClerk();
-  const { user } = useUser();
+  const { clerk, isLoaded: clerkLoaded } = useClerk();
+  const { user, isSignedIn } = useUser();
+
+  // Listen to Clerk events to update Navbar immediately
+  useEffect(() => {
+    if (!clerk) return;
+    const unsubscribe = clerk.addListener("userSignedIn", () => {
+      setUserUpdated(prev => !prev); // trigger rerender
+    });
+    return () => unsubscribe();
+  }, [clerk]);
+
+  // Force redirect on mobile if not redirected automatically
+  useEffect(() => {
+    if (isSignedIn && user) {
+      navigate("/"); // ensures mobile redirects
+    }
+  }, [isSignedIn, user, navigate]);
 
   // Close drawer when clicking outside
   useEffect(() => {
@@ -54,8 +71,7 @@ export default function Navigation({ products, onFilter }) {
     <>
       {/* NAVBAR */}
       <nav
-        className={`sticky top-0 z-50 bg-gray-800 will-change-transform transition-transform
-        ${
+        className={`sticky top-0 z-50 bg-gray-800 will-change-transform transition-transform ${
           isHidden
             ? "-translate-y-full pointer-events-none duration-300"
             : "translate-y-0 pointer-events-auto duration-150"
@@ -114,7 +130,8 @@ export default function Navigation({ products, onFilter }) {
                     >
                       <MagnifyingGlassIcon className="h-6 w-6" />
                     </button>
-                    {!isSignedIn && (
+
+                    {!mobileSearchOpen && !isSignedIn && (
                       <Link
                         to="/login"
                         className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-md shadow hover:bg-blue-700 transition"
@@ -122,10 +139,9 @@ export default function Navigation({ products, onFilter }) {
                         Sign Up
                       </Link>
                     )}
-                    {isSignedIn && (
-                      <span className="text-xs text-white">
-                        Hi, {user.firstName}
-                      </span>
+
+                    {!mobileSearchOpen && isSignedIn && (
+                      <span className="text-xs text-white">Hi, {user.firstName}</span>
                     )}
                   </div>
                 </>
