@@ -15,10 +15,7 @@ const categories = [
 ];
 
 const accountLinks = (setOpenProfile, setShowLogoutConfirm, isSignedIn) => [
-   { name: 'Add post', icon: ClockIcon, href: '/form' },
   { name: 'My Profile', icon: UserIcon, onClick: () => setOpenProfile(true) },
-  { name: 'My Posts', icon: DocumentTextIcon, href: '/myposts' },
-  { name: 'Recents', icon: ClockIcon, href: '/recents' },
   { name: 'Logout', icon: ArrowRightOnRectangleIcon, onClick: () => setShowLogoutConfirm(true), requiresSignIn: true },
 ];
 
@@ -201,11 +198,20 @@ const toggleDarkMode = () => {
 
           {/* Support Section */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Support</h3>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">POST</h3>
             <ul className="space-y-1 text-sm text-gray-600">
-              <li><Link to="/helpcenter" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
-                <QuestionMarkCircleIcon className="h-5 w-5" /> Help Center
+              <li><Link to="/myposts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
+                <DocumentTextIcon className="h-5 w-5" /> My Posts
               </Link></li>
+              <li><Link to="/form" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
+                <ClockIcon className="h-5 w-5" /> Add Posts
+              </Link></li>
+               <li><Link to="/recents" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
+                <ClockIcon className="h-5 w-5" /> Recents
+              </Link></li>
+
+
+
             </ul>
             {/* <div className="flex justify-end mb-4">
   <button
