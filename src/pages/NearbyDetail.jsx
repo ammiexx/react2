@@ -277,7 +277,6 @@ const NearbyDetail = () => {
   );
 })()}
 
-
 </div>
 
         </div>
