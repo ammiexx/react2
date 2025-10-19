@@ -9,7 +9,7 @@ const Footer = () => {
 >
      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 sm:text-center md:text-left md:ml-10 lg:ml-20">
         <div className={`mb-2 ${normalTextClass}`}>
-          <h1 className="text-3xl font-bold pl-80 text-[#6ec1e4]">Knash.Shop</h1>
+          <h1 className="text-3xl font-bold pl-2 text-[#6ec1e4]">Knash.Shop</h1>
         </div>
         <div className={`mb-3 max-w-3xl ${normalTextClass} leading-relaxed`}>
           <p>
