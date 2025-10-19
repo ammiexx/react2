@@ -254,7 +254,7 @@ const NearbyDetail = () => {
   const remainingToBegin = startDate > now ? Math.ceil((startDate - now) / DAY_MS) : 0;
   const remainingToEnd = endDate && endDate > now ? Math.ceil((endDate - now) / DAY_MS) : 0;
 
-  // Determine status
+  // Determine status and badge
   let statusText = "";
   let badgeColor = "";
   let emoji = "";
@@ -265,14 +265,16 @@ const NearbyDetail = () => {
     emoji = "⏳";
   } else if (remainingToBegin > 0) {
     statusText = `${remainingToBegin} day${remainingToBegin > 1 ? "s" : ""} left to begin`;
-    badgeColor = "bg-blue-100 text-blue-800";
+    badgeColor = "bg-blue-100 text-blue-800"; // same as Shops for 'to begin'
     emoji = "🕒";
-  } else if (remainingToEnd > 0 || !endDate) {
-    statusText = endDate
-      ? `${remainingToEnd} day${remainingToEnd > 1 ? "s" : ""} left to end`
-      : "⚡ Discount active";
-    badgeColor = "bg-green-100 text-green-800";
-    emoji = endDate ? "⏳" : "⚡";
+  } else if (remainingToEnd > 0) {
+    statusText = `${remainingToEnd} day${remainingToEnd > 1 ? "s" : ""} left to end`;
+    badgeColor = "bg-yellow-100 text-yellow-800"; // same as Shops for 'active'
+    emoji = "⏳";
+  } else if (!endDate) {
+    statusText = "⚡ Discount active";
+    badgeColor = "bg-yellow-100 text-yellow-800"; // active ongoing
+    emoji = "⚡";
   } else {
     statusText = "Discount expired";
     badgeColor = "bg-red-100 text-red-700";
