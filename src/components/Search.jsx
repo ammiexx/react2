@@ -86,7 +86,7 @@ const toggleDarkMode = () => {
 
 
         {/* Category Buttons */}
-        <div className="flex gap-3 flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400/50 scrollbar-track-transparent">
+        <div className="flex gap-1 -ml-8 flex-nowrap overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400/50 scrollbar-track-transparent">
           {categories.map((cat, index) => (
             <button
               key={index}
