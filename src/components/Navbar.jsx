@@ -83,7 +83,7 @@ export default function Navigation({ products, onFilter }) {
               {!mobileSearchOpen ? (
                 <>
                  
-                  <div className="flex items-center gap-12">
+                  <div className="flex items-center gap-9">
                     <NavLink
                       to="/"
                       className="text-gray-200 hover:text-white text-sm font-medium"
