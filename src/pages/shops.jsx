@@ -149,7 +149,7 @@ const Shops = ({ category, title }) => {
                     className="w-16 h-16 rounded-full object-cover border border-gray-300"
                   />
                   <div className="flex-1">
-                    <p className="text-lg font-semibold text-blue-600">{item.product_name}</p>
+                    <p className="text-lg font-semibold text-green-600">{item.product_name}</p>
                     <p className="text-sm font-medium text-gray-700">{item.company_name}</p>
                     {item.contact_phone && <p className="text-sm text-gray-500">📞 {item.contact_phone}</p>}
                     <p className="text-sm text-gray-500">📍 {item.location}</p>
