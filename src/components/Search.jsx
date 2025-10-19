@@ -5,7 +5,10 @@ import Hamburger from './Hamburger';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 
 import Profile from '../pages/Profile';
-import { UserIcon, DocumentTextIcon, ClockIcon, ArrowRightOnRectangleIcon, QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
+
+import { UserIcon, DocumentTextIcon, ClockIcon, ArrowRightOnRectangleIcon, 
+  QuestionMarkCircleIcon,TagIcon,CalendarDaysIcon,GiftIcon, } from '@heroicons/react/24/outline';
+import { CalendarIcon } from 'lucide-react';
 
 const categories = [
   "Daily Discounts",
@@ -164,7 +167,7 @@ const toggleDarkMode = () => {
         <div className="flex-grow overflow-y-auto p-5 space-y-8">
           {/* Account Section */}
           <div>
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Account</h3>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2"></h3>
             <ul className="space-y-2 text-gray-700 dark:text-gray-200 text-sm">
 
               {accountLinks(setOpenProfile, setShowLogoutConfirm, isSignedIn).map((link, index) => {
@@ -184,7 +187,7 @@ const toggleDarkMode = () => {
                     ) : (
                       <button
                         onClick={link.onClick}
-                        className="flex items-center gap-2 w-full text-left hover:text-blue-600"
+                        className="flex items-center gap-5 w-full text-left hover:text-blue-600"
                       >
                         <IconComponent className="h-5 w-5" />
                         {link.name}
@@ -197,36 +200,20 @@ const toggleDarkMode = () => {
           </div>
 
           {/* Support Section */}
-          <div>
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">POST</h3>
-            <ul className="space-y-1 text-sm text-gray-600">
-              <li><Link to="/myposts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
-                <DocumentTextIcon className="h-5 w-5" /> My Posts
-              </Link></li>
-              <li><Link to="/form" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
-                <ClockIcon className="h-5 w-5" /> Add Posts
-              </Link></li>
-               <li><Link to="/recents" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
-                <ClockIcon className="h-5 w-5" /> Recents
-              </Link></li>
-
-
-
-            </ul>
-          </div>
+         
             <div>
-            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Discounts</h3>
-            <ul className="space-y-1 text-sm text-gray-600">
-              <li><Link to="/daily discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
-                <DocumentTextIcon className="h-5 w-5" /> Daily Discounts
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2"></h3>
+            <ul className="space-y-5 text-sm text-gray-600">
+              <li><Link to="/daily discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
+                <TagIcon className="h-5 w-5" /> Daily Discounts
               </Link></li>
-              <li><Link to="/weekly discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
-                <ClockIcon className="h-5 w-5" /> Weekly Discounts
+              <li><Link to="/weekly discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
+                <CalendarIcon className="h-5 w-5" /> Weekly Discounts
               </Link></li>
-               <li><Link to="/holiday discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
-                <ClockIcon className="h-5 w-5" /> Holiday Discounts
+               <li><Link to="/holiday discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
+                <GiftIcon className="h-5 w-5" /> Holiday Discounts
               </Link></li>
-              <li><Link to="/upcommings" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
+              <li><Link to="/upcommings" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
                 <ClockIcon className="h-5 w-5" /> Upcoming Discounts
               </Link></li>
 
@@ -246,7 +233,24 @@ const toggleDarkMode = () => {
     )}
   </button>
 </div> */}
+ 
+          </div>
+           <div>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2"></h3>
+            <ul className="space-y-5 text-sm text-gray-600">
+              <li><Link to="/myposts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
+                <DocumentTextIcon className="h-5 w-5" /> My Posts
+              </Link></li>
+              <li><Link to="/form" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
+                <ClockIcon className="h-5 w-5" /> Add Posts
+              </Link></li>
+               <li><Link to="/recents" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
+                <ClockIcon className="h-5 w-5" /> Recents
+              </Link></li>
 
+
+
+            </ul>
           </div>
         </div>
       </div>
