@@ -148,10 +148,19 @@ useEffect(() => {
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+ const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  // Prevent user from filling both discount fields
+  if ((name === 'discount_start_date' && formData.discount_duration) ||
+      (name === 'discount_duration' && formData.discount_start_date)) {
+    alert("❌ You can only fill one of 'Discount Start Date' or 'Discount Duration'.");
+    return; // ignore this change
+  }
+
+  setFormData(prev => ({ ...prev, [name]: value }));
+};
+
  const handleImageChange = (e) => {
   const { name, files } = e.target;
   setFormData((prev) => ({
@@ -311,10 +320,10 @@ if (!formData.contact_phone) {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Product Name */}
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Item for sale/Service</label>
           <input
             type="text"
             name="product_name"
+            placeholder='Write item for sale/service '
             value={formData.product_name}
             onChange={handleChange}
             required
@@ -346,10 +355,10 @@ if (!formData.contact_phone) {
 
         {/* Company Name */}
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Name Your Company</label>
           <input
             type="text"
             name="company_name"
+            placeholder='Name your company'
             value={formData.company_name}
             onChange={handleChange}
             required
@@ -358,7 +367,6 @@ if (!formData.contact_phone) {
         </div>
         {/* Discount */}
 <div>
-  <label className="block text-gray-700 font-semibold mb-1">Discount</label>
   <Select
     options={discountOptions}
     value={discountOptions.find(opt => opt.value === formData.discount)}
@@ -370,44 +378,7 @@ if (!formData.contact_phone) {
     className="text-gray-700"
   />
 </div>
-   
-   {/* Discount Duration (in days) */}
-<div>
-  <label className="block text-gray-700 font-semibold mb-1">
-     The number of days left the discount to begin!( in days)
-  </label>
-  <input
-    type="number"
-    name="discount_start_date"
-    min="1"
-    max="30"
-    value={formData.discount_start_date}
-    onChange={handleChange}
-    placeholder="e.g., 20"
-    className="w-full border px-4 py-2 rounded"
-    required
-  />
-</div>
-
-{/* Discount Duration (in days) */}
-<div>
-  <label className="block text-gray-700 font-semibold mb-1">
-    The number of days this discount will stay active( in days)
-  </label>
-  <input
-    type="number"
-    name="discount_duration"
-    min="1"
-    max="30"
-    value={formData.discount_duration}
-    onChange={handleChange}
-    placeholder="e.g., 7"
-    className="w-full border px-4 py-2 rounded"
-    required
-  />
-</div>
-        <div>
-          <label className="block text-gray-700 font-semibold mb-1">Category</label>
+      <div>
        <Select
   options={categoryOptions}
   value={categoryOptions.find((opt) => opt.value === formData.category)}
@@ -420,6 +391,41 @@ if (!formData.contact_phone) {
 />
 
         </div>
+   
+   {/* Discount Duration (in days) */}
+{/* Discount Start Date */}
+<div>
+  <input
+    type="number"
+    name="discount_start_date"
+    min="1"
+    max="30"
+    value={formData.discount_start_date}
+    onChange={handleChange}
+    placeholder="Number of days until discount starts (e.g 2)"
+    className="w-full border px-4 py-2 rounded"
+    required={!formData.discount_duration} // require only if the other is empty
+    disabled={!!formData.discount_duration} // disable if the other is filled
+  />
+</div>
+
+{/* Discount Duration */}
+<div>
+  <input
+    type="number"
+    name="discount_duration"
+    min="1"
+    max="30"
+    value={formData.discount_duration}
+    onChange={handleChange}
+    placeholder="Number of days the discount will be active (e.g 5)"
+    className="w-full border px-4 py-2 rounded"
+    required={!formData.discount_start_date} // require only if the other is empty
+    disabled={!!formData.discount_start_date} // disable if the other is filled
+  />
+</div>
+
+  
 
         {/* Description */}
         <div>
@@ -497,40 +503,21 @@ if (!formData.contact_phone) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-gray-700 font-semibold mb-1">Telegram Link</label>
             <input
               type="url"
               name="contact_telegram"
+              placeholder='Telegram Link'
               value={formData.contact_telegram}
               onChange={handleChange}
               className="w-full border px-4 py-2 rounded"
             />
           </div>
-          {/* <div>
-            <label className="block text-gray-700 font-semibold mb-1">TikTok Link (optional)</label>
-            <input
-              type="url"
-              name="contact_tick"
-              value={formData.contact_tick}
-              onChange={handleChange}
-              className="w-full border px-4 py-2 rounded"
-            />
-          </div> */}
-          {/* <div>
-            <label className="block text-gray-700 font-semibold mb-1">website (optional)</label>
-            <input
-              type="url"
-              name="web_site"
-              value={formData.web_site}
-              onChange={handleChange}
-              className="w-full border px-4 py-2 rounded"
-            />
-          </div> */}
+         
           <div>
-            <label className="block text-gray-700 font-semibold mb-1">Phone Number</label>
             <input
               type="text"
               name="contact_phone"
+              placeholder='Phone number'
               value={formData.contact_phone}
               onChange={handleChange}
               className="w-full border px-4 py-2 rounded"
