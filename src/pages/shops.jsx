@@ -192,7 +192,7 @@ const Shops = ({ category, title }) => {
                       ) : (
                         // no duration provided -> ongoing
                         <span className="text-sm font-semibold bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
-                          ⚡ Discount active
+                          ⚡ Ended
                         </span>
                       )}
                     </>
