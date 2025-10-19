@@ -129,7 +129,7 @@ export default function Navigation({ products, onFilter }) {
                 </>
               ) : (
                 // ✅ Mobile Search Open
-                <div className="flex-1 flex items-center gap-2 w-full px-1">
+                <div className="flex-1 flex items-center gap-1 w-full px-1">
   <div className="flex-grow">
     <Searching
       products={products}
