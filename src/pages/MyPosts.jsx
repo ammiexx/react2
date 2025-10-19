@@ -17,7 +17,7 @@ const MyPosts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('https://djanagobackend-5.onrender.com/api/myproducts/');
+        const response = await fetch('https://djanagobackend-5.onrender.com/api/products/');
         const data = await response.json();
 
         if (user?.emailAddresses[0]?.emailAddress) {
