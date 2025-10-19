@@ -238,30 +238,44 @@ const NearbyDetail = () => {
     </a>
   )}
  {product.discount && (() => {
-  const postedDate = new Date(product.date_posted);
+  const DAY_MS = 1000 * 60 * 60 * 24;
   const now = new Date();
-  const beginDate = new Date(postedDate);
-  const endDate = new Date(postedDate);
-  endDate.setDate(postedDate.getDate() + Number(product.discount_duration));
+  const postedDate = product.date_posted ? new Date(product.date_posted) : new Date();
 
-  const daysToBegin = Math.ceil((beginDate - now) / (1000 * 60 * 60 * 24));
-  const daysLeft = Math.ceil((endDate - now) / (1000 * 60 * 60 * 24));
+  // Calculate start date
+  const startOffset = Number(product.discount_start_date);
+  const startDate = !isNaN(startOffset) ? new Date(postedDate.getTime() + startOffset * DAY_MS) : postedDate;
 
+  // Calculate end date (if discount_duration exists)
+  const durationDays = Number(product.discount_duration);
+  const endDate = !isNaN(durationDays) ? new Date(startDate.getTime() + durationDays * DAY_MS) : null;
+
+  // Remaining days
+  const remainingToBegin = startDate > now ? Math.ceil((startDate - now) / DAY_MS) : 0;
+  const remainingToEnd = endDate && endDate > now ? Math.ceil((endDate - now) / DAY_MS) : 0;
+
+  // Determine status
   let statusText = "";
   let badgeColor = "";
   let emoji = "";
 
-  if (daysToBegin > 0) {
-    statusText = `${daysToBegin} day${daysToBegin > 1 ? "s" : ""} left to begin`;
+  if (product.discount === "waiting") {
+    statusText = "Waiting for discount";
+    badgeColor = "bg-gray-200 text-gray-600";
+    emoji = "⏳";
+  } else if (remainingToBegin > 0) {
+    statusText = `${remainingToBegin} day${remainingToBegin > 1 ? "s" : ""} left to begin`;
     badgeColor = "bg-blue-100 text-blue-800";
     emoji = "🕒";
-  } else if (daysLeft > 0) {
-    statusText = `${daysLeft} day${daysLeft > 1 ? "s" : ""} left to end`;
+  } else if (remainingToEnd > 0 || !endDate) {
+    statusText = endDate
+      ? `${remainingToEnd} day${remainingToEnd > 1 ? "s" : ""} left to end`
+      : "⚡ Discount active";
     badgeColor = "bg-green-100 text-green-800";
-    emoji = "⏳";
+    emoji = endDate ? "⏳" : "⚡";
   } else {
     statusText = "Discount expired";
-    badgeColor = "bg-gray-200 text-gray-600";
+    badgeColor = "bg-red-100 text-red-700";
     emoji = "❌";
   }
 
@@ -276,7 +290,6 @@ const NearbyDetail = () => {
     </div>
   );
 })()}
-
 </div>
 
         </div>
