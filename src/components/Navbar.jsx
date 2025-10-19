@@ -96,7 +96,13 @@ export default function Navigation({ products, onFilter }) {
 
                   <div className="flex items-center gap-12">
                     <NavLink
-                      to="/services"
+                      to="/"
+                      className="text-gray-200 hover:text-white text-sm font-medium"
+                    >
+                      Shops
+                    </NavLink>
+                    <NavLink
+                      to="/"
                       className="text-gray-200 hover:text-white text-sm font-medium"
                     >
                       Services

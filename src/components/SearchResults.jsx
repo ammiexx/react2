@@ -18,7 +18,7 @@ const SearchResults = () => {
       setLoading(true);
       try {
         const res = await fetch("https://djanagobackend-5.onrender.com/api/products/");
-        if (!res.ok) throw new Error("Failed to fetch products");
+        if (!res.ok) throw new Error("No internet connection!");
         const data = await res.json();
 
         const matches = data.filter((p) =>

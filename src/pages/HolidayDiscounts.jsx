@@ -12,7 +12,7 @@ const Nearby = () => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          `https://djanagobackend-5.onrender.com/api/products/`
+          `https://djanagobackend-5.onrender.com/api/myproducts/`
         );
         if (!response.ok) throw new Error('Failed to fetch products');
         let data = await response.json();
