@@ -168,7 +168,7 @@ const Shops = ({ category, title }) => {
                   {/* waiting */}
                   {item.status === "waiting" && (
                     <span className="text-sm font-semibold bg-gray-200 text-gray-600 px-2 py-1 rounded">
-                      ⏳ Waiting for discount
+                      ⏳ Waiting
                     </span>
                   )}
 
