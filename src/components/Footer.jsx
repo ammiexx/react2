@@ -111,11 +111,7 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-2">Quick Links</h4>
            <ul className={normalTextClass + " space-y-1"}>
-  <li>
-    <Link to="/new advantages" className={linkClass}>
-      New Offers
-    </Link>
-  </li>
+  
   <li>
     <Link to="/weekly discounts" className={linkClass}>
       Weekly Discounts
@@ -136,9 +132,9 @@ const Footer = () => {
             <ul className={normalTextClass + " space-y-1"}>
  
 <li>
-  <Link to="/newoffers" className={linkClass}>
-    New Offers
-  </Link>
+  <Link to="/new advantages" className={linkClass}>
+      New Offers
+    </Link>
 </li>
 <li>
    <Link to="/holiday discounts" className={linkClass}>
