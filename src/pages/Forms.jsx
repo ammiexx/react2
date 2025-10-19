@@ -28,6 +28,7 @@ const Form = () => {
 
 
   const discountOptions = [
+  { value: 'waiting', label: 'Waiting' },
   { value: '5', label: '5%' },
   { value: '10', label: '10%' },
   { value: '15', label: '15%' },
@@ -35,8 +36,6 @@ const Form = () => {
   { value: '30', label: '30%' },
   { value: '50', label: '40%' },
   { value: '50', label: '50%' },
-  { value: 'waiting', label: 'Waiting' },
-
 ];
 
 
@@ -391,8 +390,6 @@ if (!formData.contact_phone) {
 />
 
         </div>
-   
-   {/* Discount Duration (in days) */}
 {/* Discount Start Date */}
 <div>
   <input
@@ -404,8 +401,12 @@ if (!formData.contact_phone) {
     onChange={handleChange}
     placeholder="Number of days until discount starts (e.g 2)"
     className="w-full border px-4 py-2 rounded"
-    required={!formData.discount_duration} // require only if the other is empty
-    disabled={!!formData.discount_duration} // disable if the other is filled
+    required={
+      formData.discount !== "waiting" && !formData.discount_duration
+    }
+    disabled={
+      formData.discount === "waiting" || !!formData.discount_duration
+    }
   />
 </div>
 
@@ -420,12 +421,14 @@ if (!formData.contact_phone) {
     onChange={handleChange}
     placeholder="Number of days the discount will be active (e.g 5)"
     className="w-full border px-4 py-2 rounded"
-    required={!formData.discount_start_date} // require only if the other is empty
-    disabled={!!formData.discount_start_date} // disable if the other is filled
+    required={
+      formData.discount !== "waiting" && !formData.discount_start_date
+    }
+    disabled={
+      formData.discount === "waiting" || !!formData.discount_start_date
+    }
   />
 </div>
-
-  
 
         {/* Description */}
         <div>

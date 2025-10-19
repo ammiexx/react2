@@ -255,7 +255,7 @@ const NearbyDetail = () => {
       if (timeLeft > 0) {
         return (
           <p className="text-sm text-red-600 font-semibold">
-            ⏳ {timeLeft} day{timeLeft !== 1 ? "s" : ""} left
+            ⏳ {timeLeft} day{timeLeft !== 1 ? "s" : ""} left to end!!
           </p>
         );
       } else {

@@ -22,20 +22,52 @@ const Shops = ({ category, title }) => {
           (item) => item.category === category && item.verified === true
         );
 
-        // Add remaining_days field
+        // Calculate discount states
         data = data.map((item) => {
-          if (item.discount_duration && item.date_posted) {
-            const postedDate = new Date(item.date_posted);
-            const deadline = new Date(
-              postedDate.getTime() + item.discount_duration * 24 * 60 * 60 * 1000
+          const now = new Date();
+          const postedDate = new Date(item.date_posted);
+
+          let startDate = null;
+          let endDate = null;
+          let remainingToBegin = null;
+          let remainingToEnd = null;
+          let status = "waiting"; // default state
+
+          if (item.discount_start_date) {
+            startDate = new Date(
+              postedDate.getTime() + item.discount_start_date * 24 * 60 * 60 * 1000
             );
-            const now = new Date();
-            const remaining = Math.ceil(
-              (deadline - now) / (1000 * 60 * 60 * 24)
+            remainingToBegin = Math.ceil(
+              (startDate - now) / (1000 * 60 * 60 * 24)
             );
-            return { ...item, remaining_days: remaining > 0 ? remaining : 0 };
           }
-          return { ...item, remaining_days: null };
+
+          if (item.discount_duration && startDate) {
+            endDate = new Date(
+              startDate.getTime() + item.discount_duration * 24 * 60 * 60 * 1000
+            );
+            remainingToEnd = Math.ceil(
+              (endDate - now) / (1000 * 60 * 60 * 24)
+            );
+          }
+
+          // Determine the discount state
+          if (item.discount === "waiting") {
+            status = "waiting";
+          } else if (remainingToBegin > 0) {
+            status = "to_begin"; // discount not started
+          } else if (remainingToEnd > 0) {
+            status = "active"; // currently running
+          } else if (remainingToEnd <= 0 && item.discount !== "waiting") {
+            status = "expired"; // ended
+          }
+
+          return {
+            ...item,
+            remainingToBegin,
+            remainingToEnd,
+            status,
+          };
         });
 
         setProducts(data);
@@ -88,7 +120,7 @@ const Shops = ({ category, title }) => {
                   navigate("/nearby-detail", { state: { product: item } })
                 }
               >
-                {/* Product & Company Info */}
+                {/* Product Info */}
                 <div className="flex items-center gap-4 mb-3">
                   <img
                     src={item.profile_photo || "https://via.placeholder.com/60"}
@@ -111,32 +143,43 @@ const Shops = ({ category, title }) => {
                   </div>
                 </div>
 
-                {/* Discount and countdown */}
+                {/* Discount state */}
                 <div className="flex flex-wrap items-center gap-3 mb-3">
-                  {item.discount && (
+                  {item.discount && item.discount !== "waiting" && (
                     <span className="text-sm font-semibold bg-green-100 text-green-800 px-2 py-1 rounded">
                       {item.discount}% OFF
                     </span>
                   )}
 
-                  {item.remaining_days !== null && (
-                    <span
-                      className={`text-sm font-semibold px-2 py-1 rounded ${
-                        item.remaining_days > 0
-                          ? "bg-yellow-100 text-yellow-800"
-                          : "bg-gray-200 text-gray-600"
-                      }`}
-                    >
-                      {item.remaining_days > 0
-                        ? `${item.remaining_days} day${
-                            item.remaining_days > 1 ? "s" : ""
-                          } left`
-                        : "Expired"}
+                  {item.status === "waiting" && (
+                    <span className="text-sm font-semibold bg-gray-200 text-gray-600 px-2 py-1 rounded">
+                      ⏳ Waiting for discount
+                    </span>
+                  )}
+
+                  {item.status === "to_begin" && (
+                    <span className="text-sm font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                      🕒 {item.discount}% starts in{" "}
+                      {item.remainingToBegin} day
+                      {item.remainingToBegin > 1 ? "s" : ""}
+                    </span>
+                  )}
+
+                  {item.status === "active" && (
+                    <span className="text-sm font-semibold bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
+                      ⚡ {item.discount}% active — {item.remainingToEnd} day
+                      {item.remainingToEnd > 1 ? "s" : ""} left
+                    </span>
+                  )}
+
+                  {item.status === "expired" && (
+                    <span className="text-sm font-semibold bg-red-100 text-red-700 px-2 py-1 rounded">
+                      ❌ {item.discount}% expired
                     </span>
                   )}
                 </div>
 
-                {/* Contact & Links */}
+                {/* Contact */}
                 <div className="flex flex-wrap items-center gap-3 mb-3">
                   {item.contact_telegram && (
                     <a
@@ -150,7 +193,6 @@ const Shops = ({ category, title }) => {
                   )}
                 </div>
 
-                {/* Call to action */}
                 <p className="text-sm text-gray-600 mt-auto">
                   💬 Visit our Telegram to see the price
                 </p>
