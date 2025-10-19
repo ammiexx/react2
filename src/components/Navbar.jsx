@@ -82,18 +82,7 @@ export default function Navigation({ products, onFilter }) {
             <div className="flex-1 flex items-center justify-between sm:hidden px-2">
               {!mobileSearchOpen ? (
                 <>
-                  {/* Hamburger Button */}
-                  <button
-                    onClick={toggleDrawer}
-                    className="inline-flex items-center justify-center rounded-md p-2 -ml-4 text-gray-400 hover:bg-white/5 hover:text-white"
-                  >
-                    {drawerOpen ? (
-                      <XMarkIcon className="h-9 w-9" />
-                    ) : (
-                      <Bars3Icon className="h-6 w-6" />
-                    )}
-                  </button>
-
+                 
                   <div className="flex items-center gap-12">
                     <NavLink
                       to="/"
