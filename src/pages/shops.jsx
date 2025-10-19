@@ -136,11 +136,12 @@ const Shops = ({ category, title }) => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white rounded-lg shadow hover:shadow-lg transition-transform hover:scale-[1.02] p-4 cursor-pointer flex flex-col"
-                onClick={() => navigate("/nearby-detail", { state: { product: item } })}
-              >
+             <div
+  key={item.id}
+  className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform transform hover:scale-105 p-5 cursor-pointer flex flex-col border border-gray-100"
+  onClick={() => navigate("/nearby-detail", { state: { product: item } })}
+>
+
                 {/* Product & Company Info */}
                 <div className="flex items-center gap-4 mb-3">
                   <img
