@@ -237,37 +237,46 @@ const NearbyDetail = () => {
       <FaTelegramPlane /> Telegram
     </a>
   )}
- {product.discount && (
-  <div className="flex flex-col">
-    <span className="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full shadow mb-1">
-      🎉 {product.discount}% OFF
-    </span>
+ {product.discount && (() => {
+  const postedDate = new Date(product.date_posted);
+  const now = new Date();
+  const beginDate = new Date(postedDate);
+  const endDate = new Date(postedDate);
+  endDate.setDate(postedDate.getDate() + Number(product.discount_duration));
 
-    {/* Calculate days left */}
-    {product.discount_duration && product.date_posted && (() => {
-      const startDate = new Date(product.date_posted);
-      const now = new Date();
-      const deadline = new Date(startDate);
-      deadline.setDate(startDate.getDate() + Number(product.discount_duration));
+  const daysToBegin = Math.ceil((beginDate - now) / (1000 * 60 * 60 * 24));
+  const daysLeft = Math.ceil((endDate - now) / (1000 * 60 * 60 * 24));
 
-      const timeLeft = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24));
+  let statusText = "";
+  let badgeColor = "";
+  let emoji = "";
 
-      if (timeLeft > 0) {
-        return (
-          <p className="text-sm text-red-600 font-semibold">
-            ⏳ {timeLeft} day{timeLeft !== 1 ? "s" : ""} left to end!!
-          </p>
-        );
-      } else {
-        return (
-          <p className="text-sm text-gray-500 font-semibold">
-            ❌ Discount expired
-          </p>
-        );
-      }
-    })()}
-  </div>
-)}
+  if (daysToBegin > 0) {
+    statusText = `${daysToBegin} day${daysToBegin > 1 ? "s" : ""} left to begin`;
+    badgeColor = "bg-blue-100 text-blue-800";
+    emoji = "🕒";
+  } else if (daysLeft > 0) {
+    statusText = `${daysLeft} day${daysLeft > 1 ? "s" : ""} left to end`;
+    badgeColor = "bg-green-100 text-green-800";
+    emoji = "⏳";
+  } else {
+    statusText = "Discount expired";
+    badgeColor = "bg-gray-200 text-gray-600";
+    emoji = "❌";
+  }
+
+  return (
+    <div className="flex flex-col">
+      <span className="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full shadow mb-1">
+        🎉 {product.discount}% OFF
+      </span>
+      <span className={`text-sm font-semibold px-2 py-1 rounded ${badgeColor}`}>
+        {emoji} {statusText}
+      </span>
+    </div>
+  );
+})()}
+
 
 </div>
 
