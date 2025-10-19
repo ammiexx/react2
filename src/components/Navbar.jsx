@@ -141,7 +141,7 @@ export default function Navigation({ products, onFilter }) {
   {/* Close Search */}
   <button
     onClick={() => setMobileSearchOpen(false)}
-    className=" text-gray-200 hover:text-white shrink-0"
+    className=" -pl-3 text-gray-200 hover:text-white shrink-0"
   >
     <XMarkIcon className="h-6 w-6" />
   </button>
