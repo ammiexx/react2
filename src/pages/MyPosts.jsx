@@ -145,13 +145,6 @@ const MyPosts = () => {
                         onChange={e => setEditData({ ...editData, location: e.target.value })}
                         placeholder="Location"
                       />
-                      <input
-                        className="border rounded px-2 py-1"
-                        value={editData.discount}
-                        onChange={e => setEditData({ ...editData, discount: e.target.value })}
-                        placeholder="Discount"
-                      />
-                      {/* Profile Photo */}
                       <div>
                         <label className="block text-sm font-medium text-gray-700">Profile Photo</label>
                         <input
