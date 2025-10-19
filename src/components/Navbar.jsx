@@ -129,20 +129,24 @@ export default function Navigation({ products, onFilter }) {
                 </>
               ) : (
                 // ✅ Mobile Search Open
-                <div className="flex-1 flex items-center gap-2">
-                  <Searching
-                    products={products}
-                    onFilter={onFilter}
-                    onSubmit={() => setMobileSearchOpen(false)}
-                  />
-                  {/* Close Search */}
-                  <button
-                    onClick={() => setMobileSearchOpen(false)}
-                    className="p-2 text-gray-200 hover:text-white"
-                  >
-                    <XMarkIcon className="h-6 w-6" />
-                  </button>
-                </div>
+                <div className="flex-1 flex items-center gap-2 w-full px-1">
+  <div className="flex-grow">
+    <Searching
+      products={products}
+      onFilter={onFilter}
+      onSubmit={() => setMobileSearchOpen(false)}
+    />
+  </div>
+
+  {/* Close Search */}
+  <button
+    onClick={() => setMobileSearchOpen(false)}
+    className=" text-gray-200 hover:text-white shrink-0"
+  >
+    <XMarkIcon className="h-6 w-6" />
+  </button>
+</div>
+
               )}
             </div>
 
