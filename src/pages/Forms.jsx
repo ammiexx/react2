@@ -213,6 +213,7 @@ const postProduct = async (productData) => {
       contact_phone: '',
       product_photo: null,
       discount_duration: '',
+      discount_start_date: '',
       images: [],
     });
   } catch (error) {
@@ -369,11 +370,29 @@ if (!formData.contact_phone) {
     className="text-gray-700"
   />
 </div>
+   
+   {/* Discount Duration (in days) */}
+<div>
+  <label className="block text-gray-700 font-semibold mb-1">
+     The number of days left the discount to begin!( in days)
+  </label>
+  <input
+    type="number"
+    name="discount_start_date"
+    min="1"
+    max="30"
+    value={formData.discount_start_date}
+    onChange={handleChange}
+    placeholder="e.g., 20"
+    className="w-full border px-4 py-2 rounded"
+    required
+  />
+</div>
 
 {/* Discount Duration (in days) */}
 <div>
   <label className="block text-gray-700 font-semibold mb-1">
-    Discount Duration (in days)
+    The number of days this discount will stay active( in days)
   </label>
   <input
     type="number"
@@ -386,13 +405,7 @@ if (!formData.contact_phone) {
     className="w-full border px-4 py-2 rounded"
     required
   />
-  <p className="text-sm text-gray-500 mt-1">
-    The number of days this discount will stay active.
-  </p>
 </div>
-
-
-      
         <div>
           <label className="block text-gray-700 font-semibold mb-1">Category</label>
        <Select
