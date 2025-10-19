@@ -285,6 +285,12 @@ if (!formData.contact_phone) {
   return;
 }
 
+if (!formData.profile_photo) {
+  setErrorMsg("❌ Please upload your company logo or profile photo.");
+  setTimeout(() => setErrorMsg(""), 3000);
+  return;
+}
+
 
   if (formData.images.length > 10) {
     setErrorMsg('❌ You can upload a maximum of 10 additional images.');
