@@ -62,19 +62,35 @@ const MyPosts = () => {
       description: product.description || '',
       location: product.location || '',
       discount: product.discount || '',
+      profile_photo: null,
+      product_photo: null,
     });
   };
 
   // Save Updates
   const handleSave = async (id) => {
     try {
+      const formData = new FormData();
+
+      formData.append('product_name', editData.product_name);
+      formData.append('company_name', editData.company_name);
+      formData.append('description', editData.description);
+      formData.append('location', editData.location);
+      formData.append('discount', editData.discount);
+
+      if (editData.profile_photo) {
+        formData.append('profile_photo', editData.profile_photo);
+      }
+      if (editData.product_photo) {
+        formData.append('product_photo', editData.product_photo);
+      }
+
       const response = await fetch(`https://djanagobackend-5.onrender.com/api/delete/products/${id}/`, {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(editData),
+        body: formData,
       });
-      const updatedProduct = await response.json();
 
+      const updatedProduct = await response.json();
       setProducts(products.map(p => p.id === id ? updatedProduct : p));
       setEditingProductId(null);
     } catch (err) {
@@ -109,27 +125,66 @@ const MyPosts = () => {
                         className="border rounded px-2 py-1"
                         value={editData.product_name}
                         onChange={e => setEditData({ ...editData, product_name: e.target.value })}
+                        placeholder="Product Name"
                       />
                       <input
                         className="border rounded px-2 py-1"
                         value={editData.company_name}
                         onChange={e => setEditData({ ...editData, company_name: e.target.value })}
+                        placeholder="Company Name"
                       />
-                      <input
+                      <textarea
                         className="border rounded px-2 py-1"
                         value={editData.description}
                         onChange={e => setEditData({ ...editData, description: e.target.value })}
+                        placeholder="Description"
                       />
                       <input
                         className="border rounded px-2 py-1"
                         value={editData.location}
                         onChange={e => setEditData({ ...editData, location: e.target.value })}
+                        placeholder="Location"
                       />
                       <input
                         className="border rounded px-2 py-1"
                         value={editData.discount}
                         onChange={e => setEditData({ ...editData, discount: e.target.value })}
+                        placeholder="Discount"
                       />
+                      {/* Profile Photo */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">Profile Photo</label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={e => setEditData({ ...editData, profile_photo: e.target.files[0] })}
+                          className="mt-1 block w-full text-sm text-gray-700"
+                        />
+                        {editData.profile_photo && (
+                          <img
+                            src={URL.createObjectURL(editData.profile_photo)}
+                            alt="Profile Preview"
+                            className="w-20 h-20 object-cover rounded mt-1"
+                          />
+                        )}
+                      </div>
+                      {/* Product Photo */}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">Product Photo</label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={e => setEditData({ ...editData, product_photo: e.target.files[0] })}
+                          className="mt-1 block w-full text-sm text-gray-700"
+                        />
+                        {editData.product_photo && (
+                          <img
+                            src={URL.createObjectURL(editData.product_photo)}
+                            alt="Product Preview"
+                            className="w-32 h-32 object-cover rounded mt-1"
+                          />
+                        )}
+                      </div>
                     </>
                   ) : (
                     <>
