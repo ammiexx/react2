@@ -213,6 +213,26 @@ const toggleDarkMode = () => {
 
 
             </ul>
+          </div>
+            <div>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2">Discounts</h3>
+            <ul className="space-y-1 text-sm text-gray-600">
+              <li><Link to="/daily discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
+                <DocumentTextIcon className="h-5 w-5" /> Daily Discounts
+              </Link></li>
+              <li><Link to="/weekly discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
+                <ClockIcon className="h-5 w-5" /> Weekly Discounts
+              </Link></li>
+               <li><Link to="/holiday discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
+                <ClockIcon className="h-5 w-5" /> Holiday Discounts
+              </Link></li>
+              <li><Link to="/upcommings" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-2">
+                <ClockIcon className="h-5 w-5" /> Upcoming Discounts
+              </Link></li>
+
+
+
+            </ul>
             {/* <div className="flex justify-end mb-4">
   <button
     onClick={toggleDarkMode}
