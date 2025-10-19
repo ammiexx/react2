@@ -222,7 +222,7 @@ const Shops = ({ category, title }) => {
 
                 {/* CTA */}
                 <p className="text-sm text-gray-600 mt-auto">💬 Visit our Telegram to see the price</p>
-                <div className="mt-2 text-blue-600 font-bold text-right">&gt;</div>
+               
               </div>
             ))}
           </div>
