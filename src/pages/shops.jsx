@@ -158,12 +158,12 @@ const Shops = ({ category, title }) => {
                   )}
 
                   {item.status === "to_begin" && (
-                    <span className="text-sm font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded">
-                      🕒 {item.discount}% starts in{" "}
-                      {item.remainingToBegin} day
-                      {item.remainingToBegin > 1 ? "s" : ""}
-                    </span>
-                  )}
+  <span className="text-sm font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded">
+    {item.remainingToBegin} day
+    {item.remainingToBegin > 1 ? "s" : ""} left to begin
+  </span>
+)}
+
 
                   {item.status === "active" && (
                     <span className="text-sm font-semibold bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
@@ -174,7 +174,7 @@ const Shops = ({ category, title }) => {
 
                   {item.status === "expired" && (
                     <span className="text-sm font-semibold bg-red-100 text-red-700 px-2 py-1 rounded">
-                      ❌ {item.discount}% expired
+                      ❌expired
                     </span>
                   )}
                 </div>
