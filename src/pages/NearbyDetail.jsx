@@ -281,15 +281,20 @@ const NearbyDetail = () => {
 
   return (
     <div className="flex flex-col">
-      <span className="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full shadow mb-1">
-        🎉 {product.discount}% OFF
-      </span>
+      {/* Only show OFF badge if discount is not waiting */}
+      {product.discount !== "waiting" && (
+        <span className="bg-green-100 text-green-800 font-bold px-3 py-1 rounded-full shadow mb-1">
+          🎉 {product.discount}% OFF
+        </span>
+      )}
       <span className={`text-sm font-semibold px-2 py-1 rounded ${badgeColor}`}>
         {emoji} {statusText}
       </span>
     </div>
   );
 })()}
+
+
 </div>
 
         </div>
