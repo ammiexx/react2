@@ -210,10 +210,10 @@ const toggleDarkMode = () => {
               <li><Link to="/weekly discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
                 <CalendarIcon className="h-5 w-5" /> Weekly Discounts
               </Link></li>
-               <li><Link to="/holiday discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
+               <li><Link to="/holyday discounts" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
                 <GiftIcon className="h-5 w-5" /> Holiday Discounts
               </Link></li>
-              <li><Link to="/upcommings" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
+              <li><Link to="/upcomming offers" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
                 <ClockIcon className="h-5 w-5" /> Upcoming Discounts
               </Link></li>
 
