@@ -47,7 +47,7 @@ export default function Home() {
 
 
   return (
-    <div className="font-sans text-gray-900 my-1">
+    <div className="font-sans text-gray-900 -mt-13 py-1">
       
       {/* Hero Slider Section */}
       <section className="relative w-full h-[650px] lg:h-[750px] overflow-hidden pt-10 pb-40">
