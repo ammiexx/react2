@@ -93,7 +93,7 @@ const Nearby = () => {
                     navigate('/nearby-detail', { state: { product: item } })
                   }
                 >
-                  {/* Product Info */}
+                 
                   <div className="flex items-center gap-4 mb-3">
                     <img
                       src={item.profile_photo || 'https://via.placeholder.com/60'}
