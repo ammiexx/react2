@@ -64,7 +64,7 @@ const Category1 = () => {
 
   return (
     <div
-      className="min-h-screen p-6"
+      className="min-h-screen pt-6 pb-15"
       style={{
         backgroundColor: theme === "dark" ? "black" : "white",
         color: theme === "dark" ? "white" : "black",
