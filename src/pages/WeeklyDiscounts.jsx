@@ -19,7 +19,7 @@ const Nearby = () => {
 
         const now = new Date();
 
-        // ✅ Filter logic: show discounts that are still active and less than 7 days old
+        
         data = data.filter((item) => {
           if (!item.verified || !item.discount_duration || !item.date_posted) {
             return false;
