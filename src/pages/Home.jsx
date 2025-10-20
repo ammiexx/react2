@@ -50,7 +50,7 @@ export default function Home() {
     <div className="font-sans text-gray-900 my-1">
       
       {/* Hero Slider Section */}
-      <section className="relative w-full h-[650px] lg:h-[750px] overflow-hidden">
+      <section className="relative w-full h-[650px] lg:h-[750px] overflow-hidden py-10">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -64,7 +64,7 @@ export default function Home() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-6">
-              <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6">
+              <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 mt-20">
                 {slide.title}
               </h1>
               <p className="text-xl sm:text-2xl text-gray-200 max-w-4xl mb-8">
@@ -90,7 +90,7 @@ export default function Home() {
       </section>
 
       
-      <section className="bg-white -pb-3 pt-1">
+      <section className="bg-white pb-3 pt-1">
         <div className="max-w-7xl mx-auto p-2 p-6 lg:px-8 text-center space-y-12">
           <h2 className="text-3xl text-blue-900">Why Knash digital market?</h2>
           <p className="text-blue-700 max-w-3xl mx-auto text-2xl">We are creating a digital shopping platform that helps clients to purchase their need at the best value! </p>
