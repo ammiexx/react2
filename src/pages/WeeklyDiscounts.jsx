@@ -31,7 +31,7 @@ const Nearby = () => {
 
           const timeLeft = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24));
 
-          // ✅ Keep only those with 1–6 days remaining
+         
           return timeLeft >= 1 && timeLeft <= 6;
         });
 
