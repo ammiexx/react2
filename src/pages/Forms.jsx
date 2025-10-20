@@ -315,7 +315,7 @@ if (!formData.profile_photo) {
 
 
       <div className="text-center mb-8">
-  <h1 className="text-3xl font-bold text-blue-800">🚀 ADD Your Business</h1>
+  <h1 className="text-3xl font-bold text-blue-800"> ADD Your Business</h1>
   <p className="text-gray-600 mt-2">
     Fill in the details below to get your product listed in front of thousands of viewers.
   </p>
