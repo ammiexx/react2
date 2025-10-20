@@ -129,7 +129,7 @@ const toggleDarkMode = () => {
 
 
         {/* Header */}
-        <div className="flex items-center justify-between h-20 px-5 border-b border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex items-center justify-between h-20 px-5 border-b border-gray-200 bg-gray-400 dark:bg-gray-800 dark:border-gray-700">
 
           {isSignedIn && user ? (
             <div className="flex items-center gap-3">
@@ -141,10 +141,10 @@ const toggleDarkMode = () => {
             </div>
             
           ) : (
-            <div className="flex items-center justify-between h-16 px-5 border-b border-gray-200 bg-gray-100">
+            <div className="flex items-center justify-between h-16 px-5 border-b border-gray-200 bg-gray-400">
   <Link
     to="/login"
-    className="px-4 py-2 text-white text-sm font-medium rounded-md shadow hover:bg-blue-700 transition"
+     className="px-3 py-1 text-white text-xs font-medium rounded-md shadow hover:bg-gray-600 transition"
   >
     Sign Up
   </Link>
@@ -242,11 +242,24 @@ const toggleDarkMode = () => {
                 <DocumentTextIcon className="h-5 w-5" /> My Posts
               </Link></li>
               <li><Link to="/form" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
-                <ClockIcon className="h-5 w-5" /> Add Posts
+                <ClockIcon className="h-5 w-5" /> Add your business
               </Link></li>
                <li><Link to="/recents" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
                 <ClockIcon className="h-5 w-5" /> Recents
               </Link></li>
+               <li><Link to="/aboutus" onClick={closeMenu} className="hover:text-blue-600 flex items-center gap-5">
+                <DocumentTextIcon className="h-5 w-5" /> About us
+              </Link></li>
+
+
+
+            </ul>
+          </div>
+           <div>
+            <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2"></h3>
+            <ul className="space-y-5 text-sm text-gray-600">
+             
+              
 
 
 

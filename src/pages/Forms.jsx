@@ -311,11 +311,11 @@ if (!formData.profile_photo) {
 
 
   return (
-    <div className="max-w-3xl mx-auto py-25 p-8 bg-gray-100 shadow-xl rounded-xl mt-10 border border-gray-200 relative">
+    <div className="max-w-3xl mx-auto py-25 p-8 bg-white shadow-lg rounded-2xl mt-10 border border-t-4 border-gray-800 relative">
 
 
       <div className="text-center mb-8">
-  <h1 className="text-3xl font-bold text-blue-800">🚀 Promote Your Product</h1>
+  <h1 className="text-3xl font-bold text-blue-800">🚀 ADD Your Business</h1>
   <p className="text-gray-600 mt-2">
     Fill in the details below to get your product listed in front of thousands of viewers.
   </p>
@@ -325,6 +325,7 @@ if (!formData.profile_photo) {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Product Name */}
         <div>
+          <label className="block text-gray-700 font-semibold mb-1">Item for sale/service</label>
           <input
             type="text"
             name="product_name"
@@ -360,6 +361,7 @@ if (!formData.profile_photo) {
 
         {/* Company Name */}
         <div>
+          <label className="block text-gray-700 font-semibold mb-1">Company name</label>
           <input
             type="text"
             name="company_name"
@@ -372,6 +374,7 @@ if (!formData.profile_photo) {
         </div>
         {/* Discount */}
 <div>
+  <label className="block text-gray-700 font-semibold mb-1">Select discount</label>
   <Select
     options={discountOptions}
     value={discountOptions.find(opt => opt.value === formData.discount)}
@@ -384,6 +387,7 @@ if (!formData.profile_photo) {
   />
 </div>
       <div>
+        <label className="block text-gray-700 font-semibold mb-1">Select category</label>
        <Select
   options={categoryOptions}
   value={categoryOptions.find((opt) => opt.value === formData.category)}
@@ -398,6 +402,7 @@ if (!formData.profile_photo) {
         </div>
 {/* Discount Start Date */}
 <div>
+  <label className="block text-gray-700 font-semibold mb-1">Discount start date</label>
   <input
     type="number"
     name="discount_start_date"
@@ -405,7 +410,7 @@ if (!formData.profile_photo) {
     max="30"
     value={formData.discount_start_date}
     onChange={handleChange}
-    placeholder="Number of days until discount starts (e.g 2)"
+    placeholder="The number of days left for the discount to begin (e.g 2)"
     className="w-full border px-4 py-2 rounded"
     required={
       formData.discount !== "waiting" && !formData.discount_duration
@@ -418,6 +423,7 @@ if (!formData.profile_photo) {
 
 {/* Discount Duration */}
 <div>
+  <label className="block text-gray-700 font-semibold mb-1">the Duration that the discount lasts</label>
   <input
     type="number"
     name="discount_duration"
@@ -425,7 +431,7 @@ if (!formData.profile_photo) {
     max="30"
     value={formData.discount_duration}
     onChange={handleChange}
-    placeholder="Number of days the discount will be active (e.g 5)"
+    placeholder="The number of days the discount will be active (e.g 5)"
     className="w-full border px-4 py-2 rounded"
     required={
       formData.discount !== "waiting" && !formData.discount_start_date
@@ -489,7 +495,6 @@ if (!formData.profile_photo) {
   <button
     type="button"
     onClick={() => {
-      // Get browser geolocation
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
           setFormData((prev) => ({
@@ -512,6 +517,7 @@ if (!formData.profile_photo) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
+            <label className="block text-gray-700 font-semibold mb-1">Telegram user name</label>
             <input
               type="url"
               name="contact_telegram"
@@ -523,6 +529,7 @@ if (!formData.profile_photo) {
           </div>
          
           <div>
+            <label className="block text-gray-700 font-semibold mb-1">Phone number</label>
             <input
               type="text"
               name="contact_phone"

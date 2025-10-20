@@ -2,6 +2,8 @@
 import React from 'react';
 import './Aboutus.css';
 import BackButton from '../components/BackButton';
+import founder from '../assets/images/founder.jpg';
+import myteam from '../assets/images/myteams.png';
 const AboutUs = () => {
   return (
     <div className="about-container">
@@ -55,10 +57,6 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
-
-      <footer className="about-footer">
-        <p>&copy; {new Date().getFullYear()} Knash. All rights reserved.</p>
-      </footer>
     </div>
   );
 };

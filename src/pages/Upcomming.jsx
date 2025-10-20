@@ -14,7 +14,7 @@ const Nearby = () => {
         const response = await fetch(
           `https://djanagobackend-5.onrender.com/api/products/`
         );
-        if (!response.ok) throw new Error('Failed to fetch upcoming products');
+        if (!response.ok) throw new Error('connect to internet');
         let data = await response.json();
         data = data.filter(
           (item) => item.category === 'upcommings' && item.verified === true
@@ -32,7 +32,7 @@ const Nearby = () => {
   }, []);
 
   return (
-    <div className="max-w-[1200px] mx-auto my-10 px-5 w-full">
+    <div className="max-w-[1200px] mx-auto px-5 w-full bg-gray-200 my-1">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
         Upcoming offers this week!
       </h2>

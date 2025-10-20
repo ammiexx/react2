@@ -49,6 +49,7 @@ import CommentsPage from "./pages/CommentsPage";
 import CopyRight from "./components/CopyRight";
 import Shops from "./pages/Shops";
 import Videos from "./pages/Videos";
+import Home from "./pages/Home";
 function App() {
   return (
     <Router>
@@ -167,6 +168,7 @@ function App() {
         <Route path="/chat" element={<Chat2/>} />
       </Routes>
       </main>
+      <Home/>
       <FloatingChat/>
       <Footer/>
       <CopyRight />

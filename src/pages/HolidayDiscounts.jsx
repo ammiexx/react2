@@ -14,7 +14,7 @@ const Nearby = () => {
         const response = await fetch(
           `https://djanagobackend-5.onrender.com/api/products/`
         );
-        if (!response.ok) throw new Error('Failed to fetch products');
+        if (!response.ok) throw new Error('Connect to internet');
         let data = await response.json();
 
         
@@ -34,7 +34,7 @@ const Nearby = () => {
   }, []);
 
   return (
-    <div className="max-w-[1200px] mx-auto my-10 px-5 w-full">
+    <div className="max-w-[1200px] mx-auto bg-gray-200 my-1px-5 w-full bg-gray-100">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
         New offers for every holiday!
       </h2>

@@ -107,7 +107,7 @@ const Shops = ({ category, title }) => {
     `${n} ${n > 1 ? pluralForm : singular}`;
 
   return (
-    <div className="max-w-[1200px] mx-auto my-10 px-5 w-full">
+    <div className="max-w-[1200px] mx-auto my-1 mb px-5 w-full bg-gray-200">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">{title}</h2>
 
       <section className="mb-12 w-full">
@@ -228,7 +228,9 @@ const Shops = ({ category, title }) => {
             ))}
           </div>
         )}
+        
       </section>
+      
     </div>
   );
 };

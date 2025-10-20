@@ -115,7 +115,7 @@ export default function Navigation({ products, onFilter }) {
                     {!isSignedIn && (
                       <Link
                         to="/login"
-                        className="px-3 py-1 bg-blue-600 text-white text-xs font-medium rounded-md shadow hover:bg-blue-700 transition"
+                        className="px-3 py-1 bg-blue-800 text-white text-xs font-medium rounded-md shadow hover:bg-blue-900 transition"
                       >
                         Sign Up
                       </Link>
