@@ -101,7 +101,7 @@ const Footer = () => {
     </Link>
   </li>
   <li>
-    <Link to="/upcoming offers" className={linkClass}>
+    <Link to="/upcomming offers" className={linkClass}>
       Upcoming Offers
     </Link>
   </li>
