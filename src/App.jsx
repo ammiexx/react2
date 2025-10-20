@@ -129,7 +129,7 @@ function App() {
 <Route path="/health-and-beauties" element={<Shops category="health" title="Enhance Your Natural Glow – Health & Beauty Essentials!" />} />
 <Route path="/SoftWare_And_IT_Services" element={<Shops category="software" title="Software & IT Services – Tech Solutions for You!" />} />
 <Route path="/Stationary_And_Office_Supplies" element={<Shops category="stationary" title="Stationary & Office Supplies – Everything You Need!" />} />
-<Route path="/women_fashions" element={<Shops category="women_fashions" title="Express Your Style!" />} />
+<Route path="/women_fashions" element={<Shops category="women" title="Express Your Style!" />} />
 <Route path="/Telecome_Services" element={<Shops category="telecom" title="Telecommunication Services – Stay Connected!" />} />
 <Route path="/Waste_Management_And_Recycling" element={<Shops category="waste" title="Waste Management & Recycling – Sustainable Solutions!" />} />
 <Route path="/Virtual_Events_And_Webbinaries" element={<Shops category="virtual" title="Virtual Events & Webinars – Connect Anywhere!" />} />
