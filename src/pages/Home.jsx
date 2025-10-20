@@ -29,7 +29,7 @@ export default function Home() {
         <span className="text-blue-600 text-6xl font-extrabold">
           Knash Digital Market (KDM)
         </span>{" "}
-          - Connecting Enterprises to Customers Nationwide
+          Connecting Enterprises to Customers Nationwide
       </>
     ),
     subtitle:
