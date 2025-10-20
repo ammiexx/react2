@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import heroImage from "../assets/images/founder.jpg"; // First hero image
-import secondHeroImage from "../assets/images/myteams.png"; // Second hero image
+import heroImage from "../assets/images/founder.jpg"; 
+import secondHeroImage from "../assets/images/myteams.png"; 
 
 import { Link } from "react-router-dom";
 import { UserGroupIcon, GlobeAltIcon, BoltIcon } from "@heroicons/react/24/outline";
@@ -9,7 +9,14 @@ export default function Home() {
   const slides = [
   {
     image: secondHeroImage,
-    title: "Empowering Local Enterprises Across the Country",
+    title: (
+      <>
+        <span className="text-blue-600 text-6xl font-extrabold">
+          Knash Digital Market (KDM)
+        </span>{" "}
+         Empowering Local Enterprises Across the Country
+      </>
+    ),
     subtitle:
       "We help local shops expand their reach and connect with more customers. Grow your business, increase your visibility, and reach your full potential with our powerful networking tools and cutting-edge solutions.",
     cta1: { text: "Explore Shops", link: "/discounts" },
@@ -17,7 +24,14 @@ export default function Home() {
   },
   {
     image: heroImage,
-    title: "Connecting Clients and Enterprises Nationwide",
+     title: (
+      <>
+        <span className="text-blue-600 text-6xl font-extrabold">
+          Knash Digital Market (KDM)
+        </span>{" "}
+          - Connecting Enterprises to Customers Nationwide
+      </>
+    ),
     subtitle:
       "At Knash digital market, we build a robust network linking enterprizes to customers. Explore opportunities, discover offers, and grow together. Our platform helps you find the right connections, increase your sales, and stay ahead in the market with ease and efficiency.",
     cta1: { text: "Explore Services", link: "/services" },
@@ -110,7 +124,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-blue-600 pt-2 pb-17"> 
+      <section className="bg-blue-500 pt-2 pb-17"> 
         <div className="max-w-2xl mx-auto px-6 lg:px-8 text-center text-white space-y-6">
           <h2 className="text-3xl sm:text-4xl font-bold">Ready to Make an Impact?</h2>
           <p className="text-lg sm:text-xl">
