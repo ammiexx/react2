@@ -273,11 +273,12 @@ if (!formData.location) {
   return;
 }
 
- if (!formData.contact_telegram) {
-  setErrorMsg("❌ Please provide a Telegram link.");
+if (!formData.contact_telegram) {
+  setErrorMsg("❌ Please provide your Telegram username.");
   setTimeout(() => setErrorMsg(""), 3000);
   return;
 }
+
 
 if (!formData.contact_phone) {
   setErrorMsg("❌ Please provide a phone number.");
@@ -304,6 +305,16 @@ if (!formData.profile_photo) {
     setAuthWarning(true);
     return;
   }
+  // Auto-convert Telegram username into full link
+let productData = { ...formData };
+if (formData.contact_telegram) {
+  const telegram = formData.contact_telegram.trim();
+
+  // If user entered just username (like "knashshop" or "@knashshop")
+  if (!telegram.startsWith("http")) {
+    productData.contact_telegram = `https://t.me/${telegram.replace("@", "")}`;
+  }
+}
 
   // Post directly if user exists
   await postProduct(formData);
@@ -516,17 +527,18 @@ if (!formData.profile_photo) {
 </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-gray-700 font-semibold mb-1">Telegram user name</label>
-            <input
-              type="url"
-              name="contact_telegram"
-              placeholder='Telegram Link'
-              value={formData.contact_telegram}
-              onChange={handleChange}
-              className="w-full border px-4 py-2 rounded"
-            />
-          </div>
+         <div>
+  <label className="block text-gray-700 font-semibold mb-1">Telegram user name</label>
+  <input
+    type="url"
+    name="contact_telegram"
+    placeholder="Telegram Link"
+    value={formData.contact_telegram}
+    onChange={handleChange}
+    className="w-full border px-4 py-2 rounded"
+  />
+</div>
+
          
           <div>
             <label className="block text-gray-700 font-semibold mb-1">Phone number</label>
