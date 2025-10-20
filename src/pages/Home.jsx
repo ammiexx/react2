@@ -50,7 +50,7 @@ export default function Home() {
     <div className="font-sans text-gray-900 my-1">
       
       {/* Hero Slider Section */}
-      <section className="relative w-full h-[650px] lg:h-[750px] overflow-hidden py-10">
+      <section className="relative w-full h-[650px] lg:h-[750px] overflow-hidden pt-10 pb-40">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -70,7 +70,7 @@ export default function Home() {
               <p className="text-xl sm:text-2xl text-gray-200 max-w-4xl mb-8">
                 {slide.subtitle}
               </p>
-              <div className="flex gap-4">
+              <div className="flex gap-4 mb-27">
                 <Link
                   to={slide.cta1.link}
                   className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition font-medium text-lg"
