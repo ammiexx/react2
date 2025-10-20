@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "./ThemeContext";
-import { motion } from "framer-motion";
 import appliance from "../assets/images/appliances.png";
 import men from "../assets/images/men.png";
 import women from "../assets/images/women.png";

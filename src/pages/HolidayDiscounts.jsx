@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaTelegramPlane, FaTiktok } from 'react-icons/fa';
+import { FaTelegramPlane} from 'react-icons/fa';
 
 const Nearby = () => {
   const [products, setProducts] = useState([]);
@@ -89,8 +89,6 @@ const Nearby = () => {
                     )}
                   </div>
                 </div>
-
-                {/* Contact Links */}
                 <div className="flex flex-wrap items-center gap-3 mb-3">
                   {item.contact_telegram && (
                     <a
@@ -104,8 +102,6 @@ const Nearby = () => {
                   )}
                  
                 </div>
-
-                {/* Call to action */}
                 <p className="text-sm text-gray-600 mt-auto">💬 Visit our Telegram to see the price</p>
 
                 <div className="mt-2 text-blue-600 font-bold text-right">&gt;</div>
@@ -117,5 +113,4 @@ const Nearby = () => {
     </div>
   );
 };
-
 export default Nearby;
