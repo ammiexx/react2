@@ -50,11 +50,13 @@ import CopyRight from "./components/CopyRight";
 import Shops from "./pages/Shops";
 import Videos from "./pages/Videos";
 import Home from "./pages/Home";
+import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen"> 
       <div className="bg-gray-800"> 
+        <ScrollToTop />
     <Navbar />
     <Search />
   </div>

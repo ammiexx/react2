@@ -11,11 +11,11 @@ const AboutUs = () => {
 
       <header className="about-header">
         <h1>About Us</h1>
-        <p>Building bridges between buyers and sellers—locally, efficiently, and reliably.</p>
+        <p>We are creating a digital shopping platform that helps clients to purchase their need at the best value!</p>
       </header>
 
       <section className="mission-section">
-        <img src="https://plus.unsplash.com/premium_photo-1752433524344-c2f801835945?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+        <img src={founder} alt="Our founder" />
         <div className="mission-content">
           <h2>Our Mission</h2>
           <p>
@@ -39,7 +39,7 @@ const AboutUs = () => {
             This is not just a marketplace—it's a smarter way to buy and sell.
           </p>
         </div>
-        <img src="https://images.unsplash.com/photo-1752743092036-1bc260931bd5?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+        <img src={myteam} alt="Our founder" />
       </section>
 
       <section className="impact-section">
