@@ -93,7 +93,7 @@ const Nearby = () => {
                   </div>
                 </div>
 
-                {/* Contact Links */}
+              
                 <div className="flex flex-wrap items-center gap-3 mb-3">
                   {item.contact_telegram && (
                     <a
