@@ -5,11 +5,11 @@ const Footer = () => {
   const linkClass = "hover:text-[#6ec1e4] transition-colors";
 
   return (
-    <footer id="footer" className="bg-gray-900 mt-2 text-white py-2 text-center"
+    <footer id="footer" className="bg-gray-900 mt-2 text-white pb-2 pt-15 text-center"
 >
      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 sm:text-center md:text-left md:ml-10 lg:ml-20">
         <div className={`mb-2 ${normalTextClass}`}>
-          <h1 className="text-3xl font-bold pl-2 text-[#6ec1e4]">Knash Digital Market(KDM)</h1>
+          <h1 className="text-3xl font-bold pl-2 text-[#6ec1e4]">Knash Digital Market</h1>
         </div>
         <div className={`mb-3 max-w-3xl ${normalTextClass} leading-relaxed`}>
           <p>

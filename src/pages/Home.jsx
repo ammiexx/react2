@@ -11,10 +11,8 @@ export default function Home() {
     image: secondHeroImage,
     title: (
       <>
-        <span className="text-blue-600 text-6xl font-extrabold">
-          Knash Digital Market (KDM)
-        </span>{" "}
-         Empowering Local Enterprises Across the Country
+      
+          Knash Digital Market - Empowering Local Enterprises Across the Country
       </>
     ),
     subtitle:
@@ -26,10 +24,8 @@ export default function Home() {
     image: heroImage,
      title: (
       <>
-        <span className="text-blue-600 text-6xl font-extrabold">
-          Knash Digital Market (KDM)
-        </span>{" "}
-          Connecting Enterprises to Customers Nationwide
+        
+          Knash Digital Market - Connecting Enterprises to Customers Nationwide
       </>
     ),
     subtitle:
@@ -51,7 +47,7 @@ export default function Home() {
 
 
   return (
-    <div className="font-sans text-gray-900 -my-7">
+    <div className="font-sans text-gray-900 my-1">
       
       {/* Hero Slider Section */}
       <section className="relative w-full h-[650px] lg:h-[750px] overflow-hidden">

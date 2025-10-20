@@ -7,10 +7,10 @@ import myteam from '../assets/images/myteams.png';
 const AboutUs = () => {
   return (
     <div className="about-container">
-       <BackButton className="md:hidden" />
+     
 
       <header className="about-header">
-        <h1>About Us</h1>
+        <h1>Knash Digital Market</h1>
         <p>We are creating a digital shopping platform that helps clients to purchase their need at the best value!</p>
       </header>
 
