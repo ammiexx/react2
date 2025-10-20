@@ -64,13 +64,13 @@ export default function Home() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-6">
-              <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 mt-20">
+              <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 mt-40">
                 {slide.title}
               </h1>
               <p className="text-xl sm:text-2xl text-gray-200 max-w-4xl mb-8">
                 {slide.subtitle}
               </p>
-              <div className="flex gap-4 mb-27">
+              <div className="flex gap-4 mb-32">
                 <Link
                   to={slide.cta1.link}
                   className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition font-medium text-lg"
