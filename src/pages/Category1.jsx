@@ -23,8 +23,9 @@ const categories = [
   { name: "Homes", image_url: home, path: "/homes" },
    { name: "Car Brands", image_url: car, path: "/car-brands" },
    { name: 'Travel services', image_url: travel, path: '/travels' },
-    { name: 'Digital Security services', image_url: security, path: '/Security_Services' },
-     { name: 'Telecom Services', image_url: telecom, path: '/Telecome_Services' },
+  { name: 'Digital Security services', image_url: security, path: '/Security_Services' },
+  { name: 'Telecom Services', image_url: telecom, path: '/Telecome_Services' },
+  { name: "Video & Photography essentials", image_url: photo, path: "/Video_And_Photography" },
   { name: " Dental Clinicis & Health and Beauty", image_url: beauty, path: "/health-and-beauties" },
   { name: "Men Fashions", image_url: men, path: "/men_shoes" },
   { name: "Home Appliances", image_url: appliance, path: "/home-appliances" },
@@ -35,7 +36,6 @@ const categories = [
   { name: "Fitness essentials", image_url: fitness, path: "/fitness_And_Sports_servies" },
   { name: "Farm products", image_url: farm, path: "/Agriculture_And_Livestock" },
   { name: "Art & Handicrafts", image_url: art, path: "/Art_And_Handicrafts" },
-  { name: "Video & Photography essentials", image_url: photo, path: "/Video_And_Photography" },
   { name: "Printing & Publishing essentials", image_url: print, path: "/Printing_And_Publishing" },
 ];
 
