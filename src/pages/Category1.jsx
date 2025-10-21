@@ -17,16 +17,16 @@ import print from "../assets/images/printing.png";
 import jewelries from "../assets/images/watches.png";
 
 const categories = [
+  { name: "Homes", image_url: home, path: "/homes" },
+   { name: "Car Brands", image_url: car, path: "/car-brands" },
+  { name: " Dental Clinicis & Health and Beauty", image_url: beauty, path: "/health-and-beauties" },
   { name: "Men Fashions", image_url: men, path: "/men_shoes" },
+  { name: "Home Appliances", image_url: appliance, path: "/home-appliances" },
+  { name: "Furniture & Interior Design materials", image_url: furniture, path: "/Furniture_And_Interior_design" },
   { name: "Watches & Jewelries", image_url: jewelries, path: "/jewelries" },
   { name: "Baby & Kids essentials", image_url: kids, path: "/Babies_And_Kids_Products" },
-  { name: "Furniture & Interior Design materials", image_url: furniture, path: "/Furniture_And_Interior_design" },
   { name: "Women Fashions", image_url: women, path: "/women_fashions" },
   { name: "Fitness essentials", image_url: fitness, path: "/fitness_And_Sports_servies" },
-  { name: "Homes", image_url: home, path: "/homes" },
-  { name: "Car Brands", image_url: car, path: "/car-brands" },
-  { name: "Home Appliances", image_url: appliance, path: "/home-appliances" },
-  { name: " Dental Clinicis & Health and Beauty", image_url: beauty, path: "/health-and-beauties" },
   { name: "Farm products", image_url: farm, path: "/Agriculture_And_Livestock" },
   { name: "Art & Handicrafts", image_url: art, path: "/Art_And_Handicrafts" },
   { name: "Video & Photography essentials", image_url: photo, path: "/Video_And_Photography" },

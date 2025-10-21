@@ -1,9 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaTelegramPlane } from "react-icons/fa";
+
+const DAY_MS = 1000 * 60 * 60 * 24;
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
+
+const MESSAGES = {
+  noInternet: "⚠️ Unable to connect. Please check your internet connection and try again.",
+  noResults: "🔍 No matching products found. Try another search or explore other categories!",
+  loading: "Loading your results...",
+  tagline: "✨ Find the best products, deals, and services near you.",
+};
 
 const SearchResults = () => {
   const query = useQuery().get("query") || "";
@@ -18,89 +28,209 @@ const SearchResults = () => {
       setLoading(true);
       try {
         const res = await fetch("https://djanagobackend-5.onrender.com/api/products/");
-        if (!res.ok) throw new Error("No internet connection!");
+        if (!res.ok) throw new Error("network");
         const data = await res.json();
 
-        const matches = data.filter((p) =>
+        // Filter by search term
+        let matches = data.filter((p) =>
           [p.product_name, p.company_name, p.location]
             .join(" ")
             .toLowerCase()
             .includes(query.toLowerCase())
         );
 
+        // Process discounts like Shops
+        const now = new Date();
+        matches = matches.map((item) => {
+          const postedDate = item.date_posted ? new Date(item.date_posted) : now;
+          const startOffsetDays = Number(item.discount_start_date ?? item.discount_start_date) || null;
+          const durationDays = Number(item.discount_duration ?? item.discount_duration) || null;
+
+          let startDate = postedDate;
+          if (!isNaN(startOffsetDays) && startOffsetDays !== null) {
+            startDate = new Date(postedDate.getTime() + startOffsetDays * DAY_MS);
+          }
+
+          let endDate = null;
+          if (!isNaN(durationDays) && durationDays !== null) {
+            endDate = new Date(startDate.getTime() + durationDays * DAY_MS);
+          }
+
+          const remainingToBegin =
+            startDate && startDate.getTime() > now.getTime()
+              ? Math.ceil((startDate.getTime() - now.getTime()) / DAY_MS)
+              : 0;
+
+          const remainingToEnd =
+            endDate && endDate.getTime() > now.getTime()
+              ? Math.ceil((endDate.getTime() - now.getTime()) / DAY_MS)
+              : 0;
+
+          let status = "waiting";
+          if (item.discount === "waiting") status = "waiting";
+          else if (remainingToBegin > 0) status = "to_begin";
+          else if (endDate) status = remainingToEnd > 0 ? "active" : "expired";
+          else status = "active";
+
+          return {
+            ...item,
+            _postedDate: postedDate,
+            _startDate: startDate,
+            _endDate: endDate,
+            remainingToBegin,
+            remainingToEnd,
+            status,
+          };
+        });
+
         setProducts(data);
         setFiltered(matches);
+        setError("");
       } catch (err) {
-        setError(err.message);
+        setError("network");
         setFiltered([]);
       } finally {
         setLoading(false);
       }
     };
+
     fetchProducts();
   }, [query]);
 
   return (
-    <div className="max-w-[1200px] mx-auto my-10 px-5 text-[#2c3e50] font-sans w-full">
-      <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
+    <div className="max-w-[1200px] mx-auto my-10 px-5 w-full bg-gray-50">
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">
         Search Results for: <span className="text-blue-600">{query}</span>
       </h2>
+      <p className="text-center text-gray-500 mb-8">{MESSAGES.tagline}</p>
 
       <section className="mb-12 w-full">
-        {error && <p className="text-red-600 text-center mb-4">{error}</p>}
+        {/* Error */}
+        {error === "network" && (
+          <p className="text-center text-red-600 bg-red-50 border border-red-100 p-3 rounded-lg mb-6">
+            {MESSAGES.noInternet}
+          </p>
+        )}
 
-        {loading ? (
-          // Skeleton loader like Nearby
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-            {[...Array(6)].map((_, idx) => (
-              <div
-                key={idx}
-                className="animate-pulse bg-gray-200 rounded-lg h-32 flex items-center justify-start p-4"
-              >
-                <div className="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
-                <div className="flex-1 space-y-2">
-                  <div className="h-4 bg-gray-300 rounded w-3/4"></div>
-                  <div className="h-3 bg-gray-300 rounded w-1/2"></div>
-                  <div className="h-3 bg-gray-300 rounded w-1/3"></div>
+        {/* Loading */}
+        {loading && (
+          <>
+            <p className="text-center text-gray-500 mb-4">{MESSAGES.loading}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+              {[...Array(6)].map((_, idx) => (
+                <div
+                  key={idx}
+                  className="animate-pulse bg-gray-200 rounded-lg h-40 flex items-center justify-start p-4"
+                >
+                  <div className="w-16 h-16 bg-gray-300 rounded-full mr-4"></div>
+                  <div className="flex-1 space-y-2">
+                    <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+                    <div className="h-3 bg-gray-300 rounded w-1/2"></div>
+                    <div className="h-3 bg-gray-300 rounded w-1/3"></div>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        ) : filtered.length === 0 ? (
-          <p className="text-center text-gray-500">No products found.</p>
-        ) : (
-          <div className="flex flex-col gap-4 w-full">
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Empty */}
+        {!loading && !error && filtered.length === 0 && (
+          <p className="text-center text-gray-600 text-lg font-medium bg-gray-100 border border-gray-200 py-5 rounded-xl shadow-sm">
+            {MESSAGES.noResults}
+          </p>
+        )}
+
+        {/* Results */}
+        {!loading && !error && filtered.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filtered.map((item) => (
               <div
                 key={item.id}
-                className="bg-white px-2 py-3 rounded-lg shadow transition-transform hover:scale-[1.01] flex items-center cursor-pointer w-full"
-                onClick={() =>
-                  navigate("/nearby-detail", { state: { product: item } })
-                }
+                className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform transform hover:scale-105 p-5 cursor-pointer flex flex-col border border-gray-100"
+                onClick={() => navigate("/nearby-detail", { state: { product: item } })}
               >
-                {/* Profile / Product image */}
-                <img
-                  src={item.product_photo || "https://via.placeholder.com/60"}
-                  alt={item.product_name}
-                  className="w-16 h-16 rounded-full object-cover border border-gray-300"
-                />
-
-                {/* Info row */}
-                <div className="flex-1 flex justify-between items-center px-4">
-                  <div className="flex flex-wrap items-center gap-6">
-                    <p className="text-sm font-semibold text-blue-500">
-                      {item.product_name}
-                    </p>
-                    <p className="text-sm font-semibold">{item.company_name}</p>
-                    <p className="text-sm text-gray-600">📍 {item.location}</p>
+                {/* Product Info */}
+                <div className="flex items-center gap-4 mb-3">
+                  <img
+                    src={item.profile_photo || item.product_photo || "https://via.placeholder.com/60"}
+                    alt={item.product_name}
+                    className="w-16 h-16 rounded-full object-cover border border-gray-300"
+                  />
+                  <div className="flex-1">
+                    <p className="text-lg font-semibold text-green-600">{item.product_name}</p>
+                    <p className="text-sm font-medium text-gray-700">{item.company_name}</p>
                     {item.contact_phone && (
-                      <p className="text-sm text-gray-600">
-                        📞 {item.contact_phone}
-                      </p>
+                      <p className="text-sm text-gray-500">📞 {item.contact_phone}</p>
                     )}
+                    <p className="text-sm text-gray-500">📍 {item.location}</p>
                   </div>
-                  <div className="text-blue-600 font-bold">&gt;</div>
                 </div>
+
+                {/* Discount badges */}
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  {item.discount && item.discount !== "waiting" && (
+                    <span className="text-sm font-semibold bg-green-100 text-green-800 px-2 py-1 rounded">
+                      {item.discount}% OFF
+                    </span>
+                  )}
+
+                  {item.status === "waiting" && (
+                    <span className="text-sm font-semibold bg-gray-200 text-gray-600 px-2 py-1 rounded">
+                      ⏳ Waiting
+                    </span>
+                  )}
+
+                  {item.status === "to_begin" && (
+                    <span className="text-sm font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                      {item.remainingToBegin}{" "}
+                      {item.remainingToBegin > 1 ? "days" : "day"} left to begin
+                    </span>
+                  )}
+
+                  {item.status === "active" && (
+                    <>
+                      {item._endDate ? (
+                        <span className="text-sm font-semibold bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
+                          {item.remainingToEnd > 0
+                            ? `${item.remainingToEnd} ${
+                                item.remainingToEnd > 1 ? "days" : "day"
+                              } left to end`
+                            : "Ends today"}
+                        </span>
+                      ) : (
+                        <span className="text-sm font-semibold bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
+                          ⚡ Ongoing
+                        </span>
+                      )}
+                    </>
+                  )}
+
+                  {item.status === "expired" && (
+                    <span className="text-sm font-semibold bg-red-100 text-red-700 px-2 py-1 rounded">
+                      ❌ Discount expired
+                    </span>
+                  )}
+                </div>
+
+                {/* Contact */}
+                <div className="flex flex-wrap items-center gap-3 mb-3">
+                  {item.contact_telegram && (
+                    <a
+                      href={item.contact_telegram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-white bg-blue-500 px-2 py-1 rounded hover:bg-blue-600 transition text-sm"
+                    >
+                      <FaTelegramPlane /> Telegram
+                    </a>
+                  )}
+                </div>
+
+                {/* Footer */}
+                <p className="text-sm text-gray-600 mt-auto">
+                  💬 Visit our Telegram to see the latest price and offers
+                </p>
               </div>
             ))}
           </div>
