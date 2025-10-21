@@ -4,7 +4,6 @@ import { useTheme } from './ThemeContext';
 import food from "../assets/images/food.png";
 import wedding from "../assets/images/wedding.png";
 import entertainment from "../assets/images/entertainment.png";
-import travel from "../assets/images/travel.png";
 import repair from "../assets/images/repair.png";
 import video from "../assets/images/video games.png";
 import finance from "../assets/images/finance.png";
@@ -13,9 +12,7 @@ import medical from "../assets/images/medical.png";
 import supply from "../assets/images/supply.png";
 import consultancy from "../assets/images/consultancy.png";
 import sanitation from "../assets/images/sanitation.png";
-import telecom from "../assets/images/telecom.png";
 import software from "../assets/images/software.png";
-import security from "../assets/images/security.png";
 import automotive from "../assets/images/automotive.png";
 import nursing from "../assets/images/nursing.png";
 
@@ -23,7 +20,6 @@ const categories = [
   { name: 'Food & Beverages', image_url: food, path: '/food-and-beverages' },
   { name: 'Events & Weddings services', image_url: wedding, path: '/events-and-weddings' },
   { name: 'Entertainments', image_url: entertainment, path: '/entertainments' },
-  { name: 'Travel services', image_url: travel, path: '/travels' },
   { name: 'Repair And Maintenance products', image_url: repair, path: '/Repair_and_maintenance' },
   { name: 'Videos & Games products', image_url: video, path: '/Toys_And_Games' },
   { name: 'Finance & Insurances services', image_url: finance, path: '/Finance_And_Insurances' },
@@ -32,9 +28,7 @@ const categories = [
   { name: 'Logistics And Delivery Services', image_url: supply, path: '/Logistics_And_Delivery_Services' },
   { name: 'Consultancy Services', image_url: consultancy, path: '/legal_And_Consultancy_Services' },
   { name: 'Cleaning And Sanitation materials', image_url: sanitation, path: '/Cleaning_And_Sanitation_Services' },
-  { name: 'Telecom Services', image_url: telecom, path: '/Telecome_Services' },
   { name: 'Software & IT Services', image_url: software, path: '/SoftWare_And_IT_Services' },
-  { name: 'Digital Security services', image_url: security, path: '/Security_Services' },
   { name: 'Automotive Services', image_url: automotive, path: '/Automotive_Services' },
   { name: 'Elderly & Nursing Services', image_url: nursing, path: '/Elderly_And_Nursing_Services' },
 ];
