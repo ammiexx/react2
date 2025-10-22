@@ -8,7 +8,7 @@ export default function ScrollToTop() {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // You can change to "auto" if you prefer instant scroll
+      behavior: "smooth", 
     });
   }, [pathname]);
 

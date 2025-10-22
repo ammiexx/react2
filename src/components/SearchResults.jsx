@@ -12,7 +12,7 @@ const MESSAGES = {
   noInternet: "⚠️ Unable to connect. Please check your internet connection and try again.",
   noResults: "🔍 No matching products found. Try another search or explore other categories!",
   loading: "Loading your results...",
-  tagline: "✨ Find the best products, deals, and services near you.",
+  tagline: "✨ Find the best products, deals, and services",
 };
 
 const SearchResults = () => {
@@ -30,16 +30,12 @@ const SearchResults = () => {
         const res = await fetch("https://djanagobackend-5.onrender.com/api/products/");
         if (!res.ok) throw new Error("network");
         const data = await res.json();
-
-        // Filter by search term
         let matches = data.filter((p) =>
           [p.product_name, p.company_name, p.location]
             .join(" ")
             .toLowerCase()
             .includes(query.toLowerCase())
         );
-
-        // Process discounts like Shops
         const now = new Date();
         matches = matches.map((item) => {
           const postedDate = item.date_posted ? new Date(item.date_posted) : now;
