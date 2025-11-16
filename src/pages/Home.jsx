@@ -73,13 +73,13 @@ export default function Home() {
               <div className="flex gap-4 mb-32">
                 <Link
                   to={slide.cta1.link}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition font-medium text-lg"
+                  className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition font-medium text-lg mb-6"
                 >
                   {slide.cta1.text}
                 </Link>
                 <Link
                   to={slide.cta2.link}
-                  className="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition font-medium text-lg"
+                  className="px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition font-medium text-lg mb-6"
                 >
                   {slide.cta2.text}
                 </Link>
