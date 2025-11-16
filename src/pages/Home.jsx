@@ -1,56 +1,55 @@
 import React, { useState, useEffect } from "react";
-import heroImage from "../assets/images/founder.jpg"; 
-import secondHeroImage from "../assets/images/myteams.png"; 
+import heroImage from "../assets/images/founder.jpg";
+import secondHeroImage from "../assets/images/myteams.png";
 
 import { Link } from "react-router-dom";
-import { UserGroupIcon, GlobeAltIcon, BoltIcon } from "@heroicons/react/24/outline";
+import {
+  UserGroupIcon,
+  GlobeAltIcon,
+  BoltIcon,
+} from "@heroicons/react/24/outline";
 
 export default function Home() {
   const slides = [
-  {
-    image: secondHeroImage,
-    title: (
-      <>
-      
+    {
+      image: secondHeroImage,
+      title: (
+        <>
           Knash Digital Market - Empowering Local Enterprises Across the Country
-      </>
-    ),
-    subtitle:
-      "We help local shops expand their reach and connect with more customers. Grow your business, increase your visibility, and reach your full potential with our powerful networking tools and cutting-edge solutions.",
-    cta1: { text: "Explore Shops", link: "/discounts" },
-    cta2: { text: "Add Your Business", link: "/form" },
-  },
-  {
-    image: heroImage,
-     title: (
-      <>
-        
+        </>
+      ),
+      subtitle:
+        "We help local shops expand their reach and connect with more customers. Grow your business, increase your visibility, and reach your full potential with our powerful networking tools and cutting-edge solutions.",
+      cta1: { text: "Explore Shops", link: "/discounts" },
+      cta2: { text: "Add Your Business", link: "/form" },
+    },
+    {
+      image: heroImage,
+      title: (
+        <>
           Knash Digital Market - Connecting Enterprises to Customers Nationwide
-      </>
-    ),
-    subtitle:
-      "At Knash digital market, we build a robust network linking enterprizes to customers. Explore opportunities, discover offers, and grow together. Our platform helps you find the right connections, increase your sales, and stay ahead in the market with ease and efficiency.",
-    cta1: { text: "Explore Services", link: "/services" },
-    cta2: { text: "Add Your Business", link: "/form" },
-  },
-];
-
+        </>
+      ),
+      subtitle:
+        "At Knash digital market, we build a robust network linking enterprizes to customers. Explore opportunities, discover offers, and grow together. Our platform helps you find the right connections, increase your sales, and stay ahead in the market with ease and efficiency.",
+      cta1: { text: "Explore Services", link: "/services" },
+      cta2: { text: "Add Your Business", link: "/form" },
+    },
+  ];
 
   const [current, setCurrent] = useState(0);
- useEffect(() => {
-  const timer = setTimeout(() => {
-    setCurrent((prev) => (prev + 1) % slides.length);
-  }, 5000); 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 5000);
 
-  return () => clearTimeout(timer);
-}, [current, slides]);
-
+    return () => clearTimeout(timer);
+  }, [current, slides]);
 
   return (
     <div className="font-sans text-gray-900 -mt-13 py-1">
-      
       {/* Hero Slider Section */}
-      <section className="relative w-full h-[650px] lg:h-[750px] overflow-hidden pt-10 pb-40">
+      <section className="relative w-full h-[650px] lg:h-[750px] overflow-hidden pt-10 pb-60">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -70,7 +69,7 @@ export default function Home() {
               <p className="text-xl sm:text-2xl text-gray-200 max-w-4xl mb-8">
                 {slide.subtitle}
               </p>
-              <div className="flex gap-4 mb-32">
+              <div className="flex gap-4 mb-45">
                 <Link
                   to={slide.cta1.link}
                   className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition font-medium text-lg mb-6"
@@ -89,42 +88,60 @@ export default function Home() {
         ))}
       </section>
 
-      
-      <section className="bg-white pb-3 pt-1">
-        <div className="max-w-7xl mx-auto p-2 p-6 lg:px-8 text-center space-y-12">
-          <h2 className="text-3xl text-blue-900">Why Knash digital market?</h2>
-          <p className="text-blue-700 max-w-3xl mx-auto text-2xl">We are creating a digital shopping platform that helps clients to purchase their need at the best value! </p>
+      <section className="bg-white pb-3 mt-3.5">
+        <div className="max-w-7xl mx-auto p-2 mt-4 lg:px-8 text-center space-y-12">
+          <h2 className="text-3xl text-blue-900 mt">
+            Why Knash digital market?
+          </h2>
+          <p className="text-blue-700 max-w-3xl mx-auto text-2xl">
+            We are creating a digital shopping platform that helps clients to
+            purchase their need at the best value!{" "}
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="p-6 bg-gray-200 rounded-1xl hover:shadow-lg transition">
               <BoltIcon className="h-12 w-12 text-blue-600 mb-4" />
-              <h3 className="text-xl font-semibold text-blue-500 mb-2">Fast & Reliable</h3>
-              <p className="text-gray-600">Our platform ensures enterprises and clients connect quickly and efficiently, building trust and reliability. </p>
+              <h3 className="text-xl font-semibold text-blue-500 mb-2">
+                Fast & Reliable
+              </h3>
+              <p className="text-gray-600">
+                Our platform ensures enterprises and clients connect quickly and
+                efficiently, building trust and reliability.{" "}
+              </p>
             </div>
 
             <div className="p-6 bg-gray-200 rounded-xl shadow hover:shadow-lg transition">
               <UserGroupIcon className="h-12 w-12 text-blue-600 mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-blue-500">Grow Your Network</h3>
+              <h3 className="text-xl font-semibold mb-2 text-blue-500">
+                Grow Your Network
+              </h3>
               <p className="text-gray-600">
-                Expand your business reach and meet new clients through our powerful networking tools.
+                Expand your business reach and meet new clients through our
+                powerful networking tools.
               </p>
             </div>
 
             <div className="p-6 bg-gray-200 rounded-xl shadow hover:shadow-lg ">
               <GlobeAltIcon className="h-12 w-12 text-blue-600 mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-blue-500">Nationwide Impact</h3>
+              <h3 className="text-xl font-semibold mb-2 text-blue-500">
+                Nationwide Impact
+              </h3>
               <p className="text-gray-600">
-                We help Enterpriese scale across the country, connecting you with customers in every region.
+                We help Enterpriese scale across the country, connecting you
+                with customers in every region.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-blue-500 pt-2 pb-17"> 
+      <section className="bg-blue-500 pt-2 pb-17 mb-5">
         <div className="max-w-2xl mx-auto px-6 lg:px-8 text-center text-white space-y-6">
-          <h2 className="text-3xl sm:text-4xl font-bold">Ready to Make an Impact?</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold">
+            Ready to Make an Impact?
+          </h2>
           <p className="text-lg sm:text-xl">
-            Join Knash digital market today and start connecting with enterprises and clients nationwide.
+            Join Knash digital market today and start connecting with
+            enterprises and clients nationwide.
           </p>
           <Link
             to="/form"
