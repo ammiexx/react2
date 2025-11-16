@@ -70,7 +70,7 @@ export default function Home() {
               <p className="text-xl sm:text-2xl text-gray-200 max-w-4xl mb-8">
                 {slide.subtitle}
               </p>
-              <div className="flex gap-4 mb-32">
+              <div className="flex gap-4 mb-45">
                 <Link
                   to={slide.cta1.link}
                   className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition font-medium text-lg mb-6"
