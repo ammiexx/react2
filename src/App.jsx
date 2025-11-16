@@ -47,7 +47,7 @@ import FloatingChat from "./pages/FloatingChat";
 import SearchResults from "./components/SearchResults";
 import CommentsPage from "./pages/CommentsPage";
 import CopyRight from "./components/CopyRight";
-import {Shops} from "./pages/shops";
+import Shops from "./pages/shops";
 import Videos from "./pages/Videos";
 import Home from "./pages/Home";
 import ScrollToTop from "./components/ScrollToTop";
