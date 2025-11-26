@@ -263,7 +263,13 @@ const NearbyDetail = () => {
     statusText = "Waiting for discount";
     badgeColor = "bg-gray-200 text-gray-600";
     emoji = "⏳";
-  } else if (remainingToBegin > 0) {
+  }
+  
+  else if (product.discount === "coming") {
+                  statusText = "Coming Soon";
+                  badgeColor = "bg-gray-200 text-gray-600";
+                  emoji = "🔜";
+                }else if (remainingToBegin > 0) {
     statusText = `${remainingToBegin} day${remainingToBegin > 1 ? "s" : ""} left to begin`;
     badgeColor = "bg-blue-100 text-blue-800"; // same as Shops for 'to begin'
     emoji = "🕒";
