@@ -347,7 +347,7 @@ if (formData.contact_telegram) {
             className="w-full border px-4 py-2 rounded"
           />
         </div>
-        <div>
+        {/* <div>
   <label className="block text-gray-700 font-semibold mb-1">Video less than 30 seconds</label>
   <input
     type="file"
@@ -355,7 +355,7 @@ if (formData.contact_telegram) {
     onChange={handleVideoChange}
     className="w-full border px-4 py-2 rounded"
   />
-</div>
+</div> */}
 
 {/* Profile Photo */}
 <div>
