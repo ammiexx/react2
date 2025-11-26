@@ -167,7 +167,11 @@ const Shops = ({ category, title }) => {
                       ⏳ Waiting
                     </span>
                   )}
-
+{item.status === "coming" && (
+                    <span className="text-sm font-semibold bg-gray-200 text-gray-600 px-2 py-1 rounded">
+                      🔜 Coming Soon
+                    </span>
+                  )}
                   {item.status === "to_begin" && (
                     <span className="text-sm font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded">
                       {item.remainingToBegin}{" "}
