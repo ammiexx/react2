@@ -36,6 +36,7 @@ const Form = () => {
   { value: '30', label: '30%' },
   { value: '50', label: '40%' },
   { value: '50', label: '50%' },
+  { value: "coming", label: "coming soon" },
 ];
 
 
@@ -427,7 +428,7 @@ if (formData.contact_telegram) {
       formData.discount !== "waiting" && !formData.discount_duration
     }
     disabled={
-      formData.discount === "waiting" || !!formData.discount_duration
+      formData.discount === "waiting" || "coming" || !!formData.discount_duration
     }
   />
 </div>
