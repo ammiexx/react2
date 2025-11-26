@@ -20,7 +20,7 @@ export default function Home() {
       ),
       subtitle:
         "We help local shops expand their reach and connect with more customers. Grow your business, increase your visibility, and reach your full potential with our powerful networking tools and cutting-edge solutions.",
-      cta1: { text: "Explore Shops", link: "/discounts" },
+      cta1: { text: "Explore Products", link: "/discounts" },
       cta2: { text: "Add Your Business", link: "/form" },
     },
     {
