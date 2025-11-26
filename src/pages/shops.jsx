@@ -6,11 +6,13 @@ const DAY_MS = 1000 * 60 * 60 * 24;
 
 // Constant texts for messages
 const MESSAGES = {
-  noInternet: "⚠️ Unable to connect. Please check your internet connection and try again.",
+  noInternet:
+    "⚠️ Unable to connect. Please check your internet connection and try again.",
   noProducts:
     "🚀 No products or services found in this category yet. Be the first to showcase your business here!",
   loadingTagline: "Loading amazing deals and offers...",
-  generalTagline: "✨ Discover products and services from trusted local businesses.",
+  generalTagline:
+    "✨ Discover products and services from trusted local businesses.",
 };
 
 const Shops = ({ category, title }) => {
@@ -22,24 +24,35 @@ const Shops = ({ category, title }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`https://djanagobackend-5.onrender.com/api/products/`);
+        const response = await fetch(
+          `https://djanagobackend-5.onrender.com/api/products/`
+        );
         if (!response.ok) throw new Error("network");
 
         let data = await response.json();
 
         // Filter verified and categorized products
-        data = data.filter((item) => item.category === category && item.verified === true);
+        data = data.filter(
+          (item) => item.category === category && item.verified === true
+        );
 
         // Process discount timing
         const processed = data.map((item) => {
           const now = new Date();
-          const postedDate = item.date_posted ? new Date(item.date_posted) : new Date();
-          const startOffsetDays = Number(item.discount_start_date ?? item.discount_start_date) || null;
-          const durationDays = Number(item.discount_duration ?? item.discount_duration) || null;
+          const postedDate = item.date_posted
+            ? new Date(item.date_posted)
+            : new Date();
+          const startOffsetDays =
+            Number(item.discount_start_date ?? item.discount_start_date) ||
+            null;
+          const durationDays =
+            Number(item.discount_duration ?? item.discount_duration) || null;
 
           let startDate = postedDate;
           if (!isNaN(startOffsetDays) && startOffsetDays !== null) {
-            startDate = new Date(postedDate.getTime() + startOffsetDays * DAY_MS);
+            startDate = new Date(
+              postedDate.getTime() + startOffsetDays * DAY_MS
+            );
           }
 
           let endDate = null;
@@ -58,7 +71,8 @@ const Shops = ({ category, title }) => {
               : 0;
 
           let status = "waiting";
-          if (item.discount === "waiting") status = "waiting for discount";
+          if (item.discount === "waiting") status = "waiting";
+          else if (item.discount === "coming") status = "coming";
           else if (remainingToBegin > 0) status = "to_begin";
           else if (endDate) status = remainingToEnd > 0 ? "active" : "expired";
           else status = "active";
@@ -88,8 +102,12 @@ const Shops = ({ category, title }) => {
 
   return (
     <div className="max-w-[1200px] mx-auto my-3 px-5 w-full bg-gray-50">
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">{title}</h2>
-      <p className="text-center text-gray-500 mb-8">{MESSAGES.generalTagline}</p>
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">
+        {title}
+      </h2>
+      <p className="text-center text-gray-500 mb-8">
+        {MESSAGES.generalTagline}
+      </p>
 
       <section className="mb-12 w-full">
         {/* Error state */}
@@ -102,7 +120,9 @@ const Shops = ({ category, title }) => {
         {/* Loading state */}
         {loading && (
           <>
-            <p className="text-center text-gray-500 mb-4">{MESSAGES.loadingTagline}</p>
+            <p className="text-center text-gray-500 mb-4">
+              {MESSAGES.loadingTagline}
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
               {[...Array(6)].map((_, idx) => (
                 <div
@@ -135,7 +155,9 @@ const Shops = ({ category, title }) => {
               <div
                 key={item.id}
                 className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-transform transform hover:scale-105 p-5 cursor-pointer flex flex-col border border-gray-100"
-                onClick={() => navigate("/nearby-detail", { state: { product: item } })}
+                onClick={() =>
+                  navigate("/nearby-detail", { state: { product: item } })
+                }
               >
                 {/* Product Info */}
                 <div className="flex items-center gap-4 mb-3">
@@ -145,10 +167,16 @@ const Shops = ({ category, title }) => {
                     className="w-16 h-16 rounded-full object-cover border border-gray-300"
                   />
                   <div className="flex-1">
-                    <p className="text-lg font-semibold text-green-600">{item.product_name}</p>
-                    <p className="text-sm font-medium text-gray-700">{item.company_name}</p>
+                    <p className="text-lg font-semibold text-green-600">
+                      {item.product_name}
+                    </p>
+                    <p className="text-sm font-medium text-gray-700">
+                      {item.company_name}
+                    </p>
                     {item.contact_phone && (
-                      <p className="text-sm text-gray-500">📞 {item.contact_phone}</p>
+                      <p className="text-sm text-gray-500">
+                        📞 {item.contact_phone}
+                      </p>
                     )}
                     <p className="text-sm text-gray-500">📍 {item.location}</p>
                   </div>
@@ -156,23 +184,26 @@ const Shops = ({ category, title }) => {
 
                 {/* Discount badges */}
                 <div className="flex flex-wrap items-center gap-3 mb-3">
-                  {item.discount && item.discount !== "waiting" && (
-                    <span className="text-sm font-semibold bg-green-100 text-green-800 px-2 py-1 rounded">
-                      {item.discount}% OFF
-                    </span>
-                  )}
+                  {item.discount &&
+                    item.status !== "waiting" &&
+                    item.status !== "coming" && (
+                      <span className="text-sm font-semibold bg-green-100 text-green-800 px-2 py-1 rounded">
+                        {item.discount}% OFF
+                      </span>
+                    )}
 
                   {item.status === "waiting" && (
                     <span className="text-sm font-semibold bg-gray-200 text-gray-600 px-2 py-1 rounded">
-                      ⏳ Waiting
+                      ⏳ Waiting For Discount
                     </span>
                   )}
-{item.status === "coming" && (
-                    <span className="text-sm font-semibold bg-gray-200 text-gray-600 px-2 py-1 rounded">
+                  {item.status === "coming" && (
+                    <span className="text-sm font-semibold bg-purple-100 text-purple-700 px-2 py-1 rounded">
                       🔜 Coming Soon
                     </span>
                   )}
-                  {item.status === "to_begin" && (
+
+                  {item.status === "to_begin" && item.status !== "coming" && (
                     <span className="text-sm font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded">
                       {item.remainingToBegin}{" "}
                       {item.remainingToBegin > 1 ? "days" : "day"} left to begin
