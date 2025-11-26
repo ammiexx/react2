@@ -449,7 +449,7 @@ if (formData.contact_telegram) {
       formData.discount !== "waiting" && !formData.discount_start_date
     }
     disabled={
-      formData.discount === "waiting" || !!formData.discount_start_date
+      formData.discount === "waiting" || "coming" || !!formData.discount_start_date
     }
   />
 </div>
