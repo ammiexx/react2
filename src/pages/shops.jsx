@@ -58,7 +58,7 @@ const Shops = ({ category, title }) => {
               : 0;
 
           let status = "waiting";
-          if (item.discount === "waiting") status = "waiting";
+          if (item.discount === "waiting") status = "waiting for discount";
           else if (remainingToBegin > 0) status = "to_begin";
           else if (endDate) status = remainingToEnd > 0 ? "active" : "expired";
           else status = "active";
