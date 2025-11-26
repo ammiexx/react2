@@ -15,7 +15,7 @@ import { useClerk, useUser } from "@clerk/clerk-react";
 
 // ✅ Navigation items with icons
 const navigation = [
-  { name: "Shops", href: "/", icon: BuildingStorefrontIcon },
+  { name: "Products", href: "/", icon: BuildingStorefrontIcon },
   { name: "Services", href: "/services", icon: WrenchScrewdriverIcon },
   { name: "Nearby", href: "/nearby-shops", icon: MapPinIcon },
 ];
