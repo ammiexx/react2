@@ -28,16 +28,17 @@ const Form = () => {
 
 
   const discountOptions = [
-  { value: 'waiting', label: 'Waiting' },
-  { value: '5', label: '5%' },
-  { value: '10', label: '10%' },
-  { value: '15', label: '15%' },
-  { value: '20', label: '20%' },
-  { value: '30', label: '30%' },
-  { value: '50', label: '40%' },
-  { value: '50', label: '50%' },
-  { value: "coming", label: "coming soon" },
-];
+    { value: "waiting", label: "Waiting" },
+    { value: "5", label: "5%" },
+    { value: "10", label: "10%" },
+    { value: "15", label: "15%" },
+    { value: "20", label: "20%" },
+    { value: "30", label: "30%" },
+    { value: "50", label: "40%" },
+    { value: "50", label: "50%" },
+    { value: "coming", label: "Coming soon!" },
+    { value: "open", label: "We are open!" },
+  ];
 
 
  const categoryOptions = [
@@ -324,24 +325,25 @@ if (formData.contact_telegram) {
 
   return (
     <div className="max-w-3xl mx-auto py-25 p-8 bg-white shadow-lg rounded-2xl mt-10 border border-t-4 border-gray-800 relative">
-
-
       <div className="text-center mb-8">
-  <h1 className="text-3xl font-bold text-blue-800"> ADD Your Business</h1>
-  <p className="text-gray-600 mt-2">
-    Fill in the details below to get your product listed in front of thousands of viewers.
-  </p>
-  <hr className="mt-4 border-gray-300" />
-</div>
+        <h1 className="text-3xl font-bold text-blue-800"> ADD Your Business</h1>
+        <p className="text-gray-600 mt-2">
+          Fill in the details below to get your product listed in front of
+          thousands of viewers.
+        </p>
+        <hr className="mt-4 border-gray-300" />
+      </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Product Name */}
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Item for sale/service</label>
+          <label className="block text-gray-700 font-semibold mb-1">
+            Item for sale/service
+          </label>
           <input
             type="text"
             name="product_name"
-            placeholder='Write item for sale/service '
+            placeholder="Write item for sale/service "
             value={formData.product_name}
             onChange={handleChange}
             required
@@ -358,26 +360,27 @@ if (formData.contact_telegram) {
   />
 </div> */}
 
-{/* Profile Photo */}
-<div>
-  <label className="block text-gray-700 font-semibold mb-1">Logo</label>
- <input
-  type="file"
-  accept="image/*"
-  name="profile_photo"
-  onChange={handleImageChange}
-  required
-/>
-
-</div>
+        {/* Profile Photo */}
+        <div>
+          <label className="block text-gray-700 font-semibold mb-1">Logo</label>
+          <input
+            type="file"
+            accept="image/*"
+            name="profile_photo"
+            onChange={handleImageChange}
+            required
+          />
+        </div>
 
         {/* Company Name */}
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Company name</label>
+          <label className="block text-gray-700 font-semibold mb-1">
+            Company name
+          </label>
           <input
             type="text"
             name="company_name"
-            placeholder='Name your company'
+            placeholder="Name your company"
             value={formData.company_name}
             onChange={handleChange}
             required
@@ -385,78 +388,97 @@ if (formData.contact_telegram) {
           />
         </div>
         {/* Discount */}
-<div>
-  <label className="block text-gray-700 font-semibold mb-1">Select discount</label>
-  <Select
-    options={discountOptions}
-    value={discountOptions.find(opt => opt.value === formData.discount)}
-    onChange={(selected) =>
-      setFormData(prev => ({ ...prev, discount: selected.value }))
-    }
-    placeholder="Select a discount..."
-    isSearchable
-    className="text-gray-700"
-  />
-</div>
-      <div>
-        <label className="block text-gray-700 font-semibold mb-1">Select category</label>
-       <Select
-  options={categoryOptions}
-  value={categoryOptions.find((opt) => opt.value === formData.category)}
-  onChange={(selected) =>
-    setFormData((prev) => ({ ...prev, category: selected.value }))
-  }
-  placeholder="Search or select a category..."
-  isSearchable
-  className="text-gray-700"
-/>
-
+        <div>
+          <label className="block text-gray-700 font-semibold mb-1">
+            Select discount
+          </label>
+          <Select
+            options={discountOptions}
+            value={discountOptions.find(
+              (opt) => opt.value === formData.discount
+            )}
+            onChange={(selected) =>
+              setFormData((prev) => ({ ...prev, discount: selected.value }))
+            }
+            placeholder="Select a discount..."
+            isSearchable
+            className="text-gray-700"
+          />
         </div>
-{/* Discount Start Date */}
-<div>
-  <label className="block text-gray-700 font-semibold mb-1">Discount start date</label>
-  <input
-    type="number"
-    name="discount_start_date"
-    min="1"
-    max="30"
-    value={formData.discount_start_date}
-    onChange={handleChange}
-    placeholder="The number of days left for the discount to begin (e.g 2)"
-    className="w-full border px-4 py-2 rounded"
-    required={
-      formData.discount !== "waiting" && !formData.discount_duration
-    }
-    disabled={
-      formData.discount === "waiting" || "coming" || !!formData.discount_duration
-    }
-  />
-</div>
+        <div>
+          <label className="block text-gray-700 font-semibold mb-1">
+            Select category
+          </label>
+          <Select
+            options={categoryOptions}
+            value={categoryOptions.find(
+              (opt) => opt.value === formData.category
+            )}
+            onChange={(selected) =>
+              setFormData((prev) => ({ ...prev, category: selected.value }))
+            }
+            placeholder="Search or select a category..."
+            isSearchable
+            className="text-gray-700"
+          />
+        </div>
+        {/* Discount Start Date */}
+        <div>
+          <label className="block text-gray-700 font-semibold mb-1">
+            Discount start date
+          </label>
+          <input
+            type="number"
+            name="discount_start_date"
+            min="1"
+            max="30"
+            value={formData.discount_start_date}
+            onChange={handleChange}
+            placeholder="The number of days left for the discount to begin (e.g 2)"
+            className="w-full border px-4 py-2 rounded"
+            required={
+              formData.discount !== "waiting" && !formData.discount_duration
+            }
+            disabled={
+              formData.discount === "waiting" ||
+              "coming" ||
+              "open" ||
+              !!formData.discount_duration
+            }
+          />
+        </div>
 
-{/* Discount Duration */}
-<div>
-  <label className="block text-gray-700 font-semibold mb-1">the Duration that the discount lasts</label>
-  <input
-    type="number"
-    name="discount_duration"
-    min="1"
-    max="30"
-    value={formData.discount_duration}
-    onChange={handleChange}
-    placeholder="The number of days the discount will be active (e.g 5)"
-    className="w-full border px-4 py-2 rounded"
-    required={
-      formData.discount !== "waiting" && !formData.discount_start_date
-    }
-    disabled={
-      formData.discount === "waiting" || "coming" || !!formData.discount_start_date
-    }
-  />
-</div>
+        {/* Discount Duration */}
+        <div>
+          <label className="block text-gray-700 font-semibold mb-1">
+            the Duration that the discount lasts
+          </label>
+          <input
+            type="number"
+            name="discount_duration"
+            min="1"
+            max="30"
+            value={formData.discount_duration}
+            onChange={handleChange}
+            placeholder="The number of days the discount will be active (e.g 5)"
+            className="w-full border px-4 py-2 rounded"
+            required={
+              formData.discount !== "waiting" && !formData.discount_start_date
+            }
+            disabled={
+              formData.discount === "waiting" ||
+              "coming" ||
+              "open" ||
+              !!formData.discount_start_date
+            }
+          />
+        </div>
 
         {/* Description */}
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Description</label>
+          <label className="block text-gray-700 font-semibold mb-1">
+            Description
+          </label>
           <textarea
             name="description"
             placeholder="Write your description about your product and service..."
@@ -467,86 +489,96 @@ if (formData.contact_telegram) {
           ></textarea>
         </div>
 
-       {/* Location (Text) */}
-<div>
-  <label className="text-xl font-semibold text-gray-700 mt-10 mb-4 border-b pb-1">Location</label>
-  <input
-    type="text"
-    name="location"
-    value={formData.location}
-    onChange={handleChange}
-    placeholder="Addis ababa-> bole->Friendship building-> floor-3->office X"
-    className="w-full border px-4 py-2 rounded"
-  />
-</div>
+        {/* Location (Text) */}
+        <div>
+          <label className="text-xl font-semibold text-gray-700 mt-10 mb-4 border-b pb-1">
+            Location
+          </label>
+          <input
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+            placeholder="Addis ababa-> bole->Friendship building-> floor-3->office X"
+            className="w-full border px-4 py-2 rounded"
+          />
+        </div>
 
-{/* Precise Location Picker */}
-<div className="mt-4">
-  <label className="block text-gray-700 font-semibold mb-1">Precise Location</label>
-  <div className="flex gap-2">
-    <input
-      type="text"
-      name="latitude"
-      value={formData.latitude}
-      onChange={handleChange}
-      placeholder="Latitude"
-      className="w-1/2 border px-4 py-2 rounded"
-      readOnly
-    />
-    <input
-      type="text"
-      name="longitude"
-      value={formData.longitude}
-      onChange={handleChange}
-      placeholder="Longitude"
-      className="w-1/2 border px-4 py-2 rounded"
-      readOnly
-    />
-  </div>
+        {/* Precise Location Picker */}
+        <div className="mt-4">
+          <label className="block text-gray-700 font-semibold mb-1">
+            Precise Location
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              name="latitude"
+              value={formData.latitude}
+              onChange={handleChange}
+              placeholder="Latitude"
+              className="w-1/2 border px-4 py-2 rounded"
+              readOnly
+            />
+            <input
+              type="text"
+              name="longitude"
+              value={formData.longitude}
+              onChange={handleChange}
+              placeholder="Longitude"
+              className="w-1/2 border px-4 py-2 rounded"
+              readOnly
+            />
+          </div>
 
-  <button
-    type="button"
-    onClick={() => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((pos) => {
-          setFormData((prev) => ({
-            ...prev,
-            latitude: pos.coords.latitude.toFixed(6),
-            longitude: pos.coords.longitude.toFixed(6),
-          }));
-        }, () => {
-          alert("❌ Unable to fetch your location.");
-        });
-      } else {
-        alert("❌ Geolocation not supported by this browser.");
-      }
-    }}
-    className="mt-2 px-4 py-1 bg-blue-200 rounded hover:bg-blue-300"
-  >
-    📍 Use My Current Location
-  </button>
-</div>
+          <button
+            type="button"
+            onClick={() => {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                  (pos) => {
+                    setFormData((prev) => ({
+                      ...prev,
+                      latitude: pos.coords.latitude.toFixed(6),
+                      longitude: pos.coords.longitude.toFixed(6),
+                    }));
+                  },
+                  () => {
+                    alert("❌ Unable to fetch your location.");
+                  }
+                );
+              } else {
+                alert("❌ Geolocation not supported by this browser.");
+              }
+            }}
+            className="mt-2 px-4 py-1 bg-blue-200 rounded hover:bg-blue-300"
+          >
+            📍 Use My Current Location
+          </button>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-         <div>
-  <label className="block text-gray-700 font-semibold mb-1">Telegram user name</label>
-  <input
-    type="url"
-    name="contact_telegram"
-    placeholder="Telegram Link"
-    value={formData.contact_telegram}
-    onChange={handleChange}
-    className="w-full border px-4 py-2 rounded"
-  />
-</div>
-
-         
           <div>
-            <label className="block text-gray-700 font-semibold mb-1">Phone number</label>
+            <label className="block text-gray-700 font-semibold mb-1">
+              Telegram user name
+            </label>
+            <input
+              type="url"
+              name="contact_telegram"
+              placeholder="Telegram Link"
+              value={formData.contact_telegram}
+              onChange={handleChange}
+              className="w-full border px-4 py-2 rounded"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-semibold mb-1">
+              Phone number
+            </label>
             <input
               type="text"
               name="contact_phone"
-              placeholder='Phone number'
+              placeholder="Phone number"
               value={formData.contact_phone}
               onChange={handleChange}
               className="w-full border px-4 py-2 rounded"
@@ -554,103 +586,106 @@ if (formData.contact_telegram) {
           </div>
         </div>
         <div>
-          <label className="block text-gray-700 font-semibold mb-1">Product/Service Image</label>
+          <label className="block text-gray-700 font-semibold mb-1">
+            Product/Service Image
+          </label>
           <input
-  type="file"
-  name="product_photo"
-  accept="image/*"
-  onChange={handleImageChange}
-  className="w-full"
-  required/>
+            type="file"
+            name="product_photo"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="w-full"
+            required
+          />
         </div>
         <div>
-  <label className="block text-gray-700 font-semibold mb-1">
-    Additional Images (optional, up to 6)
-  </label>
-  <input
-    type="file"
-    name="images"
-    accept="image/*"
-    multiple
-    onChange={(e) => {
-      const files = Array.from(e.target.files);
+          <label className="block text-gray-700 font-semibold mb-1">
+            Additional Images (optional, up to 6)
+          </label>
+          <input
+            type="file"
+            name="images"
+            accept="image/*"
+            multiple
+            onChange={(e) => {
+              const files = Array.from(e.target.files);
 
-      setFormData((prev) => {
-        const combined = [...prev.images, ...files];
-        if (combined.length > 6) {
-          alert("❌ You can upload a maximum of 6 images.");
-          return { ...prev }; // don’t update if limit exceeded
-        }
-        return { ...prev, images: combined };
-      });
-    }}
-    className="w-full border px-4 py-2 rounded"
-  />
-
-  {/* Optional preview of selected images */}
-  {formData.images.length > 0 && (
-    <div className="mt-3 grid grid-cols-3 gap-2">
-      {formData.images.map((file, idx) => (
-        <div key={idx} className="relative">
-          <img
-            src={URL.createObjectURL(file)}
-            alt={`preview-${idx}`}
-            className="h-24 w-full object-cover rounded"
-            onLoad={(e) => URL.revokeObjectURL(e.target.src)} // cleanup memory
+              setFormData((prev) => {
+                const combined = [...prev.images, ...files];
+                if (combined.length > 6) {
+                  alert("❌ You can upload a maximum of 6 images.");
+                  return { ...prev }; // don’t update if limit exceeded
+                }
+                return { ...prev, images: combined };
+              });
+            }}
+            className="w-full border px-4 py-2 rounded"
           />
-          <button
-            type="button"
-            onClick={() =>
-              setFormData((prev) => ({
-                ...prev,
-                images: prev.images.filter((_, i) => i !== idx),
-              }))
-            }
-            className="absolute top-0 right-0 bg-red-500 text-white text-xs px-1 rounded-full"
-          >
-            ✕
-          </button>
+
+          {/* Optional preview of selected images */}
+          {formData.images.length > 0 && (
+            <div className="mt-3 grid grid-cols-3 gap-2">
+              {formData.images.map((file, idx) => (
+                <div key={idx} className="relative">
+                  <img
+                    src={URL.createObjectURL(file)}
+                    alt={`preview-${idx}`}
+                    className="h-24 w-full object-cover rounded"
+                    onLoad={(e) => URL.revokeObjectURL(e.target.src)} // cleanup memory
+                  />
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        images: prev.images.filter((_, i) => i !== idx),
+                      }))
+                    }
+                    className="absolute top-0 right-0 bg-red-500 text-white text-xs px-1 rounded-full"
+                  >
+                    ✕
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-      ))}
-    </div>
-  )}
-</div>
 
-
-<div>
-  
-
-
- 
-</div>
-{(successMsg || errorMsg) && (
-  <div className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded shadow text-center
-      ${successMsg ? 'bg-green-200 text-green-800' : 'bg-red-200 text-red-800'}`}>
-    {successMsg || errorMsg}
-  </div>
-)}
-{authWarning && (
-  <div className="text-red-600 text-center text-sm mb-4 bg-red-50 border border-red-300 rounded p-2 relative">
-    <span>
-      ⚠️ Account not created. Please{' '}
-         <button
-      onClick={() => {
-        if (!navigator.onLine) {
-          alert('❌ No internet connection. Please check your connection and try again.');
-          return;
-        }
-        setAuthWarning(false);
-        setTimeout(() => {
-          navigate('/login'); 
-        }, 300);
-      }}
-      className="text-blue-600 underline hover:text-blue-800 transition duration-200"
-    >
-      sign up
-    </button>
-    </span>
-  </div>
-)}
+        <div></div>
+        {(successMsg || errorMsg) && (
+          <div
+            className={`fixed top-5 left-1/2 transform -translate-x-1/2 z-50 px-6 py-3 rounded shadow text-center
+      ${
+        successMsg ? "bg-green-200 text-green-800" : "bg-red-200 text-red-800"
+      }`}
+          >
+            {successMsg || errorMsg}
+          </div>
+        )}
+        {authWarning && (
+          <div className="text-red-600 text-center text-sm mb-4 bg-red-50 border border-red-300 rounded p-2 relative">
+            <span>
+              ⚠️ Account not created. Please{" "}
+              <button
+                onClick={() => {
+                  if (!navigator.onLine) {
+                    alert(
+                      "❌ No internet connection. Please check your connection and try again."
+                    );
+                    return;
+                  }
+                  setAuthWarning(false);
+                  setTimeout(() => {
+                    navigate("/login");
+                  }, 300);
+                }}
+                className="text-blue-600 underline hover:text-blue-800 transition duration-200"
+              >
+                sign up
+              </button>
+            </span>
+          </div>
+        )}
 
         {/* Submit Button */}
         <div className="text-center">
@@ -659,7 +694,7 @@ if (formData.contact_telegram) {
             disabled={loading}
             className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
           >
-            {loading ? 'Submitting...' : 'Submit'}
+            {loading ? "Submitting..." : "Submit"}
           </button>
         </div>
       </form>

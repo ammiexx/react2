@@ -73,6 +73,7 @@ const Shops = ({ category, title }) => {
           let status = "waiting";
           if (item.discount === "waiting") status = "waiting";
           else if (item.discount === "coming") status = "coming";
+          else if (item.discount === "open") status = "open";
           else if (remainingToBegin > 0) status = "to_begin";
           else if (endDate) status = remainingToEnd > 0 ? "active" : "expired";
           else status = "active";
@@ -186,6 +187,7 @@ const Shops = ({ category, title }) => {
                 <div className="flex flex-wrap items-center gap-3 mb-3">
                   {item.discount &&
                     item.status !== "waiting" &&
+                    item.status !== "open" &&
                     item.status !== "coming" && (
                       <span className="text-sm font-semibold bg-green-100 text-green-800 px-2 py-1 rounded">
                         {item.discount}% OFF
@@ -200,6 +202,12 @@ const Shops = ({ category, title }) => {
                   {item.status === "coming" && (
                     <span className="text-sm font-semibold bg-purple-100 text-purple-700 px-2 py-1 rounded">
                       🔜 Coming Soon
+                    </span>
+                  )}
+
+                  {item.status === "open" && (
+                    <span className="text-sm font-semibold bg-purple-100 text-purple-700 px-2 py-1 rounded">
+                      🔜 We Are Open
                     </span>
                   )}
 
