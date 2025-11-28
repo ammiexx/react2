@@ -63,7 +63,7 @@ export default function Home() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-6">
-              <h1 className="text-4xl sm:text-6xl font-bold text-white mb-6 mt-40">
+              <h1 className="text-3xl sm:text-6xl font-bold text-white mb-6 mt-40">
                 {slide.title}
               </h1>
               <p className="text-xl sm:text-2xl text-gray-200 max-w-4xl mb-8">
