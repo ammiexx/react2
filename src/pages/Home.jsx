@@ -47,7 +47,7 @@ export default function Home() {
   }, [current, slides]);
 
   return (
-    <div className="font-sans text-gray-900 -mt-13 py-1">
+    <div className="font-sans text-gray-900 -mt-13 py-13">
       {/* Hero Slider Section */}
       <section className="relative w-full h-[650px] lg:h-[750px] overflow-hidden pt-10 pb-60">
         {slides.map((slide, index) => (
@@ -63,7 +63,7 @@ export default function Home() {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-6">
-              <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 mt-40">
+              <h1 className="text-4xl sm:text-6xl font-bold text-white mb-6 mt-40">
                 {slide.title}
               </h1>
               <p className="text-xl sm:text-2xl text-gray-200 max-w-4xl mb-8">
