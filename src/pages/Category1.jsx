@@ -22,10 +22,10 @@ import telecom from "../assets/images/telecom.png";
 
 const categories = [
   { name: "Banks", image_url: banks, path: "/banks" },
-  { name: "Men Fashions", image_url: men, path: "/men_shoes" },
-  { name: "Women Fashions", image_url: women, path: "/women_fashions" },
   { name: " Real Estates", image_url: home, path: "/homes" },
   { name: "Car Brands", image_url: car, path: "/car-brands" },
+  { name: "Men Fashions", image_url: men, path: "/men_shoes" },
+  { name: "Women Fashions", image_url: women, path: "/women_fashions" },
   { name: "Travel services", image_url: travel, path: "/travels" },
   {
     name: "Digital Security services",
