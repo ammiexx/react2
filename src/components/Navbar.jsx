@@ -88,7 +88,7 @@ export default function Navigation({ products, onFilter }) {
                       to="/"
                       className="text-gray-200 hover:text-white text-sm font-medium"
                     >
-                      Shops
+                      Products
                     </NavLink>
                     <NavLink
                       to="/"

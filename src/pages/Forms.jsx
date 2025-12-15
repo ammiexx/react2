@@ -36,8 +36,11 @@ const Form = () => {
     { value: "30", label: "30%" },
     { value: "50", label: "40%" },
     { value: "50", label: "50%" },
-    { value: "coming", label: "Coming soon!" },
-    { value: "open", label: "We are open!" },
+    { value: "coming", label: "Coming soon (በቅርብ ቀን)!" },
+    { value: "open", label: "We are open (ስራ ጀመረናል)!" },
+    { value: "prize", label: "For Prize( ሽልማት/ጉርሻ)!" },
+    { value: "student", label: "For Students!" },
+    { value: "teacher", label: "For Teachers!" },
   ];
 
 
@@ -390,7 +393,7 @@ if (formData.contact_telegram) {
         {/* Discount */}
         <div>
           <label className="block text-gray-700 font-semibold mb-1">
-            Select discount
+            Select discount and Others
           </label>
           <Select
             options={discountOptions}
@@ -499,7 +502,7 @@ if (formData.contact_telegram) {
             name="location"
             value={formData.location}
             onChange={handleChange}
-            placeholder="Addis ababa-> bole->Friendship building-> floor-3->office X"
+            placeholder="Office -> Floor-> Building-> Road-> District-> City"
             className="w-full border px-4 py-2 rounded"
           />
         </div>
