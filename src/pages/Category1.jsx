@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "./ThemeContext";
 import appliance from "../assets/images/appliances.png";
+import banks from "../assets/images/imag2.png";
 import men from "../assets/images/men.png";
 import women from "../assets/images/women.png";
 import kids from "../assets/images/kids.png";
@@ -20,23 +21,56 @@ import security from "../assets/images/security.png";
 import telecom from "../assets/images/telecom.png";
 
 const categories = [
-   { name: "Men Fashions", image_url: men, path: "/men_shoes" },
+  { name: "Banks", image_url: banks, path: "/banks" },
+  { name: "Men Fashions", image_url: men, path: "/men_shoes" },
   { name: "Women Fashions", image_url: women, path: "/women_fashions" },
-  { name: "Homes", image_url: home, path: "/homes" },
-   { name: "Car Brands", image_url: car, path: "/car-brands" },
-   { name: 'Travel services', image_url: travel, path: '/travels' },
-  { name: 'Digital Security services', image_url: security, path: '/Security_Services' },
-  { name: 'Telecom Services', image_url: telecom, path: '/Telecome_Services' },
-  { name: "Video & Photography essentials", image_url: photo, path: "/Video_And_Photography" },
-  { name: " Dental Clinicis & Health and Beauty", image_url: beauty, path: "/health-and-beauties" },
+  { name: " Real Estates", image_url: home, path: "/homes" },
+  { name: "Car Brands", image_url: car, path: "/car-brands" },
+  { name: "Travel services", image_url: travel, path: "/travels" },
+  {
+    name: "Digital Security services",
+    image_url: security,
+    path: "/Security_Services",
+  },
+  { name: "Telecom Services", image_url: telecom, path: "/Telecome_Services" },
+  {
+    name: "Video & Photography essentials",
+    image_url: photo,
+    path: "/Video_And_Photography",
+  },
+  {
+    name: " Dental Clinicis & Health and Beauty",
+    image_url: beauty,
+    path: "/health-and-beauties",
+  },
   { name: "Home Appliances", image_url: appliance, path: "/home-appliances" },
-  { name: "Furniture & Interior Design materials", image_url: furniture, path: "/Furniture_And_Interior_design" },
+  {
+    name: "Furniture & Interior Design materials",
+    image_url: furniture,
+    path: "/Furniture_And_Interior_design",
+  },
   { name: "Watches & Jewelries", image_url: jewelries, path: "/jewelries" },
-  { name: "Baby & Kids essentials", image_url: kids, path: "/Babies_And_Kids_Products" },
-  { name: "Fitness essentials", image_url: fitness, path: "/fitness_And_Sports_servies" },
-  { name: "Farm products", image_url: farm, path: "/Agriculture_And_Livestock" },
+  {
+    name: "Baby & Kids essentials",
+    image_url: kids,
+    path: "/Babies_And_Kids_Products",
+  },
+  {
+    name: "Fitness essentials",
+    image_url: fitness,
+    path: "/fitness_And_Sports_servies",
+  },
+  {
+    name: "Farm products",
+    image_url: farm,
+    path: "/Agriculture_And_Livestock",
+  },
   { name: "Art & Handicrafts", image_url: art, path: "/Art_And_Handicrafts" },
-  { name: "Printing & Publishing essentials", image_url: print, path: "/Printing_And_Publishing" },
+  {
+    name: "Printing & Publishing essentials",
+    image_url: print,
+    path: "/Printing_And_Publishing",
+  },
 ];
 
 const Category1 = () => {

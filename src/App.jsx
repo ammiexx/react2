@@ -527,11 +527,20 @@ function App() {
               }
             />
             <Route
+              path="/banks"
+              element={
+                <Shops
+                  category="banks"
+                  title="Your financial institutions!"
+                />
+              }
+            />
+            <Route
               path="/homes"
               element={
                 <Shops
                   category="homes"
-                  title="The source Your beautiful homel –!"
+                  title="The source Your beautiful home –!"
                 />
               }
             />
