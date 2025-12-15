@@ -201,13 +201,13 @@ const Shops = ({ category, title }) => {
                   )}
                   {item.status === "coming" && (
                     <span className="text-sm font-semibold bg-purple-100 text-purple-700 px-2 py-1 rounded">
-                      🔜 Coming Soon
+                      🔜 Coming Soon ( በቅርብ ቀን )
                     </span>
                   )}
 
                   {item.status === "open" && (
                     <span className="text-sm font-semibold bg-purple-100 text-purple-700 px-2 py-1 rounded">
-                      🔜 We Are Open
+                      🔜 We Are Open ( ሥራ ጀምረናል )
                     </span>
                   )}
 
