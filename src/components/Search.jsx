@@ -121,7 +121,7 @@ const toggleDarkMode = () => {
       {/* Side Drawer */}
 <div
   ref={menuRef}
-  className={`fixed top-0 left-0 h-screen w-80 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 z-50 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${
+  className={`fixed top-0 left-0 h-screen w-80 bg-white dark:bg-white-900 text-gray-900 dark:text-gray-100 z-50 shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${
     menuOpen ? 'translate-x-0' : '-translate-x-full'
   }`}
 >
@@ -168,7 +168,7 @@ const toggleDarkMode = () => {
           {/* Account Section */}
           <div>
             <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-2"></h3>
-            <ul className="space-y-2 text-gray-700 dark:text-gray-200 text-sm">
+            <ul className="space-y-2 text-black-900 dark:text-gray-900 text-sm">
 
               {accountLinks(setOpenProfile, setShowLogoutConfirm, isSignedIn).map((link, index) => {
                 if (link.requiresSignIn && !isSignedIn) return null;
