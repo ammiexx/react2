@@ -1,41 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaTelegramPlane } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaTelegramPlane } from "react-icons/fa";
 
 const Nearby = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch(
-          `https://djanagobackend-5.onrender.com/api/products/`
+          "https://djanagobackend-5.onrender.com/api/products/"
         );
-        if (!response.ok) throw new Error('Connect to internet');
-        let data = await response.json();
+        if (!response.ok) throw new Error("Connect to internet");
 
+        let data = await response.json();
         const now = new Date();
 
-        // ✅ Filter: only verified products with 1–2 days left in discount
+        // ✅ Filter: verified + 1–2 days left
         data = data.filter((item) => {
           if (!item.verified || !item.discount_duration || !item.date_posted)
             return false;
 
           const startDate = new Date(item.date_posted);
           const deadline = new Date(startDate);
-          deadline.setDate(startDate.getDate() + Number(item.discount_duration));
+          deadline.setDate(
+            startDate.getDate() + Number(item.discount_duration)
+          );
 
           const timeLeft = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24));
 
-          // ✅ keep only discounts with 1–2 days remaining
           return timeLeft >= 1 && timeLeft <= 2;
         });
 
         setProducts(data);
-      } catch (err) {
+      } catch {
         setError("No internet connection!");
       } finally {
         setLoading(false);
@@ -48,7 +49,7 @@ const Nearby = () => {
   return (
     <div className="max-w-[1200px] mx-auto bg-gray-200 my-1 px-5 w-full">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
-        Only for <span className="text-red-500">Today</span> and{' '}
+        Only for <span className="text-red-500">Today</span> and{" "}
         <span className="text-yellow-500">Tomorrow</span>!
       </h2>
 
@@ -58,16 +59,15 @@ const Nearby = () => {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {Array(6)
-              .fill()
+              .fill(null)
               .map((_, idx) => (
                 <div
                   key={idx}
                   className="bg-white px-4 py-3 rounded-lg shadow animate-pulse flex flex-col gap-2"
                 >
-                  <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto"></div>
-                  <div className="h-4 bg-gray-300 rounded w-3/4 mx-auto"></div>
-                  <div className="h-3 bg-gray-200 rounded w-1/2 mx-auto"></div>
-                  <div className="h-3 bg-gray-200 rounded w-1/3 mx-auto"></div>
+                  <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto" />
+                  <div className="h-4 bg-gray-300 rounded w-3/4 mx-auto" />
+                  <div className="h-3 bg-gray-200 rounded w-1/2 mx-auto" />
                 </div>
               ))}
           </div>
@@ -78,10 +78,12 @@ const Nearby = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {products.map((item) => {
-              // Calculate time left for display
               const startDate = new Date(item.date_posted);
               const deadline = new Date(startDate);
-              deadline.setDate(startDate.getDate() + Number(item.discount_duration));
+              deadline.setDate(
+                startDate.getDate() + Number(item.discount_duration)
+              );
+
               const timeLeft = Math.ceil(
                 (deadline - new Date()) / (1000 * 60 * 60 * 24)
               );
@@ -91,16 +93,21 @@ const Nearby = () => {
                   key={item.id}
                   className="bg-white rounded-lg shadow hover:shadow-lg transition-transform hover:scale-[1.02] p-4 flex flex-col cursor-pointer"
                   onClick={() =>
-                    navigate('/nearby-detail', { state: { product: item } })
+                    navigate("/nearby-detail", {
+                      state: { product: item },
+                    })
                   }
                 >
-                  {/* Product Info */}
+                  {/* Header */}
                   <div className="flex items-center gap-4 mb-3">
                     <img
-                      src={item.profile_photo || 'https://via.placeholder.com/60'}
+                      src={
+                        item.profile_photo || "https://via.placeholder.com/60"
+                      }
                       alt={item.company_name}
-                      className="w-16 h-16 rounded-full object-cover border border-gray-300"
+                      className="w-16 h-16 rounded-full object-cover border"
                     />
+
                     <div className="flex-1">
                       <p className="text-lg font-semibold text-blue-600">
                         {item.product_name}
@@ -108,32 +115,51 @@ const Nearby = () => {
                       <p className="text-sm font-medium text-gray-700">
                         {item.company_name}
                       </p>
+
+                      {/* FOR WHOM */}
+                      {item.for_whom && (
+                        <span className="inline-block mt-1 bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">
+                          👥 {item.for_whom}
+                        </span>
+                      )}
+
                       {item.contact_phone && (
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-gray-500 mt-1">
                           📞 {item.contact_phone}
                         </p>
                       )}
+
                       <p className="text-sm text-gray-500">
                         📍 {item.location}
                       </p>
+
                       {item.discount && (
                         <p className="text-sm text-green-600 mt-1">
                           💰 {item.discount}% OFF
                         </p>
                       )}
+
                       <p className="text-sm text-red-600 font-semibold mt-1">
-                        ⏳ {timeLeft} day{timeLeft !== 1 ? 's' : ''} left
+                        ⏳ {timeLeft} day{timeLeft !== 1 ? "s" : ""} left
                       </p>
                     </div>
                   </div>
 
-              
-                  <div className="flex flex-wrap items-center gap-3 mb-3">
+                  {/* ADDITIONAL TIPS */}
+                  {item.additional_tips && (
+                    <p className="text-xs text-gray-600 bg-yellow-50 border-l-4 border-yellow-400 px-2 py-1 rounded mb-2 line-clamp-2">
+                      💡 {item.additional_tips}
+                    </p>
+                  )}
+
+                  {/* Actions */}
+                  <div className="flex items-center gap-3 mb-2">
                     {item.contact_telegram && (
                       <a
                         href={item.contact_telegram}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
                         className="flex items-center gap-1 text-white bg-blue-500 px-2 py-1 rounded hover:bg-blue-600 transition text-sm"
                       >
                         <FaTelegramPlane /> Telegram
@@ -141,12 +167,13 @@ const Nearby = () => {
                     )}
                   </div>
 
-                  {/* Call to action */}
                   <p className="text-sm text-gray-600 mt-auto">
-                    💬 Visit our Telegram to see the price
+                    💬 Visit details to see full offer
                   </p>
 
-                  <div className="mt-2 text-blue-600 font-bold text-right">&gt;</div>
+                  <div className="mt-2 text-blue-600 font-bold text-right">
+                    &gt;
+                  </div>
                 </div>
               );
             })}
@@ -156,4 +183,5 @@ const Nearby = () => {
     </div>
   );
 };
+
 export default Nearby;
