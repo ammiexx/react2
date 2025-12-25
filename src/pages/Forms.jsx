@@ -36,12 +36,27 @@ const Form = () => {
     { value: "30", label: "30%" },
     { value: "50", label: "40%" },
     { value: "50", label: "50%" },
-    { value: "coming", label: "Coming soon (በቅርብ ቀን)!" },
-    { value: "open", label: "We are open (ስራ ጀመረናል)!" },
-    { value: "prize", label: "For Prize( ሽልማት/ጉርሻ)!" },
-    { value: "student", label: "For Students!" },
-    { value: "teacher", label: "For Teachers!" },
   ];
+
+    const additionalTipsOptions = [
+      {value: "only_discount", lable: "Only discount"},
+      { value: "coming", label: "Coming Soon" },
+      { value: "open", label: "We Are Open" },
+      { value: "prize", label: "For Prize" },
+      { value: "bonus", label: "Bonus" },
+      { value: "dubie", label: "Dubie" },
+    ];
+
+    const forWhomOptions = [
+      {value: "everybody", label: "Every body"},
+      { value: "teachers", label: "For Teachers" },
+      { value: "students", label: "For Students" },
+      { value: "teenagers", label: "For Teenagers" },
+      { value: "elders", label: "For Elders" },
+      { value: "disables", label: "For Disabled" },
+      { value: "special", label: "For Special Needs" },
+      { value: "holyday", label: "For Holiday" },
+    ];
 
 
  const categoryOptions = [
@@ -132,21 +147,23 @@ useEffect(() => {
 }, [user]);
 
   const [formData, setFormData] = useState({
-    profile_photo:null,
-    email: '',
-    product_name: '',
-    discount: '',
-    company_name: '',
-    description: '',
-    category: '',
-    location: '',
+    profile_photo: null,
+    email: "",
+    additional_tips: "",
+    for_whom: "", 
+    product_name: "",
+    discount: "",
+    company_name: "",
+    description: "",
+    category: "",
+    location: "",
     product_video: null,
-    latitude: '',
-    longitude: '',
-    contact_telegram: '',
-    contact_tick: '',
-    web_site: '',
-    contact_phone: '',
+    latitude: "",
+    longitude: "",
+    contact_telegram: "",
+    contact_tick: "",
+    web_site: "",
+    contact_phone: "",
     product_photo: null,
     images: [],
   });
@@ -409,6 +426,47 @@ if (formData.contact_telegram) {
             className="text-gray-700"
           />
         </div>
+
+        <div>
+          <label className="block text-gray-700 font-semibold mb-1">
+            Additional Tips
+          </label>
+          <Select
+            options={additionalTipsOptions}
+            value={additionalTipsOptions.find(
+              (opt) => opt.value === formData.additional_tips
+            )}
+            onChange={(selected) =>
+              setFormData((prev) => ({
+                ...prev,
+                additional_tips: selected.value,
+              }))
+            }
+            placeholder="Select additional info..."
+            isSearchable
+          />
+        </div>
+
+        <div>
+          <label className="block text-gray-700 font-semibold mb-1">
+            For Whom
+          </label>
+          <Select
+            options={forWhomOptions}
+            value={forWhomOptions.find(
+              (opt) => opt.value === formData.for_whom
+            )}
+            onChange={(selected) =>
+              setFormData((prev) => ({
+                ...prev,
+                for_whom: selected.value,
+              }))
+            }
+            placeholder="Target audience..."
+            isSearchable
+          />
+        </div>
+
         <div>
           <label className="block text-gray-700 font-semibold mb-1">
             Select category
@@ -444,10 +502,7 @@ if (formData.contact_telegram) {
               formData.discount !== "waiting" && !formData.discount_duration
             }
             disabled={
-              formData.discount === "waiting" ||
-              "coming" ||
-              "open" ||
-              !!formData.discount_duration
+              formData.discount === "waiting" || !!formData.discount_duration
             }
           />
         </div>
@@ -470,10 +525,7 @@ if (formData.contact_telegram) {
               formData.discount !== "waiting" && !formData.discount_start_date
             }
             disabled={
-              formData.discount === "waiting" ||
-              "coming" ||
-              "open" ||
-              !!formData.discount_start_date
+              formData.discount === "waiting" || !!formData.discount_start_date
             }
           />
         </div>
