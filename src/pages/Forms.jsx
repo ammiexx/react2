@@ -71,7 +71,6 @@ const Form = () => {
    { value: "events", label: "Events & Weddings" },
    { value: "entertainments", label: "Intertainments" },
    { value: "travels", label: "Travels" },
-   { value: "holyday", label: "Holyday Discounts" },
    { value: "upcomming", label: "Upcomming Services" },
    { value: "repair", label: "Repair & Maintainance" },
    { value: "agricultural", label: "Agriculture & Livestock" },
