@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "./ThemeContext";
+import realestate from "../assets/images/realestate.png";
 import appliance from "../assets/images/appliances.png";
 import banks from "../assets/images/imag2.png";
 import men from "../assets/images/men.png";
@@ -22,7 +23,7 @@ import telecom from "../assets/images/telecom.png";
 
 const categories = [
   { name: "Banks", image_url: banks, path: "/banks" },
-  { name: " Real Estates", image_url: home, path: "/homes" },
+  { name: " Real Estates", image_url: realestate, path: "/homes" },
   { name: "Car Brands", image_url: car, path: "/car-brands" },
   { name: "Men Fashions", image_url: men, path: "/men_shoes" },
   { name: "Women Fashions", image_url: women, path: "/women_fashions" },
