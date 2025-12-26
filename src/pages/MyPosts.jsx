@@ -105,7 +105,7 @@ const MyPosts = () => {
       {loading ? (
         <p>Loading...</p>
       ) : filteredProducts.length === 0 ? (
-        <p className="text-center text-gray-500 text-lg font-semibold"> you don't have posts till. showcase your first product.</p>
+        <p className="text-center text-gray-500 text-lg font-semibold"> showcase your first product.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map(item => {
