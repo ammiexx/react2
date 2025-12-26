@@ -187,7 +187,10 @@ const Shops = ({ category, title }) => {
                       {item.company_name}
                     </p>
                     <p className="text-sm text-gray-500">📍 {item.location} </p>
-                    <p>📞 {product.contact_phone}</p>
+                    <p className="text-sm text-gray-500">
+                      📞 {item.contact_phone}{" "}
+                    </p>
+
                     {item.for_whom && (
                       <p className="text-xs text-gray-600 mt-1">
                         🎯 {FOR_WHOM_META[item.for_whom]}
