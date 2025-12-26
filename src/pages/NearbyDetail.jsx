@@ -238,7 +238,6 @@ const NearbyDetail = () => {
         </div>
       )}
 
-      <FloatingChat isImageZoomed={!!selectedImage} />
     </div>
   );
 };
