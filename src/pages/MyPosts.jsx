@@ -116,7 +116,10 @@ const MyPosts = () => {
             const isEditing = editingProductId === item.id;
 
             return (
-              <div key={item.id} className="bg-white rounded-lg shadow p-4 flex flex-col cursor-pointer">
+              <div
+                key={item.id}
+                className="bg-white rounded-lg shadow p-4 flex flex-col cursor-pointer"
+              >
                 {/* Editable Fields */}
                 <div className="flex flex-col gap-2 mb-2">
                   {isEditing ? (
@@ -124,33 +127,57 @@ const MyPosts = () => {
                       <input
                         className="border rounded px-2 py-1"
                         value={editData.product_name}
-                        onChange={e => setEditData({ ...editData, product_name: e.target.value })}
+                        onChange={(e) =>
+                          setEditData({
+                            ...editData,
+                            product_name: e.target.value,
+                          })
+                        }
                         placeholder="Product Name"
                       />
                       <input
                         className="border rounded px-2 py-1"
                         value={editData.company_name}
-                        onChange={e => setEditData({ ...editData, company_name: e.target.value })}
+                        onChange={(e) =>
+                          setEditData({
+                            ...editData,
+                            company_name: e.target.value,
+                          })
+                        }
                         placeholder="Company Name"
                       />
                       <textarea
                         className="border rounded px-2 py-1"
                         value={editData.description}
-                        onChange={e => setEditData({ ...editData, description: e.target.value })}
+                        onChange={(e) =>
+                          setEditData({
+                            ...editData,
+                            description: e.target.value,
+                          })
+                        }
                         placeholder="Description"
                       />
                       <input
                         className="border rounded px-2 py-1"
                         value={editData.location}
-                        onChange={e => setEditData({ ...editData, location: e.target.value })}
+                        onChange={(e) =>
+                          setEditData({ ...editData, location: e.target.value })
+                        }
                         placeholder="Location"
                       />
                       <div>
-                        <label className="block text-sm font-medium text-gray-700">Profile Photo</label>
+                        <label className="block text-sm font-medium text-gray-700">
+                          Profile Photo
+                        </label>
                         <input
                           type="file"
                           accept="image/*"
-                          onChange={e => setEditData({ ...editData, profile_photo: e.target.files[0] })}
+                          onChange={(e) =>
+                            setEditData({
+                              ...editData,
+                              profile_photo: e.target.files[0],
+                            })
+                          }
                           className="mt-1 block w-full text-sm text-gray-700"
                         />
                         {editData.profile_photo && (
@@ -163,11 +190,18 @@ const MyPosts = () => {
                       </div>
                       {/* Product Photo */}
                       <div>
-                        <label className="block text-sm font-medium text-gray-700">Product Photo</label>
+                        <label className="block text-sm font-medium text-gray-700">
+                          Product Photo
+                        </label>
                         <input
                           type="file"
                           accept="image/*"
-                          onChange={e => setEditData({ ...editData, product_photo: e.target.files[0] })}
+                          onChange={(e) =>
+                            setEditData({
+                              ...editData,
+                              product_photo: e.target.files[0],
+                            })
+                          }
                           className="mt-1 block w-full text-sm text-gray-700"
                         />
                         {editData.product_photo && (
@@ -181,10 +215,18 @@ const MyPosts = () => {
                     </>
                   ) : (
                     <>
-                      <p className="text-lg font-semibold text-blue-600">{item.product_name}</p>
-                      <p className="text-sm font-medium text-gray-700">{item.company_name}</p>
-                      <p className="text-sm text-gray-500">{item.description}</p>
-                      <p className="text-sm text-gray-500">📍 {item.location}</p>
+                      <p className="text-lg font-semibold text-blue-600">
+                        {item.product_name}
+                      </p>
+                      <p className="text-sm font-medium text-gray-700">
+                        {item.company_name}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {item.description}
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        📍 {item.location}
+                      </p>
                       {item.discount && (
                         <span className="text-sm font-semibold bg-green-100 text-green-800 px-2 py-1 rounded">
                           {item.discount}% OFF
@@ -198,14 +240,20 @@ const MyPosts = () => {
                 <div className="flex gap-2 mt-2">
                   {isEditing ? (
                     <button
-                      onClick={() => handleSave(item.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSave(item.id);
+                      }}
                       className="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700"
                     >
                       Save
                     </button>
                   ) : (
                     <button
-                      onClick={() => handleEdit(item)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleEdit(item);
+                      }}
                       className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
                     >
                       Update
@@ -213,7 +261,10 @@ const MyPosts = () => {
                   )}
 
                   <button
-                    onClick={() => handleDelete(item.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDelete(item.id);
+                    }}
                     className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
                   >
                     Delete
@@ -224,16 +275,25 @@ const MyPosts = () => {
                 {remainingImages.length > 0 && (
                   <button
                     className="mt-1 px-4 py-1 bg-gray-600 text-white rounded-full text-xs font-medium"
-                    onClick={() => setExpandedProductId(expandedProductId === item.id ? null : item.id)}
+                    onClick={() =>
+                      setExpandedProductId(
+                        expandedProductId === item.id ? null : item.id
+                      )
+                    }
                   >
-                    {expandedProductId === item.id ? 'Less..' : 'More...'}
+                    {expandedProductId === item.id ? "Less.." : "More..."}
                   </button>
                 )}
 
                 {expandedProductId === item.id && (
                   <div className="grid grid-cols-2 gap-2 mt-2">
                     {remainingImages.map((src, idx) => (
-                      <img key={idx} src={src} alt={`Extra ${idx}`} className="w-full h-28 object-cover rounded" />
+                      <img
+                        key={idx}
+                        src={src}
+                        alt={`Extra ${idx}`}
+                        className="w-full h-28 object-cover rounded"
+                      />
                     ))}
                   </div>
                 )}
