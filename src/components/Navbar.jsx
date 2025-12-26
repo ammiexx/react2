@@ -65,7 +65,7 @@ export default function Navigation({ products, onFilter }) {
             : "translate-y-0 pointer-events-auto duration-150"
         }`}
       >
-        <div className="mx-auto max-w-10xl px-2 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="flex h-13 items-center justify-between">
             {/* ✅ LOGO */}
             <div className="hidden sm:flex items-center flex-shrink-0">
@@ -83,7 +83,7 @@ export default function Navigation({ products, onFilter }) {
               {!mobileSearchOpen ? (
                 <>
                  
-                  <div className="flex items-center gap-20">
+                  <div className="flex items-center gap-9">
                     <NavLink
                       to="/"
                       className="text-gray-200 hover:text-white text-sm font-medium"
