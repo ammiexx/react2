@@ -155,8 +155,8 @@ const NearbyDetail = () => {
             />
           )}
 
-          <div className="relative">
-            <AnimatePresence mode="wait">
+          <div className="relative h-[450px] overflow-hidden bg-gray-100">
+            <AnimatePresence>
               <motion.img
                 key={currentIndex}
                 src={images[currentIndex]}
@@ -237,7 +237,6 @@ const NearbyDetail = () => {
           />
         </div>
       )}
-
     </div>
   );
 };
