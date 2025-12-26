@@ -155,16 +155,16 @@ const NearbyDetail = () => {
             />
           )}
 
-          <div className="relative h-[450px] overflow-hidden bg-gray-100">
+          <div className="relative h-[450px] overflow-hidden bg-gray-100 rounded">
             <AnimatePresence>
               <motion.img
                 key={currentIndex}
                 src={images[currentIndex]}
-                className="w-full h-[450px] object-cover rounded cursor-pointer"
-                onClick={() => setSelectedImage(images[currentIndex])}
-                initial={{ opacity: 0, x: 80 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -80 }}
+                className="absolute inset-0 w-full h-full object-cover"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
               />
             </AnimatePresence>
 
