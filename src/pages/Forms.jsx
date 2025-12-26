@@ -39,7 +39,9 @@ const Form = () => {
   ];
 
     const additionalTipsOptions = [
-      {value: "only_discount", lable: "Only discount"},
+      { value: "only_discount", lable: "Only discount" },
+      { value: "rent", label: "Is it home? for rent" },
+      { value: "sale", label: "is it home? for sale" },
       { value: "coming", label: "Coming Soon" },
       { value: "open", label: "We Are Open" },
       { value: "prize", label: "For Prize" },

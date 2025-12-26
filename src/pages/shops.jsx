@@ -23,6 +23,14 @@ const ADDITIONAL_TIPS_META = {
     label: "🎉 Bonus",
     className: "bg-purple-100 text-purple-800",
   },
+  sale: {
+    label: "🎉 sale",
+    className: "bg-purple-100 text-purple-800",
+  },
+  rent: {
+    label: "🎉 rent",
+    className: "bg-purple-100 text-purple-800",
+  },
   dubie: {
     label: "🔥 Dubie",
     className: "bg-orange-100 text-orange-800",
