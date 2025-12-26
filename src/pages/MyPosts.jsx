@@ -39,19 +39,33 @@ const MyPosts = () => {
     product.company_name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Handle Delete
-  const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this post?')) return;
+ const handleDelete = async (id) => {
+   if (!window.confirm("Are you sure you want to delete this post?")) return;
 
-    try {
-      await fetch(`https://djanagobackend-5.onrender.com/api/delete/products/${id}/`, {
-        method: 'DELETE',
-      });
-      setProducts(products.filter(p => p.id !== id));
-    } catch (err) {
-      console.error('Error deleting product:', err);
-    }
-  };
+   try {
+     const token = await user.getToken(); // <- ADD THIS
+
+     const response = await fetch(
+       `https://djanagobackend-5.onrender.com/api/delete/products/${id}/`,
+       {
+         method: "DELETE",
+         headers: {
+           Authorization: `Bearer ${token}`, // <- ADD THIS
+         },
+       }
+     );
+
+     if (!response.ok) {
+       console.error(await response.text());
+       return;
+     }
+
+     setProducts(products.filter((p) => p.id !== id));
+   } catch (err) {
+     console.error("Error deleting product:", err);
+   }
+ };
+
 
   // Start Editing
   const handleEdit = (product) => {
@@ -67,36 +81,48 @@ const MyPosts = () => {
     });
   };
 
-  // Save Updates
-  const handleSave = async (id) => {
-    try {
-      const formData = new FormData();
+ const handleSave = async (id) => {
+   try {
+     const token = await user.getToken(); // <- ADD THIS
+     const formData = new FormData();
 
-      formData.append('product_name', editData.product_name);
-      formData.append('company_name', editData.company_name);
-      formData.append('description', editData.description);
-      formData.append('location', editData.location);
-      formData.append('discount', editData.discount);
+     formData.append("product_name", editData.product_name);
+     formData.append("company_name", editData.company_name);
+     formData.append("description", editData.description);
+     formData.append("location", editData.location);
+     formData.append("discount", editData.discount);
 
-      if (editData.profile_photo) {
-        formData.append('profile_photo', editData.profile_photo);
-      }
-      if (editData.product_photo) {
-        formData.append('product_photo', editData.product_photo);
-      }
+     if (editData.profile_photo) {
+       formData.append("profile_photo", editData.profile_photo);
+     }
+     if (editData.product_photo) {
+       formData.append("product_photo", editData.product_photo);
+     }
 
-      const response = await fetch(`https://djanagobackend-5.onrender.com/api/delete/products/${id}/`, {
-        method: 'PATCH',
-        body: formData,
-      });
+     const response = await fetch(
+       `https://djanagobackend-5.onrender.com/api/delete/products/${id}/`,
+       {
+         method: "PATCH",
+         headers: {
+           Authorization: `Bearer ${token}`, // <- ADD THIS
+         },
+         body: formData,
+       }
+     );
 
-      const updatedProduct = await response.json();
-      setProducts(products.map(p => p.id === id ? updatedProduct : p));
-      setEditingProductId(null);
-    } catch (err) {
-      console.error('Error updating product:', err);
-    }
-  };
+     if (!response.ok) {
+       console.error(await response.text());
+       return;
+     }
+
+     const updatedProduct = await response.json();
+     setProducts(products.map((p) => (p.id === id ? updatedProduct : p)));
+     setEditingProductId(null);
+   } catch (err) {
+     console.error("Error updating product:", err);
+   }
+ };
+
 
   return (
     <div className="max-w-[1200px] mx-auto bg-gray-200 my-1 px-5 w-full">
